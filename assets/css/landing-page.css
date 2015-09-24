@@ -159,7 +159,7 @@ header {
   background-size: cover;
   -o-background-size: cover;
   background-position: top;
-  background-image: url('../../../images/backgrounds/villa-Anemos.jpg');
+  background-image: url('../../assets/images/backgrounds/villa-Anemos.jpg');
   text-align: center;
   color: white;
 }
@@ -365,7 +365,7 @@ p.extra-bottom-margin {
   background-size: cover;
   -o-background-size: cover;
   background-position: center;
-  background-image: url('../../../images/backgrounds/Restaurant.jpg');
+  background-image: url('../../assets/images/backgrounds/Restaurant.jpg');
 }
 .text-primary {
   color: #9c27b0;

@@ -1,0 +1,157 @@
+@import "variables.less";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
+
+/*Resets*/
+button {
+    background: none;
+    border: 0;
+    color: inherit;
+    /* cursor: default; */
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
+    -webkit-appearance: button; /* for input */
+    -webkit-user-select: none; /* for button */
+       -moz-user-select: none;
+        -ms-user-select: none;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: @background-gray;
+}
+
+h4 {
+  font-weight: 400;
+  margin: 14px 0;
+}
+
+.content {
+  padding-top: 84px;
+}
+
+/*General*/
+
+.clickable {
+  opacity: 1;
+  transition: all ease-out 0.2s;
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+
+/*Nav Bar*/
+
+.navbar-default {
+  height: @navbar-height;
+  background-color: white;
+  box-shadow: 0 2px 15px 1px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  height: @navbar-height;
+  padding: 12px;
+}
+
+.navbar-brand img {
+  height: 100%;
+}
+
+.navbar-search.form-control {
+  width: 298px;
+  height: 34px;
+  margin: 10px 14px;
+  background-color: @background-gray;
+  border-radius: @rounded-corners-small; 
+  border: 1px solid rgb(232,232,247);
+}
+
+.nav>li>a {
+  color: rgb(150,0,180);
+  font-size: 1.2em;
+  background: transparent;
+  padding: 10px;
+  transition: all ease-out 0.08s;
+  &:hover {
+    background-color: @background-gray;
+  }
+}
+
+nav img.profileThumbnail {
+  width: 34px;
+  height: 34px;
+  margin-top: -1px;
+  margin-right: 6px;
+  background-color: transparent;
+}
+
+/*Deals Grid*/
+
+.row > [class^="col-"],
+.row > [class*=" col-"] {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+
+/*Deal Cell*/
+
+section {
+  padding-bottom: 20px;
+}
+
+.deal {
+  background-color: white;
+  padding: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: @deal-cell-shadow;
+}
+
+.dealImage {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.dealInfoBar {
+  padding: 4px 14px;
+}
+
+.priceContainer {
+  float: left;
+  color: white;
+  font-size: 1.6em;
+  font-weight: 300;
+  margin-top: -60px;
+  margin-left: -14px;
+  padding: 4px 15px;
+  position: absolute;
+  background-color: rgba(50,50,65,0.8);
+  border-top-right-radius: @rounded-corners-small;
+  border-bottom-right-radius: @rounded-corners-small;
+}
+
+.price {
+  margin-right: 12px;
+}
+
+.discount {
+  color: @text-light-gray;
+}
+
+.dealInfoBar {
+  color: @text-black;
+}
+
+.infoIcon {
+  margin-top: -2px;
+  margin-right: 6px;
+}
+
+.dealInfo {
+  .small-text;
+  color: @text-light-gray;
+}
+

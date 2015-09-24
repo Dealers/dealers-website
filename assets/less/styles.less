@@ -1,12 +1,12 @@
 @import "variables.less";
+@import "mixins.less";
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
 
-/*Resets*/
+//Resets
 button {
     background: none;
     border: 0;
     color: inherit;
-    /* cursor: default; */
     font: inherit;
     line-height: normal;
     overflow: visible;
@@ -15,6 +15,10 @@ button {
     -webkit-user-select: none; /* for button */
        -moz-user-select: none;
         -ms-user-select: none;
+}
+
+html, body {
+    min-height: 100%;
 }
 
 body {
@@ -31,7 +35,7 @@ h4 {
   padding-top: 84px;
 }
 
-/*General*/
+//General
 
 .clickable {
   opacity: 1;
@@ -42,7 +46,7 @@ h4 {
 }
 
 
-/*Nav Bar*/
+//Nav Bar
 
 .navbar-default {
   height: @navbar-height;
@@ -87,7 +91,7 @@ nav img.profileThumbnail {
   background-color: transparent;
 }
 
-/*Deals Grid*/
+//Deals Grid
 
 .row > [class^="col-"],
 .row > [class*=" col-"] {
@@ -96,7 +100,7 @@ nav img.profileThumbnail {
 }
 
 
-/*Deal Cell*/
+//Deal Cell
 
 section {
   padding-bottom: 20px;
@@ -155,3 +159,13 @@ section {
   color: @text-light-gray;
 }
 
+// Send Download Link Page
+#sendDownloadLinkPage {
+    
+    .background-cover;
+    background-position: top;
+    background-image: url('../../assets/images/backgrounds/Restaurant_darken.jpg');
+    > .header-content {
+        top: 25%;
+    }
+}

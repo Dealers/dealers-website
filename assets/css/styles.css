@@ -2,12 +2,10 @@
 .small-text {
   font-size: 1.1em;
 }
-/*Resets*/
 button {
   background: none;
   border: 0;
   color: inherit;
-  /* cursor: default; */
   font: inherit;
   line-height: normal;
   overflow: visible;
@@ -18,6 +16,10 @@ button {
   /* for button */
   -moz-user-select: none;
   -ms-user-select: none;
+}
+html,
+body {
+  min-height: 100%;
 }
 body {
   font-family: 'Open Sans', sans-serif;
@@ -30,7 +32,6 @@ h4 {
 .content {
   padding-top: 84px;
 }
-/*General*/
 .clickable {
   opacity: 1;
   transition: all ease-out 0.2s;
@@ -38,7 +39,6 @@ h4 {
 .clickable:hover {
   opacity: 0.6;
 }
-/*Nav Bar*/
 .navbar-default {
   height: 54px;
   background-color: white;
@@ -76,13 +76,11 @@ nav img.profileThumbnail {
   margin-right: 6px;
   background-color: transparent;
 }
-/*Deals Grid*/
 .row > [class^="col-"],
 .row > [class*=" col-"] {
   padding-right: 10px;
   padding-left: 10px;
 }
-/*Deal Cell*/
 section {
   padding-bottom: 20px;
 }
@@ -129,4 +127,15 @@ section {
 .dealInfo {
   font-size: 1.1em;
   color: #8c8c9b;
+}
+#sendDownloadLinkPage {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-position: top;
+  background-image: url('../../assets/images/backgrounds/Restaurant_darken.jpg');
+}
+#sendDownloadLinkPage > .header-content {
+  top: 25%;
 }

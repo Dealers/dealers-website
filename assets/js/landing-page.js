@@ -1,9 +1,3 @@
-/*!
- * Start Bootstrap - Creative Bootstrap Theme (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
-
 (function($) {
     "use strict"; // Start of use strict
 
@@ -71,7 +65,7 @@
 			$('#errorMessage').hide(100);
 		}
     		
-    		var url = "http://api.dealers-web.com/subscribers/";
+    		var url = "http://api.dealers-app.com/subscribers/";
     		$('#subscribe').html('Saving...');
     		$.ajax
 			({
@@ -126,6 +120,8 @@
 		var sb = $('#subscribe');
     		sb.css('background-color', '#3DD151');
     		sb.html("Subscribed!");
+    		$('#name').hide(500);
+    		$('#email').hide(500);
     }
     
     function errorFn(result) {

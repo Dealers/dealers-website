@@ -237,12 +237,15 @@ header .header-content .header-content-inner > h4 {
   margin: 8px auto;
   display: none;
 }
+.btn-glass {
+	background-color: rgba(255, 255, 255, 0.3);
+  	width: 98%;
+  	height: 46px;
+  	padding: 0;
+}
 #subscribe {
-  background-color: rgba(255, 255, 255, 0.3);
-  width: 98%;
-  height: 46px;
-  margin-top: 1px;
-  padding: 0;
+  	width: 98%;
+  	margin-top: 1px;
 }
 #subscribe:hover,
 #subscribe:active {

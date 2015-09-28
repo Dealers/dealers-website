@@ -1,133 +1,25 @@
 <!DOCTYPE HTML PUBLIC "-//W3Ceal//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="DealersApp">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" href="assets/css/styles.css">
-        <title>Dealers</title>
+		<link rel="stylesheet" href="assets/css/home-styles.css">
+        <title>Dealers - Deals worth sharing</title>
     </head>
     <body>
     	
-    	<nav class="navbar navbar-default navbar-fixed-top">
-    		<div class="container">
-		    	<div class="navbar-header">
-		    		<a href="#" class="navbar-brand clickable">
-		    			<img src="assets/images/Icons/logo_clean_small.png" />
-		    		</a>
-		    	</div>	 
-		    	<form class="navbar-left">
-		    		<div class="form-group">
-		    			<input type="text" class="navbar-search form-control" placeholder="Search deals"/>
-		    		</div>
-		    	</form>
-		    	<ul class="navbar-left nav">
-		    		<li>
-		    			<a href="#"><img src="assets/images/Icons/Web_Icons_navbar_categories_icon.png"></a>
-		    		</li>
-		    	</ul>  
-		    	<ul class="navbar-right nav">
-		    		<li>
-		    			<a href="#">
-		    				<div>
-		    					<img class="profileThumbnail img-circle" src="assets/images/sample/Profile_Pic_60.jpg" />
-		    					Gilad Lumbroso
-		    				</div>
-		    			</a>
-		    		</li>
-		    	</ul> 				    			
-    		</div>
-    	</nav>
-    	
-    	<div class="content container">
-    		<div class="row">
-    			<section class="col-lg-4 col-md-6 col-sm-6">
-    				<div class="deal">
-    					<img class="dealImage" src="assets/images/sample/Laline_products.jpg" />
-    					<div class="dealInfoBar">
-    						<p>
-    						Great deal at laline, should definitely go check it out :)
-    						</p>
-    					</div>
-    				</div>
-    			</section>
-    			<section class="col-lg-4 col-md-6 col-sm-6">
-    				<div class="deal">
-	    				<img class="dealImage" src="assets/images/sample/Ray_Ban_Brown.jpg" />
-	    				<div class="dealInfoBar">
-	    					<p>
-	    						Ray bans!!!
-	    					</p>
-	    				</div>
-    				</div>
-    			</section>
-    			<section class="col-lg-4 col-md-6 col-sm-6">
-    				<div class="deal">
-    					<img class="dealImage" src="assets/images/sample/Otentik_big.jpg" />
-	    				<div class="dealInfoBar">
-	    					<p>
-	    						Great deal at laline, should definitely go check it out :) No no this is authentic !!!
-	    					</p>
-	    				</div>
-    				</div>
-    			</section>
-    			<section class="col-lg-4 col-md-6 col-sm-6">
-    				<div class="deal">
-    					<img class="dealImage" src="assets/images/sample/Laline_products.jpg" />
-    					<div class="dealInfoBar">
-    						<p>
-    						Great deal at laline, should definitely go check it out :)
-    						</p>
-    					</div>
-    				</div>
-    			</section>
-    			<section class="col-lg-4 col-md-6 col-sm-6">
-    				<div class="deal">
-	    				<img class="dealImage" src="assets/images/sample/Ray_Ban_Brown.jpg" />
-	    				<div class="dealInfoBar">
-	    					<p>
-	    						Ray bans!!!
-	    					</p>
-	    				</div>
-    				</div>
-    			</section>
-    			<section class="col-lg-4 col-md-6 col-sm-6">
-				<div class="deal">
-					<div class="imageContainer">
-						<img class="dealImage" src="assets/images/sample/Otentik_big.jpg" />                                                            
-					</div>
-					<div class="dealInfoBar">
-						<div class="priceContainer">
-							<span class="price" style="display:hidden">25$</span> <span class="discount">25%</span>
-						</div>
-						<h4 class="dealTitle">
-							Great deal at laline, should definitely go check it out :) No no this is authentic !!!
-						</h4>
-						<div class="storeContainer">
-							<p class="dealInfo store">
-								<img class="infoIcon" src="assets/images/Icons/Web_Icons_my_feed_local_icon.png"/>
-								Castro Renanim
-							</p>
-						</div>
-						<div class="likesContainer">
-							<p class="dealInfo likes"> 
-								<img class="infoIcon" src="assets/images/Icons/Web_Icons_my_feed_like_icon.png"/>
-								2 likes
-							</p>
-						</div>
-					</div>
-				</div>
-			</section>
-    		</div>
-    		
-    	</div>
+    	<nav ng-include="" class="navbar navbar-default navbar-fixed-top"></nav>
     
-    
+    <div ng-view></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="assets/js/mainScript.js"></script>
+    <script src="assets/lib/js/angular-route.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/routes.js"></script>
     </body>
 </html>

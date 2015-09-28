@@ -65,7 +65,7 @@
 			$('#errorMessage').hide(100);
 		}
     		
-    		var url = "http://api.dealers-app.com/subscribers/";
+    		var url = "http://api.dealers-web.com/subscribers/";
     		$('#subscribe').html('Saving...');
     		$.ajax
 			({

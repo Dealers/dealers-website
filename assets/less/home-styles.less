@@ -1,80 +1,6 @@
 @import "mixins.less";
 @import "variables.less";
 
-// Global Components
-html,
-body {
-    height: 100%;
-    width: 100%;
-}
-
-body {
-    .sans-serif-font;
-}
-
-hr {
-    border-color: @theme-primary;
-    border-width: 3px;
-    max-width: 50px;
-}
-
-hr.light {
-    border-color: white;
-}
-
-a {
-    .transition-all;
-    color: @theme-primary;
-    &:hover,
-    &:focus {
-        color: lighten(@theme-primary, 10%);
-    }
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    .sans-serif-font;
-}
-
-p {
-    font-size: 16px;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
-
-.bg-primary {
-    background-color: @theme-primary;
-}
-
-.bg-dark {
-    background-color: @theme-dark;
-    color: white;
-}
-
-.text-faded {
-    color: fade(white, 70%);
-}
-
-.text-muted {
-  color: @text-light-gray;
-}
-
-section {
-    padding: 100px 0;
-}
-
-aside {
-    padding: 50px 0;
-}
-
-.no-padding {
-    padding: 0;
-}
-
 // Navigation
 
 .navbar-default {
@@ -182,7 +108,7 @@ header {
         padding: 70px 15px 100px;
         width: 100%;
         .header-content-inner {
-            div {
+            div#mainLogo {
                 height: 40px;
                 display: none;
             }
@@ -195,10 +121,13 @@ header {
                 margin-bottom: 30px;
                 line-height: 140%;
             }
+            div#signUpSection {
+                margin: 20px auto;
+            }
         }
     }
     @media (min-width: 768px) {
-        min-height: 100%;
+        min-height: 100vh;
         .header-content {
             position: absolute;
             top: 38%;
@@ -210,7 +139,7 @@ header {
                 max-width: 1000px;
                 margin-left: auto;
                 margin-right: auto;
-                div {
+                div#mainLogo {
                     display: block;
                     height: auto;
                     margin: 25px auto;
@@ -255,16 +184,15 @@ header {
     display: none;
 }
 
-#subscribe {
-    background-color: rgba(255, 255, 255, 0.3);
+
+#signUpSection {
+  width: 280px;
+  > button {
     width: 98%;
-    height: 46px;
-    margin-top: 1px;
-    padding: 0;
-    &:hover, &:active {
-        background-color: rgba(255, 255, 255, 0.6);
-    }
+    margin-top: 10px;
+  }
 }
+
 
 .appStoreBadge {
   height: 52px;
@@ -404,7 +332,7 @@ p.extra-bottom-margin {
 
 // Button Styles
 .btn-default {
-    .button-variant(@theme-dark;white;white);
+    .button-variant(@theme-dark;@theme-white;@theme-white);
 }
 
 .btn-primary {
@@ -415,12 +343,35 @@ p.extra-bottom-margin {
     .sans-serif-font;
     border: none;
     border-radius: 8px;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
 }
 
 .btn-xl {
-    padding: 15px 30px;
+    padding: 14px 30px;
+}
+
+.btn-glass {
+    background-color: rgba(255, 255, 255, 0.3);
+    &:hover, &:active, &:focus {
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+}
+
+.btn-facebook {
+    .button-variant(white; @theme-facebook; @theme-facebook);
+}
+
+#logIn {
+    position: absolute;
+    padding: 10px;
+    top: 10px;
+    right: 10px;
+    @media (min-width: 768px) {
+      padding: 14px 30px;
+      top: 20px;
+      right: 50px;
+    }
 }
 
 // Extras

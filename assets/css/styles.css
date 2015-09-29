@@ -2,6 +2,67 @@
 .small-text {
   font-size: 1.1em;
 }
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+hr {
+  border-color: #9c27b0;
+  border-width: 3px;
+  max-width: 50px;
+}
+hr.light {
+  border-color: white;
+}
+a {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  color: #9c27b0;
+}
+a:hover,
+a:focus {
+  color: #bc37d3;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.bg-primary {
+  background-color: #9c27b0;
+}
+.bg-dark {
+  background-color: #323241;
+  color: white;
+}
+.text-faded {
+  color: rgba(255, 255, 255, 0.7);
+}
+.text-muted {
+  color: #8c8c9b;
+}
+section {
+  padding: 100px 0;
+}
+aside {
+  padding: 50px 0;
+}
+.no-padding {
+  padding: 0;
+}
 button {
   background: none;
   border: 0;
@@ -16,10 +77,6 @@ button {
   /* for button */
   -moz-user-select: none;
   -ms-user-select: none;
-}
-html,
-body {
-  min-height: 100%;
 }
 body {
   font-family: 'Open Sans', sans-serif;
@@ -81,7 +138,7 @@ nav img.profileThumbnail {
   padding-right: 10px;
   padding-left: 10px;
 }
-section {
+section.dealContainer {
   padding-bottom: 20px;
 }
 .deal {

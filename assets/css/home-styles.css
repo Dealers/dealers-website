@@ -1,67 +1,6 @@
 .small-text {
   font-size: 1.1em;
 }
-html,
-body {
-  height: 100%;
-  width: 100%;
-}
-body {
-  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-}
-hr {
-  border-color: #9c27b0;
-  border-width: 3px;
-  max-width: 50px;
-}
-hr.light {
-  border-color: white;
-}
-a {
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
-  color: #9c27b0;
-}
-a:hover,
-a:focus {
-  color: #bc37d3;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-}
-p {
-  font-size: 16px;
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-.bg-primary {
-  background-color: #9c27b0;
-}
-.bg-dark {
-  background-color: #323241;
-  color: white;
-}
-.text-faded {
-  color: rgba(255, 255, 255, 0.7);
-}
-.text-muted {
-  color: #8c8c9b;
-}
-section {
-  padding: 100px 0;
-}
-aside {
-  padding: 50px 0;
-}
-.no-padding {
-  padding: 0;
-}
 .navbar-default {
   background-color: white;
   border: none;
@@ -169,7 +108,7 @@ header .header-content {
   padding: 70px 15px 100px;
   width: 100%;
 }
-header .header-content .header-content-inner div {
+header .header-content .header-content-inner div#mainLogo {
   height: 40px;
   display: none;
 }
@@ -182,9 +121,12 @@ header .header-content .header-content-inner > h4 {
   margin-bottom: 30px;
   line-height: 140%;
 }
+header .header-content .header-content-inner div#signUpSection {
+  margin: 20px auto;
+}
 @media (min-width: 768px) {
   header {
-    min-height: 100%;
+    min-height: 100vh;
   }
   header .header-content {
     position: absolute;
@@ -199,12 +141,12 @@ header .header-content .header-content-inner > h4 {
     margin-left: auto;
     margin-right: auto;
   }
-  header .header-content .header-content-inner div {
+  header .header-content .header-content-inner div#mainLogo {
     display: block;
     height: auto;
     margin: 25px auto;
   }
-  header .header-content .header-content-inner div img {
+  header .header-content .header-content-inner div#mainLogo img {
     width: 240px;
   }
   header .header-content .header-content-inner h4 {
@@ -237,19 +179,12 @@ header .header-content .header-content-inner > h4 {
   margin: 8px auto;
   display: none;
 }
-.btn-glass {
-	background-color: rgba(255, 255, 255, 0.3);
-  	width: 98%;
-  	height: 46px;
-  	padding: 0;
+#signUpSection {
+  width: 280px;
 }
-#subscribe {
-  	width: 98%;
-  	margin-top: 1px;
-}
-#subscribe:hover,
-#subscribe:active {
-  background-color: rgba(255, 255, 255, 0.6);
+#signUpSection > button {
+  width: 98%;
+  margin-top: 10px;
 }
 .appStoreBadge {
   height: 52px;
@@ -379,8 +314,8 @@ p.extra-bottom-margin {
 }
 .btn-default {
   color: #323241;
-  background-color: white;
-  border-color: white;
+  background-color: #ececf5;
+  border-color: #ececf5;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
@@ -418,11 +353,11 @@ fieldset[disabled] .btn-default:active,
 .btn-default.disabled.active,
 .btn-default[disabled].active,
 fieldset[disabled] .btn-default.active {
-  background-color: white;
-  border-color: white;
+  background-color: #ececf5;
+  border-color: #ececf5;
 }
 .btn-default .badge {
-  color: white;
+  color: #ececf5;
   background-color: #323241;
 }
 .btn-primary {
@@ -477,11 +412,80 @@ fieldset[disabled] .btn-primary.active {
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
   border: none;
   border-radius: 8px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
 }
 .btn-xl {
-  padding: 15px 30px;
+  padding: 14px 30px;
+}
+.btn-glass {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.btn-glass:hover,
+.btn-glass:active,
+.btn-glass:focus {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+.btn-facebook {
+  color: white;
+  background-color: #3a569c;
+  border-color: #3a569c;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.btn-facebook:hover,
+.btn-facebook:focus,
+.btn-facebook.focus,
+.btn-facebook:active,
+.btn-facebook.active,
+.open > .dropdown-toggle.btn-facebook {
+  color: white;
+  background-color: #4c6cbd;
+  border-color: #4c6cbd;
+}
+.btn-facebook:active,
+.btn-facebook.active,
+.open > .dropdown-toggle.btn-facebook {
+  background-image: none;
+}
+.btn-facebook.disabled,
+.btn-facebook[disabled],
+fieldset[disabled] .btn-facebook,
+.btn-facebook.disabled:hover,
+.btn-facebook[disabled]:hover,
+fieldset[disabled] .btn-facebook:hover,
+.btn-facebook.disabled:focus,
+.btn-facebook[disabled]:focus,
+fieldset[disabled] .btn-facebook:focus,
+.btn-facebook.disabled.focus,
+.btn-facebook[disabled].focus,
+fieldset[disabled] .btn-facebook.focus,
+.btn-facebook.disabled:active,
+.btn-facebook[disabled]:active,
+fieldset[disabled] .btn-facebook:active,
+.btn-facebook.disabled.active,
+.btn-facebook[disabled].active,
+fieldset[disabled] .btn-facebook.active {
+  background-color: #3a569c;
+  border-color: #3a569c;
+}
+.btn-facebook .badge {
+  color: #3a569c;
+  background-color: white;
+}
+#logIn {
+  position: absolute;
+  padding: 10px;
+  top: 10px;
+  right: 10px;
+}
+@media (min-width: 768px) {
+  #logIn {
+    padding: 14px 30px;
+    top: 20px;
+    right: 50px;
+  }
 }
 ::-moz-selection {
   color: white;

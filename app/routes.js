@@ -2,14 +2,14 @@ angular.module('DealersApp')
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider
 	.when('/home', {
-		templateUrl: 'app/components/home/home.view.html',
-		controller: 'app/components/home/home.controller.js',
+		templateUrl: 'app/components/signed-out/home/home.view.html',
+		controller: 'HomeController',
 		controllerAs: 'homeCtrl'
 		})
 	.when('/', {
+                templateUrl: 'app/components/signed-out/home/home.view.html',
                 controller: 'HomeController',
-                templateUrl: 'home/home.view.html',
-                controllerAs: 'vm'
+                controllerAs: 'homeCtrl'
         })
 	.when('/login', {
                 controller: 'LoginController',

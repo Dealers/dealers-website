@@ -2,7 +2,81 @@
 @import "mixins.less";
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
 
-//Resets
+// Global Components
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    .sans-serif-font;
+}
+
+hr {
+    border-color: @theme-primary;
+    border-width: 3px;
+    max-width: 50px;
+}
+
+hr.light {
+    border-color: white;
+}
+
+a {
+    .transition-all;
+    color: @theme-primary;
+    &:hover,
+    &:focus {
+        color: lighten(@theme-primary, 10%);
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    .sans-serif-font;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.bg-primary {
+    background-color: @theme-primary;
+}
+
+.bg-dark {
+    background-color: @theme-dark;
+    color: white;
+}
+
+.text-faded {
+    color: fade(white, 70%);
+}
+
+.text-muted {
+  color: @text-light-gray;
+}
+
+section {
+    padding: 100px 0;
+}
+
+aside {
+    padding: 50px 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
 button {
     background: none;
     border: 0;
@@ -15,10 +89,6 @@ button {
     -webkit-user-select: none; /* for button */
        -moz-user-select: none;
         -ms-user-select: none;
-}
-
-html, body {
-    min-height: 100%;
 }
 
 body {
@@ -102,7 +172,7 @@ nav img.profileThumbnail {
 
 //Deal Cell
 
-section {
+section.dealContainer {
   padding-bottom: 20px;
 }
 

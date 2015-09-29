@@ -7,7 +7,7 @@
 	})
 	.directive('findOutMore', function() {
 		return {
-			templateUrl: 'app/components/signed-out/home/find-out-more.view.html',
+			templateUrl: 'app/components/signed-out/shared/find-out-more.view.html',
 			link: function(scope, element) {
 				// jQuery for page scrolling feature - requires jQuery Easing plugin
 			    element.bind('click', function(event) {

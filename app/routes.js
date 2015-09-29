@@ -7,19 +7,19 @@ angular.module('DealersApp')
 		controllerAs: 'homeCtrl'
 		})
 	.when('/', {
-                templateUrl: 'app/components/signed-out/home/home.view.html',
-                controller: 'HomeController',
-                controllerAs: 'homeCtrl'
+	        templateUrl: 'app/components/signed-out/home/home.view.html',
+	        controller: 'HomeController',
+	        controllerAs: 'homeCtrl'
         })
 	.when('/login', {
-                controller: 'LoginController',
-                templateUrl: 'login/login.view.html',
-                controllerAs: 'vm'
+            controller: 'LoginController',
+            templateUrl: 'login/login.view.html',
+            controllerAs: 'vm'
        	})
 	.when('/register', {
-                controller: 'RegisterController',
-                templateUrl: 'register/register.view.html',
-                controllerAs: 'vm'
+            controller: 'RegisterController',
+            templateUrl: 'register/register.view.html',
+            controllerAs: 'vm'
         })
  	.otherwise({ redirectTo: '/home' });
 }]);

@@ -157,11 +157,6 @@ header .header-content .header-content-inner div#signUpSection {
     margin-left: auto;
     margin-right: auto;
   }
-  header .header-content .header-content-inner p {
-    font-size: 1.2em;
-    margin-top: 60px;
-    margin-bottom: 15px;
-  }
 }
 #subscribe-form {
   margin: 0 auto;

@@ -1,8 +1,8 @@
 @import "variables.less";
 @import "mixins.less";
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
+@import url(https:\/\/fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
 
-// Global Components
+// Initial Configurations
 
 html,
 body {
@@ -91,6 +91,12 @@ button {
         -ms-user-select: none;
 }
 
+input {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   background-color: @background-gray;
@@ -105,6 +111,10 @@ h4 {
   padding-top: 84px;
 }
 
+.nav, .pagination, .carousel, .panel-title a { 
+  cursor: pointer; 
+}
+
 //General
 
 .clickable {
@@ -115,6 +125,11 @@ h4 {
   }
 }
 
+.dl-note {
+  width: 100%;
+  font-size: 0.8em;
+  margin: 10px 0;
+}
 
 //Nav Bar
 
@@ -228,6 +243,68 @@ section.dealContainer {
   .small-text;
   color: @text-light-gray;
 }
+
+// Forms
+.dl-form {
+  width:100%;
+  color: @theme-dark;
+  background-color: white;
+  padding: 10px 28px;
+  margin: 0 auto;
+  text-align: left;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px 1px rgba(0,0,0,0.1);
+  @media (min-width: 610px) {
+    width:590px;
+  }
+  h2 {
+    margin: 24px 0;
+  }
+}
+
+.dl-form-col {
+  width: 100%;
+  h2 {
+    margin-bottom: 30px;
+  }
+  .dl-field {
+    width: 100%;
+    margin-bottom: 16px;
+    img {
+      width: 30px;
+      height: 30px;
+      margin-right: 8px;
+    }
+    input[type="text"], input[type="date"], input[type="email"], input[type="password"] {
+      height: 40px;
+      padding: 0 10px;
+      background-color: @background-gray;
+      border-radius: 8px;
+    }
+    input[type="radio"] {
+      margin-left: 12px;
+    }
+  }
+  @media (min-width: 610px) {
+    width:252px;
+    .dl-field {
+      input[type="text"], input[type="date"], input[type="email"], input[type="password"] {
+        width: (236 - @dl-icons-size);
+      }
+    }
+  }
+}
+
+.btn-container {
+  width: 100%;
+  margin: 12px 0;
+  clear: left;
+  button {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
 
 // Send Download Link Page
 #sendDownloadLinkPage {

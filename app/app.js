@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
 	
-	angular.module('DealersApp', ['ngRoute']);
+	angular.module('DealersApp', ['ngRoute', 'ui.bootstrap']);
 	
 })();

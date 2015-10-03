@@ -16,10 +16,10 @@ angular.module('DealersApp')
             templateUrl: 'login/login.view.html',
             controllerAs: 'vm'
        	})
-	.when('/register', {
-            controller: 'RegisterController',
-            templateUrl: 'register/register.view.html',
-            controllerAs: 'vm'
+	.when('/sign-up', {
+            controller: 'SignUpController',
+            templateUrl: 'app/components/signed-out/sign-up/sign-up.view.html',
+            controllerAs: 'suCtrl'
         })
  	.otherwise({ redirectTo: '/home' });
 }]);

@@ -177,7 +177,7 @@ header .header-content .header-content-inner div#signUpSection {
 #signUpSection {
   width: 280px;
 }
-#signUpSection > button {
+#signUpSection > a {
   width: 98%;
   margin-top: 10px;
 }

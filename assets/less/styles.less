@@ -6,8 +6,9 @@
 
 html,
 body {
-    height: 100%;
     width: 100%;
+    height: 100%;
+    min-width: 296px;
 }
 
 body {
@@ -249,13 +250,14 @@ section.dealContainer {
   width:100%;
   color: @theme-dark;
   background-color: white;
-  padding: 10px 28px;
+  padding: 10px 15px;
   margin: 0 auto;
   text-align: left;
   border-radius: 10px;
   box-shadow: 0 2px 15px 1px rgba(0,0,0,0.1);
-  @media (min-width: 610px) {
+  @media (min-width: @phone-width) {
     width:590px;
+    padding: 10px 28px;
   }
   h2 {
     margin: 24px 0;
@@ -270,13 +272,15 @@ section.dealContainer {
   .dl-field {
     width: 100%;
     margin-bottom: 16px;
+    position: relative;
     img {
       width: 30px;
       height: 30px;
       margin-right: 8px;
     }
     input[type="text"], input[type="date"], input[type="email"], input[type="password"] {
-      height: 40px;
+      width: 80%;
+      height: @dl-input-height;
       padding: 0 10px;
       background-color: @background-gray;
       border-radius: 8px;
@@ -284,8 +288,35 @@ section.dealContainer {
     input[type="radio"] {
       margin-left: 12px;
     }
+    div.dl-inline-field-icon {
+      display: none;
+      width: @dl-input-height;
+      height: @dl-input-height;
+      position: absolute;
+      right: 10px;
+      button {
+        width: 100%;
+        height: 100%;
+      }
+      i.glyphicon {
+        opacity: 0.5;
+      }
+      @media (min-width: @phone-width) {
+        display: inline;
+      }
+    }
   }
-  @media (min-width: 610px) {
+  .dl-date-field {
+    .btn {
+      font-weight: 400;
+      border: 1px solid transparent;
+      border-radius: 3px;
+    }
+    .btn-default {
+      border-color: rgb(204,204,215);
+    }
+  }
+  @media (min-width: @phone-width) {
     width:252px;
     .dl-field {
       input[type="text"], input[type="date"], input[type="email"], input[type="password"] {

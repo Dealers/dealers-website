@@ -1,0 +1,64 @@
+<header>
+    <div class="header-content">
+        <div class="header-content-inner">
+        	<form class="dl-form clearfix">
+            	<h2>Sign Up</h2>
+            	<div class="dl-form-col pull-left">
+            		<div class="dl-field">
+            			<img src="../../assets/images/Icons/@2x/Web_Icons_name_icon.png" />
+            			<input id="fullName" type="text" placeholder="Full Name" />                			
+            		</div>
+            		<div class="dl-field">
+            			<img src="../../assets/images/Icons/@2x/Web_Icons_email_icon.png" />
+            			<input id="email" type="email" placeholder="Email" />                			
+            		</div>
+            		<div class="dl-field">
+            			<img src="../../assets/images/Icons/@2x/Web_Icons_password_icon.png" />
+            			<input id="password" type="password" placeholder="Password" />                			
+            		</div>
+            	</div>
+            	<div class="dl-form-col pull-right">
+            		<div class="dl-field dl-date-field input-group">
+            			<img src="../../assets/images/Icons/@2x/Web_Icons_date_of_birth_icon.png" />
+            			<input 
+            			id="dateOfBirth" 
+            			type="text" 
+            			placeholder="Date of Birth *"
+            			datepicker-popup="shortDate" 
+            			is-open="opened"
+            			ng-click="open($event)"
+            			max-date="maxDate"
+            			ng-model="dateOfBirth"
+            			show-weeks="false"/>
+            			<div class="dl-inline-field-icon">
+                			<button type="button" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              			</div>
+            		</div>
+            		<div class="dl-field">
+            			<img src="../../assets/images/Icons/@2x/Web_Icons_gender_icon.png" />
+            			<input type="radio" name="gender" value="male">  Male
+						<input type="radio" name="gender" value="female">  Female               			
+            			<span class="text-muted" style="margin-left: 5px">*</span>
+            		</div>
+            		<p class="dl-note text-muted it">
+            			<i>* optional</i>
+            		</p>
+            	</div>
+            	<p class="dl-note text-center text-muted pull-left">
+            		By signing up you agree to our <a href="http://www.dealers.world/terms/">Terms of Service &amp; Privacy Policy</a>
+            	</p>
+            	<div class="btn-container pull-left">
+            		<button type="submit" class="btn btn-primary btn-xl">Sign Up!</button>
+            	</div>
+            </form>
+        </div>
+    </div>
+    <div class="find-out-more" find-out-more>
+    </div>
+</header>
+
+<about-section></about-section>
+
+<ios-section></ios-section>
+
+<footer-section></footer-section>

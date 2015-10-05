@@ -81,7 +81,7 @@ button {
 }
 input {
   background: none;
-  border: none;
+  border: 1px solid;
   box-shadow: none;
 }
 body {
@@ -110,8 +110,12 @@ h4 {
 }
 .dl-note {
   width: 100%;
-  font-size: 0.8em;
+  font-size: 0.85em;
   margin: 10px 0;
+}
+p.dl-error {
+  color: #ff3b30;
+  clear: left;
 }
 .navbar-default {
   height: 54px;
@@ -245,6 +249,7 @@ section.dealContainer {
   height: 40px;
   padding: 0 10px;
   background-color: #f5f5fb;
+  border-color: #f5f5fb;
   border-radius: 8px;
 }
 .dl-form-col .dl-field input[type="radio"] {
@@ -297,14 +302,43 @@ section.dealContainer {
   display: block;
   margin: 0 auto;
 }
-#sendDownloadLinkPage {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-  background-position: top;
-  background-image: url('../../assets/images/backgrounds/Restaurant_darken.jpg');
+.ng-invalid.ng-dirty {
+  border-color: #ff6b63 !important;
 }
-#sendDownloadLinkPage > .header-content {
-  top: 25%;
+.ng-valid.ng-dirty {
+  border-color: #76e288 !important;
+}
+footer {
+  padding: 30px 10px;
+}
+.footer > li > a {
+  text-transform: uppercase;
+  font-size: 1em;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.6);
+  background: transparent;
+}
+.footer > li > a:hover {
+  color: white;
+  background: none;
+  opacity: 1;
+}
+.footer .facebook {
+  opacity: 0.6;
+  padding: 10px;
+  margin-left: 4px;
+}
+.footer .facebook img {
+  width: 30px;
+  height: 30px;
+}
+@media (min-width: 768px) {
+  .footer .facebook {
+    margin-left: 15px;
+  }
+}
+#copyrights {
+  padding: 30px 0 6px;
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 300;
 }

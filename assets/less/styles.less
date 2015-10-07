@@ -75,7 +75,11 @@ aside {
 }
 
 .no-padding {
-    padding: 0;
+    padding: 0 !important;
+}
+
+.no-margin {
+  margin: 0 !important;
 }
 
 button {
@@ -128,7 +132,7 @@ h4 {
 
 .dl-note {
   width: 100%;
-  font-size: 0.85em;
+  font-size: 0.9em;
   margin: 10px 0;
 }
 
@@ -255,81 +259,126 @@ section.dealContainer {
   width:100%;
   color: @theme-dark;
   background-color: white;
-  padding: 10px 15px;
+  padding: 10px 15px 24px;
   margin: 0 auto;
   text-align: left;
   border-radius: 10px;
   box-shadow: 0 2px 15px 1px rgba(0,0,0,0.1);
   @media (min-width: @phone-width) {
     width:590px;
-    padding: 10px 28px;
+    padding: 10px 28px 30px;
   }
   h2 {
     margin: 24px 0;
   }
 }
 
+.dl-form.form-sm {
+  @media (min-width: 440px) {
+    width:400px;
+  }
+  > .dl-field > input[type="text"], input[type="date"], input[type="email"], input[type="password"] {
+    width: 100%;
+  }
+}
+
 .dl-form-col {
   width: 100%;
+  @media (min-width: @phone-width) {
+    width:252px;
+  }
   h2 {
     margin-bottom: 30px;
   }
-  .dl-field {
-    width: 100%;
-    margin-bottom: 16px;
-    position: relative;
-    img {
-      width: 30px;
-      height: 30px;
-      margin-right: 8px;
+}
+
+.dl-field {
+  width: 100%;
+  margin-bottom: 16px;
+  position: relative;
+  img {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+  }
+  input[type="text"], input[type="date"], input[type="email"], input[type="password"] {
+    width: 80%;
+    height: @dl-input-height;
+    padding: 0 10px;
+    background-color: @background-gray;
+    border-color: @background-gray;
+    border-radius: 8px;
+  }
+  input[type="radio"] {
+    margin-left: 12px;
+  }
+  div.dl-inline-field-icon {
+    display: none;
+    width: @dl-input-height;
+    height: @dl-input-height;
+    position: absolute;
+    right: 10px;
+    button {
+      width: 100%;
+      height: 100%;
     }
+    i.glyphicon {
+      opacity: 0.5;
+    }
+    @media (min-width: @phone-width) {
+      display: inline;
+    }
+  }
+  @media (min-width: @phone-width) { //.dl-field
     input[type="text"], input[type="date"], input[type="email"], input[type="password"] {
-      width: 80%;
-      height: @dl-input-height;
-      padding: 0 10px;
-      background-color: @background-gray;
-      border-color: @background-gray;
-      border-radius: 8px;
-    }
-    input[type="radio"] {
-      margin-left: 12px;
-    }
-    div.dl-inline-field-icon {
-      display: none;
-      width: @dl-input-height;
-      height: @dl-input-height;
-      position: absolute;
-      right: 10px;
-      button {
-        width: 100%;
-        height: 100%;
-      }
-      i.glyphicon {
-        opacity: 0.5;
-      }
-      @media (min-width: @phone-width) {
-        display: inline;
-      }
+      width: (236 - @dl-icons-size);
     }
   }
-  .dl-date-field {
-    .btn {
-      font-weight: 400;
-      border: 1px solid transparent;
-      border-radius: 3px;
-    }
-    .btn-default {
-      border-color: rgb(204,204,215);
-    }
+}
+
+.dl-date-field {
+  .btn {
+    font-weight: 400;
+    border: 1px solid transparent;
+    border-radius: 3px;
   }
-  @media (min-width: @phone-width) {
-    width:252px;
-    .dl-field {
-      input[type="text"], input[type="date"], input[type="email"], input[type="password"] {
-        width: (236 - @dl-icons-size);
-      }
-    }
+  .btn-default {
+    border-color: rgb(204,204,215);
   }
+}
+
+
+// Button Styles
+
+.btn-default {
+    .button-variant(@theme-dark;@theme-white;@theme-white);
+}
+
+.btn-primary {
+    .button-variant(white;@theme-primary;@theme-primary);
+}
+
+.btn {
+    .sans-serif-font;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.btn-xl {
+    padding: 14px 30px;
+}
+
+.btn-glass {
+    background-color: rgba(255, 255, 255, 0.3);
+    &:hover, &:active, &:focus {
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+}
+
+.btn-facebook {
+    .button-variant(white; @theme-facebook; @theme-facebook);
 }
 
 .btn-container {
@@ -342,7 +391,22 @@ section.dealContainer {
   }
 }
 
+#logIn {
+    position: absolute;
+    padding: 10px;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    @media (min-width: 768px) {
+      padding: 14px 30px;
+      top: 20px;
+      right: 50px;
+    }
+}
+
+
 // Angular Classes
+
 .ng-invalid.ng-dirty {
   border-color: lighten(@text-error, 10%) !important;
 }
@@ -350,7 +414,9 @@ section.dealContainer {
   border-color: lighten(@text-success, 10%) !important;
 }
 
+
 // Footer
+
 footer {
     padding: 30px 10px;
 }

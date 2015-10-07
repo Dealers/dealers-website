@@ -28,56 +28,34 @@
 
 <body id="page-top">
 
-    <header>
-        <div class="header-content">
-            <div class="header-content-inner">
-            	<form class="dl-form clearfix">
-                	<h2>Sign Up</h2>
-                	<div class="dl-form-col pull-left">
-                		<div class="dl-field">
-                			<img src="../../assets/images/Icons/@2x/Web_Icons_name_icon.png" />
-                			<input id="fullName" type="text" placeholder="Full Name" />                			
-                		</div>
-                		<div class="dl-field">
-                			<img src="../../assets/images/Icons/@2x/Web_Icons_email_icon.png" />
-                			<input id="email" type="email" placeholder="Email" />                			
-                		</div>
-                		<div class="dl-field">
-                			<img src="../../assets/images/Icons/@2x/Web_Icons_password_icon.png" />
-                			<input id="password" type="password" placeholder="Password" />                			
-                		</div>
-                	</div>
-                	<div class="dl-form-col pull-right">
-                		<div class="dl-field">
-                			<img src="../../assets/images/Icons/@2x/Web_Icons_date_of_birth_icon.png" />
-                			<input id="dateOfBirth" type="date" placeholder="* Date of Birth" />                			
-                		</div>
-                		<div class="dl-field">
-                			<img src="../../assets/images/Icons/@2x/Web_Icons_gender_icon.png" />
-                			<i class="dl-note text-muted">*</i>
-                			<input type="radio" name="gender" value="male">  Male
-							<input type="radio" name="gender" value="female">  Female               			
-                		</div>
-                		<p class="dl-note text-muted it">
-                			<i>* optional</i>
-                		</p>
-                	</div>
-                	<p class="dl-note text-center text-muted pull-left">
-                		By signing up you agree to our <a href="http://www.dealers.world/terms/">Terms of Service &amp; Privacy Policy</a>
-                	</p>
-                	<div class="btn-container pull-left">
-                		<button type="submit" class="btn btn-primary btn-xl">Sign Up!</button>
-                	</div>
-                </form>
-            </div>
+<header>
+    <div class="header-content">
+        <div class="header-content-inner">
+        	<form name="loginForm" class="dl-form form-sm clearfix" ng-submit="login(loginForm)" novalidate>
+            	<h2>Log In</h2>
+            	<div class="dl-field">
+        			<input id="email" name="email" type="text" placeholder="Email" ng-model="dealer.full_name" required/>                			
+        		</div>
+        		<div class="dl-field">
+        			<input id="password" name="password" type="text" placeholder="Password" ng-model="dealer.full_name" required/>                			
+        		</div>
+            	<p class="dl-error dl-note text-center" ng-show="showError">{{errorMessage}}</p>
+            	<div class="btn-container pull-left">
+            		<button type="submit" class="btn btn-primary btn-xl">{{buttonTitle}}</button>
+            	</div>
+            	<p class="dl-note text-center text-muted no-margin pull-left">Don't have an account? <a href="#/login">Sign Up!</a></p>
+            </form>
         </div>
-        <div class="find-out-more">
-        		<a href="#about" class="btn btn-primary btn-xl page-scroll">
-        			Find Out More<br />
-        			<div class="caret"></div>
-        		</a>
-        </div>
-    </header>
+    </div>
+    <div class="find-out-more" find-out-more>
+    </div>
+</header>
+
+<about-section></about-section>
+
+<ios-section></ios-section>
+
+<footer-section></footer-section>
 
     <section id="about">
         <div class="container">

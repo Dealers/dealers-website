@@ -4,10 +4,13 @@
 	angular.module('DealersApp')
 	.factory('Authentication', AuthenticationFactory);
 	
-	AuthenticationFactory.$inject = ['$http'];
-	function AuthenticationFactory($http) {
+	AuthenticationFactory.$inject = ['$http', '$rootScope', '$cookies'];
+	function AuthenticationFactory($http, $rootScope, $cookies) {
 		var service = {};
 		service.getCredentials = getCredentials;
+		service.getToken = getToken;
+		service.saveCredentials = saveCredentials;
+		service.clearCredentials = clearCredentials;
 		
 		return service;
 		
@@ -15,9 +18,32 @@
 			var authdata = encode(username + ':' + password);
 			return 'Basic ' + authdata;
 		}
-	}
-	
-	function encode(input) {
+		
+		function getToken(username, password) {
+			return $http.post($rootScope.baseUrl + '/dealers-token-auth/', {
+				username: username,
+				password: password
+			});
+		}
+		
+		function saveCredentials (username, token) {
+			$rootScope.globals = {
+                currentUser: {
+                    username: username,
+                    token: token
+                }
+            };
+			$http.defaults.headers.common['Authorization'] = 'Authorization ' + token;
+			$cookies.put('globals', $rootScope.globals);
+		}
+		
+		function clearCredentials () {
+			$rootScope.globals = {};
+			$http.defaults.headers.common.Authorization = 'Authorization ';
+			$cookies.remove('globals');
+		}
+		
+		function encode(input) {
 		var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 		var output = "";
 	    var chr1, chr2, chr3 = "";
@@ -48,5 +74,6 @@
 	        enc1 = enc2 = enc3 = enc4 = "";
 	            } while (i < input.length);
 	            return output;
-	};
+		};
+	}
 })();

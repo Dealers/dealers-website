@@ -27,35 +27,49 @@
 </head>
 
 <body id="page-top">
+	
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+		    	<div class="navbar-header">
+		    		<a href="#" class="navbar-brand clickable">
+		    			<img src="../../assets/images/Icons/logo_clean_small.png" />
+		    		</a>
+		    	</div>	 
+		    	<form class="navbar-left">
+		    		<div class="form-group">
+		    			<input type="text" class="navbar-search form-control" placeholder="Search deals"/>
+		    		</div>
+		    	</form>
+		    	<ul class="navbar-left nav">
+		    		<li>
+		    			<a href="#"><img src="../../assets/images/Icons/Web_Icons_navbar_categories_icon.png"></a>
+		    		</li>
+		    	</ul>  
+		    	<ul class="navbar-profile navbar-right nav">
+		    		<li>
+		    			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		    				<div>
+		    					<img class="profileThumbnail img-circle" src="../../assets/images/sample/Profile_Pic_60.jpg" />
+		    					Gilad Lumbroso
+		    				</div>
+		    			</a>
+		    			<ul class="dropdown-menu">
+		    				<li>
+		    					<a href="" >Log Out</a>
+		    				</li>
+		    			</ul>
+		    		</li>
+		    	</ul> 				    			
+		</div>
+	</nav>
 
-<header>
-    <div class="header-content">
-        <div class="header-content-inner">
-        	<form name="loginForm" class="dl-form form-sm clearfix" ng-submit="login(loginForm)" novalidate>
-            	<h2>Log In</h2>
-            	<div class="dl-field">
-        			<input id="email" name="email" type="text" placeholder="Email" ng-model="dealer.full_name" required/>                			
-        		</div>
-        		<div class="dl-field">
-        			<input id="password" name="password" type="text" placeholder="Password" ng-model="dealer.full_name" required/>                			
-        		</div>
-            	<p class="dl-error dl-note text-center" ng-show="showError">{{errorMessage}}</p>
-            	<div class="btn-container pull-left">
-            		<button type="submit" class="btn btn-primary btn-xl">{{buttonTitle}}</button>
-            	</div>
-            	<p class="dl-note text-center text-muted no-margin pull-left">Don't have an account? <a href="#/login">Sign Up!</a></p>
-            </form>
-        </div>
-    </div>
-    <div class="find-out-more" find-out-more>
-    </div>
-</header>
-
-<about-section></about-section>
-
-<ios-section></ios-section>
-
-<footer-section></footer-section>
+	<header>
+	    <div class="header-content">
+	        <div class="header-content-inner">
+	        	
+	        </div>
+	    </div>
+	</header>
 
     <section id="about">
         <div class="container">

@@ -2,17 +2,19 @@
     'use strict';
 
 	angular.module('DealersApp')
-	.controller('SignUpController', ['$scope', 'Dealer', function($scope, Dealer) {
-					
+	.controller('SignUpController', ['$scope', '$location', 'Dealer', function($scope, $location, Dealer) {
+				
+		this.showError = showError;
+		this.hideError = hideError;
+		var ctrl = this;
+			
 		$scope.open = function($event) {
 			$event.preventDefault();
 			$event.stopPropagation();
 			$scope.opened = true;
 		};
 		
-		$scope.showError = false;
-		$scope.errorMessage = "";
-		$scope.buttonTitle = "Sign Up!";
+		ctrl.hideError();
 		$scope.opened = false;
 		$scope.maxDate = new Date();
 		
@@ -31,8 +33,7 @@
 		$scope.signDealer = function(form) {
 			
 			if (!form.$valid) {
-				$scope.showError = true;
-				$scope.errorMessage = "There are unvalid fields!";
+				ctrl.showError("There are unvalid fields!");
 				return;
 			} else {
 				$scope.showError = false;
@@ -54,28 +55,38 @@
 			
 			dealer.register_date = new Date();
 			
-			Dealer.create(dealer)
-			.then(function (response) {
-                // success
-                $scope.buttonTitle = "Sign Up!";
-				$scope.showError = false;
-				$scope.errorMessage = "";
-				alert("Signed up successfully!");
-              },
-              function (httpError) {
-              	// error
-              	console.log(httpError.status + " : " + httpError.data);
-              	var errorString;
-              	if (httpError.data.user[0]) {
-              		var usernameError = httpError.data.user[0];
-              		errorString = usernameError.username[0];
-              	} else {
-					errorString = "Couldn't sign up, please try again!";
-              	}
-              	$scope.errorMessage = errorString;
-              	$scope.showError = true;
-				$scope.buttonTitle = "Sign Up!";
-              });
-		};						
+			Dealer.create(dealer);
+			
+			$scope.$on('sign-up', function(event, args) {
+          		if (!args.success) {
+          			var message = args.message;
+					ctrl.showError(message);
+          		}
+        	});  
+              
+          	$scope.$on('credentials-set', function(event, args) {
+          		if (args.success) {
+					hideError();
+					$location.path('/my-feed');
+          		} else {
+              		showError("There was a problem. Please try again");
+          		}
+        	});
+		};
+		
+		
+		// Internal methods
+			
+		function showError(message) {
+			$scope.buttonTitle = "Sign Up!";
+    		$scope.errorMessage = message;
+          	$scope.showError = true;
+    	}
+    	
+    	function hideError() {
+    		$scope.buttonTitle = "Sign Up!";
+    		$scope.errorMessage = "";		
+            $scope.showError = false;
+    	}						
 	}]);
 })();

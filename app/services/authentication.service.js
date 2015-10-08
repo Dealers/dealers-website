@@ -34,7 +34,7 @@
                 }
             };
 			$http.defaults.headers.common['Authorization'] = 'Authorization ' + token;
-			$cookies.put('globals', $rootScope.globals);
+			$cookies.putObject('globals', $rootScope.globals);
 		}
 		
 		function clearCredentials () {

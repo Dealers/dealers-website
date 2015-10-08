@@ -141,30 +141,49 @@ p.dl-error {
   clear: left;
 }
 
-//Nav Bar
+
+// Nav Bar
 
 .navbar-default {
+  font-size: 0.9em;
+  font-weight: 400;
   height: @navbar-height;
+  border: none;
   background-color: white;
   box-shadow: 0 2px 15px 1px rgba(0,0,0,0.1);
-}
-
-.navbar-brand {
-  height: @navbar-height;
-  padding: 12px;
-}
-
-.navbar-brand img {
-  height: 100%;
+  .transition-all;
+  
+  .navbar-brand {
+    height: @navbar-height;
+    padding: 12px;
+    img {
+      height: 100%;
+    }
+    &:hover,
+    &:focus {
+      opacity: 0.5;
+    }
+  }
+  .navbar-profile {
+    color: @theme-dark;
+  }
+  li > ul.dropdown-menu {
+    width: 100%;
+  }
 }
 
 .navbar-search.form-control {
-  width: 298px;
+  width: 188px;
   height: 34px;
   margin: 10px 14px;
   background-color: @background-gray;
   border-radius: @rounded-corners-small; 
   border: 1px solid rgb(232,232,247);
+  &:focus,
+  &:active {
+    width: 298px;
+  }
+  .transition-all;
 }
 
 .nav>li>a {
@@ -186,7 +205,8 @@ nav img.profileThumbnail {
   background-color: transparent;
 }
 
-//Deals Grid
+
+// Deals Grid
 
 .row > [class^="col-"],
 .row > [class*=" col-"] {
@@ -195,7 +215,7 @@ nav img.profileThumbnail {
 }
 
 
-//Deal Cell
+// Deal Cell
 
 section.dealContainer {
   padding-bottom: 20px;

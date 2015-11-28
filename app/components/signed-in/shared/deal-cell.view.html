@@ -1,0 +1,32 @@
+<section class="dealContainer col-lg-4 col-md-6 col-sm-6">
+	<div class="deal">
+		<a href="">
+			<div class="imageContainer" ng-switch on="hasPhoto">
+				<img ng-src="{{photoSrc}}" class="dealImage {{dealImageStatus}}" ng-switch-when="true"/>
+				<div class="noImageBackground" style="background-color: {{imageBackgroundColor}}" ng-switch-default></div>
+			</div>
+			<div class="dealInfoBar">
+				<div class="priceContainer" ng-show="deal.price || deal.discount_value">
+					<span class="price" ng-show="deal.price">{{deal.price | currency:dealCur}}</span> 
+					<span class="discount previousPrice" ng-show="discountTypePP">{{deal.discount_value | currency:dealCur}}</span> 
+					<span class="discount" ng-show="!discountTypePP && deal.discount_value">{{deal.discount_value}}%</span>
+				</div>
+				<h4 class="dealTitle">
+					{{deal.title}}
+				</h4>
+				<div class="storeContainer">
+					<p class="dealInfo store">
+						<img class="infoIcon" src="assets/images/Icons/Web_Icons_my_feed_local_icon.png"/>
+						{{deal.store.name}}
+					</p>
+				</div>
+				<div class="likesContainer" ng-show="hasLikes">
+					<p class="dealInfo likes"> 
+						<img class="infoIcon" src="assets/images/Icons/Web_Icons_my_feed_like_icon.png"/>
+						{{deal.dealattribs.dealers_that_liked.length}}
+					</p>
+				</div>
+			</div>
+		</a>
+	</div>
+</section>

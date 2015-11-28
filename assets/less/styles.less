@@ -30,7 +30,8 @@ a {
     color: @theme-primary;
     &:hover,
     &:focus {
-        color: lighten(@theme-primary, 10%);
+      text-decoration: none;
+      color: lighten(@theme-primary, 10%);
     }
 }
 
@@ -41,6 +42,7 @@ h4,
 h5,
 h6 {
     .sans-serif-font;
+    line-height: 1.4;
 }
 
 p {
@@ -192,6 +194,7 @@ p.dl-error {
   background: transparent;
   padding: 10px;
   transition: all ease-out 0.08s;
+  height: @navbar-height;
   &:hover {
     background-color: @background-gray;
   }
@@ -205,6 +208,37 @@ nav img.profileThumbnail {
   background-color: transparent;
 }
 
+
+// Grids
+
+.dl-loading {
+  width: 100%;
+  text-align: center;
+}
+
+.dl-download-error {
+  font-size: 24px;
+  color: @text-light-gray;
+  width: 100%;
+  text-align: center;
+  margin: (@navbar-height + 60px) auto;  
+}
+
+.spinnerContainer {
+  position: relative;
+  margin: (@navbar-height + 50px) auto;  
+}
+
+.dl-loading-more {
+  width: 100%;
+  height: 70px; 
+  clear: both;
+  
+  .spinnerContainer {
+    margin: 0 0 20px;
+    height: 70px;
+  }
+}
 
 // Deals Grid
 
@@ -229,9 +263,22 @@ section.dealContainer {
   box-shadow: @deal-cell-shadow;
 }
 
-.dealImage {
+.dealImage.loading {
   width: 100%;
   margin: 0 auto;
+  background-color: @text-light-gray; 
+  padding-bottom: 67.8125%;
+}
+
+.dealImage.doneLoading {
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 0;
+}
+
+div.noImageBackground {
+  width: 100%;
+  height: 120px;  
 }
 
 .dealInfoBar {
@@ -258,6 +305,10 @@ section.dealContainer {
 
 .discount {
   color: @text-light-gray;
+}
+
+.previousPrice {
+  text-decoration: line-through;
 }
 
 .dealInfoBar {

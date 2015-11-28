@@ -33,13 +33,13 @@
                     token: token
                 }
             };
-			$http.defaults.headers.common['Authorization'] = 'Authorization ' + token;
+			$http.defaults.headers.common['Authorization'] = 'Token ' + token;
 			$cookies.putObject('globals', $rootScope.globals);
 		}
 		
 		function clearCredentials () {
 			$rootScope.globals = {};
-			$http.defaults.headers.common.Authorization = 'Authorization ';
+			$http.defaults.headers.common.Authorization = 'Token ';
 			$cookies.remove('globals');
 		}
 		

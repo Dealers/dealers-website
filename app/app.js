@@ -2,7 +2,7 @@
 	'use strict';
 	
 	angular.module('DealersApp', ['ngRoute', 'ngCookies', 'ui.bootstrap'])
-	.run(['$rootScope', '$location', '$cookies', '$http', function($rootScope, $location, $cookies, $http) {
+	.run(['$rootScope', '$location', '$cookies', '$http', 'DealerPhotos', function($rootScope, $location, $cookies, $http, DealerPhotos) {
 		
 		// global variables
 		$rootScope.baseUrl = 'http://api.dealers-web.com';
@@ -17,6 +17,9 @@
 			});
 		AWS.config.region = 'eu-west-1';
 		
+		// S3 configuration
+		$rootScope.s3 = new AWS.S3();
+		
         // keep user logged in after page refresh
         if ($cookies.get('globals') !== '[object Object]') { // checking if there's an object in the cookies key
         	$rootScope.globals = $cookies.getObject('globals') || {};
@@ -27,6 +30,22 @@
 	            var dealerString = localStorage.getItem('dealer');
 	            if (dealerString) {
 	            	$rootScope.dealer = JSON.parse(dealerString);
+	            	$rootScope.userProfilePic = "";
+	            	$rootScope.userProfilePicSender = "user-profile-pic";
+	            	// if user has profile pic, download it.
+	            	var dealer = $rootScope.dealer;
+	            	var photo = $rootScope.dealer.photo;
+	            	if (photo != "None") {
+		            	DealerPhotos.getPhoto(photo, dealer.id, $rootScope.userProfilePicSender);
+			        	$rootScope.$on('downloaded-' + $rootScope.userProfilePicSender + '-profile-pic-' + dealer.id, function(event, args) {
+			          		if (args.success) {
+			          			$rootScope.userProfilePic = args.data;
+			          		} else {
+			          			$rootScope.userProfilePic = null;
+								console.log(args.message);
+			          		}
+			        	});	
+			        }
 	            }
 	        }
  		}

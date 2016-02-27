@@ -1,3 +1,7 @@
+/*
+ *  Contains valueable constants regarding the deal's information.
+ */
+
 (function () {
     'use strict';
 

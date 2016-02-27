@@ -2,8 +2,10 @@
     'use strict';
 
 	angular.module('DealersApp')
-	.controller('MyFeedController', ['$scope', 'Deal', 'DealInfo', function($scope, Deal, DealInfo) {
-		
+	.controller('MyFeedController', ['$scope', 'Deal', 'DealInfo', function ($scope, Deal, DealInfo) {
+		/*
+		 * The controller that manages the My Feed view.
+		 */
 		var ctrl = this;
 		
 		$scope.deals = [];
@@ -15,7 +17,7 @@
 		$scope.update.nextPage;
 		
 		$scope.getDeals = getDeals;
-		$scope.getDeals();	
+		$scope.getDeals();
 		
 		
 		function getDeals(nextPage) {
@@ -37,9 +39,11 @@
 			Deal.getDeals(url)
 			.then(function (result) {
 				$scope.status = 'downloaded';
+				mapDealData(result.data.results);
 				$scope.deals.push.apply($scope.deals, result.data.results);
 				$scope.update.nextPage = result.data.next;
 				$scope.update.loadingMore = false;
+				
 			}, function (httpError) {
 				$scope.status = 'failed';
 				$scope.errorMessage = "Couldn't download the deals";
@@ -55,6 +59,16 @@
 				paramsString = nextPage.substring(paramsIndex);
 			}
 			return paramsString;
-		}			
+		}	
+		
+		function mapDealData(data) {
+			/*
+			 * Map the data that should be converted from server keys to regular strings.
+			 */
+			for (var i = 0; i < data.length; i++) {
+			    var deal = data[i];
+			    deal = Deal.mapData(deal);
+			}
+		}
 	}]);
 })();

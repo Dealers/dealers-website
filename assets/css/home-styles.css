@@ -1,3 +1,10 @@
+.clickable {
+  opacity: 1;
+  transition: all ease-out 0.2s;
+}
+.clickable:hover {
+  opacity: 0.4;
+}
 .small-text {
   font-size: 1.1em;
 }
@@ -129,6 +136,9 @@ header .header-content .header-content-inner div#signUpSection {
 }
 .section-heading {
   margin-top: 0;
+}
+section#about {
+  padding: 80px 30px;
 }
 .service-box {
   max-width: 400px;

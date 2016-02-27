@@ -1,0 +1,14 @@
+<section class="comment">
+	<div class="co-dealer-photo">
+		<img ng-src="{{commenterPhoto}}" class="vd-commenter-pic" ng-show="hasProfilePic"/>
+		<div class="vd-commenter-pic defaultProfilePic" ng-hide="hasProfilePic"></div>
+	</div>
+	<div class="vd-comment-text-container">
+		<h5>
+			{{comment.dealer.full_name}} <span class="vd-comment-date">{{comment.upload_date | date: 'short'}}</span>
+		</h5>
+		<p>
+			{{comment.text}}
+		</p>
+	</div>
+</section>

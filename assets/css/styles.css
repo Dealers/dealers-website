@@ -2,6 +2,13 @@
 .small-text {
   font-size: 1.1em;
 }
+.clickable {
+  opacity: 1;
+  transition: all ease-out 0.2s;
+}
+.clickable:hover {
+  opacity: 0.4;
+}
 html,
 body {
   width: 100%;
@@ -29,7 +36,7 @@ a {
 a:hover,
 a:focus {
   text-decoration: none;
-  color: #bc37d3;
+  color: #d176e1;
 }
 h1,
 h2,
@@ -41,7 +48,7 @@ h6 {
   line-height: 1.4;
 }
 p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
   margin-bottom: 20px;
 }
@@ -58,9 +65,6 @@ p {
 .text-muted {
   color: #8c8c9b;
 }
-section {
-  padding: 100px 0;
-}
 aside {
   padding: 50px 0;
 }
@@ -69,6 +73,9 @@ aside {
 }
 .no-margin {
   margin: 0 !important;
+}
+.nav-margin {
+  margin-top: 74px !important;
 }
 button {
   background: none;
@@ -109,14 +116,14 @@ h4 {
 }
 .container-background {
   background-color: white;
-  box-shadow: 0 2px 15px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.1);
 }
 .clickable {
   opacity: 1;
   transition: all ease-out 0.2s;
 }
 .clickable:hover {
-  opacity: 0.6;
+  opacity: 0.4;
 }
 .dl-note {
   width: 100%;
@@ -124,8 +131,16 @@ h4 {
   margin: 10px 0;
 }
 p.dl-error {
-  color: #ff3b30;
+  color: #ff3b30 !important;
   clear: left;
+}
+.form-control {
+  background-color: #f5f5fb;
+  border-radius: 5px;
+  border: 1px solid #e8e8f7;
+}
+.like-btn {
+  position: relative;
 }
 .navbar-default {
   font-size: 0.9em;
@@ -159,9 +174,6 @@ p.dl-error {
   width: 188px;
   height: 34px;
   margin: 10px 14px;
-  background-color: #f5f5fb;
-  border-radius: 5px;
-  border: 1px solid #e8e8f7;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
@@ -201,7 +213,7 @@ nav img.profileThumbnail {
 }
 .spinnerContainer {
   position: relative;
-  margin: 104px auto;
+  margin: 64px auto;
 }
 .dl-loading-more {
   width: 100%;
@@ -225,7 +237,7 @@ section.dealContainer {
   padding: 0;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.1);
 }
 .dealImage.loading {
   width: 100%;
@@ -267,6 +279,23 @@ div.noImageBackground {
 .previousPrice {
   text-decoration: line-through;
 }
+.profilePicContainer {
+  position: relative;
+}
+.dealerProfilePic {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: #c8c8d7;
+  border: 2px solid white;
+  position: absolute;
+  top: -45px;
+  right: 0;
+}
+.defaultProfilePic {
+  background: url("../images/icons/@2x/default_profile_pic.png") no-repeat;
+  background-size: cover;
+}
 .dealInfoBar {
   color: #323241;
 }
@@ -278,6 +307,235 @@ div.noImageBackground {
   font-size: 1.1em;
   color: #8c8c9b;
 }
+.vd-container {
+  min-height: 150px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.1);
+  padding: 5px 0 30px;
+  margin: 50px 0;
+}
+.vd-title {
+  width: 100%;
+  padding: 0 45px;
+  margin-bottom: 20px;
+}
+.vd-deal-photo-container .vd-deal-photo {
+  width: 100%;
+}
+.vd-dealer-profile {
+  margin: 20px 0 0;
+  padding: 0 15px 0 45px;
+}
+.vd-dealer-profile .dealerProfilePic {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: #c8c8d7;
+  position: initial;
+  float: left;
+}
+.vd-dealer-profile .vd-dealer-name {
+  font-size: 16px;
+  margin: 24px 8px;
+  float: left;
+}
+@media (max-width: 768px) {
+  .vd-dealer-profile {
+    text-align: center;
+  }
+  .vd-dealer-profile .vd-upload-date p {
+    margin: 0 0 12px 0 !important;
+  }
+  .vd-dealer-profile .dealerProfilePic {
+    float: none;
+    display: inline-block;
+  }
+  .vd-dealer-profile .vd-dealer-name {
+    float: none;
+    margin: 8px 10px;
+  }
+}
+.vd-actions {
+  margin: 20px 0 0;
+  padding: 0px;
+}
+.vd-actions .vd-actions-container {
+  float: right;
+  margin-right: 15px;
+}
+@media (max-width: 768px) {
+  .vd-actions .vd-actions-container {
+    float: none;
+    text-align: center;
+    padding: 0 30px;
+  }
+  .vd-actions .vd-actions-container .vd-likes-counter p {
+    text-align: left !important;
+  }
+  .vd-actions .vd-actions-container .vd-buttons-container {
+    display: inline-block;
+    margin-right: 8px;
+  }
+  .vd-actions .vd-actions-container .vd-buttons-container button {
+    height: 38px;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .vd-actions .vd-actions-container {
+    width: 50%;
+  }
+}
+.vd-actions .vd-actions-container .vd-likes-counter p {
+  font-size: 14px;
+  text-align: right;
+}
+.vd-actions .vd-actions-container .vd-likes-counter p img {
+  width: 16px;
+  margin-right: 4px;
+  position: relative;
+  top: -1px;
+}
+.vd-actions button.btn {
+  margin: 8px 0 8px 8px;
+  color: #9c27b0;
+  border: 1px solid #9c27b0;
+  background-color: transparent;
+  opacity: 1;
+  transition: all ease-out 0.2s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.vd-actions button.btn:hover {
+  opacity: 0.4;
+}
+.vd-actions button.btn:hover {
+  opacity: 0.4;
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .vd-actions button.btn {
+    width: 100%;
+    margin: 6px 0;
+  }
+  .vd-actions button.btn#vd-options {
+    width: 38%;
+    float: right;
+  }
+}
+.vd-actions button.btn #vd-like .side-icon {
+  position: absolute;
+  top: -1px;
+}
+.vd-comments {
+  margin: 20px 0 0;
+  padding: 0 45px;
+  float: left;
+  clear: both;
+}
+@media (max-width: 768px) {
+  .vd-comments {
+    width: 100%;
+    padding: 0 30px;
+  }
+}
+.vd-comments h4 {
+  margin: 20px 0 18px;
+}
+.vd-comments .comment {
+  display: flex;
+  margin-bottom: 10px;
+}
+.vd-comments .comment .vd-commenter-pic {
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+  background-color: #c8c8d7;
+  border: 2px solid white;
+  float: left;
+}
+.vd-comments .comment .vd-comment-text-container {
+  float: left;
+  flex: 1;
+  display: inline-block;
+  padding: 2px 6px;
+}
+.vd-comments .comment .vd-comment-text-container h5 {
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+.vd-comments .comment .vd-comment-text-container h5 span.vd-comment-date {
+  color: #8c8c9b;
+  font-size: 12px;
+  font-weight: 200;
+  margin-left: 8px;
+}
+.vd-comments .comment .vd-comment-text-container p {
+  color: #8c8c9b;
+}
+.vd-comments .comment form {
+  flex: 1;
+}
+.vd-comments .comment form textarea {
+  width: 100%;
+  max-width: 460px;
+  height: 44px;
+  max-height: 200px;
+  background-color: #f5f5fb;
+  border-radius: 10px;
+  padding: 10px 16px;
+}
+.vd-info-pane {
+  padding-left: 15px !important;
+  padding-right: 45px !important;
+}
+@media (max-width: 768px) {
+  .vd-info-pane {
+    margin: 20px 0 0;
+    padding: 0 30px !important;
+  }
+}
+.vd-info-pane .vd-basic-info .vd-bullet {
+  margin-bottom: 18px;
+  display: flex;
+}
+.vd-info-pane .vd-basic-info .vd-bullet .vd-info-icon {
+  height: 28px;
+  margin-right: 10px;
+  float: left;
+}
+.vd-info-pane .vd-basic-info .vd-bullet p {
+  flex: 1;
+  float: left;
+  margin: 2px 0 0 0;
+}
+.vd-info-pane .vd-price-discount {
+  margin: 10px 0;
+  display: inline-block;
+}
+.vd-info-pane .vd-price-discount .vd-price-discount-frame {
+  background-color: rgba(50, 50, 65, 0.8);
+  padding: 6px 16px;
+  border-radius: 5px;
+}
+.vd-info-pane .vd-price-discount .vd-price-discount-frame div {
+  display: inline-block;
+}
+.vd-info-pane .vd-price-discount .vd-price-discount-frame .vd-price {
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+}
+.vd-info-pane .vd-price-discount .vd-price-discount-frame .vd-discount {
+  color: #c3c3ca;
+  font-size: 18px;
+  font-weight: 400;
+  margin-left: 8px;
+}
+.vd-info-pane .vd-more-description {
+  margin: 20px 0 0;
+  color: #8c8c9b;
+}
 .dl-form {
   width: 100%;
   color: #323241;
@@ -286,7 +544,7 @@ div.noImageBackground {
   margin: 0 auto;
   text-align: left;
   border-radius: 10px;
-  box-shadow: 0 2px 15px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.1);
 }
 @media (min-width: 610px) {
   .dl-form {
@@ -475,11 +733,20 @@ fieldset[disabled] .btn-primary.active {
   background-color: white;
 }
 .btn {
-  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
   border: none;
   border-radius: 8px;
   font-weight: 600;
   text-transform: uppercase;
+}
+.btn img.side-icon {
+  height: 14px;
+  position: relative;
+  margin-right: 2px;
+  top: -1px;
+}
+.btn-sm {
+  border: none;
+  border-radius: 4px;
 }
 .btn-xl {
   padding: 14px 30px;
@@ -563,10 +830,10 @@ fieldset[disabled] .btn-facebook.active {
     right: 50px;
   }
 }
-.ng-invalid.ng-dirty {
+.dl-form .ng-invalid.ng-dirty {
   border-color: #ff6b63 !important;
 }
-.ng-valid.ng-dirty {
+.dl-form .ng-valid.ng-dirty {
   border-color: #76e288 !important;
 }
 footer {

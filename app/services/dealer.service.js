@@ -1,3 +1,7 @@
+/*
+ *  Contains methods for downloading users' info, authenticating users and registering new users.
+ */
+
 (function () {
     'use strict';
 
@@ -21,28 +25,7 @@
 		return service;
 				
 		function create(dealer) {
-			var credentials = Authentication.getCredentials("ubuntu", "090909deal");
-			$http.post($rootScope.baseUrl + '/dealers/', dealer, {
-				headers: {'Authorization': credentials}
-			})
-			.then(function (response) {
-                // success
-				var newDealer = response.data;
-                ctrl.saveCurrent(newDealer);
-                ctrl.setCredentials(dealer.user.username, dealer.user.password);
-              },
-              function (httpError) {
-              	// error
-              	console.log(httpError.status + " : " + httpError.data);
-              	var errorString;
-              	if (httpError.data.user[0]) {
-              		var usernameError = httpError.data.user[0];
-              		errorString = usernameError.username[0];
-              	} else {
-					errorString = "Couldn't sign up, please try again!";
-              	}
-              	ctrl.broadcastResult('sign-up', false, errorString);
-              });
+			return $http.post($rootScope.baseUrl + '/addcomments/', comment);
 		}
 		
 		function login(username, password) {

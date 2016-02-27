@@ -2,25 +2,26 @@
     'use strict';
 
 	angular.module('DealersApp')
-	.factory('Deal', DealFactory);
+	.factory('Comment', CommentFactory);
 	
-	DealFactory.$inject = ['$http', '$rootScope', 'Authentication'];
+	CommentFactory.$inject = ['$http', '$rootScope', 'Authentication'];
 	function DealFactory($http, $rootScope, Authentication) {
 		
 		var ctrl = this;
 		var service = {};
 		
-		service.getDeal = getDeal;
+		service.postComment = postComment;
 		service.getDeals = getDeals;
 		service.mapData = mapData;
 		
 		return service;
 		
-		function getDeal(dealID) {
+		function postComment(comment) {
 			/*
-			 * Returns a call for a specific deal form the server
+			 * Posts a comment to the server
 			 */
-			if (dealID) {
+			if (comment) {
+				
 				return $http.get($rootScope.baseUrl + '/alldeals/' + String(dealID) + '/');
 			}
 		}

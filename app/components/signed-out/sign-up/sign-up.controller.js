@@ -3,7 +3,7 @@
 
 	angular.module('DealersApp')
 	.controller('SignUpController', ['$scope', '$location', 'Dealer', function($scope, $location, Dealer) {
-				
+			
 		this.showError = showError;
 		this.hideError = hideError;
 		var ctrl = this;

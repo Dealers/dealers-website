@@ -9,17 +9,24 @@
 		
 		var ctrl = this;
 		ctrl.hexToBase64 = hexToBase64;
-		var s3 = new AWS.S3();
 		
 		var service = {};
 		
+		service.hasPhoto = hasPhoto;
 		service.getPhoto = getPhoto;
 		service.colorForNum = colorForNum;
 		
 		return service;
 		
+		function hasPhoto(photoAdderss) {
+			/*
+			 * Determines if the deal has a photo.
+			 */
+			return (photoAdderss.length > 2) && (photoAdderss != "None");
+		}
+		
 		function getPhoto(key, dealID) {
-			s3.getObject(
+			$rootScope.s3.getObject(
 				{ Bucket: $rootScope.AWSS3Bucket, Key: key, ResponseContentType: "image/jpg"},
 				function (error, data) {
 					var message;

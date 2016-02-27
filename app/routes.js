@@ -8,19 +8,24 @@ angular.module('DealersApp')
 		})
 	.when('/', { redirectTo: '/home' })
 	.when('/login', {
-            controller: 'LoginController',
-            templateUrl: 'app/components/signed-out/login/login.view.html',
-            controllerAs: 'lgCtrl'
+        templateUrl: 'app/components/signed-out/login/login.view.html',
+        controller: 'LoginController',
+        controllerAs: 'lgCtrl'
        	})
 	.when('/sign-up', {
-            controller: 'SignUpController',
-            templateUrl: 'app/components/signed-out/sign-up/sign-up.view.html',
-            controllerAs: 'suCtrl'
+        templateUrl: 'app/components/signed-out/sign-up/sign-up.view.html',
+        controller: 'SignUpController',
+        controllerAs: 'suCtrl'
         })
     .when('/my-feed', {
-            controller: 'MyFeedController',
-            templateUrl: 'app/components/signed-in/my-feed/my-feed.view.html',
-            controllerAs: 'mfCtrl'
+        templateUrl: 'app/components/signed-in/my-feed/my-feed.view.html',
+        controller: 'MyFeedController',
+        controllerAs: 'mfCtrl'
         })
+    .when('/deals/:dealID', {
+        templateUrl: 'app/components/signed-in/view-deal/view-deal.view.html',
+        controller: 'ViewDealController',
+        controllerAs: 'vdCtrl'
+      })
  	.otherwise({ redirectTo: '/home' });
 }]);

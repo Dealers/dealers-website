@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" href="assets/lib/css/animate.min.css" type="text/css">
 		<link rel="stylesheet" href="assets/css/home-styles.css">
@@ -14,7 +14,7 @@
     </head>
     <body>
     
-    <div ng-view></div>
+    <div ng-view autoscroll="true"></div>
 
 	<!-- Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -25,6 +25,7 @@
     <script src="assets/lib/js/ui-bootstrap-tpls-0.13.4.min.js"></script>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.9.min.js"></script>
     <script src="assets/lib/js/spin.min.js"></script>
+    <script src="assets/lib/js/horizontal-zoom-disabling.min.js"></script>
     
     <!-- App -->
     <script src="app/app.js"></script>
@@ -34,13 +35,15 @@
     <script src="app/components/signed-out/home/home.controller.js"></script>
     <script src="app/components/signed-out/sign-up/sign-up.controller.js"></script>
     <script src="app/components/signed-out/login/login.controller.js"></script>
-    <script src="app/components/signed-in/my-feed/my-feed.controller.js"></script>
-    <script src="app/components/signed-in/view-deal/view-deal.controller.js"></script>
+    <script src="app/components/signed-in/controllers/deals-grid.controller.js"></script>
+    <script src="app/components/signed-in/controllers/view-deal.controller.js"></script>    
+    <script src="app/components/signed-in/controllers/categories-list.controller.js"></script>    
 
     <!-- Directives -->
+    <script src="app/components/general/directives.js"></script>
     <script src="app/components/signed-out/shared/directives.js"></script>
-    <script src="app/components/signed-in/shared/elements.directives.js"></script>
-    <script src="app/components/signed-in/shared/widgets.directives.js"></script>
+    <script src="app/components/signed-in/directives/elements.directives.js"></script>
+    <script src="app/components/signed-in/directives/widgets.directives.js"></script>
     
     <!-- Services -->
     <script src="app/services/authentication.service.js"></script>

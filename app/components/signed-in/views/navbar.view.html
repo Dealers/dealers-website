@@ -1,0 +1,50 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+    	<div class="navbar-header">
+    		<a ng-href="#/home" class="navbar-brand clickable" title="Home">
+    			<img src="../../assets/images/icons/logo_clean_small.png" />
+    		</a>
+    	</div>	 
+    	<div class="navbar-search navbar-left nav">
+	    	<form name="searchForm" class="navbar-left" ng-submit="search(searchForm)" novalidate="">
+	    		<div class="form-group">
+	    			<input 
+	    			name="search" 
+	    			value="{{searchTerm.text}}" 
+	    			type="text" 
+	    			class="search form-control" 
+	    			ng-model="searchTerm.text" 
+	    			placeholder="Search deals" 
+	    			required/>
+	    		</div>
+	    	</form>
+    	</div>
+    	<ul class="navbar-left nav">
+    		<li>
+    			<a class="nav-button non-mobile" ng-click="toggleCatDropdown()">
+    				<img src="../../assets/images/icons/Web_Icons_navbar_categories_icon.png">
+    				<span class="caret" ></span>
+    			</a>
+    			<a href="/#/categories" class="nav-button mobile">
+    				<img src="../../assets/images/icons/Web_Icons_navbar_categories_icon.png">
+    			</a>
+    			<dl-dropdown list="categories" ng-show="catDropdownDisplay"></dl-dropdown>
+    		</li>
+    	</ul>  
+    	<ul class="navbar-profile navbar-right nav">
+    		<li>
+    			<a class="dropdown-toggle" data-toggle="dropdown">
+    				<div>
+    					<img class="profileThumbnail img-circle" src="../../assets/images/sample/Profile_Pic_60.jpg" />
+    					<span>{{dealer.full_name}}</span>
+    				</div>
+    			</a>
+    			<ul class="dropdown-menu">
+    				<li>
+    					<a ng-click="logOut()">Log Out</a>
+    				</li>
+    			</ul>
+    		</li>
+    	</ul> 				    			
+	</div>
+</nav>

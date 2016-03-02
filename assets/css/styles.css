@@ -1,6 +1,18 @@
 @import url(https:\/\/fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
-.small-text {
-  font-size: 1.1em;
+.xs-font {
+  font-size: 12px;
+}
+.small-font {
+  font-size: 12px;
+}
+.regular-font {
+  font-size: 14px;
+}
+.large-font {
+  font-size: 16px;
+}
+.xl-font {
+  font-size: 18px;
 }
 .clickable {
   opacity: 1;
@@ -30,7 +42,7 @@ hr.light {
 a {
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
-  transition: all 0.3s;
+  transition: all ease-out 0.3s;
   color: #9c27b0;
 }
 a:hover,
@@ -51,6 +63,10 @@ p {
   font-size: 14px;
   line-height: 1.5;
   margin-bottom: 20px;
+}
+ul {
+  padding: 0;
+  list-style-type: none;
 }
 .bg-primary {
   background-color: #9c27b0;
@@ -73,6 +89,9 @@ aside {
 }
 .no-margin {
   margin: 0 !important;
+}
+.nav-padding {
+  padding-top: 74px !important;
 }
 .nav-margin {
   margin-top: 74px !important;
@@ -142,6 +161,16 @@ p.dl-error {
 .like-btn {
   position: relative;
 }
+@media (min-width: 768px) {
+  .mobile {
+    display: none !important;
+  }
+}
+@media (max-width: 768px) {
+  .non-mobile {
+    display: none !important;
+  }
+}
 .navbar-default {
   font-size: 0.9em;
   font-weight: 400;
@@ -151,7 +180,7 @@ p.dl-error {
   box-shadow: 0 2px 15px 1px rgba(0, 0, 0, 0.1);
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
-  transition: all 0.3s;
+  transition: all ease-out 0.3s;
 }
 .navbar-default .navbar-brand {
   height: 54px;
@@ -167,26 +196,64 @@ p.dl-error {
 .navbar-default .navbar-profile {
   color: #323241;
 }
+@media (max-width: 768px) {
+  .navbar-default .navbar-profile {
+    margin-right: -15px;
+  }
+}
 .navbar-default li > ul.dropdown-menu {
   width: 100%;
 }
-.navbar-search.form-control {
-  width: 188px;
+@media (max-width: 768px) {
+  .navbar-default span {
+    display: none;
+  }
+}
+.navbar div.container {
+  height: inherit;
+}
+@media (max-width: 768px) {
+  .navbar div.container {
+    display: flex;
+  }
+}
+.navbar-search {
+  flex: 1;
+}
+@media (max-width: 768px) {
+  .navbar-search {
+    margin: 0 10px 0 8px;
+  }
+}
+.navbar-search .form-control {
   height: 34px;
-  margin: 10px 14px;
+  margin: 10px;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
-  transition: all 0.3s;
+  transition: all ease-out 0.3s;
 }
-.navbar-search.form-control:focus,
-.navbar-search.form-control:active {
-  width: 298px;
+@media (max-width: 768px) {
+  .navbar-search .form-control {
+    flex: 1;
+  }
+}
+@media (min-width: 768px) {
+  .navbar-search .form-control {
+    width: 188px;
+  }
+  .navbar-search .form-control:focus,
+  .navbar-search .form-control:active {
+    width: 298px;
+  }
 }
 .nav > li > a {
+  display: inline-block;
   color: #9600b4;
   font-size: 1.2em;
   background: transparent;
   padding: 10px;
+  -webkit-transition: all 0.08s;
+  -moz-transition: all 0.08s;
   transition: all ease-out 0.08s;
   height: 54px;
 }
@@ -200,11 +267,68 @@ nav img.profileThumbnail {
   margin-right: 6px;
   background-color: transparent;
 }
-.dl-loading {
-  width: 100%;
-  text-align: center;
+.full-screen-categories {
+  background: white;
+  padding-bottom: 30px;
 }
-.dl-download-error {
+.full-screen-categories ul a {
+  font-size: 16px;
+  color: #323241;
+}
+.full-screen-categories ul a:hover {
+  alpha: 1.0;
+}
+.full-screen-categories ul a li {
+  line-height: 3.6;
+  padding: 0 30px;
+  -webkit-transition: all 0.08s;
+  -moz-transition: all 0.08s;
+  transition: all ease-out 0.08s;
+}
+.full-screen-categories ul a li:hover {
+  background-color: #f5f5fb;
+}
+.dl-categories {
+  position: relative;
+  left: -15px;
+  background: white;
+  padding: 10px 0;
+  box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+.dl-categories span.nav-carret {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  position: absolute;
+  top: -9px;
+  left: 30px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+.dl-categories ul a {
+  font-size: 14px;
+  color: #323241;
+}
+.dl-categories ul a:hover {
+  alpha: 1.0;
+}
+.dl-categories ul a li {
+  line-height: 2.4;
+  padding: 0 30px;
+  -webkit-transition: all 0.08s;
+  -moz-transition: all 0.08s;
+  transition: all ease-out 0.08s;
+}
+.dl-categories ul a li:hover {
+  background-color: #f5f5fb;
+}
+.dg-title {
+  text-align: center;
+  font-weight: 700;
+  margin: 20px;
+}
+.dg-download-message {
   font-size: 24px;
   color: #8c8c9b;
   width: 100%;
@@ -215,12 +339,12 @@ nav img.profileThumbnail {
   position: relative;
   margin: 64px auto;
 }
-.dl-loading-more {
+.dg-loading-more {
   width: 100%;
   height: 70px;
   clear: both;
 }
-.dl-loading-more .spinnerContainer {
+.dg-loading-more .spinnerContainer {
   margin: 0 0 20px;
   height: 70px;
 }
@@ -304,7 +428,7 @@ div.noImageBackground {
   margin-right: 6px;
 }
 .dealInfo {
-  font-size: 1.1em;
+  font-size: 12px;
   color: #8c8c9b;
 }
 .vd-container {
@@ -353,7 +477,7 @@ div.noImageBackground {
   }
   .vd-dealer-profile .vd-dealer-name {
     float: none;
-    margin: 8px 10px;
+    margin: 8px 10px 0;
   }
 }
 .vd-actions {
@@ -363,6 +487,14 @@ div.noImageBackground {
 .vd-actions .vd-actions-container {
   float: right;
   margin-right: 15px;
+}
+.vd-actions .vd-actions-container #vd-options {
+  padding: 5px;
+  border: none;
+}
+.vd-actions .vd-actions-container #vd-options img {
+  height: 18px;
+  margin: 0;
 }
 @media (max-width: 768px) {
   .vd-actions .vd-actions-container {
@@ -405,7 +537,7 @@ div.noImageBackground {
   transition: all ease-out 0.2s;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
-  transition: all 0.3s;
+  transition: all ease-out 0.3s;
 }
 .vd-actions button.btn:hover {
   opacity: 0.4;
@@ -642,7 +774,7 @@ div.noImageBackground {
   border-color: #ececf5;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
-  transition: all 0.3s;
+  transition: all ease-out 0.3s;
 }
 .btn-default:hover,
 .btn-default:focus,
@@ -690,7 +822,7 @@ fieldset[disabled] .btn-default.active {
   border-color: #9c27b0;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
-  transition: all 0.3s;
+  transition: all ease-out 0.3s;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -765,7 +897,7 @@ fieldset[disabled] .btn-primary.active {
   border-color: #3a569c;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
-  transition: all 0.3s;
+  transition: all ease-out 0.3s;
 }
 .btn-facebook:hover,
 .btn-facebook:focus,

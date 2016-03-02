@@ -52,6 +52,11 @@ p {
     margin-bottom: 20px;
 }
 
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
 .bg-primary {
     background-color: @theme-primary;
 }
@@ -79,6 +84,10 @@ aside {
 
 .no-margin {
   margin: 0 !important;
+}
+
+.nav-padding {
+  padding-top: (@navbar-height + 20px) !important;
 }
 
 .nav-margin {
@@ -157,6 +166,17 @@ p.dl-error {
   position: relative;
 }
 
+.mobile {
+  @media (min-width: @tablet-width) {
+    display: none !important;
+  }
+}
+
+.non-mobile {
+  @media (max-width: @tablet-width) {
+    display: none !important;
+  }
+}
 
 // Nav Bar
 
@@ -182,29 +202,56 @@ p.dl-error {
   }
   .navbar-profile {
     color: @theme-dark;
+    @media (max-width: @tablet-width) {
+      margin-right: -15px
+    }
   }
   li > ul.dropdown-menu {
     width: 100%;
   }
+  @media (max-width: @tablet-width) {
+    span {
+      display: none;
+    }
+  }
 }
 
-.navbar-search.form-control {
-  width: 188px;
-  height: 34px;
-  margin: 10px 14px;
-  &:focus,
-  &:active {
-    width: 298px;
+.navbar div.container {
+  height: inherit;
+  @media (max-width: @tablet-width) {
+    display: flex;
   }
-  .transition-all;
+}
+
+.navbar-search {
+  flex: 1;
+  @media (max-width: @tablet-width) {
+    margin: 0 10px 0 8px;
+  }
+  .form-control {
+    height: 34px;
+    margin: 10px;
+    @media (max-width: @tablet-width) {
+      flex: 1;
+    }
+    @media (min-width: @tablet-width) {
+      width: 188px;
+      &:focus,
+      &:active {
+        width: 298px;
+      }
+    }
+    .transition-all;
+  }
 }
 
 .nav>li>a {
+  display: inline-block;
   color: rgb(150,0,180);
   font-size: 1.2em;
   background: transparent;
   padding: 10px;
-  transition: all ease-out 0.08s;
+  .background-hover-transition;
   height: @navbar-height;
   &:hover {
     background-color: @background-gray;
@@ -219,15 +266,74 @@ nav img.profileThumbnail {
   background-color: transparent;
 }
 
+.full-screen-categories {
+  background: white;
+  padding-bottom: 30px;
+  ul {
+    a {
+      .large-font;
+      color: @theme-dark;
+      &:hover {
+        alpha: 1.0;
+      }
+      li {
+        line-height: 3.6;
+        padding: 0 30px;
+        .background-hover-transition;
+        &:hover {
+          background-color: @background-gray;
+        }
+      }
+    }
+  }
+}
+
+.dl-categories {
+  position: relative;
+  left: -15px;
+  background: white;
+  padding: 10px 0;
+  box-shadow: @dialog-box-shadow;
+  border-radius: @rounded-corners-large;
+  span.nav-carret {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    position: absolute;
+    top: -9px;
+    left: 30px;
+    border-radius: 2px;
+    transform: rotate(45deg);
+  }
+  ul {
+    a {
+      .regular-font;
+      color: @theme-dark;
+      &:hover {
+        alpha: 1.0;
+      }
+      li {
+        line-height: 2.4;
+        padding: 0 30px;
+        .background-hover-transition;
+        &:hover {
+          background-color: @background-gray;
+        }
+      }
+    }
+  }
+}
+
 
 // Grids
 
-.dl-loading {
-  width: 100%;
+.dg-title {
   text-align: center;
+  font-weight: 700;
+  margin: 20px;
 }
 
-.dl-download-error {
+.dg-download-message {
   font-size: 24px;
   color: @text-light-gray;
   width: 100%;
@@ -240,7 +346,7 @@ nav img.profileThumbnail {
   margin: (@navbar-height + 10px) auto;  
 }
 
-.dl-loading-more {
+.dg-loading-more {
   width: 100%;
   height: 70px; 
   clear: both;
@@ -353,7 +459,7 @@ div.noImageBackground {
 }
 
 .dealInfo {
-  .small-text;
+  .small-font;
   color: @text-light-gray;
 }
 
@@ -410,7 +516,7 @@ div.noImageBackground {
     }
     .vd-dealer-name {
       float: none;
-      margin: 8px 10px;
+      margin: 8px 10px 0;
     }
   }
 }
@@ -421,6 +527,14 @@ div.noImageBackground {
   .vd-actions-container {
     float: right;
     margin-right: 15px;
+    #vd-options {
+      padding: 5px;
+      border: none;
+      img {
+        height: 18px;
+        margin: 0;
+      }
+    }
     @media (max-width: @tablet-width) {
       float: none;
       text-align: center;

@@ -50,6 +50,26 @@
 	        }
  		}
  		
+ 		// Categories
+ 		$rootScope.categories = [
+ 			"Art", 
+ 			"Automotive", 
+ 			"Beauty & Personal Care", 
+ 			"Books & Magazines", 
+ 			"Electronics", 
+ 			"Entertainment & Events", 
+ 			"Fashion", 
+ 			"Food & Groceries",
+ 			"Home & Forniture",
+ 			"Kids & Babies",
+ 			"Music",
+ 			"Pets",
+ 			"Restaurants & Bars",
+ 			"Sports & Outdoor",
+ 			"Travel",
+ 			"Other"
+ 		];
+ 		
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page
             var restrictedPage = $.inArray($location.path(), ['/home', '/login', '/sign-up']) === -1;

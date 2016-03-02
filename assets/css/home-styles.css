@@ -5,8 +5,20 @@
 .clickable:hover {
   opacity: 0.4;
 }
-.small-text {
-  font-size: 1.1em;
+.xs-font {
+  font-size: 12px;
+}
+.small-font {
+  font-size: 12px;
+}
+.regular-font {
+  font-size: 14px;
+}
+.large-font {
+  font-size: 16px;
+}
+.xl-font {
+  font-size: 18px;
 }
 header {
   position: relative;
@@ -105,7 +117,7 @@ header .header-content .header-content-inner div#signUpSection {
   opacity: 1.0;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
-  transition: all 0.3s;
+  transition: all ease-out 0.3s;
 }
 .appStoreBadge:hover {
   opacity: 0.7;
@@ -174,7 +186,7 @@ section#about {
   height: 100%;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
-  transition: all 0.3s;
+  transition: all ease-out 0.3s;
 }
 .portfolio-box .portfolio-box-caption .portfolio-box-caption-content {
   width: 100%;

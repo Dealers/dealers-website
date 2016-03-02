@@ -2,16 +2,62 @@
     'use strict';
 
 	angular.module('DealersApp')
-	.directive('dlNavbar', ['$location', '$rootScope', 'Dealer', function($location, $rootScope, Dealer) {
+	.directive('dlNavbar', ['$location', '$routeParams', '$rootScope', 'Dealer', function($location, $routeParams, $rootScope, Dealer) {
 		return {
 			restrict: 'E',
-			templateUrl: 'app/components/signed-in/shared/navbar.view.html',
+			templateUrl: 'app/components/signed-in/views/navbar.view.html',
 			link: function(scope, element) {
 				scope.dealer = $rootScope.dealer;
+				scope.searchTerm = {};
+				scope.catDropdownDisplay = false;
+				var currentPath = $location.path().split("/")[1];
+				if (currentPath == "search") {
+					scope.searchTerm.text = $routeParams.query;
+				}
 				scope.logOut = function () {
 					Dealer.logOut();
 					$location.path('/');
 				};
+				scope.search = function(form) {
+					/**
+					 * Takes the user to the deal's View Deal page.
+					 */
+					$location.path('/search/deals/' + scope.searchTerm.text);
+				};
+				scope.toggleCatDropdown = function() {
+					/**
+					 * Toggles the category dropdown menu
+					 */
+					if (scope.catDropdownDisplay) {
+						scope.catDropdownDisplay = false;
+					} else {
+						scope.catDropdownDisplay = true;
+					}
+				};
+			}
+		};
+	}])
+	.directive('dlCategories', ['$rootScope',
+			function($rootScope) {
+		return {
+			restrict: 'E',
+			replace: true,
+			templateUrl: 'app/components/signed-in/views/categories.view.html',
+			link: function(scope, element) {
+				scope;
+			}
+		};
+	}])
+	.directive('dlCategory', [function() {
+		return {
+			restrict: 'E',
+			replace: true,
+			scope: {
+				category: '='
+			},
+			template: '<a href="/#/categories/{{category}}"><li>{{category}}</li></a>',
+			link: function(scope, element) {
+				scope;
 			}
 		};
 	}])
@@ -23,7 +69,7 @@
 			scope: {
 				deal: '='
 			},
-			templateUrl: 'app/components/signed-in/shared/deal-cell.view.html',
+			templateUrl: 'app/components/signed-in/views/deal-cell.view.html',
 			link: function(scope, element) {
 				
 				var deal = scope.deal;
@@ -74,7 +120,7 @@
 				scope.hasLikes = deal.dealattribs.dealers_that_liked.length > 0;
 				
 				scope.viewDeal = function(deal) {
-				/*
+				/**
 				 * Takes the user to the deal's View Deal page.
 				 */
 					ActiveSession.setTempData(deal);
@@ -91,7 +137,7 @@
 			scope: {
 				comment: '='
 			},
-			templateUrl: 'app/components/signed-in/shared/comment.view.html',
+			templateUrl: 'app/components/signed-in/views/comment.view.html',
 			link: function(scope, element) {
 				
 	        	// Dealer Photo

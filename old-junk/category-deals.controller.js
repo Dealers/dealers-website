@@ -2,12 +2,12 @@
     'use strict';
 
 	angular.module('DealersApp')
-	.controller('MyFeedController', ['$scope', 'Deal', 'DealInfo', function ($scope, Deal, DealInfo) {
-		/*
-		 * The controller that manages the My Feed view.
+	.controller('CategoryDealsController', ['$scope', '$routeParams', 'Deal', 'DealInfo', function ($scope, $routeParams, Deal, DealInfo) {
+		/**
+		 * The controller that manages the Category Deals view.
 		 */
 		var ctrl = this;
-		
+		var category = $routeParams.category;
 		$scope.deals = [];
 		$scope.errorMessage;
 		$scope.status = 'loading';
@@ -18,12 +18,11 @@
 		
 		$scope.getDeals = getDeals;
 		$scope.getDeals();
-		
-		
+				
 		function getDeals(nextPage) {
 			
 			var nextParam;
-			var url = '/my_feeds/';
+			var url = '/category_deals/?category=' + Deal.categoryKey(category);
 
 			// Checking if asking for another page
 			if (nextPage) {
@@ -40,10 +39,14 @@
 			.then(function (result) {
 				$scope.status = 'downloaded';
 				mapDealData(result.data.results);
-				$scope.deals.push.apply($scope.deals, result.data.results);
-				$scope.update.nextPage = result.data.next;
+				var deals = result.data.results;
+				if (deals.length > 0) {
+					$scope.deals.push.apply($scope.deals, deals);
+					$scope.update.nextPage = result.data.next;
+				} else {
+					$scope.message = "Currently there are no deals in " + category + "...";
+				}
 				$scope.update.loadingMore = false;
-				
 			}, function (httpError) {
 				$scope.status = 'failed';
 				$scope.errorMessage = "Couldn't download the deals";
@@ -56,7 +59,7 @@
 			var paramsIndex = nextPage.indexOf("/?") + 1; // +1 to get rid of the redundant backslash before the questionmark
 			var paramsString;
 			if (paramsIndex != -1) {
-				paramsString = nextPage.substring(paramsIndex);
+				paramsString = "&" + nextPage.substring(paramsIndex);
 			}
 			return paramsString;
 		}	

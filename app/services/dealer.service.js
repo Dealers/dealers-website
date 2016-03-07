@@ -21,6 +21,7 @@
 		service.create = create;
 		service.login = login;
 		service.logOut = logOut;
+		service.getDealer = getDealer;
 		
 		return service;
 				
@@ -74,6 +75,13 @@
 		
 		function broadcastResult(process, success, message) {
 			$rootScope.$broadcast(process, {success: success, message: message});
+		}
+		
+		function getDealer(dealerID) {
+			/**
+			 * Downloads the dealer's information according to the received dealer id.
+			 */
+			return $http.get($rootScope.baseUrl + '/dealers/' + dealerID + '/');
 		}
 	}
 	

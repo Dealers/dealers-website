@@ -58,12 +58,14 @@
 						<p class="dl-note text-muted">Uploaded in the {{deal.upload_date | date:'short'}} by</p>
 					</div>
 					<div class="profilePicContainer">
-						<img ng-src="{{profilePic}}" class="dealerProfilePic {{dealImageStatus}}" ng-show="hasProfilePic"/>
+						<a ng-href="/#/dealers/{{deal.dealer.id}}"><img ng-src="{{profilePic}}" class="dealerProfilePic {{dealImageStatus}}" ng-show="hasProfilePic"/></a>
 						<div class="dealerProfilePic defaultProfilePic" ng-hide="hasProfilePic"></div>
 					</div>
-					<p class="vd-dealer-name">
-						{{deal.dealer.full_name}}
-					</p>
+					<a ng-href="/#/dealers/{{deal.dealer.id}}">
+						<p class="vd-dealer-name">
+							{{deal.dealer.full_name}}
+						</p>
+					</a>
 				</div>
 				<div class="vd-actions col-sm-3 clearfix">
 					<div class="vd-actions-container">

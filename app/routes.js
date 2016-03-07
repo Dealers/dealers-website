@@ -50,5 +50,10 @@ angular.module('DealersApp')
         controller: 'ViewDealController',
         controllerAs: 'vdCtrl'
       })
+      .when('/dealers/:dealerID', {
+        templateUrl: 'app/components/signed-in/views/profile.view.html',
+        controller: 'ProfileController',
+        controllerAs: 'prCtrl'
+      })
  	.otherwise({ redirectTo: '/home' });
 }]);

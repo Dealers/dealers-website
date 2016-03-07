@@ -1,0 +1,54 @@
+<dl-navbar></dl-navbar>
+
+<div style="height: 80px" ng-show="downloadDealerStatus != 'downloaded'"></div> <!-- Just for getting a margin when deals are loading -->
+<div class="pr-header-section nav-padding" ng-show="downloadDealerStatus == 'downloaded'">
+	<div class="container pr-header-container">
+		<div class="pr-profile-pic">
+			<img ng-src="{{profilePic}}" class="dealerProfilePic" ng-show="hasProfilePic" />
+			<div class="dealerProfilePic defaultProfilePic" ng-hide="hasProfilePic"></div>
+		</div>
+		<div class="pr-name">
+			<h2>
+				{{profile.dealer.full_name}}
+			</h2>
+		</div>
+		<div class="pr-basic-info">
+			<div class="pr-rank">
+			<img ng-src="{{rankIcon}}" ng-class="rankClass"/> {{profile.dealer.rank}}  
+			</div> 
+			<div class="pr-location" ng-show="profile.dealer.location && profile.dealer.location != 'None'">
+				<img ng-src="../../../../assets/images/icons/@2x/Web_Icons_my_feed_local_icon.png" />
+				{{profile.dealer.location}}
+			</div>
+			<div class="pr-about" ng-show="profile.dealer.about && profile.dealer.about != 'None'">
+				<p>
+					{{profile.dealer.about}}
+				</p>
+			</div>
+		</div>
+		<div class="pr-options">
+			
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div ng-switch on="status">
+		<div ng-switch-when="loading">
+			<loading-spinner></loading-spinner>
+		</div>
+		<div ng-switch-when="failed">
+			<h1 class="dg-download-message">{{message}} <br> {{errorPrompt}} </h1>
+		</div>
+		<div scroll-detector ng-switch-when="downloaded">
+			<h1 class="dg-download-message" ng-show="message">
+				{{message}}
+			</h1>
+			<dl-deal ng-repeat="deal in uploadedDeals" deal="deal"></dl-deal>
+			<div ng-show="update.loadingMore" class="dg-loading-more">
+				<loading-spinner size="small"></loading-spinner>
+			</div>
+		</div>
+	</div>
+</div>
+

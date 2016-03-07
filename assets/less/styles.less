@@ -132,6 +132,12 @@ h4 {
   cursor: pointer; 
 }
 
+.container {
+  @media (max-width: @phone-width) {
+    padding: 0px;
+  }
+}
+
 
 //General
 
@@ -186,7 +192,7 @@ p.dl-error {
   height: @navbar-height;
   border: none;
   background-color: white;
-  box-shadow: 0 2px 15px 1px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px 1px rgba(0,0,0,0.1);
   .transition-all;
   
   .navbar-brand {
@@ -212,6 +218,11 @@ p.dl-error {
   @media (max-width: @tablet-width) {
     span {
       display: none;
+    }
+  }
+  .container {
+    @media (max-width: @phone-width) {
+      padding: 0px 15px;
     }
   }
 }
@@ -371,6 +382,11 @@ nav img.profileThumbnail {
 
 section.dealContainer {
   padding-bottom: 20px;
+  @media (max-width: @phone-width) {
+    padding: 0 0 20px 0 !important; 
+    margin-top: 0 20px;
+    color: red;
+  }
 }
 
 .deal {
@@ -379,6 +395,9 @@ section.dealContainer {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: @deal-cell-shadow;
+  @media (max-width: @phone-width) {
+    border-radius: 0px;
+  }
 }
 
 .dealImage.loading {
@@ -473,6 +492,9 @@ div.noImageBackground {
   box-shadow: @container-shadow;
   padding: 5px 0 30px;
   margin: 50px 0;
+  @media (max-width: @phone-width) {
+    border-radius: 0px;
+  }
 }
 
 .vd-title {
@@ -698,6 +720,85 @@ div.noImageBackground {
     color: @text-light-gray;
   }
 }
+
+// Profile
+
+.pr-header-section {
+  position: relative;
+  text-align: center;
+  background-color: white;
+  padding: @vd-side-padding;
+  margin: 50px 0 30px;
+  box-shadow: @deal-cell-shadow;
+  
+  .spinnerContainer {
+    margin-top: 120px auto !important;
+  }
+  
+  .pr-profile-pic {
+    height: 40px;
+    border-top: 1px solid rgb(215,215,230);
+    .dealerProfilePic {
+      position: relative;
+      top: -60px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50px;
+      border: 8px solid white;
+    }
+  }
+  .pr-name {
+    h2 {
+      font-weight: 700;
+      margin: 5px;
+    }
+  }
+  .pr-rank {
+    color: @theme-primary;
+    margin: 10px;
+    img {
+      position: relative;
+      top: -2px;
+      margin-right: 2px;
+    }
+    .viewerIcon {
+      height: 9px;
+    }
+    .dealerIcon {
+      height: 9px;
+    }
+    .proDealerIcon {
+      height: 14px;
+    }
+    .seniorDealerIcon {
+      height: 17px;
+    }
+    .masterDealerIcon {
+      top: -2px;
+      height: 18px;
+    }
+  }
+  .pr-location {
+    color: @text-light-gray;
+    margin: 10px;
+    img {
+      position: relative;
+      top: -2px;
+      height: 14px;
+    }
+  }
+  .pr-about {
+    color: @text-light-gray;
+    margin: 0 auto;
+    width: 80%;
+    min-width: 260px;
+  }
+  .pr-basic-info {
+    border-bottom: 1px solid rgb(215,215,230);
+    padding-bottom: 8px;
+  }
+}
+
 
 // Forms
 

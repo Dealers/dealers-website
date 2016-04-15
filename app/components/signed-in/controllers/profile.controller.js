@@ -2,13 +2,12 @@
     'use strict';
 
 	angular.module('DealersApp')
-	.controller('ProfileController', ['$scope', '$rootScope', '$routeParams', 'Deal', 'Dealer', 'DealerPhotos',
-		function ($scope, $rootScope, $routeParams, Deal, Dealer, DealerPhotos) {
+	.controller('ProfileController', ['$scope', '$rootScope', '$routeParams', '$location', 'Deal', 'Dealer', 'DealerPhotos',
+		function ($scope, $rootScope, $routeParams, $location, Deal, Dealer, DealerPhotos) {
 		/*
 		 * The controller that manages the dealers' Profile view.
 		 */
 		var ctrl = this;
-		var mode;
 		var dealerID = $routeParams.dealerID;
 		var dealerUrl = $rootScope.baseUrl;
 		var dealsUrl = $rootScope.baseUrl;
@@ -30,9 +29,14 @@
 		
 		$scope.profile = {dealer: null};
 		$scope.uploadedDeals = [];
+		$scope.mode;
 		$scope.message;
 		$scope.status = loadingStatus;
 		$scope.downloadDealerStatus = loadingStatus;
+		$scope.settings = ["Log Out"];
+		$scope.settingsDisplay = false;
+		$scope.settingsToggle = settingsToggle;
+		$scope.logOut = logOut;
 		
 		$scope.update = {};
 		$scope.update.loadingMore = false;
@@ -43,11 +47,11 @@
 		
 		if (parseInt(dealerID) == $rootScope.dealer.id) {
 			// The dealer is the user, can get his details from the root scope.
-			mode = myProfileMode;
+			$scope.mode = myProfileMode;
 			$scope.profile.dealer = $rootScope.dealer;
 		} else {
 			// The dealer is not the user.
-			mode = otherProfileMode;
+			$scope.mode = otherProfileMode;
 		}
 		dealerUrl += '/dealers/' + dealerID;
 		
@@ -153,6 +157,22 @@
           		}
         	});
 		}
+		
+		function settingsToggle() {
+			/**
+			 * Toggles the display of the settings dropdown.
+			 */
+			if ($scope.settingsDisplay) {
+				$scope.settingsDisplay = false;
+			} else {
+				$scope.settingsDisplay = true;
+			}
+		}
+		
+		function logOut() {
+					Dealer.logOut();
+					$location.path('/');
+				}
 		
 		function setRank(rank) {
 			var iconUrl;

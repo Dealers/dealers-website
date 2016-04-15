@@ -2,7 +2,7 @@
     'use strict';
 
 	angular.module('DealersApp')
-	.controller('CategoryDealsController', ['$scope', '$routeParams', 'Deal', 'DealInfo', function ($scope, $routeParams, Deal, DealInfo) {
+	.controller('CategoryDealsController', ['$scope', '$routeParams', 'Deal', function ($scope, $routeParams, Deal) {
 		/**
 		 * The controller that manages the Category Deals view.
 		 */
@@ -22,7 +22,7 @@
 		function getDeals(nextPage) {
 			
 			var nextParam;
-			var url = '/category_deals/?category=' + Deal.categoryKey(category);
+			var url = '/category_deals/?category=' + Deal.keyForCategory(category);
 
 			// Checking if asking for another page
 			if (nextPage) {

@@ -27,13 +27,13 @@
 			},
 			date_of_birth: null,
 			gender: "",
-			register_date: null,
+			register_date: null
 		};
 		
 		$scope.signDealer = function(form) {
 			
 			if (!form.$valid) {
-				ctrl.showError("There are unvalid fields!");
+				ctrl.showError("Not all fields are valid!");
 				return;
 			} else {
 				$scope.showError = false;

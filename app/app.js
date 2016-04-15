@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 	
-	angular.module('DealersApp', ['ngRoute', 'ngCookies', 'ui.bootstrap'])
+	angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ui.bootstrap', 'ngMaterial'])
 	.run(['$rootScope', '$location', '$cookies', '$http', 'DealerPhotos', function($rootScope, $location, $cookies, $http, DealerPhotos) {
 		
 		// global variables
@@ -13,7 +13,7 @@
 		// AWS configuration
 		AWS.config.update({
 			    accessKeyId: $rootScope.AWSKey,
-			    secretAccessKey: $rootScope.AWSSecretKey,
+			    secretAccessKey: $rootScope.AWSSecretKey
 			});
 		AWS.config.region = 'eu-west-1';
 		

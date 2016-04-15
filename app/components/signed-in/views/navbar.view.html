@@ -2,7 +2,7 @@
 	<div class="container">
     	<div class="navbar-header">
     		<a ng-href="#/home" class="navbar-brand clickable" title="Home">
-    			<img src="../../assets/images/icons/logo_clean_small.png" />
+    			<img ng-src="../../assets/images/icons/logo_clean_small.png" />
     		</a>
     	</div>	 
     	<div class="navbar-search navbar-left nav">
@@ -19,31 +19,42 @@
 	    		</div>
 	    	</form>
     	</div>
-    	<ul class="navbar-left nav">
+		<ul class="navbar-left nav">
     		<li>
     			<a class="nav-button non-mobile" ng-click="toggleCatDropdown()">
-    				<img src="../../assets/images/icons/Web_Icons_navbar_categories_icon.png">
+    				<img src="../../../../assets/images/icons/@2x/Web_Icons_navbar_categories_icon.png">
     				<span class="caret" ></span>
     			</a>
     			<a href="/#/categories" class="nav-button mobile">
-    				<img src="../../assets/images/icons/Web_Icons_navbar_categories_icon.png">
+    				<img src="../../../../assets/images/icons/@2x/Web_Icons_navbar_categories_icon.png">
     			</a>
-    			<dl-dropdown list="categories" ng-show="catDropdownDisplay"></dl-dropdown>
+				<div class="dl-dropdown" ng-show="catDropdownDisplay">
+					<ul>
+						<dl-category ng-repeat="category in categories" category="category"></dl-category>
+					</ul>
+				</div>
+	    			<!-- <dl-dropdown 
+	    				list="elements" 
+	    				template="categoriesTemplate" 
+	    				ng-show="catDropdownDisplay">
+	    			</dl-dropdown> -->
     		</li>
     	</ul>  
     	<ul class="navbar-profile navbar-right nav">
     		<li>
+    			<a href="/#/new-product/basic-info">
+    				<div>
+    					<img src="../../../../assets/images/icons/@2x/Web_Icons_add_product_button.png" />
+    				</div>
+    			</a>
+    		</li>
+    		<li>
     			<a href="/#/dealers/{{dealer.id}}">
     				<div>
-    					<img class="profileThumbnail img-circle" src="../../assets/images/sample/Profile_Pic_60.jpg" />
+    					<img class="profileThumbnail img-circle" ng-src="{{userProfilePic}}" />
     					<span>{{dealer.full_name}}</span>
     				</div>
     			</a>
-    			<ul class="dropdown-menu">
-    				<li>
-    					<a ng-click="logOut()">Log Out</a>
-    				</li>
-    			</ul>
     		</li>
     	</ul> 				    			
 	</div>

@@ -3,6 +3,24 @@
 <div style="height: 80px" ng-show="downloadDealerStatus != 'downloaded'"></div> <!-- Just for getting a margin when deals are loading -->
 <div class="pr-header-section nav-padding" ng-show="downloadDealerStatus == 'downloaded'">
 	<div class="container pr-header-container">
+		<div class="pr-settings" ng-show="mode == 'myProfile'">
+			<div class="pr-settings-button-container">
+				<button class="btn btn-md btn-default non-mobile" ng-click="settingsToggle()"> 
+				<img ng-src="../../../../assets/images/icons/@2x/Web_Icons_settings_icon.png" class="side-icon" />
+					Settings 
+				</button>
+				<button class="btn btn-md btn-default mobile" ng-click="settingsToggle()"> 
+					<img ng-src="../../../../assets/images/icons/@2x/Web_Icons_settings_icon.png" class="main-icon" /> 
+				</button>
+				<div class="dl-dropdown" ng-show="settingsDisplay">
+					<ul>
+						<a href ng-click="logOut()"><li>Log Out</li></a>
+					</ul>
+				</div>
+				<!-- <dl-dropdown list="settings" ng-show="settingsDisplay"></dl-dropdown> -->
+			</div>
+			
+		</div>
 		<div class="pr-profile-pic">
 			<img ng-src="{{profilePic}}" class="dealerProfilePic" ng-show="hasProfilePic" />
 			<div class="dealerProfilePic defaultProfilePic" ng-hide="hasProfilePic"></div>

@@ -58,7 +58,7 @@
 			 */
 			setDealPhoto();
 			setDealerProfile();
-			$scope.discountTypePP = $scope.deal.discount_type === "PP";
+			$scope.discountTypePP = $scope.deal.discountType === "PP";
 			$scope.totalLikes = $scope.deal.dealattribs.dealers_that_liked.length;
 			
 			// Comments

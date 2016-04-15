@@ -7,9 +7,6 @@
 	DealerPhotosFactory.$inject = ['$rootScope'];
 	function DealerPhotosFactory($rootScope) {
 		
-		var ctrl = this;
-		ctrl.hexToBase64 = hexToBase64;
-		
 		var service = {};
 		
 		service.getPhoto = getPhoto;
@@ -43,10 +40,6 @@
 			  		}
 				}
 			);
-		}
-		
-		function hexToBase64(str) {
-		    return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
 		}
 	}
 })();

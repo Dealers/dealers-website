@@ -1,0 +1,135 @@
+<dl-navbar></dl-navbar>
+
+<div class="container nav-margin">
+    <div class="dl-form framed-container ap-form-container">
+
+        <h2>Add Your Product</h2>
+
+        <div class="ap-image-section text-center" file-dropzone="[image/png, image/jpeg, image/gif]"
+             photos="photos" photos-urls="photosURLs" show-alert="showAlert()" data-max-file-size="3">
+
+            <div class="dropzone text-center" ng-hide="photos.length > 0">
+                <p>Drop image here <br/> or </p>
+                <div class="inputfile-container" ng-hide="photos.length > 0">
+                    <input id="inputButton" name="inputButton" type="file" class="inputfile" accept="image/*"
+                           photo-input photos="photos" photos-urls="photosURLs" show-alert="showAlert()"/>
+                    <label for="inputButton" class="btn btn-default btn-secondary btn-md clickable">{{addPhotoText}}</label>
+                </div>
+            </div>
+
+            <div class="ap-photos-thumbnails" ng-show="photos.length > 0">
+                <ul class="clearfix">
+                    <li id="0">
+                        <div class="ap-input-button clickable" ng-hide="photosURLs[0]">
+                            <input id="inputButtonThumbnail0" name="inputButton" type="file" class="inputfile"
+                                   accept="image/*" photo-input photos="photos" photos-urls="photosURLs" show-alert="showAlert()"/>
+                            <label for="inputButtonThumbnail0" class="ap-thumbnail">
+                                <img src="../../../../assets/images/icons/@2x/Web_Icons_camera_icon.png"/>
+                            </label>
+                        </div>
+                        <button class="ap-thumbnail clickable" ng-click="selectPhoto(0)" ng-show="photosURLs[0]">
+                            <img ng-src="{{photosURLs[0]}}" ng-show="photosURLs[0]"/>
+                        </button>
+                        <button class="ap-thumbnail-remove thumbnail-remove" ng-click="removePhoto($event)"
+                                ng-show="photosURLs[0]">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </li>
+                    <li id="1">
+                        <div class="ap-input-button clickable" ng-hide="photosURLs[1]">
+                            <input id="inputButtonThumbnail1" name="inputButton" type="file" class="inputfile"
+                                   accept="image/*" photo-input photos="photos" photos-urls="photosURLs" show-alert="showAlert()"/>
+                            <label for="inputButtonThumbnail1" class="ap-thumbnail">
+                                <img src="../../../../assets/images/icons/@2x/Web_Icons_camera_icon.png"/>
+                            </label>
+                        </div>
+                        <button class="ap-thumbnail clickable" ng-click="selectPhoto(1)" ng-show="photosURLs[1]">
+                            <img ng-src="{{photosURLs[1]}}" ng-show="photosURLs[1]"/>
+                        </button>
+                        <button class="ap-thumbnail-remove thumbnail-remove" ng-click="removePhoto($event)"
+                                ng-show="photosURLs[1]">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </li>
+                    <li id="2">
+                        <div class="ap-input-button clickable" ng-hide="photosURLs[2]">
+                            <input id="inputButtonThumbnail2" name="inputButton" type="file" class="inputfile"
+                                   accept="image/*" photo-input photos="photos" photos-urls="photosURLs" show-alert="showAlert()"/>
+                            <label for="inputButtonThumbnail2" class="ap-thumbnail">
+                                <img src="../../../../assets/images/icons/@2x/Web_Icons_camera_icon.png"/>
+                            </label>
+                        </div>
+                        <button class="ap-thumbnail clickable" ng-click="selectPhoto(2)" ng-show="photosURLs[2]">
+                            <img ng-src="{{photosURLs[2]}}" ng-show="photosURLs[2]"/>
+                        </button>
+                        <button class="ap-thumbnail-remove thumbnail-remove" ng-click="removePhoto($event)"
+                                ng-show="photosURLs[2]">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </li>
+                    <li id="3">
+                        <div class="ap-input-button clickable" ng-hide="photosURLs[3]">
+                            <input id="inputButtonThumbnail3" name="inputButton" type="file" class="inputfile"
+                                   accept="image/*" photo-input photos="photos" photos-urls="photosURLs" show-alert="showAlert()"/>
+                            <label for="inputButtonThumbnail3" class="ap-thumbnail">
+                                <img src="../../../../assets/images/icons/@2x/Web_Icons_camera_icon.png"/>
+                            </label>
+                        </div>
+                        <button class="ap-thumbnail clickable" ng-click="selectPhoto(3)" ng-show="photosURLs[3]">
+                            <img ng-src="{{photosURLs[3]}}" ng-show="photosURLs[3]"/>
+                        </button>
+                        <button class="ap-thumbnail-remove thumbnail-remove" ng-click="removePhoto($event)"
+                                ng-show="photosURLs[3]">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </li>
+                </ul>
+            </div>  <!-- ap-photos-thumbnails -->
+
+            <div class="ap-image-container text-center" ng-show="photosURLs.length > 0">
+                <div id="photosCarousel" class="carousel slide" data-interval="false">
+                    <div class="carousel-inner">
+                        <carousel-item ng-repeat="photoURL in photosURLs" photo-url="photoURL"></carousel-item>
+                    </div>
+                    <div ng-show="photosURLs.length > 1" ng-click="nextPhoto($event)">
+                        <a
+                                class="left carousel-control"
+                                href="#photosCarousel"
+                                target="_self"
+                                role="button"
+                                ng-non-bindable
+                                data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a
+                                class="right carousel-control"
+                                href="#photosCarousel"
+                                target="_self"
+                                role="button"
+                                ng-non-bindable
+                                data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div> <!-- ap-image-container -->
+
+        </div>    <!-- ap-image-section -->
+
+        <form name="basicInfoForm" ng-submit="moreDetails(basicInfoForm)" class="ap-title-container" novalidate>
+            <h3>Product Title</h3>
+            <div class="dl-field">
+                        <textarea
+                                id="ap-title"
+                                class="form-control"
+                                name="title"
+                                placeholder="Describe this product shortly"
+                                ng-model="product.title"
+                                required>
+                        </textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-xl dl-submit">Next</button>
+        </form>
+
+    </div>    <!-- ap-form-container -->
+</div>    <!-- container -->

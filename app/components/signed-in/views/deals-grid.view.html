@@ -5,18 +5,18 @@
 		{{title}}
 	</h1>
 	<div ng-switch on="status">
-		<div ng-switch-when="loading">
+		<div ng-switch-when="loading" class="dl-fade">
 			<loading-spinner></loading-spinner>
 		</div>
-		<div ng-switch-when="failed">
+		<div ng-switch-when="failed" class="fade">
 			<h1 class="dg-download-message">{{message}} <br> {{errorPrompt}} </h1>
 		</div>
-		<div scroll-detector ng-switch-when="downloaded">
+		<div scroll-detector ng-switch-when="downloaded" class="dl-fade">
 			<h1 class="dg-download-message" ng-show="message">
 				{{message}}
 			</h1>
 			<dl-deal ng-repeat="deal in deals" deal="deal"></dl-deal>
-			<div ng-show="update.loadingMore" class="dg-loading-more">
+			<div ng-show="update.loadingMore" class="dl-fade dg-loading-more">
 				<loading-spinner size="small"></loading-spinner>
 			</div>
 		</div>

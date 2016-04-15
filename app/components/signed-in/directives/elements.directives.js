@@ -7,17 +7,24 @@
 			restrict: 'E',
 			templateUrl: 'app/components/signed-in/views/navbar.view.html',
 			link: function(scope, element) {
+				
 				scope.dealer = $rootScope.dealer;
 				scope.searchTerm = {};
 				scope.catDropdownDisplay = false;
+				scope.userProfilePic = $rootScope.userProfilePic;
+				scope.elements = scope.categories;
+				scope.categoriesTemplate = 'categories';
+				
+				if (!$rootScope.userProfilePic) {
+					waitForProfilePic();
+				} else {
+					scope.userProfilePic = $rootScope.userProfilePic;
+				}
+				
 				var currentPath = $location.path().split("/")[1];
 				if (currentPath == "search") {
 					scope.searchTerm.text = $routeParams.query;
 				}
-				scope.logOut = function () {
-					Dealer.logOut();
-					$location.path('/');
-				};
 				scope.search = function(form) {
 					/**
 					 * Takes the user to the deal's View Deal page.
@@ -34,35 +41,63 @@
 						scope.catDropdownDisplay = true;
 					}
 				};
+				function waitForProfilePic() {
+					scope.$on('downloaded-' + $rootScope.userProfilePicSender + '-profile-pic-' + $rootScope.dealer.id, function(event, args) {
+			      		if (args.success) {
+			      			scope.userProfilePic = args.data;
+			      		} else {
+			      			scope.userProfilePic = null;
+							console.log(args.message);
+			      		}
+			    	});
+				}
+				
 			}
 		};
 	}])
-	.directive('dlCategories', ['$rootScope',
-			function($rootScope) {
+	.directive('apNavbar', ['$location', '$routeParams', '$rootScope', 'AddProduct', function($location, $routeParams, $rootScope, AddProduct) {
 		return {
 			restrict: 'E',
 			replace: true,
-			templateUrl: 'app/components/signed-in/views/categories.view.html',
+			templateUrl: 'app/components/signed-in/views/add-product-navbar.view.html',
 			link: function(scope, element) {
-				scope;
+				
+				const basePath = '/new-product';
+
+				/**
+				 * The user clicked on a breadcrumb link, Check if valid and if so move to that link.
+				 */
+				scope.moveTo = function(path) {
+					if (scope.phase1Valid) {
+						$location.path(basePath + path);
+					}
+				};
+
+				/**
+				 * Sets the appearance of the links in the breadcrumb.
+				 */
+				scope.checkPhase = function(path) {
+                    var phase = $location.url();
+					// return phase != basePath + path;
+                    if (phase == "/basic-info") {
+                        
+                    }
+				};
 			}
 		};
 	}])
-	.directive('dlCategory', [function() {
+	.directive('dlCategory', function() {
 		return {
 			restrict: 'E',
 			replace: true,
 			scope: {
 				category: '='
 			},
-			template: '<a href="/#/categories/{{category}}"><li>{{category}}</li></a>',
-			link: function(scope, element) {
-				scope;
-			}
+			template: '<a href="/#/categories/{{category}}"><li>{{category}}</li></a>'
 		};
-	}])
-	.directive('dlDeal', ['$location', 'ActiveSession', 'DealInfo', 'DealPhotos', 'DealerPhotos', 
-			function($location, ActiveSession, DealInfo, DealPhotos, DealerPhotos) {
+	})
+	.directive('dlDeal', ['$location', 'ActiveSession', 'Deal', 'DealPhotos', 'DealerPhotos', 
+			function($location, ActiveSession, Deal, DealPhotos, DealerPhotos) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -114,9 +149,9 @@
 	        	
 	        	// Other info
 				if (deal.currency) {
-					scope.dealCur = DealInfo.currencyForKey(deal.currency);
+					scope.dealCur = Deal.currencyForKey(deal.currency);
 				}
-				scope.discountTypePP = deal.discount_type === "PP";
+				scope.discountTypePP = deal.discountType === "PP";
 				scope.hasLikes = deal.dealattribs.dealers_that_liked.length > 0;
 				
 				scope.viewDeal = function(deal) {

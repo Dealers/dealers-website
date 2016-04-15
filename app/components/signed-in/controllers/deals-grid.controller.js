@@ -3,7 +3,7 @@
 
 	angular.module('DealersApp')
 	.controller('DealsGridController', ['$scope', '$rootScope', '$routeParams', 'Deal', function ($scope, $rootScope, $routeParams, Deal) {
-		/*
+		/**
 		 * The controller that manages the My Feed view.
 		 */
 		var ctrl = this;
@@ -31,7 +31,7 @@
 			// This is a search session, should get the deals according to the search term.
 			mode = "category";
 			routeParams = $routeParams.category;
-			url += '/category_deals/?category=' + Deal.categoryKey(routeParams);
+			url += '/category_deals/?category=' + Deal.keyForCategory(routeParams);
 			noDealsMessage = "Currently there are no deals in " + routeParams + "...";
 			$scope.title = routeParams;
 		} else {

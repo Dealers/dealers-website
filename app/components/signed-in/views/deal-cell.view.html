@@ -1,14 +1,14 @@
-<section class="dealContainer col-lg-4 col-md-6 col-sm-6">
-	<div class="deal">
-		<a href="" ng-click="viewDeal(deal)">
+<section class="dealContainer repeated-item col-lg-4 col-md-6 col-sm-6">
+	<a href ng-click="viewDeal(deal)">
+		<div class="deal">
 			<div class="imageContainer">
-				<img ng-src="{{dealImage}}" style="min-height: {{imageHeight}}px" class="dealImage {{dealImageStatus}}" ng-show="hasPhoto"/>
+				<img ng-src="{{dealImage}}" style="min-height: {{imageHeight}}px;" class="dealImage {{dealImageStatus}}" ng-show="hasPhoto"/>
 				<div class="noImageBackground" style="background-color: {{imageBackgroundColor}}" ng-hide="hasPhoto"></div>
 			</div>
 			<div class="dealInfoBar">
 				<div class="profilePicContainer">
 					<a href="/#/dealers/{{deal.dealer.id}}">
-						<img ng-src="{{profilePic}}" class="dealerProfilePic" ng-show="hasProfilePic" />
+						<img ng-src="{{profilePic}}" class="dealerProfilePic dl-fade" ng-show="hasProfilePic" />
 						<div class="dealerProfilePic defaultProfilePic" ng-hide="hasProfilePic"></div>
 					</a>
 				</div>
@@ -22,17 +22,17 @@
 				</h4>
 				<div class="storeContainer">
 					<p class="dealInfo store">
-						<img class="infoIcon" src="assets/images/icons/Web_Icons_my_feed_local_icon.png"/>
+						<img class="infoIcon" src="../../../../assets/images/icons/Web_Icons_my_feed_local_icon.png"/>
 						{{deal.store.name}}
 					</p>
 				</div>
 				<div class="likesContainer" ng-show="hasLikes">
 					<p class="dealInfo likes"> 
-						<img class="infoIcon" src="assets/images/icons/Web_Icons_my_feed_like_icon.png"/>
+						<img class="infoIcon" src="../../../../assets/images/icons/Web_Icons_my_feed_like_icon.png"/>
 						{{deal.dealattribs.dealers_that_liked.length}}
 					</p>
 				</div>
 			</div>
-		</a>
-	</div>
+		</div>
+	</a>
 </section>

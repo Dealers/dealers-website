@@ -8,7 +8,9 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" href="assets/lib/css/animate.min.css" type="text/css">
 		<link rel="stylesheet" href="assets/css/home-styles.css">
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
         <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/animations.css">
 		<title>Dealers - Deals worth sharing</title>
 		<link rel="shortcut icon" type="image/png" href="assets/images/icons/favicon.png">
     </head>
@@ -17,50 +19,60 @@
     <div ng-view autoscroll="true"></div>
 
 	<!-- Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
-    <script src="assets/lib/js/angular-route.min.js"></script>
-    <script src="assets/lib/js/angular-cookies.min.js"></script>
-    <script src="assets/lib/js/ui-bootstrap-tpls-0.13.4.min.js"></script>
-    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.9.min.js"></script>
-    <script src="assets/lib/js/spin.min.js"></script>
-    <script src="assets/lib/js/horizontal-zoom-disabling.min.js"></script>
-    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-animate.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    <script type="text/javascript" src="assets/lib/js/angular-route.min.js"></script>
+    <script type="text/javascript" src="assets/lib/js/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="assets/lib/js/ui-bootstrap-tpls-0.13.4.min.js"></script>
+    <script type="text/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.2.9.min.js"></script>
+    <script type="text/javascript" src="assets/lib/js/spin.min.js"></script>
+    <script type="text/javascript" src="assets/lib/js/horizontal-zoom-disabling.min.js"></script>
+
     <!-- App -->
-    <script src="app/app.js"></script>
-    <script src="app/routes.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/routes.js"></script>
     
     <!-- Controllers -->
-    <script src="app/components/signed-out/home/home.controller.js"></script>
-    <script src="app/components/signed-out/sign-up/sign-up.controller.js"></script>
-    <script src="app/components/signed-out/login/login.controller.js"></script>
-    <script src="app/components/signed-in/controllers/deals-grid.controller.js"></script>
-    <script src="app/components/signed-in/controllers/view-deal.controller.js"></script>    
-    <script src="app/components/signed-in/controllers/categories-list.controller.js"></script>
-    <script src="app/components/signed-in/controllers/profile.controller.js"></script>    
+    <script type="text/javascript" src="app/components/general/controllers.js"></script>
+    <script type="text/javascript" src="app/components/signed-out/home/home.controller.js"></script>
+    <script type="text/javascript" src="app/components/signed-out/sign-up/sign-up.controller.js"></script>
+    <script type="text/javascript" src="app/components/signed-out/login/login.controller.js"></script>
+    <script type="text/javascript" src="app/components/signed-in/controllers/deals-grid.controller.js"></script>
+    <script type="text/javascript" src="app/components/signed-in/controllers/view-deal.controller.js"></script>
+    <script type="text/javascript" src="app/components/signed-in/controllers/categories-list.controller.js"></script>
+    <script type="text/javascript" src="app/components/signed-in/controllers/profile.controller.js"></script>
+    <script type="text/javascript" src="app/components/signed-in/controllers/add-product-1.controller.js"></script>
+    <script type="text/javascript" src="app/components/signed-in/controllers/add-product-2.controller.js"></script>
+    <script type="text/javascript" src="app/components/signed-in/controllers/add-product-3.controller.js"></script>
 
     <!-- Directives -->
-    <script src="app/components/general/directives.js"></script>
-    <script src="app/components/signed-out/shared/directives.js"></script>
-    <script src="app/components/signed-in/directives/elements.directives.js"></script>
-    <script src="app/components/signed-in/directives/widgets.directives.js"></script>
+    <script type="text/javascript" src="app/components/general/directives.js"></script>
+    <script type="text/javascript" src="app/components/signed-out/shared/directives.js"></script>
+    <script type="text/javascript" src="app/components/signed-in/directives/elements.directives.js"></script>
+    <script type="text/javascript" src="app/components/signed-in/directives/widgets.directives.js"></script>
     
     <!-- Services -->
-    <script src="app/services/authentication.service.js"></script>
-    <script src="app/services/dealer.service.js"></script>
-    <script src="app/services/deal.service.js"></script>
-    <script src="app/services/deal-info.service.js"></script>
-    <script src="app/services/deal-photos.service.js"></script>
-    <script src="app/services/dealer-photos.service.js"></script>
-    <script src="app/services/active-session.service.js"></script>
-    
+    <script type="text/javascript" src="app/services/authentication.service.js"></script>
+    <script type="text/javascript" src="app/services/dealer.service.js"></script>
+    <script type="text/javascript" src="app/services/deal.service.js"></script>
+    <script type="text/javascript" src="app/services/deal-info.service.js"></script>
+    <script type="text/javascript" src="app/services/deal-photos.service.js"></script>
+    <script type="text/javascript" src="app/services/dealer-photos.service.js"></script>
+    <script type="text/javascript" src="app/services/active-session.service.js"></script>
+    <script type="text/javascript" src="app/services/add-product.service.js"></script>
+    <script type="text/javascript" src="app/services/photos.service.js"></script>
+
     <!-- Plugin JavaScript -->
-    <script src="assets/lib/js/jquery.easing.min.js"></script>
-    <script src="assets/lib/js/jquery.fittext.js"></script>
-    <script src="assets/lib/js/wow.min.js"></script>
+    <script type="text/javascript" src="assets/lib/js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="assets/lib/js/jquery.fittext.js"></script>
+    <script type="text/javascript" src="assets/lib/js/wow.min.js"></script>
 
     <!-- Custom JavaScript -->
-    <script src="assets/js/home.js"></script>
+    <script type="text/javascript" src="assets/js/home.js"></script>
     </body>
 </html>

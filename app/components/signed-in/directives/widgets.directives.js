@@ -2,27 +2,27 @@
     'use strict';
 
 	angular.module('DealersApp')
-	.directive('likeButton', ['$rootScope', '$http', 'Deal', function($rootScope, $http, Deal) {
+	.directive('likeButton', ['$rootScope', '$http', 'Product', function($rootScope, $http, Product) {
 		return {
 			link: function(scope, element) {
 				
 				// First of all check if the scope is defined properly
-				if (!scope.deal) {
-					console.log("There's a problem - the parent scope doesn't have a deal attribute.");
+				if (!scope.product) {
+					console.log("There's a problem - the parent scope doesn't have a product attribute.");
 					return;
 				}
 				
 				var dealerID = $rootScope.dealer.id;
-				var dealersThatLiked = scope.deal.dealattribs.dealers_that_liked;
+				var dealersThatLiked = scope.product.dealattribs.dealers_that_liked;
 				updateLikeAppearance();
 				
 				function isLiked() {
 					/*
-					 * Check if the user liked this deal, if so, mark the button.
+					 * Check if the user liked this product, if so, mark the button.
 					 */
 					var likedByUser = $.inArray(dealerID, dealersThatLiked);
 					if (likedByUser == -1) {
-						// The user didn't like the deal before, should like it now.
+						// The user didn't like the product before, should like it now.
 						return false;
 					}
 					return true;
@@ -30,7 +30,7 @@
 								
 				function updateLikeAppearance() {
 					/*
-					 * If the user liked the deal, unmark it. If he didn't, mark it.
+					 * If the user liked the product, unmark it. If he didn't, mark it.
 					 */
 					if (isLiked()) {
 						element.css('background-color', '#9C27B0').css('color', 'white').contents().last().replaceWith(" Unlike");					
@@ -53,11 +53,11 @@
 						// Add the user to the dealersThatLiked array and update the appearance when done.
 						dealersThatLiked.push(dealerID);
 					}
-					$http.patch($rootScope.baseUrl + '/dealattribs/' + scope.deal.dealattribs.id + '/', scope.deal.dealattribs)
+					$http.patch($rootScope.baseUrl + '/dealattribs/' + scope.product.dealattribs.id + '/', scope.product.dealattribs)
 					.then(function (response) {
 			            // success
 			            console.log("Like was updated 	successfully!");
-			            scope.deal.dealattribs = response.data;
+			            scope.product.dealattribs = response.data;
 			            updateLikeAppearance();
 	          			// scope.$apply();
 			        },
@@ -108,20 +108,23 @@
 			}
 		};
 	})
-	.directive('scrollDetector', ['Deal', function(Deal) {
+	.directive('scrollDetector', ['Product', function(Product) {
 		return {
 			link: function(scope, element) {
 				$(window).scroll(function() {
 				   if($(window).scrollTop() + $(window).height() > $(document).height() - 700) {
 				   		if (!scope.update.loadingMore) {
 				   			if (scope.update.nextPage) {
-				   				console.log("Loading more deals");
+				   				console.log("Loading more products");
 				   				scope.update.loadingMore = true;
 				   				scope.$apply();
-				   				scope.getDeals(scope.update.nextPage);
+				   				scope.getProducts(scope.update.nextPage);
 				   			}
 				   		}
 				   }
+				});
+				scope.$on('$destroy', function() {
+                    $(window).off("scroll");
 				});
 			}
 		};

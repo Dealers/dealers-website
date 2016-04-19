@@ -27,9 +27,9 @@
 				}
 				scope.search = function(form) {
 					/**
-					 * Takes the user to the deal's View Deal page.
+					 * Takes the user to the product's View Deal page.
 					 */
-					$location.path('/search/deals/' + scope.searchTerm.text);
+					$location.path('/search/products/' + scope.searchTerm.text);
 				};
 				scope.toggleCatDropdown = function() {
 					/**
@@ -96,48 +96,56 @@
 			template: '<a href="/#/categories/{{category}}"><li>{{category}}</li></a>'
 		};
 	})
-	.directive('dlDeal', ['$location', 'ActiveSession', 'Deal', 'DealPhotos', 'DealerPhotos', 
-			function($location, ActiveSession, Deal, DealPhotos, DealerPhotos) {
+	.directive('dlProduct', ['$location', 'ActiveSession', 'Product', 'ProductPhotos', 'DealerPhotos', 
+			function($location, ActiveSession, Product, ProductPhotos, DealerPhotos) {
 		return {
 			restrict: 'E',
 			replace: true,
 			scope: {
-				deal: '='
+				product: '='
 			},
-			templateUrl: 'app/components/signed-in/views/deal-cell.view.html',
+			templateUrl: 'app/components/signed-in/views/product-cell.view.html',
 			link: function(scope, element) {
+
+                const DEFAULT_PHOTO_RATIO = 0.678125;
+
+				var product = scope.product;
 				
-				var deal = scope.deal;
-				
-				// Deal Photo
-				scope.hasPhoto = deal.photo1.length > 2;
+				// Product Photo
+				scope.hasPhoto = product.photo1.length > 2;
+
+                var ratio = DEFAULT_PHOTO_RATIO;
+                if (product.main_photo_width && product.main_photo_height) {
+                    ratio = product.main_photo_height / product.main_photo_width;
+                }
+
 				if (scope.hasPhoto) {
-					scope.dealImage = "";
-					scope.imageHeight = 0.678125 * element.find('.deal').width(); // Calculate the height of the image placeholder according to the ratio 0.678125.
-					DealPhotos.getPhoto(deal.photo1, deal.id);
-					scope.dealImageStatus = "loading";
+					scope.productImage = "";
+					scope.imageHeight = ratio * element.find('.product').width(); // Calculate the height of the image placeholder according to the ratio 0.678125.
+					ProductPhotos.downloadPhoto(product.photo1, product.id);
+					scope.productImageStatus = "loading";
 				} else {
-					scope.imageBackgroundColor = DealPhotos.colorForNum(deal.photo1);
+					scope.imageBackgroundColor = ProductPhotos.colorForNum(product.photo1);
 				}
-				scope.$on('downloaded-photo-' + deal.id, function(event, args) {
+				scope.$on('downloaded-photo-' + product.id, function(event, args) {
 	          		if (args.success) {
-	          			scope.dealImage = args.data;
-	          			scope.dealImageStatus = "doneLoading";
+	          			scope.productImage = args.data.url;
+	          			scope.productImageStatus = "doneLoading";
 	          			scope.$apply();
 	          		} else {
-						console.log(args.message);
+						console.log(args.data.message);
 	          		}
 	        	});  
 	        	
 	        	// Dealer Photo
-	        	scope.hasProfilePic = DealerPhotos.hasProfilePic(scope.deal.dealer.photo);
-	        	var sender = 'deal-grid';
+	        	scope.hasProfilePic = DealerPhotos.hasProfilePic(scope.product.dealer.photo);
+	        	var sender = 'product-grid';
 	        	if (scope.hasProfilePic) {
 	        		scope.profilePic = "";
-	        		DealerPhotos.getPhoto(scope.deal.dealer.photo, scope.deal.dealer.id, sender);
+	        		DealerPhotos.getPhoto(scope.product.dealer.photo, scope.product.dealer.id, sender);
 	        		scope.profilePicStatus = "loading";
 	        	}
-	        	scope.$on('downloaded-' + sender + '-profile-pic-' + scope.deal.dealer.id, function(event, args) {
+	        	scope.$on('downloaded-' + sender + '-profile-pic-' + scope.product.dealer.id, function(event, args) {
 	          		if (args.success) {
 	          			scope.profilePic = args.data;
 	          			scope.profilePicStatus = "doneLoading";
@@ -148,18 +156,18 @@
 	        	});
 	        	
 	        	// Other info
-				if (deal.currency) {
-					scope.dealCur = Deal.currencyForKey(deal.currency);
+				if (product.currency) {
+					scope.productCur = Product.currencyForKey(product.currency);
 				}
-				scope.discountTypePP = deal.discountType === "PP";
-				scope.hasLikes = deal.dealattribs.dealers_that_liked.length > 0;
+				scope.discountTypePP = product.discount_type === "123";
+				scope.hasLikes = product.dealattribs.dealers_that_liked.length > 0;
 				
-				scope.viewDeal = function(deal) {
+				scope.viewDeal = function(product) {
 				/**
-				 * Takes the user to the deal's View Deal page.
+				 * Takes the user to the product's View Deal page.
 				 */
-					ActiveSession.setTempData(deal);
-					$location.path('/deals/' + String(deal.id));
+					ActiveSession.setTempData(product);
+					$location.path('/products/' + String(product.id));
 				};
 			}
 		};

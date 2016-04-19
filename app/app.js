@@ -2,14 +2,16 @@
 	'use strict';
 	
 	angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ui.bootstrap', 'ngMaterial'])
-	.run(['$rootScope', '$location', '$cookies', '$http', 'DealerPhotos', function($rootScope, $location, $cookies, $http, DealerPhotos) {
+	.run(['$rootScope', '$location', '$cookies', '$http', '$mdToast', 'DealerPhotos', function($rootScope, $location, $cookies, $http, $mdToast, DealerPhotos) {
 		
-		// global variables
+		// global constants
 		$rootScope.baseUrl = 'http://api.dealers-web.com';
 		$rootScope.AWSKey = 'AKIAIWJFJX72FWKD2LYQ';
 		$rootScope.AWSSecretKey = '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';
 		$rootScope.AWSS3Bucket = 'dealers-app';
-		
+
+        $rootScope.DEFAULT_PRODUCT_PHOTO_URL = "assets/images/icons/@2x/Web_Icons_product_photo_placeholder.png";
+
 		// AWS configuration
 		AWS.config.update({
 			    accessKeyId: $rootScope.AWSKey,
@@ -69,6 +71,19 @@
  			"Travel",
  			"Other"
  		];
+
+		$rootScope.showToast = function(text, delay) {
+            var timer = 3000; // show the toast for 3 seconds
+            if (delay) {
+                timer = delay;
+            }
+            $mdToast.show(
+                $mdToast.simple()
+                    .textContent(text)
+                    .position('top')
+                    .hideDelay(timer)
+            );
+        };
  		
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page

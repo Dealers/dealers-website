@@ -152,21 +152,6 @@
                 );
 
                 /**
-                 * Shows the alert dialog.
-                 */
-                $scope.showAlertDialog = function () {
-                    $mdDialog.show(
-                        $mdDialog.alert()
-                            .parent(angular.element(document.body))
-                            .clickOutsideToClose(true)
-                            .title("Duplicate Photo")
-                            .textContent("This photo was already uploaded.")
-                            .ariaLabel('Alert Dialog')
-                            .ok("Got it")
-                    );
-                };
-
-                /**
                  * Asks the user to confirm he wants to remove the photo, and if he does, removes the photo.
                  * @param event - the event that triggerd the function.
                  */
@@ -186,7 +171,21 @@
                     });
                 };
 
-
+                /**
+                 * Shows the alert dialog.
+                 */
+                $scope.showAlertDialog = function () {
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                            .parent(angular.element(document.body))
+                            .clickOutsideToClose(true)
+                            .title("Duplicate Photo")
+                            .textContent("This photo was already uploaded.")
+                            .ariaLabel('Alert Dialog')
+                            .ok("Got it")
+                    );
+                };
+                
                 /**
                  * Takes the user to the next step in uploading a product - More Details.
                  * @param basicInfoForm - the from.
@@ -196,6 +195,7 @@
                         return;
                     }
                     $scope.product.photos = $scope.photos;
+                    AddProduct.setProduct($scope.product);
                     AddProduct.saveSession($scope.product, $scope.photosURLs);
                     $location.path('/new-product/more-details');
                 };

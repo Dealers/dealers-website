@@ -1,6 +1,6 @@
 <dl-navbar></dl-navbar>
 
-<div style="height: 80px" ng-show="downloadDealerStatus != 'downloaded'"></div> <!-- Just for getting a margin when deals are loading -->
+<div style="height: 80px" ng-show="downloadDealerStatus != 'downloaded'"></div> <!-- Just for getting a margin when products are loading -->
 <div class="pr-header-section nav-padding" ng-show="downloadDealerStatus == 'downloaded'">
 	<div class="container pr-header-container">
 		<div class="pr-settings" ng-show="mode == 'myProfile'">
@@ -62,7 +62,7 @@
 			<h1 class="dg-download-message" ng-show="message">
 				{{message}}
 			</h1>
-			<dl-deal ng-repeat="deal in uploadedDeals" deal="deal"></dl-deal>
+			<dl-product ng-repeat="product in uploadedProducts" product="product"></dl-product>
 			<div ng-show="update.loadingMore" class="dg-loading-more">
 				<loading-spinner size="small"></loading-spinner>
 			</div>

@@ -26,13 +26,13 @@ angular.module('DealersApp')
             // Signed In
 
             .when('/my-feed', {
-                templateUrl: 'app/components/signed-in/views/deals-grid.view.html',
-                controller: 'DealsGridController',
+                templateUrl: 'app/components/signed-in/views/products-grid.view.html',
+                controller: 'ProductsGridController',
                 controllerAs: 'mfCtrl'
             })
-            .when('/search/deals/:query', {
-                templateUrl: 'app/components/signed-in/views/deals-grid.view.html',
-                controller: 'DealsGridController',
+            .when('/search/products/:query', {
+                templateUrl: 'app/components/signed-in/views/products-grid.view.html',
+                controller: 'ProductsGridController',
                 controllerAs: 'mfCtrl'
             })
             .when('/categories', {
@@ -41,11 +41,11 @@ angular.module('DealersApp')
                 controllerAs: 'clCtrl'
             })
             .when('/categories/:category', {
-                templateUrl: 'app/components/signed-in/views/deals-grid.view.html',
-                controller: 'DealsGridController',
+                templateUrl: 'app/components/signed-in/views/products-grid.view.html',
+                controller: 'ProductsGridController',
                 controllerAs: 'dgCtrl'
             })
-            .when('/deals/:dealID', {
+            .when('/products/:productID', {
                 templateUrl: 'app/components/signed-in/views/view-deal.view.html',
                 controller: 'ViewDealController',
                 controllerAs: 'vdCtrl'
@@ -69,6 +69,11 @@ angular.module('DealersApp')
                 templateUrl: 'app/components/signed-in/views/add-product-3.view.html',
                 controller: 'AddProduct3Controller',
                 controllerAs: 'ap3Ctrl'
+            })
+            .when('/edit-product/:productID', {
+                templateUrl: 'app/components/signed-in/views/edit-product.view.html',
+                controller: 'EditProductController',
+                controllerAs: 'epCtrl'
             })
             .otherwise({redirectTo: '/home'});
     }]);

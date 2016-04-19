@@ -2,13 +2,13 @@
     'use strict';
 
 	angular.module('DealersApp')
-	.controller('CategoryDealsController', ['$scope', '$routeParams', 'Deal', function ($scope, $routeParams, Deal) {
+	.controller('CategoryDealsController', ['$scope', '$routeParams', 'Product', function ($scope, $routeParams, Product) {
 		/**
 		 * The controller that manages the Category Deals view.
 		 */
 		var ctrl = this;
 		var category = $routeParams.category;
-		$scope.deals = [];
+		$scope.products = [];
 		$scope.errorMessage;
 		$scope.status = 'loading';
 		
@@ -16,8 +16,8 @@
 		$scope.update.loadingMore = false;
 		$scope.update.nextPage;
 		
-		$scope.getDeals = getDeals;
-		$scope.getDeals();
+		$scope.getProducts = getProducts;
+		$scope.getProducts();
 				
 		function getDeals(nextPage) {
 			
@@ -35,21 +35,21 @@
 				}
 			}
 
-			Deal.getDeals(url)
+			Deal.getProducts(url)
 			.then(function (result) {
 				$scope.status = 'downloaded';
 				mapDealData(result.data.results);
 				var deals = result.data.results;
-				if (deals.length > 0) {
-					$scope.deals.push.apply($scope.deals, deals);
+				if (products.length > 0) {
+					$scope.products.push.apply($scope.products, products);
 					$scope.update.nextPage = result.data.next;
 				} else {
-					$scope.message = "Currently there are no deals in " + category + "...";
+					$scope.message = "Currently there are no products in " + category + "...";
 				}
 				$scope.update.loadingMore = false;
 			}, function (httpError) {
 				$scope.status = 'failed';
-				$scope.errorMessage = "Couldn't download the deals";
+				$scope.errorMessage = "Couldn't download the products";
 				$scope.errorPrompt =  "Please try again...";
 				$scope.update.loadingMore = false;
 			});
@@ -70,7 +70,7 @@
 			 */
 			for (var i = 0; i < data.length; i++) {
 			    var deal = data[i];
-			    deal = Deal.mapData(deal);
+			    product = Deal.mapData(product);
 			}
 		}
 	}]);

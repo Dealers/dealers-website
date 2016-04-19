@@ -2,15 +2,15 @@
     'use strict';
 
 	angular.module('DealersApp')
-	.controller('ProfileController', ['$scope', '$rootScope', '$routeParams', '$location', 'Deal', 'Dealer', 'DealerPhotos',
-		function ($scope, $rootScope, $routeParams, $location, Deal, Dealer, DealerPhotos) {
+	.controller('ProfileController', ['$scope', '$rootScope', '$routeParams', '$location', 'Product', 'Dealer', 'DealerPhotos',
+		function ($scope, $rootScope, $routeParams, $location, Product, Dealer, DealerPhotos) {
 		/*
 		 * The controller that manages the dealers' Profile view.
 		 */
 		var ctrl = this;
 		var dealerID = $routeParams.dealerID;
 		var dealerUrl = $rootScope.baseUrl;
-		var dealsUrl = $rootScope.baseUrl;
+		var ProductsUrl = $rootScope.baseUrl;
 		var routeParams;
 		var noDealsMessage;
 		
@@ -28,7 +28,7 @@
 		const masterDealerIcon = "../../../../assets/images/icons/@2x/Web_Icons_master_dealer_icon.png";
 		
 		$scope.profile = {dealer: null};
-		$scope.uploadedDeals = [];
+		$scope.uploadedProducts = [];
 		$scope.mode;
 		$scope.message;
 		$scope.status = loadingStatus;
@@ -43,7 +43,7 @@
 		$scope.update.nextPage;
 		$scope.getDealer = getDealer;
 		$scope.setDealerProfile = setDealerProfile;
-		$scope.getUploadedDeals = getUploadedDeals;
+		$scope.getUploadedProducts = getUploadedProducts;
 		
 		if (parseInt(dealerID) == $rootScope.dealer.id) {
 			// The dealer is the user, can get his details from the root scope.
@@ -80,31 +80,31 @@
 		
 		function setDealerProfile() {
 			/**
-			 * Sets the profile header section and downloads the relevant deals that are related to the dealer.
+			 * Sets the profile header section and downloads the relevant products that are related to the dealer.
 			 */
 			setProfilePic();
 			setRank($scope.profile.dealer.rank);
-			$scope.getUploadedDeals();
+			$scope.getUploadedProducts();
 		}
 		
-		function getUploadedDeals(nextPage) {
+		function getUploadedProducts(nextPage) {
 			/**
-			 * Downloads the deals that the dealer uploaded.
+			 * Downloads the products that the dealer uploaded.
 			 */
 			// Checking if asking for another page
 			if (nextPage) {
-				dealsUrl = nextPage;
+				ProductsUrl = nextPage;
 			}
 			
-			dealsUrl += '/uploadeddeals/' + $scope.profile.dealer.id + '/';
+			ProductsUrl += '/uploadeddeals/' + $scope.profile.dealer.id + '/';
 			
-			Deal.getDeals(dealsUrl)
+			Product.getProducts(ProductsUrl)
 			.then(function (result) {
 				$scope.status = downloadedStatus;
-				var deals = result.data.uploaded_deals;
-				mapDealData(deals);
-				if (deals.length > 0) {
-					$scope.uploadedDeals.push.apply($scope.uploadedDeals, deals);
+				var products = result.data.uploaded_deals;
+				mapProductData(products);
+				if (products.length > 0) {
+					$scope.uploadedProducts.push.apply($scope.uploadedProducts, products);
 					$scope.update.nextPage = result.data.next;
 				} else {
 					$scope.message = noDealsMessage;
@@ -112,7 +112,7 @@
 				$scope.update.loadingMore = false;
 			}, function (httpError) {
 				$scope.status = failedStatus;
-				$scope.message = "Couldn't download the deals";
+				$scope.message = "Couldn't download the products";
 				$scope.errorPrompt =  "Please try again...";
 				$scope.update.loadingMore = false;
 			});
@@ -127,13 +127,13 @@
 			return paramsString;
 		}	
 		
-		function mapDealData(data) {
+		function mapProductData(data) {
 			/*
 			 * Map the data that should be converted from server keys to regular strings.
 			 */
 			for (var i = 0; i < data.length; i++) {
-			    var deal = data[i];
-			    deal = Deal.mapData(deal);
+			    var product = data[i];
+			    product = Product.mapData(product);
 			}
 		}
 		

@@ -5,13 +5,13 @@
 	.factory('Comment', CommentFactory);
 	
 	CommentFactory.$inject = ['$http', '$rootScope', 'Authentication'];
-	function DealFactory($http, $rootScope, Authentication) {
+	function CommentFactory($http, $rootScope, Authentication) {
 		
 		var ctrl = this;
 		var service = {};
 		
 		service.postComment = postComment;
-		service.getDeals = getDeals;
+		service.getProducts = getProducts;
 		service.mapData = mapData;
 		
 		return service;
@@ -28,14 +28,14 @@
 		
 		function getDeals(from) {
 			/*
-			 * Returns a call for a list of deals form the server
+			 * Returns a call for a list of products form the server
 			 */
 			return $http.get($rootScope.baseUrl + from);	
 		}
 		
-		function mapData(deal) {
+		function mapData(product) {
 			/*
-			 * Converts the keys of the server to regular strings, and returns the updated deal.
+			 * Converts the keys of the server to regular strings, and returns the updated product.
 			 */
 			var categories = {
 	            "Fa": "Fashion", 	
@@ -55,12 +55,12 @@
 	            "Tr" : "Travel",
 	            "Ot" : "Other"
            	};
-			if (deal.category) {
-				var category = categories[deal.category];
+			if (product.category) {
+				var category = categories[product.category];
 				if (category) {
-					deal.category = category;
+					product.category = category;
 				}
-				return deal;
+				return product;
 			}
 		}
 	}

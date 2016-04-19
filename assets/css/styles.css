@@ -135,7 +135,6 @@ h4 {
 }
 .nav,
 .pagination,
-.carousel,
 .panel-title a {
   cursor: pointer;
 }
@@ -163,6 +162,9 @@ h4 {
 p.dl-error {
   color: #ff3b30 !important;
   clear: left;
+}
+.dl-danger {
+  color: #ff3b30 !important;
 }
 .form-control {
   background-color: #f5f5fb;
@@ -192,7 +194,7 @@ img.quit {
 .thumbnail-remove {
   position: absolute;
   top: -8px;
-  right: 0;
+  right: -5px;
   color: white;
   font-size: 0.8em;
   border: 2px solid white;
@@ -213,7 +215,17 @@ md-dialog.dl-loading-dialog p {
   color: #8c8c9b;
 }
 .carousel-inner {
-  background-color: #323241;
+  min-height: 320px;
+  background-color: #f5f5fb;
+}
+.carousel:hover .carousel-controller {
+  opacity: 1.0;
+}
+.carousel .carousel-controller {
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all ease-out 0.3s;
 }
 .navbar-default {
   font-size: 0.9em;
@@ -407,17 +419,17 @@ nav img.profileThumbnail {
   padding-right: 10px;
   padding-left: 10px;
 }
-section.dealContainer {
+section.productContainer {
   padding-bottom: 20px;
 }
 @media (max-width: 610px) {
-  section.dealContainer {
+  section.productContainer {
     padding: 0 0 20px 0 !important;
     margin-top: 0 20px;
     color: red;
   }
 }
-.deal {
+.product {
   background-color: white;
   padding: 0;
   border-radius: 10px;
@@ -425,17 +437,16 @@ section.dealContainer {
   box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.05);
 }
 @media (max-width: 610px) {
-  .deal {
+  .product {
     border-radius: 0px;
   }
 }
-.dealImage.loading {
+.productImage.loading {
   width: 100%;
   margin: 0 auto;
   background-color: #8c8c9b;
-  padding-bottom: 67.8125%;
 }
-.dealImage.doneLoading {
+.productImage.doneLoading {
   width: 100%;
   margin: 0 auto;
   padding-bottom: 0;
@@ -444,7 +455,7 @@ div.noImageBackground {
   width: 100%;
   height: 120px;
 }
-.dealInfoBar {
+.productInfoBar {
   padding: 4px 14px;
 }
 .priceContainer {
@@ -486,19 +497,19 @@ div.noImageBackground {
   background: url("../images/icons/@2x/default_profile_pic.png") no-repeat;
   background-size: cover;
 }
-.dealInfoBar {
+.productInfoBar {
   color: #323241;
 }
 .infoIcon {
   margin-top: -2px;
   margin-right: 6px;
 }
-.dealInfo {
+.productInfo {
   font-size: 12px;
   color: #8c8c9b;
 }
 .framed-container {
-  min-height: 150px;
+  min-height: 220px;
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.05);
@@ -515,7 +526,7 @@ div.noImageBackground {
   padding: 0 45px;
   margin-bottom: 20px;
 }
-.vd-deal-photo-container .vd-deal-photo {
+.vd-product-photo-container .vd-product-photo {
   width: 100%;
 }
 .vd-dealer-profile {
@@ -553,7 +564,7 @@ div.noImageBackground {
 }
 .vd-actions {
   margin: 20px 0 0;
-  padding: 0px;
+  padding: 0;
 }
 .vd-actions .vd-actions-container {
   float: right;
@@ -751,74 +762,6 @@ div.noImageBackground {
 .ap-form-container h2 {
   margin: 24px 0 28px;
 }
-.ap-form-container .ap-image-section {
-  position: relative;
-  color: #9c27b0;
-  margin: 0 auto;
-}
-.ap-form-container .ap-image-section .dropzone {
-  position: relative;
-  top: 0;
-  left: 0;
-  right: 0;
-  color: #9c27b0;
-  border: 2px dashed #9c27b0;
-  border-radius: 10px;
-  padding: 40px;
-  margin: 20px auto;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all ease-out 0.3s;
-}
-.ap-form-container .ap-image-section .ap-image-container {
-  margin: auto;
-  max-width: 540px;
-}
-.ap-form-container .ap-image-section .ap-image-container img {
-  display: inline-block;
-  max-height: 320px;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-.ap-form-container .ap-image-section .ap-photos-thumbnails {
-  position: relative;
-}
-.ap-form-container .ap-image-section .ap-photos-thumbnails li {
-  float: left;
-  position: relative;
-}
-.ap-form-container .ap-image-section .ap-photos-thumbnails .ap-thumbnail {
-  width: 80px;
-  height: 54px;
-  margin-right: 16px;
-  border: 2px dashed #9c27b0;
-  border-radius: 5px;
-}
-.ap-form-container .ap-image-section .ap-photos-thumbnails .ap-thumbnail:hover + .ap-thumbnail-remove {
-  display: inline;
-}
-.ap-form-container .ap-image-section .ap-photos-thumbnails .ap-thumbnail-remove {
-  display: none;
-}
-.ap-form-container .ap-image-section .ap-photos-thumbnails .ap-thumbnail-remove:hover {
-  display: inline;
-}
-.ap-form-container .ap-image-section .ap-photos-thumbnails .ap-input-button .ap-thumbnail img {
-  height: 32px;
-  opacity: 0.5;
-  margin: 8px;
-}
-.ap-form-container .ap-image-section .ap-photos-thumbnails button.ap-thumbnail {
-  border: none;
-  overflow: hidden;
-}
-.ap-form-container .ap-image-section .ap-photos-thumbnails button.ap-thumbnail img {
-  height: inherit;
-}
-.ap-form-container .ap-image-section .ap-photos-thumbnails .selected {
-  border: 4px solid #9c27b0 !important;
-}
 .ap-form-container .ap-title-container {
   color: #323241;
   margin-top: 40px;
@@ -832,6 +775,83 @@ div.noImageBackground {
 .ap-form-container .ap-dropdown-menu .md-button.md-icon-button {
   margin: 0;
   font-size: 17px;
+}
+.ap-image-section {
+  position: relative;
+  color: #9c27b0;
+  margin: 0 auto;
+}
+.ap-image-section .dropzone {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: #9c27b0;
+  border: 2px dashed #9c27b0;
+  border-radius: 10px;
+  padding: 40px;
+  margin: 20px auto;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all ease-out 0.3s;
+}
+.ap-image-section .ap-image-container {
+  margin: auto;
+  max-width: 540px;
+}
+.ap-image-section .ap-image-container img {
+  display: inline-block;
+  max-height: 320px;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.ap-image-section .ap-photos-thumbnails {
+  position: relative;
+}
+.ap-image-section .ap-photos-thumbnails ul {
+  display: inline-block;
+  margin-top: 10px;
+}
+.ap-image-section .ap-photos-thumbnails li {
+  float: left;
+  position: relative;
+}
+.ap-image-section .ap-photos-thumbnails .ap-thumbnail {
+  height: 40px;
+  margin: 0 6px;
+  border: 1px dashed #9c27b0;
+  border-radius: 5px;
+}
+.ap-image-section .ap-photos-thumbnails .ap-thumbnail:hover + .ap-thumbnail-remove {
+  display: inline;
+}
+.ap-image-section .ap-photos-thumbnails .ap-thumbnail-remove {
+  display: none;
+}
+.ap-image-section .ap-photos-thumbnails .ap-thumbnail-remove:hover {
+  display: inline;
+}
+.ap-image-section .ap-photos-thumbnails .ap-input-button .ap-thumbnail img {
+  height: 18px;
+  opacity: 0.5;
+  margin: 10px;
+}
+.ap-image-section .ap-photos-thumbnails button.ap-thumbnail {
+  border: none;
+  border-radius: 0;
+}
+.ap-image-section .ap-photos-thumbnails button.ap-thumbnail:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.ap-image-section .ap-photos-thumbnails button.ap-thumbnail img {
+  opacity: 0.3;
+}
+.ap-image-section .ap-photos-thumbnails img {
+  height: inherit;
+}
+.ap-image-section button.ap-thumbnail.selected img {
+  opacity: 1.0;
 }
 .ap-success-icon {
   height: 60px;
@@ -1300,6 +1320,12 @@ fieldset[disabled] .btn-facebook.active {
 }
 .md-datepicker-input-mask-opaque {
   right: inherit !important;
+}
+md-backdrop.md-dialog-backdrop {
+  z-index: 1040;
+}
+.md-dialog-container {
+  z-index: 2000;
 }
 :-ms-input-placeholder body[style],
 :root body[style] {

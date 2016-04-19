@@ -132,7 +132,7 @@ h4 {
   padding-top: 84px;
 }
 
-.nav, .pagination, .carousel, .panel-title a {
+.nav, .pagination, .panel-title a {
   cursor: pointer;
 }
 
@@ -163,6 +163,10 @@ h4 {
 p.dl-error {
   color: @text-error !important;
   clear: left;
+}
+
+.dl-danger {
+  color: @text-error !important;
 }
 
 .form-control {
@@ -199,7 +203,7 @@ img.quit {
 .thumbnail-remove {
   position: absolute;
   top: -8px;
-  right: 0;
+  right: -5px;
   color: white;
   font-size: 0.8em;
   border: 2px solid white;
@@ -226,8 +230,19 @@ md-dialog.dl-loading-dialog {
 }
 
 .carousel-inner {
-  background-color: @theme-dark;
+  min-height: 320px;
+  background-color: @background-gray;
 }
+
+.carousel:hover .carousel-controller {
+  opacity: 1.0;
+}
+
+.carousel .carousel-controller {
+  opacity: 0;
+  .transition-all;
+}
+
 
 // Nav Bar
 
@@ -417,7 +432,7 @@ nav img.profileThumbnail {
   }
 }
 
-// Deals Grid
+// Products Grid
 
 .row > [class^="col-"],
 .row > [class*=" col-"] {
@@ -425,9 +440,9 @@ nav img.profileThumbnail {
   padding-left: 10px;
 }
 
-// Deal Cell
+// Product Cell
 
-section.dealContainer {
+section.productContainer {
   padding-bottom: 20px;
   @media (max-width: @phone-width) {
     padding: 0 0 20px 0 !important;
@@ -436,25 +451,24 @@ section.dealContainer {
   }
 }
 
-.deal {
+.product {
   background-color: white;
   padding: 0;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: @deal-cell-shadow;
+  box-shadow: @product-cell-shadow;
   @media (max-width: @phone-width) {
     border-radius: 0px;
   }
 }
 
-.dealImage.loading {
+.productImage.loading {
   width: 100%;
   margin: 0 auto;
   background-color: @text-light-gray;
-  padding-bottom: 67.8125%;
 }
 
-.dealImage.doneLoading {
+.productImage.doneLoading {
   width: 100%;
   margin: 0 auto;
   padding-bottom: 0;
@@ -465,7 +479,7 @@ div.noImageBackground {
   height: 120px;
 }
 
-.dealInfoBar {
+.productInfoBar {
   padding: 4px 14px;
 }
 
@@ -515,7 +529,7 @@ div.noImageBackground {
   background-size: cover;
 }
 
-.dealInfoBar {
+.productInfoBar {
   color: @text-black;
 }
 
@@ -524,7 +538,7 @@ div.noImageBackground {
   margin-right: 6px;
 }
 
-.dealInfo {
+.productInfo {
   .small-font;
   color: @text-light-gray;
 }
@@ -532,7 +546,7 @@ div.noImageBackground {
 // View Deal
 
 .framed-container {
-  min-height: 150px;
+  min-height: 220px;
   background-color: white;
   border-radius: @rounded-corners-xl;
   box-shadow: @container-shadow;
@@ -549,8 +563,8 @@ div.noImageBackground {
   margin-bottom: @vd-margin-bottom;
 }
 
-.vd-deal-photo-container {
-  .vd-deal-photo {
+.vd-product-photo-container {
+  .vd-product-photo {
     width: 100%;
   }
 }
@@ -594,7 +608,7 @@ div.noImageBackground {
 
 .vd-actions {
   margin: @vd-section-margin;
-  padding: 0px;
+  padding: 0;
   .vd-actions-container {
     float: right;
     margin-right: 15px;
@@ -785,72 +799,6 @@ div.noImageBackground {
   h2 {
     margin: 24px 0 28px;
   }
-  .ap-image-section {
-    position: relative;
-    color: @theme-primary;
-    margin: 0 auto;
-    .dropzone {
-      position: relative;
-      top: 0;
-      left: 0;
-      right: 0;
-      color: @theme-primary;
-      border: 2px dashed @theme-primary;
-      border-radius: @rounded-corners-large;
-      padding: 40px;
-      margin: 20px auto;
-      .transition-all;
-    }
-    .ap-image-container {
-      margin: auto;
-      max-width: 540px;
-      img {
-        display: inline-block;
-        max-height: 320px;
-        top: 0;
-        left: 0;
-        right: 0;
-      }
-    }
-    .ap-photos-thumbnails {
-      position: relative;
-      li {
-        float: left;
-        position: relative;
-      }
-      .ap-thumbnail {
-        width: 80px;
-        height: 54px;
-        margin-right: 16px;
-        border: 2px dashed @theme-primary;
-        border-radius: @rounded-corners-small;
-        &:hover + .ap-thumbnail-remove {
-          display: inline;
-        }
-      }
-      .ap-thumbnail-remove {
-        display: none;
-        &:hover {
-          display: inline;
-        }
-      }
-      .ap-input-button .ap-thumbnail img {
-        height: 32px;
-        opacity: 0.5;
-        margin: 8px;
-      }
-      button.ap-thumbnail {
-        border: none;
-        overflow: hidden;
-        img {
-          height: inherit;
-        }
-      }
-      .selected {
-        border: 4px solid @theme-primary !important;
-      }
-    }
-  } // ap-image-section
   .ap-title-container {
     color: @theme-dark;
     margin-top: 40px;
@@ -866,6 +814,82 @@ div.noImageBackground {
     }
   }
 } // ap-form-container
+
+.ap-image-section {
+  position: relative;
+  color: @theme-primary;
+  margin: 0 auto;
+  .dropzone {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: @theme-primary;
+    border: 2px dashed @theme-primary;
+    border-radius: @rounded-corners-large;
+    padding: 40px;
+    margin: 20px auto;
+    .transition-all;
+  }
+  .ap-image-container {
+    margin: auto;
+    max-width: 540px;
+    img {
+      display: inline-block;
+      max-height: 320px;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+  .ap-photos-thumbnails {
+    position: relative;
+    ul {
+      display: inline-block;
+      margin-top: 10px;
+    }
+    li {
+      float: left;
+      position: relative;
+    }
+    .ap-thumbnail {
+      height: 40px;
+      margin: 0 6px;
+      border: 1px dashed @theme-primary;
+      border-radius: @rounded-corners-small;
+      &:hover + .ap-thumbnail-remove {
+        display: inline;
+      }
+    }
+    .ap-thumbnail-remove {
+      display: none;
+      &:hover {
+        display: inline;
+      }
+    }
+    .ap-input-button .ap-thumbnail img {
+      height: 18px;
+      opacity: 0.5;
+      margin: 10px;
+    }
+    button.ap-thumbnail {
+      border: none;
+      border-radius: 0;
+      &:hover {
+        background-color: rgba(0,0,0,0.5);
+      }
+      img {
+        opacity: 0.3;
+      }
+    }
+    img {
+      height: inherit;
+    }
+  }
+  button.ap-thumbnail.selected img {
+    opacity: 1.0;
+  }
+} // ap-image-section
 
 .ap-success-icon {
   height: 60px;
@@ -889,7 +913,7 @@ button.ap-done {
   background-color: white;
   padding: @vd-side-padding;
   margin: 50px 0 30px;
-  box-shadow: @deal-cell-shadow;
+  box-shadow: @product-cell-shadow;
 
   .spinnerContainer {
     margin-top: 120px auto !important;
@@ -1210,8 +1234,16 @@ button.dl-submit {
 .md-datepicker-input-mask {
   width: inherit !important;
 }
+
 .md-datepicker-input-mask-opaque {
   right: inherit !important;
+}
+
+md-backdrop.md-dialog-backdrop {
+  z-index: 1040;
+}
+.md-dialog-container {
+  z-index: 2000;
 }
 
 // For handling the top page jump when using md-select and others.

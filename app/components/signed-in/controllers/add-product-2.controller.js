@@ -6,8 +6,8 @@
         /**
          * The controller that manages the second step of the Add Product Procedure.
          */
-        .controller('AddProduct2Controller', ['$scope', '$rootScope', '$location', '$mdDialog', 'AddProduct',
-            function ($scope, $rootScope, $location, $mdDialog, AddProduct) {
+        .controller('AddProduct2Controller', ['$scope', '$rootScope', '$location', '$mdDialog', 'AddProduct', 'ProductPhotos',
+            function ($scope, $rootScope, $location, $mdDialog, AddProduct, ProductPhotos) {
 
                 const SHEKEL = '₪';
                 const DOLLAR = '$';
@@ -18,11 +18,13 @@
                 const BASIC_INFO_PATH = "/new-product/basic-info";
                 const NEXT_PAGE_PATH = "/new-product/spread-the-word";
                 const LOADING_MESSAGE = "Uploading your product...";
+                const AP_SESSION = 'apSession';
+                const BROADCASTING_PREFIX = 'photos-downloaded-for-';
+                const UPLOAD_FINISHED_MESSAGE = 'ap-upload-finished';
 
                 $scope.currency = SHEKEL;
                 $scope.discountType = PERCENTAGE;
                 $scope.minDate = new Date();
-                var originatorEv;
 
                 loadProduct();
 
@@ -61,7 +63,6 @@
                  * @param ev - the event that triggered the function.
                  */
                 $scope.openMenu = function ($mdOpenMenu, ev) {
-                    originatorEv = ev;
                     $mdOpenMenu(ev);
                 };
 
@@ -101,18 +102,46 @@
                 };
 
                 /**
-                 * Uploads the product to the server (via the AddProduct service).
-                 * @param form
-                 * @param event
+                 * Starts the upload process.
+                 * @param form - the form that was submitted.
+                 * @param event - the event that triggered the submission.
                  */
-                $scope.uploadProduct = function (form, event) {
+                $scope.submit = function (form, event) {
                     if (!validation(form, event)) {
                         return;
                     }
+                    showLoadingDialog();
                     $scope.product.currency = $scope.currency;
-                    $scope.product.discount_type = $scope.discountType;
-                    AddProduct.uploadProduct($scope.product);
+                    if ($scope.product.discount_value) {
+                        $scope.product.discount_type = $scope.discountType;
+                    }
+                    ProductPhotos.uploadPhotosOfProduct($scope.product, AP_SESSION);
                 };
+
+                $scope.$on(BROADCASTING_PREFIX + AP_SESSION, function (event, args) {
+                    var data = args.data;
+                    if (args.success) {
+                        // Finished uploading photos, start uploading the product's data.
+                        $scope.product = args.product;
+                        AddProduct.uploadProduct($scope.product);
+                    } else {
+                        hideLoadingDialog(event);
+                        console.log("Couldn't upload the photos. Aborting upload process.");
+                    }
+                });
+                
+                /**
+                 * Being called when the product finished to be uploaded, whether successfully or unsuccessfully.
+                 */
+                $scope.$on(UPLOAD_FINISHED_MESSAGE, function(event, args) {
+                    hideLoadingDialog();
+                    if (args.success) {
+                        $location.path(NEXT_PAGE_PATH);
+                    } else {
+                        console.log(args.message);
+                        showAlertDialog("We're sorry, but there was a problem", args.message, event);
+                    }
+                });
 
                 /**
                  * Validates that all the required fields were filled and that everything is valid.
@@ -195,26 +224,6 @@
                 function hideLoadingDialog(ev) {
                     $mdDialog.hide();
                 }
-
-                /**
-                 * Being called when the product started to be uploaded to the server.
-                 */
-                $scope.$on('ap-upload-started', function(event) {
-                    showLoadingDialog(event);
-                });
-
-                /**
-                 * Being called when the product finished to be uploaded, whether successfully or unsuccessfully.
-                 */
-                $scope.$on('ap-upload-finished', function(event, args) {
-                    hideLoadingDialog();
-                    if (args.success) {
-                        $location.path(NEXT_PAGE_PATH);
-                    } else {
-                        console.log(args.message);
-                        showAlertDialog("We're sorry, but there was a problem", args.message, event);
-                    }
-                });
 
                 window.onbeforeunload = function () {
                     AddProduct.saveSession($scope.product, $scope.photosURLs);

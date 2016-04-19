@@ -1,41 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cf2767dd-ff52-4566-8c25-987d52c3a3fb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/edit-product.controller.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/signed-in/views/edit-product.view.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/services/edit-product.service.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/services/product-info.service.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/services/product-photos.service.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/services/deal-info.service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/services/deal-photos.service.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/deals-grid.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/products-grid.controller.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/signed-in/views/deal-cell.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/product-cell.view.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/signed-in/views/deals-grid.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/products-grid.view.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/services/deal.service.js" afterPath="$PROJECT_DIR$/app/services/product.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/add-product-1.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/add-product-1.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/add-product-2.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/add-product-2.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/profile.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/profile.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/view-deal.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/view-deal.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/directives/elements.directives.js" afterPath="$PROJECT_DIR$/app/components/signed-in/directives/elements.directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/directives/widgets.directives.js" afterPath="$PROJECT_DIR$/app/components/signed-in/directives/widgets.directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/add-product-2.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/add-product-2.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/navbar.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/navbar.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/profile.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/profile.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/view-deal.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/view-deal.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.js" afterPath="$PROJECT_DIR$/app/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/add-product.service.js" afterPath="$PROJECT_DIR$/app/services/add-product.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/comment.service.js" afterPath="$PROJECT_DIR$/app/services/comment.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/styles.css" afterPath="$PROJECT_DIR$/assets/css/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/less/styles.less" afterPath="$PROJECT_DIR$/assets/less/styles.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/less/variables.less" afterPath="$PROJECT_DIR$/assets/less/variables.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/old-junk/category-deals.controller.js" afterPath="$PROJECT_DIR$/old-junk/category-deals.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/old-junk/search.controller.js" afterPath="$PROJECT_DIR$/old-junk/search.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepros.cfg" afterPath="$PROJECT_DIR$/prepros.cfg" />
-    </list>
+    <list default="true" id="cf2767dd-ff52-4566-8c25-987d52c3a3fb" name="Default" comment="" />
     <ignored path="dealers-website.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -78,8 +44,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-698">
-              <caret line="12" column="113" selection-start-line="12" selection-start-column="113" selection-end-line="12" selection-end-column="113" />
+            <state relative-caret-position="352">
+              <caret line="82" column="36" selection-start-line="82" selection-start-column="36" selection-end-line="82" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -519,12 +485,12 @@
       <workItem from="1460614643695" duration="20742000" />
       <workItem from="1460704447870" duration="10005000" />
       <workItem from="1460729312117" duration="37855000" />
-      <workItem from="1460975312019" duration="23263000" />
+      <workItem from="1460975312019" duration="23295000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178738000" />
+    <option name="totallyTimeSpent" value="178770000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="817" extended-state="6" />
@@ -953,8 +919,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-698">
-          <caret line="12" column="113" selection-start-line="12" selection-start-column="113" selection-end-line="12" selection-end-column="113" />
+        <state relative-caret-position="352">
+          <caret line="82" column="36" selection-start-line="82" selection-start-column="36" selection-end-line="82" selection-end-column="36" />
           <folding />
         </state>
       </provider>

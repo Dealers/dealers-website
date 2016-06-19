@@ -1,6 +1,10 @@
 <dl-navbar></dl-navbar>
 
 <div class="full-screen-categories nav-padding">
-	<dl-categories>
-	</dl-categories>
+
+    <md-list>
+        <md-list-item ng-repeat="category in categories" ng-href="/#/categories/{{category}}">
+            <p>{{category}}</p>
+        </md-list-item>
+    </md-list>
 </div>

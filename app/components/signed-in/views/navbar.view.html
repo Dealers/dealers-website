@@ -1,61 +1,98 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container">
-    	<div class="navbar-header">
-    		<a ng-href="#/home" class="navbar-brand clickable" title="Home">
-    			<img ng-src="../../assets/images/icons/logo_clean_small.png" />
-    		</a>
-    	</div>	 
-    	<div class="navbar-search navbar-left nav">
-	    	<form name="searchForm" class="navbar-left" ng-submit="search(searchForm)" novalidate="">
-	    		<div class="form-group">
-	    			<input 
-	    			name="search" 
-	    			value="{{searchTerm.text}}" 
-	    			type="text" 
-	    			class="search form-control" 
-	    			ng-model="searchTerm.text" 
-	    			placeholder="Search products"
-	    			required/>
-	    		</div>
-	    	</form>
-    	</div>
-		<ul class="navbar-left nav">
-    		<li>
-    			<a class="nav-button non-mobile" ng-click="toggleCatDropdown()">
-    				<img src="../../../../assets/images/icons/@2x/Web_Icons_navbar_categories_icon.png">
-    				<span class="caret" ></span>
-    			</a>
-    			<a href="/#/categories" class="nav-button mobile">
-    				<img src="../../../../assets/images/icons/@2x/Web_Icons_navbar_categories_icon.png">
-    			</a>
-				<div class="dl-dropdown" ng-show="catDropdownDisplay">
-					<ul>
-						<dl-category ng-repeat="category in categories" category="category"></dl-category>
-					</ul>
-				</div>
-	    			<!-- <dl-dropdown 
-	    				list="elements" 
-	    				template="categoriesTemplate" 
-	    				ng-show="catDropdownDisplay">
-	    			</dl-dropdown> -->
-    		</li>
-    	</ul>  
-    	<ul class="navbar-profile navbar-right nav">
-    		<li>
-    			<a href="/#/new-product/basic-info">
-    				<div>
-    					<img src="../../../../assets/images/icons/@2x/Web_Icons_add_product_button.png" />
-    				</div>
-    			</a>
-    		</li>
-    		<li>
-    			<a href="/#/dealers/{{dealer.id}}">
-    				<div>
-    					<img class="profileThumbnail img-circle" ng-src="{{userProfilePic}}" />
-    					<span>{{dealer.full_name}}</span>
-    				</div>
-    			</a>
-    		</li>
-    	</ul> 				    			
-	</div>
+    <div class="container">
+        <div class="navbar-header">
+            <a ng-href="#/home" class="navbar-brand clickable" title="Home">
+                <img ng-src="../../assets/images/icons/logo_clean_small.png"/>
+            </a>
+        </div>
+        <ul class="navbar-left nav">
+            <li>
+                <a class="nav-button mobile" ng-click="toggleSearchBar($event)" ng-show="phoneMode">
+                    <img src="../../../../assets/images/icons/@2x/Web_Icons_navbar_search_button.png">
+                </a>
+            </li>
+        </ul>
+        <div class="navbar-search navbar-left nav dl-fade" ng-hide="!searchBarPresented && phoneMode"
+             ng-class="{searchBarPresented: searchBarPresented }">
+            <form name="searchForm" class="navbar-left" ng-submit="search(searchForm)" novalidate="">
+                <div class="form-group">
+                    <input
+                            name="search"
+                            value="{{searchTerm.text}}"
+                            type="text"
+                            class="search form-control"
+                            ng-model="searchTerm.text"
+                            placeholder="Search products"
+                            required/>
+                </div>
+            </form>
+        </div>
+        <ul class="navbar-left nav">
+            <li>
+                <md-menu md-offset="0 62">
+                    <a class="nav-button non-mobile" ng-click="toggleMenu($mdOpenMenu, $mdMenuIsOpen, $event)">
+                        <img src="../../../../assets/images/icons/@2x/Web_Icons_navbar_categories_icon.png">
+                        <span class="caret"></span>
+                    </a>
+                    <md-menu-content width="5">
+                        <md-menu-item ng-repeat="category in categories">
+                            <md-button href="/#/categories/{{category}}">
+                                {{category}}
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                <a href="/#/categories" class="nav-button mobile">
+                    <img src="../../../../assets/images/icons/@2x/Web_Icons_navbar_categories_icon.png">
+                </a>
+            </li>
+        </ul>
+        <ul id="nav-add-product" class="navbar-right nav" ng-if="mode == 'Dealer'">
+            <li>
+                <a href="/#/new-product/basic-info">
+                    <div>
+                        <img src="../../../../assets/images/icons/@2x/Web_Icons_add_product_button.png"/>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <ul id="nav-profile" class="navbar-right nav" ng-if="mode != 'Guest'">
+            <li>
+                <a href="/#/dealers/{{dealer.id}}">
+                    <div>
+                        <img class="profileThumbnail img-circle" ng-src="{{userProfilePic}}"/>
+                        <span>{{dealer.full_name}}</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <ul id="nav-sell" class="navbar-right nav" style="margin-right: 10px;" ng-if="mode != 'Dealer'"
+            ng-click="registerAsDealer($event)">
+            <li>
+                <a>
+                    <div class="emphasize">
+                        Sell <span class="non-mobile"> with Dealers </span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <ul id="nav-sign-up" class="navbar-right nav" ng-if="mode == 'Guest'" ng-click="showSignInDialog($event, 0)">
+            <li>
+                <a style="padding-top: 12px;">
+                    <div>
+                        Sign Up
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <ul id="nav-login" class="navbar-right nav" ng-if="mode == 'Guest'" ng-click="showSignInDialog($event, 1)">
+            <li>
+                <a style="padding-top: 12px;">
+                    <div>
+                        Log In
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
 </nav>

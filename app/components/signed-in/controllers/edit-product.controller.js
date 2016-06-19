@@ -9,20 +9,20 @@
         .controller('EditProductController', ['$scope', '$rootScope', '$location', '$mdDialog', '$mdToast', '$routeParams', '$timeout', 'Product', 'ProductPhotos', 'EditProduct',
             function ($scope, $rootScope, $location, $mdDialog, $mdToast, $routeParams, $timeout, Product, ProductPhotos, EditProduct) {
 
-                const SHEKEL = '₪';
-                const DOLLAR = '$';
-                const EURO = '€';
-                const PERCENTAGE = '%';
-                const PREV_PRICE = '123';
-                const CONFIRM_EXIT_MESSAGE = "The changes you made will be lost.";
-                const BASIC_INFO_PATH = "/new-product/basic-info";
-                const VIEW_PRODUCT_PATH = "/products/" + $routeParams.productID + "/";
-                const LOADING_MESSAGE = "Saving changes...";
-                const BROADCASTING_PREFIX = 'photos-downloaded-for-';
-                const UPLOAD_STARTED_MESSAGE = 'ep-upload-started';
-                const UPLOAD_FINISHED_MESSAGE = 'ep-upload-finished';
-                const EP_SESSION = 'epSession';
-                const DONE_UPLOAD_MESSAGE = "Changes Saved!";
+                var SHEKEL = '₪';
+                var DOLLAR = '$';
+                var EURO = '€';
+                var PERCENTAGE = '%';
+                var PREV_PRICE = '123';
+                var CONFIRM_EXIT_MESSAGE = "The changes you made will be lost.";
+                var BASIC_INFO_PATH = "/new-product/basic-info";
+                var VIEW_PRODUCT_PATH = "/products/" + $routeParams.productID + "/";
+                var LOADING_MESSAGE = "Saving changes...";
+                var BROADCASTING_PREFIX = 'photos-downloaded-for-';
+                var UPLOAD_STARTED_MESSAGE = 'ep-upload-started';
+                var UPLOAD_FINISHED_MESSAGE = 'ep-upload-finished';
+                var EP_SESSION = 'epSession';
+                var DONE_UPLOAD_MESSAGE = "Changes Saved!";
 
                 $scope.originalProduct = {}; // The product without the changes that were taken place in this Edit Product session.
                 $scope.product = {};

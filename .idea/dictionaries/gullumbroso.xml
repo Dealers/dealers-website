@@ -1,9 +1,13 @@
 <component name="ProjectDictionaryState">
   <dictionary name="gullumbroso">
     <words>
+      <w>autocomplete</w>
+      <w>datepicker</w>
       <w>dropdown</w>
+      <w>geolocation</w>
       <w>onbeforeunload</w>
       <w>onload</w>
+      <w>reinstantiate</w>
     </words>
   </dictionary>
 </component>

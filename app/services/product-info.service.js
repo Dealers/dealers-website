@@ -16,12 +16,11 @@
 		
 		// dictionaries
 		var currencies = {
-			'DO': '$',
-			'SH': '₪',
-			'YE': '¥',
-			'YU': '¥',
-			'PO': '£',
-			'EU': '€'
+			'USD': '$',
+			'ILS': '₪',
+			'CNY': '¥',
+			'GBP': '£',
+			'EUR': '€'
 		};
 		
 		service.currencyForKey = currencyForKey;

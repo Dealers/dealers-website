@@ -7,8 +7,8 @@
 	ProductPhotosFactory.$inject = ['$rootScope'];
 	function ProductPhotosFactory($rootScope) {
 
-        const KEY = "media/Deals_Photos/";
-        const BROADCASTING_PREFIX = 'photos-downloaded-for-';
+        var KEY = "media/Deals_Photos/";
+        var BROADCASTING_PREFIX = 'photos-downloaded-for-';
 
 		var service = {};
 		
@@ -77,7 +77,6 @@
                 downloadPhoto(product.photo4, product.id, 4);
             }
         }
-
 
         /**
          * Generates a name to every photo that is about to be uploaded to the s3.

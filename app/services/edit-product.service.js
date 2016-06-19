@@ -10,11 +10,11 @@
     EditProductFactory.$inject = ['$http', '$rootScope', '$routeParams', 'Product', 'ProductPhotos'];
     function EditProductFactory($http, $rootScope, $routeParams, Product, ProductPhotos) {
 
-        const EP_SESSION = 'epSession';
-        const UPLOAD_STARTED_MESSAGE = 'ep-upload-started';
-        const UPLOAD_FINISHED_MESSAGE = 'ep-upload-finished';
-        const EP_SESSION_PHOTOS = 'epSessionPhotos';
-        const EDIT_PRODUCT_PATH = '/adddeals/';
+        var EP_SESSION = 'epSession';
+        var UPLOAD_STARTED_MESSAGE = 'ep-upload-started';
+        var UPLOAD_FINISHED_MESSAGE = 'ep-upload-finished';
+        var EP_SESSION_PHOTOS = 'epSessionPhotos';
+        var EDIT_PRODUCT_PATH = '/adddeals/';
         
         var service = {};
         service.product = {};

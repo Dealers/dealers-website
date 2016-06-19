@@ -4,21 +4,21 @@
     angular.module('DealersApp')
         .factory('Product', ProductFactory);
 
-    ProductFactory.$inject = ['$http', '$rootScope', 'Authentication'];
-    function ProductFactory($http, $rootScope, Authentication) {
+    ProductFactory.$inject = ['$http', '$rootScope', 'Purchase'];
+    function ProductFactory($http, $rootScope, Purchase) {
 
         var ctrl = this;
         var service = {};
 
-        const currencies = {
-            'DO': '$',
-            'SH': '₪',
-            'YE': '¥',
-            'YU': '¥',
-            'PO': '£',
-            'EU': '€'
+        var currencies = {
+            'USD': '$',
+            'ILS': '₪',
+            'CNY': '¥',
+            'GBP': '£',
+            'EUR': '€'
         };
-        const categories = {
+
+        var categories = {
             "Fa": "Fashion",
             "Au": "Automotive",
             "Ar": "Art",
@@ -40,12 +40,15 @@
         service.getProduct = getProduct;
         service.getProducts = getProducts;
         service.deleteProduct = deleteProduct;
+        service.buyProduct = buyProduct;
         service.removePhotoPaths = removePhotoPaths;
+
         service.mapData = mapData;
         service.categoryForKey = categoryForKey;
         service.keyForCategory = keyForCategory;
         service.currencyForKey = currencyForKey;
         service.keyForCurrency = keyForCurrency;
+        service.convertKeysToCurrencies = convertKeysToCurrencies;
         service.discountTypeForKey = discountTypeForKey;
         service.keyForDiscountType = keyForDiscountType;
         service.areEqual = areEqual;
@@ -72,6 +75,25 @@
 
         function deleteProduct(url) {
             return $http.delete(url);
+        }
+
+        /**
+         * Sends the buy request to the server and from there to Stripe.
+         * @param charge - the charge object.
+         * @param product - the purchased product.
+         * @param saveCustomer - the customer information.
+         */
+        function buyProduct(charge, product, saveCustomer) {
+            $http.post($rootScope.baseUrl + '/transactions/', charge)
+                .then(function (response) {
+                        // success
+                        console.log("Payment successful!");
+                        Purchase.addPurchase(charge, product);
+                    },
+                    function (httpError) {
+                        // error
+                        console.log("Error!");
+                    });
         }
 
         /**
@@ -106,7 +128,7 @@
                 }
             }
             if (product.currency) {
-                if (product.currency.length == 2) {
+                if (product.currency.length == 3) {
                     product.currency = currencyForKey(product.currency);
                 }
             }
@@ -167,6 +189,20 @@
                         return property;
                 }
             }
+        }
+
+        /**
+         * Converts the server keys currencies in the received object to presentable currencies.
+         *
+         * @param currArray - an array with objects that contain a currency field.
+         * @returns {Array} the received array with with converted objects.
+         */
+        function convertKeysToCurrencies(currArray) {
+            for (var i = 0; i < currArray.length; i++) {
+                var currKey = currArray[i].currency;
+                currArray[i].currency = currencyForKey(currKey);
+            }
+            return currArray;
         }
 
         /**

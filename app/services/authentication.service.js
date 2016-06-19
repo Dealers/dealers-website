@@ -39,7 +39,7 @@
 		
 		function clearCredentials () {
 			$rootScope.globals = {};
-			$http.defaults.headers.common.Authorization = 'Token ';
+			$http.defaults.headers.common.Authorization = null;
 			$cookies.remove('globals');
 		}
 		

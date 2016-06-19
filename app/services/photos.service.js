@@ -15,6 +15,7 @@
 
         service.hexToBase64 = hexToBase64;
         service.imageDataToUrls = imageDataToUrls;
+        service.dataURItoBlob = dataURItoBlob;
         service.checkIfImageData = checkIfImageData;
 
         return service;
@@ -38,6 +39,21 @@
                 }
             }
             return urls;
+        }
+
+        /**
+         * Converts data uri objects to blobs.
+         * @param dataURI - the data uri of the photo.
+         * @returns {blob} - blob object
+         */
+        function dataURItoBlob(dataURI) {
+            var byteString = atob(dataURI.split(',')[1]);
+            var ab = new ArrayBuffer(byteString.length);
+            var ia = new Uint8Array(ab);
+            for (var i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+            return new Blob([ab], { type: 'image/png' });
         }
 
         /**

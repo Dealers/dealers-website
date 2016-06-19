@@ -9,7 +9,7 @@
         .controller('AddProduct1Controller', ['$scope', '$location', '$timeout', '$mdDialog', 'AddProduct', 'Photos',
             function ($scope, $location, $timeout, $mdDialog, AddProduct, Photos) {
 
-                const CONFIRM_EXIT_MESSAGE = "The content will be lost.";
+                var CONFIRM_EXIT_MESSAGE = "The content will be lost.";
 
                 $scope.photos = [];
                 $scope.photosURLs = [];
@@ -78,6 +78,7 @@
                             } else {
                                 $(this).removeClass("active");
                             }
+                            $scope.$apply();
                         });
                     }, 100);
                 }
@@ -244,7 +245,7 @@
                  * @type {*|(function())}
                  */
                 var $locationChangeStartUnbind = $scope.$on('$locationChangeStart', function (event, next) {
-                    const processTitle = "new-product";
+                    var processTitle = "new-product";
                     if (next.indexOf(processTitle) == -1 && ($scope.photos.length != 0 || $scope.basicInfoForm.$dirty)) {
                         // The page that the user navigated to is not a part of the Add Product process. Present the
                         // confirm dialog.
@@ -256,5 +257,9 @@
                         AddProduct.clearSession();
                     }
                 });
+
+                $scope.$on('$destroy', function () {
+                    window.onbeforeunload = null;
+                })
             }]);
 })();

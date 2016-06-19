@@ -1,0 +1,222 @@
+<dl-navbar></dl-navbar>
+
+<div class="container nav-margin">
+    <div class="dl-form framed-container ap-form-container" ng-switch on="status">
+
+        <h2>Edit Product</h2>
+
+        <div ng-switch-when="loading">
+            <loading-spinner></loading-spinner>
+        </div>
+        <div ng-switch-when="failed">
+            <h1 class="dl-download-error">{{errorMessage}} <br> {{errorPrompt}} </h1>
+        </div>
+        <div ng-switch-when="downloaded">
+            <div class="ap-image-section text-center" file-dropzone="[image/png, image/jpeg, image/gif]"
+                 photos="photos" photos-urls="photosURLs" show-alert="showAlert()" data-max-file-size="3">
+
+                <div class="dropzone text-center" ng-hide="photosURLs.length > 0">
+                    <p>Drop image here <br/> or </p>
+                    <div class="inputfile-container" ng-hide="photos.length > 0">
+                        <input id="inputButton" name="inputButton" type="file" class="inputfile" accept="image/*"
+                               photos-input photos="photos" photos-urls="photosURLs" show-alert="showAlert()"/>
+                        <label for="inputButton" class="btn btn-white btn-secondary btn-md clickable">{{addPhotoText}}</label>
+                    </div>
+                </div>
+
+                <div class="ap-photos-thumbnails" ng-show="photosURLs.length > 0">
+                    <ul class="clearfix">
+                        <li id="0">
+                            <div class="ap-input-button" ng-hide="photosURLs[0]">
+                                <input id="inputButtonThumbnail0" name="inputButton" type="file" class="inputfile"
+                                       accept="image/*" photos-input photos="photos" photos-urls="photosURLs" show-alert="showAlert()"/>
+                                <label for="inputButtonThumbnail0" class="ap-thumbnail clickable" ng-click="changedPhoto($event)">
+                                    <img src="../../../../../assets/images/icons/@2x/Web_Icons_camera_icon.png" />
+                                </label>
+                            </div>
+                            <button class="ap-thumbnail clickable" ng-click="selectPhoto(0)" ng-show="photosURLs[0]">
+                                <img ng-src="{{photosURLs[0]}}" ng-show="photosURLs[0]"/>
+                            </button>
+                            <button class="ap-thumbnail-remove thumbnail-remove" ng-click="removePhoto($event)"
+                                    ng-show="photosURLs[0]">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </li>
+                        <li id="1">
+                            <div class="ap-input-button" ng-hide="photosURLs[1]">
+                                <input id="inputButtonThumbnail1" name="inputButton" type="file" class="inputfile"
+                                       accept="image/*" photos-input photos="photos" photos-urls="photosURLs" show-alert="showAlert()"/>
+                                <label for="inputButtonThumbnail1" class="ap-thumbnail clickable" ng-click="changedPhoto($event)">
+                                    <img src="../../../../../assets/images/icons/@2x/Web_Icons_camera_icon.png"/>
+                                </label>
+                            </div>
+                            <button class="ap-thumbnail clickable" ng-click="selectPhoto(1)" ng-show="photosURLs[1]">
+                                <img ng-src="{{photosURLs[1]}}" ng-show="photosURLs[1]"/>
+                            </button>
+                            <button class="ap-thumbnail-remove thumbnail-remove" ng-click="removePhoto($event)"
+                                    ng-show="photosURLs[1]">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </li>
+                        <li id="2">
+                            <div class="ap-input-button" ng-hide="photosURLs[2]">
+                                <input id="inputButtonThumbnail2" name="inputButton" type="file" class="inputfile"
+                                       accept="image/*" photos-input photos="photos" photos-urls="photosURLs" show-alert="showAlert()"/>
+                                <label for="inputButtonThumbnail2" class="ap-thumbnail clickable" ng-click="changedPhoto($event)">
+                                    <img src="../../../../../assets/images/icons/@2x/Web_Icons_camera_icon.png"/>
+                                </label>
+                            </div>
+                            <button class="ap-thumbnail clickable" ng-click="selectPhoto(2)" ng-show="photosURLs[2]">
+                                <img ng-src="{{photosURLs[2]}}" ng-show="photosURLs[2]"/>
+                            </button>
+                            <button class="ap-thumbnail-remove thumbnail-remove" ng-click="removePhoto($event)"
+                                    ng-show="photosURLs[2]">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </li>
+                        <li id="3">
+                            <div class="ap-input-button" ng-hide="photosURLs[3]">
+                                <input id="inputButtonThumbnail3" name="inputButton" type="file" class="inputfile"
+                                       accept="image/*" photos-input photos="photos" photos-urls="photosURLs" show-alert="showAlert()"/>
+                                <label for="inputButtonThumbnail3" class="ap-thumbnail clickable" ng-click="changedPhoto($event)">
+                                    <img src="../../../../../assets/images/icons/@2x/Web_Icons_camera_icon.png"/>
+                                </label>
+                            </div>
+                            <button class="ap-thumbnail clickable" ng-click="selectPhoto(3)" ng-show="photosURLs[3]">
+                                <img ng-src="{{photosURLs[3]}}" ng-show="photosURLs[3]"/>
+                            </button>
+                            <button class="ap-thumbnail-remove thumbnail-remove" ng-click="removePhoto($event)"
+                                    ng-show="photosURLs[3]">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>  <!-- ep-photos-thumbnails -->
+
+                <div class="ap-image-container text-center" ng-show="photosURLs.length > 0">
+                    <div id="photosCarousel" class="carousel slide" data-interval="false">
+                        <div class="carousel-inner">
+                            <carousel-item ng-repeat="photoURL in photosURLs track by $index" photo-url="photoURL"></carousel-item>
+                        </div>
+                        <div ng-show="photosURLs.length > 1" ng-click="nextPhoto($event)">
+                            <a
+                                    class="left carousel-control"
+                                    href="#photosCarousel"
+                                    target="_self"
+                                    role="button"
+                                    ng-non-bindable
+                                    data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a
+                                    class="right carousel-control"
+                                    href="#photosCarousel"
+                                    target="_self"
+                                    role="button"
+                                    ng-non-bindable
+                                    data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div> <!-- ep-image-container -->
+            </div>    <!-- ep-image-section -->
+
+            <form name="editProductForm" ng-submit="submitEdit(editProductForm)" class="ap-title-container" novalidate>
+                <h3>Product Title</h3>
+                <div class="dl-field">
+                        <textarea
+                                id="ep-title"
+                                class="form-control"
+                                name="title"
+                                placeholder="Describe this product shortly"
+                                ng-model="product.title"
+                                required>
+                            {{product.title}}
+                        </textarea>
+                </div>
+                <div class="dl-form-col pull-left">
+                    <div class="dl-field">
+                        <img ng-src="../../../../assets/images/icons/@2x/Web_Icons_price_icon.png"/>
+                        <input id="ep-price" name="price" type="number" placeholder="Price (required)" class="form-control dl-input"
+                               ng-model="product.price"
+                               required/>
+                        <div class="ap-dropdown-menu">
+                            <md-menu>
+                                <md-button class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+                                    <md-icon>{{currency}}</md-icon>
+                                </md-button>
+                                <md-menu-content width="2">
+                                    <md-menu-item>
+                                        <md-button ng-click="shekel($event)">
+                                            <md-icon>₪</md-icon>
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="dollar($event)">
+                                            <md-icon>$</md-icon>
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="euro($event)">
+                                            <md-icon>€</md-icon>
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </div>
+                    </div>
+                </div>
+                <div class="dl-form-col pull-right">
+                    <div class="dl-field">
+                        <img ng-src="../../../../assets/images/icons/@2x/Web_Icons_discount_icon.png"/>
+                        <input id="ep-discount" name="discount" type="number" placeholder="Discount" class="form-control dl-input"
+                               ng-class="{previousPrice: discountType == '123'}" ng-model="product.discount_value"/>
+                        <div class="ap-dropdown-menu">
+                            <md-menu>
+                                <md-button class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+                                    <md-icon ng-class="{previousPrice: discountType == '123'}">{{discountType}}</md-icon>
+                                </md-button>
+                                <md-menu-content width="2">
+                                    <md-menu-item>
+                                        <md-button ng-click="percentage($event)">
+                                            <md-icon>%</md-icon>
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="prevPrice($event)">
+                                            <md-icon class="previousPrice">123</md-icon>
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </div>
+                    </div>
+                </div>
+                <div class="dl-form-full">
+                    <div class="dl-field">
+                        <img ng-src="../../../../assets/images/icons/@2x/Web_Icons_category_icon.png"/>
+                        <md-select name="category" class="dl-input form-control" ng-model="product.category" placeholder="Category (required)">
+                            <md-option ng-repeat="category in categories" value="{{category}}">
+                                {{category}}
+                            </md-option>
+                        </md-select>
+                    </div>
+                    <div class="dl-field">
+                        <img ng-src="../../../../assets/images/icons/@2x/Web_Icons_expiration_date_icon.png"/>
+                        <md-datepicker name="expirationDate" class="dl-input form-control no-padding" ng-model="product.expiration" md-min-date="minDate" md-placeholder="Expiration date">
+                        </md-datepicker>
+                    </div>
+                    <div class="dl-field">
+                        <img ng-src="../../../../assets/images/icons/@2x/Web_Icons_more_icon.png"/>
+                <textarea id="ep-more" name="more" placeholder="Tell us more about this product..." class="dl-input form-control"
+                          ng-model="product.more_description">
+                </textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-xl dl-submit">Save</button>
+            </form>
+        </div> <!-- the entire form -->
+
+    </div>    <!-- ep-form-container -->
+</div>    <!-- container -->

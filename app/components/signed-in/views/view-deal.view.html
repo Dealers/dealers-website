@@ -1,6 +1,7 @@
+
 <dl-navbar></dl-navbar>
 
-<div class="container">
+<div class="container" ng-cloak>
     <div class="framed-container ap-form-container nav-margin col-lg-10 col-lg-push-1" ng-switch on="status">
         <div class="row">
             <div ng-switch-when="loading">
@@ -47,8 +48,8 @@
                     <div class="ap-photos-thumbnails" ng-show="photosURLs.length > 0">
                         <ul class="clearfix">
                             <li id="0">
-                                <button class="ap-thumbnail clickable" ng-click="selectPhoto(0)" ng-show="photosURLs[0]">
-                                    <img ng-src="{{photosURLs[0]}}" ng-show="photosURLs[0]"/>
+                                <button class="ap-thumbnail clickable" ng-click="selectPhoto(0)" ng-if="photosURLs[0] && photosURLs.length > 1">
+                                    <img ng-src="{{photosURLs[0]}}" />
                                 </button>
                             </li>
                             <li id="1">
@@ -73,10 +74,6 @@
 
                 <div class="vd-info-pane col-sm-4">
                     <div class="vd-basic-info">
-                        <div class="vd-bullet vd-store clearfix" ng-show="product.store.name">
-                            <img class="vd-info-icon" src="/assets/images/icons/@2x/Web_Icons_store_icon.png"/>
-                            <p><a>{{product.store.name}}</a></p>
-                        </div>
                         <div class="vd-bullet vd-category clearfix" ng-show="product.category">
                             <img class="vd-info-icon" src="/assets/images/icons/@2x/Web_Icons_category_icon.png"/>
                             <p>{{product.category}}</p>
@@ -90,16 +87,23 @@
                     <div class="vd-price-discount" ng-show="product.price || product.discount_value">
                         <div class="vd-price-discount-frame">
                             <div class="vd-price" ng-show="product.price">
-                                {{product.price | currency:dealCur}}
+                                {{product.price | currency:product.currency}}
                             </div>
                             <div class="vd-discount previousPrice" ng-show="discountTypePP">
-                                {{product.discount_value | currency:dealCur}}
+                                {{product.discount_value | currency:product.currency}}
                             </div>
                             <div class="vd-discount" ng-show="!discountTypePP && product.discount_value">
                                 {{product.discount_value}}%
                             </div>
                         </div>
                     </div>
+                    <md-button id="vd-buy"
+                               class="btn-primary btn-sm btn-single btn-xl"
+                               buy-button
+                               product="product"
+                               dealer-pic="profilePic" >
+                        Buy
+                    </md-button>
                     <div class="vd-more-description"
                          ng-show="product.more_description && product.more_description!='None'">
                         <p>
@@ -131,20 +135,20 @@
                                 {{totalLikes}} liked this</p>
                         </div>
                         <div class="vd-buttons-container">
-                            <button id="vd-like" class="btn btn-sm like-btn" ng-click="likeClicked()" like-button>
+                            <md-button id="vd-like" class="btn-sm like-btn" ng-click="likeClicked($event)" like-button>
                                 <img class="side-icon" src="/assets/images/icons/@2x/Web_Icons_like_icon.png"/>
-                                Like
-                            </button>
-                            <button id="vd-share" class="btn btn-sm">
+                                <span>Like</span>
+                            </md-button>
+                            <md-button id="vd-share" class="btn-sm" share-button>
                                 <img class="side-icon" src="/assets/images/icons/@2x/Web_Icons_share_icon.png"/>
                                 Share
-                            </button>
-                            <button id="vd-edit" class="btn btn-sm" ng-show="canEdit()" ng-click="editProduct()">
+                            </md-button>
+                            <md-button id="vd-edit" class="btn-sm" ng-show="canEdit()" ng-click="editProduct()">
                                 <img class="side-icon" src="/assets/images/icons/@2x/Web_Icons_edit_icon.png"/>
                                 Edit
-                            </button>
+                            </md-button>
                             <md-menu>
-                                <button id="vd-options" class="btn btn-sm" ng-click="openMenu($mdOpenMenu, $event)">
+                                <button id="vd-options" class="btn-sm" ng-click="openMenu($mdOpenMenu, $event)">
                                     <img class="side-icon" src="/assets/images/icons/@2x/Web_Icons_options_icon.png"/>
                                 </button>
                                 <md-menu-content width="3">
@@ -164,11 +168,11 @@
                     </div>
                 </div>
                 <div class="vd-comments col-sm-8">
-                    <h4 class="text-muted">
+                    <h4 class="text-muted" ng-show="product.comments.length > 0">
                         {{product.comments.length}} comments
                     </h4>
                     <dl-comment ng-repeat="comment in product.comments" comment="comment"></dl-comment>
-                    <div class="comment">
+                    <div class="comment" ng-show="user != null">
                         <div class="vd-user-pic-container">
                             <img ng-src="{{userProfilePic}}" class="vd-commenter-pic" ng-show="user.photo"/>
                             <div class="vd-commenter-pic defaultProfilePic" ng-hide="user.photo"></div>
@@ -184,9 +188,9 @@
                                     ng-model="comment.text"
                                     ng-focus="showCommentButton = true"
                                     required></textarea>
-                            <button type="submit" class="btn btn-primary btn-sm" ng-show="showCommentButton">Add
+                            <md-button type="submit" class="btn-primary btn-sm" ng-show="showCommentButton">Add
                                 Comment
-                            </button>
+                            </md-button>
                         </form>
                     </div>
                 </div>

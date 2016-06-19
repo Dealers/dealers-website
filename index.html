@@ -6,42 +6,68 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<link rel="stylesheet" href="assets/lib/css/animate.min.css" type="text/css">
-		<link rel="stylesheet" href="assets/css/home-styles.css">
-        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc4/angular-material.min.css">
+        <link rel="stylesheet" href="assets/lib/css/animate.min.css" type="text/css">
+        <link rel="stylesheet" href="assets/lib/css/angular-datepicker.css" type="text/css">
+        <link rel="stylesheet" href="assets/lib/css/animations.css">
+        <link rel="stylesheet" href="assets/css/home-styles.css">
         <link rel="stylesheet" href="assets/css/styles.css">
-        <link rel="stylesheet" href="assets/css/animations.css">
 		<title>Dealers - Deals worth sharing</title>
 		<link rel="shortcut icon" type="image/png" href="assets/images/icons/favicon.png">
     </head>
     <body>
+
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '307875306059843',
+                xfbml      : true,
+                status     : true,
+                version    : 'v2.6'
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     
     <div ng-view autoscroll="true"></div>
 
 	<!-- Libraries -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-animate.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc4/angular-material.min.js"></script>
     <script type="text/javascript" src="assets/lib/js/angular-route.min.js"></script>
     <script type="text/javascript" src="assets/lib/js/angular-cookies.min.js"></script>
-    <script type="text/javascript" src="assets/lib/js/ui-bootstrap-tpls-0.13.4.min.js"></script>
+    <script type="text/javascript" src="assets/lib/js/ui-bootstrap-tpls-1.3.3.min.js"></script>
     <script type="text/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.2.9.min.js"></script>
+    <script type="text/javascript" src="https://checkout.stripe.com/checkout.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlK2TdEXT9XaU1IK3y-r_tZH9ts79dlgM&libraries=places"></script>
     <script type="text/javascript" src="assets/lib/js/spin.min.js"></script>
     <script type="text/javascript" src="assets/lib/js/horizontal-zoom-disabling.min.js"></script>
+    <script type="text/javascript" src="assets/lib/js/ng-img-crop.js"></script>
+    <script type="text/javascript" src="assets/lib/js/angular-datepicker.js"></script>
 
     <!-- App -->
     <script type="text/javascript" src="app/app.js"></script>
     <script type="text/javascript" src="app/routes.js"></script>
-    
+
     <!-- Controllers -->
     <script type="text/javascript" src="app/components/general/controllers.js"></script>
-    <script type="text/javascript" src="app/components/signed-out/home/home.controller.js"></script>
-    <script type="text/javascript" src="app/components/signed-out/sign-up/sign-up.controller.js"></script>
-    <script type="text/javascript" src="app/components/signed-out/login/login.controller.js"></script>
+    <script type="text/javascript" src="app/components/home/home.controller.js"></script>
+    <script type="text/javascript" src="app/components/signed-in/controllers/sign-in-dialog.controller.js"></script>
+    <script type="text/javascript" src="app/components/signed-in/controllers/crop-photo-dialog.controller.js"></script>
+    <script type="text/javascript" src="app/components/signed-in/controllers/register-as-dealer.controller.js"></script>
+    <script type="text/javascript" src="app/components/signed-in/controllers/navbar.controller.js"></script>
     <script type="text/javascript" src="app/components/signed-in/controllers/products-grid.controller.js"></script>
     <script type="text/javascript" src="app/components/signed-in/controllers/view-deal.controller.js"></script>
     <script type="text/javascript" src="app/components/signed-in/controllers/categories-list.controller.js"></script>
@@ -53,14 +79,17 @@
 
     <!-- Directives -->
     <script type="text/javascript" src="app/components/general/directives.js"></script>
-    <script type="text/javascript" src="app/components/signed-out/shared/directives.js"></script>
+    <script type="text/javascript" src="app/components/signed-in/directives/product-directives.js"></script>
+    <script type="text/javascript" src="app/components/signed-in/directives/about-directives.js"></script>
     <script type="text/javascript" src="app/components/signed-in/directives/elements.directives.js"></script>
     <script type="text/javascript" src="app/components/signed-in/directives/widgets.directives.js"></script>
-    
+    <script type="text/javascript" src="app/components/signed-in/directives/purchases.directives.js"></script>
+
     <!-- Services -->
     <script type="text/javascript" src="app/services/authentication.service.js"></script>
     <script type="text/javascript" src="app/services/dealer.service.js"></script>
     <script type="text/javascript" src="app/services/product.service.js"></script>
+    <script type="text/javascript" src="app/services/products-grid.service.js"></script>
     <script type="text/javascript" src="app/services/product-info.service.js"></script>
     <script type="text/javascript" src="app/services/product-photos.service.js"></script>
     <script type="text/javascript" src="app/services/dealer-photos.service.js"></script>
@@ -68,13 +97,13 @@
     <script type="text/javascript" src="app/services/add-product.service.js"></script>
     <script type="text/javascript" src="app/services/photos.service.js"></script>
     <script type="text/javascript" src="app/services/edit-product.service.js"></script>
+    <script type="text/javascript" src="app/services/dialogs.service.js"></script>
+    <script type="text/javascript" src="app/services/purchase-service.service.js"></script>
 
     <!-- Plugin JavaScript -->
     <script type="text/javascript" src="assets/lib/js/jquery.easing.min.js"></script>
     <script type="text/javascript" src="assets/lib/js/jquery.fittext.js"></script>
     <script type="text/javascript" src="assets/lib/js/wow.min.js"></script>
 
-    <!-- Custom JavaScript -->
-    <script type="text/javascript" src="assets/js/home.js"></script>
     </body>
 </html>

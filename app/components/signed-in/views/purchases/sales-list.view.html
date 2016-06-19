@@ -1,0 +1,24 @@
+<md-content ng-switch="loadingStatus">
+    <div ng-switch-when="loading">
+        <loading-spinner></loading-spinner>
+    </div>
+    <div ng-switch-when="downloaded">
+        <md-list flex ng-show="purchases.length > 0">
+            <md-list-item class="purchase-list-item md-3-line" ng-repeat="purchase in purchases">
+                <div class="md-list-item-text">
+                    <h3>{{purchase.deal.title}}</h3>
+                    <h4 class="purchase-amount">{{purchase.amount | currency: purchase.currency}}</h4>
+                    <p>Bought by <a href="/#/dealers/{{purchase.dealer.id}}">{{purchase.dealer.full_name}}</a> on the
+                        {{purchase.purchase_date | date: 'short'}}</p>
+                    <p>Status: {{purchase.status}}</p>
+                    <md-button class="md-secondary"
+                               ng-class="{'received': purchase.status == 'Sent'}"
+                               ng-click="changeStatus($event, purchase)">
+                        {{markButtonTitle(purchase)}}
+                    </md-button>
+                </div>
+            </md-list-item>
+        </md-list>
+        <h4 ng-show="purchases.length == 0" class="text-center">You haven't made any sales yet.</h4>
+    </div>
+</md-content>

@@ -1,0 +1,29 @@
+<div class="container" ng-cloak>
+    <h1 ng-show="title" class="dg-title">
+        {{title}}
+    </h1>
+    <h3 ng-show="description" class="dg-description">
+        {{description}}
+    </h3>
+    <div ng-switch on="status">
+        <div ng-switch-when="loading" class="dl-fade">
+            <loading-spinner></loading-spinner>
+        </div>
+        <div ng-switch-when="failed" class="fade">
+            <h1 class="dg-download-message">{{message}} <br> {{errorPrompt}} </h1>
+        </div>
+        <div scroll-detector ng-switch-when="downloaded" class="dl-fade">
+            <h1 class="dg-download-message" ng-show="message">
+                {{message}}
+            </h1>
+            <md-content class="dl-grid" layout="row" layout-xs="column" layout-wrap>
+                <div flex-sm="50" flex-gt-sm="33" layout="column" ng-repeat="productsChunk in products">
+                    <dl-product ng-repeat="product in productsChunk" product="product"></dl-product>
+                </div>
+            </md-content>
+            <div ng-show="update.loadingMore" class="dl-fade dg-loading-more">
+                <loading-spinner size="small"></loading-spinner>
+            </div>
+        </div>
+    </div>
+</div>

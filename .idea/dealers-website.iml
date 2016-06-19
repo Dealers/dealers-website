@@ -12,5 +12,6 @@
     <orderEntry type="library" name="angular-messages" level="application" />
     <orderEntry type="library" name="aws-sdk-2.2.9" level="application" />
     <orderEntry type="library" name="angular-material" level="application" />
+    <orderEntry type="library" name="checkout" level="application" />
   </component>
 </module>

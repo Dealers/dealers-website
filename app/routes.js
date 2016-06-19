@@ -3,35 +3,17 @@ angular.module('DealersApp')
         $routeProvider
 
 
-        // Signed Out
-
-            .when('/home', {
-                templateUrl: 'app/components/signed-out/home/home.view.html',
-                controller: 'HomeController',
-                controllerAs: 'homeCtrl'
+            .when('/', {
+                templateUrl: 'app/components/home/home.view.html',
+                controller: 'HomeController'
             })
-            .when('/', {redirectTo: '/home'})
-            .when('/login', {
-                templateUrl: 'app/components/signed-out/login/login.view.html',
-                controller: 'LoginController',
-                controllerAs: 'lgCtrl'
-            })
-            .when('/sign-up', {
-                templateUrl: 'app/components/signed-out/sign-up/sign-up.view.html',
-                controller: 'SignUpController',
-                controllerAs: 'suCtrl'
-            })
-
-
-            // Signed In
-
-            .when('/my-feed', {
-                templateUrl: 'app/components/signed-in/views/products-grid.view.html',
-                controller: 'ProductsGridController',
-                controllerAs: 'mfCtrl'
+            .when('/home', {redirectTo: '/'})
+            .when('/register', {
+                templateUrl: 'app/components/signed-in/views/sign-in/register-as-dealer.view.html',
+                controller: 'RegisterAsDealerController'
             })
             .when('/search/products/:query', {
-                templateUrl: 'app/components/signed-in/views/products-grid.view.html',
+                templateUrl: 'app/components/signed-in/views/products/products-page.view.html',
                 controller: 'ProductsGridController',
                 controllerAs: 'mfCtrl'
             })
@@ -41,7 +23,7 @@ angular.module('DealersApp')
                 controllerAs: 'clCtrl'
             })
             .when('/categories/:category', {
-                templateUrl: 'app/components/signed-in/views/products-grid.view.html',
+                templateUrl: 'app/components/signed-in/views/products/products-page.view.html',
                 controller: 'ProductsGridController',
                 controllerAs: 'dgCtrl'
             })
@@ -56,24 +38,27 @@ angular.module('DealersApp')
                 controllerAs: 'prCtrl'
             })
             .when('/new-product/basic-info', {
-                templateUrl: 'app/components/signed-in/views/add-product-1.view.html',
+                templateUrl: 'app/components/signed-in/views/products/add-product-1.view.html',
                 controller: 'AddProduct1Controller',
                 controllerAs: 'ap1Ctrl'
             })
             .when('/new-product/more-details', {
-                templateUrl: 'app/components/signed-in/views/add-product-2.view.html',
+                templateUrl: 'app/components/signed-in/views/products/add-product-2.view.html',
                 controller: 'AddProduct2Controller',
                 controllerAs: 'ap2Ctrl'
             })
             .when('/new-product/spread-the-word', {
-                templateUrl: 'app/components/signed-in/views/add-product-3.view.html',
+                templateUrl: 'app/components/signed-in/views/products/add-product-3.view.html',
                 controller: 'AddProduct3Controller',
                 controllerAs: 'ap3Ctrl'
             })
             .when('/edit-product/:productID', {
-                templateUrl: 'app/components/signed-in/views/edit-product.view.html',
+                templateUrl: 'app/components/signed-in/views/products/edit-product.view.html',
                 controller: 'EditProductController',
                 controllerAs: 'epCtrl'
             })
-            .otherwise({redirectTo: '/home'});
+            .when('/done-registration', {
+                templateUrl: 'app/components/signed-in/views/sign-in/done-registration.view.html'
+            })
+            .otherwise({redirectTo: '/'});
     }]);

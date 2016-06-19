@@ -1,0 +1,32 @@
+<md-card ng-click="viewDeal(product)" class="product">
+    <md-card-header>
+        <md-card-avatar ng-click="dealerProfile($event); $event.stopPropagation();">
+            <img ng-src="{{profilePic}}"/>
+        </md-card-avatar>
+        <md-card-header-text>
+            <span class="md-title" ng-click="dealerProfile($event); $event.stopPropagation();">{{product.dealer.full_name}}</span>
+            <span class="md-subhead" ng-click="dealerProfile($event); $event.stopPropagation();">{{product.dealer.rank}}</span>
+        </md-card-header-text>
+    </md-card-header>
+    <div class="md-card-image-container">
+        <img ng-src="{{productImage}}" class="md-card-image dl-fade" ng-show="productImage.length > 0">
+    </div>
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-title">{{product.title}}</span>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content layout="row" layout-align="space-between center">
+        <div>
+            <span class="price md-subhead">{{product.price | currency:product.currency}}</span>
+            <span class="discount previousPrice md-subhead" ng-show="discountTypePP">{{product.discount_value | currency:product.currency}}</span>
+            <span class="discount md-subhead" ng-show="!discountTypePP && product.discount_value">{{product.discount_value}}%</span>
+        </div>
+        <div ng-show="hasLikes">
+            <p class="productInfo no-margin likes">
+                <img class="grid-like-icon" src="/assets/images/icons/@2x/Web_Icons_my_feed_like_icon.png"/>
+                {{product.dealattribs.dealers_that_liked.length}}
+            </p>
+        </div>
+    </md-card-content>
+</md-card>

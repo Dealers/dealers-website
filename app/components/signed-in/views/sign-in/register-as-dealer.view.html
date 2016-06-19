@@ -1,0 +1,132 @@
+<dl-navbar></dl-navbar>
+
+<form
+        name="registerAsDealerForm"
+        class="framed-container no-padding dl-form nav-margin register-as-dealer"
+        ng-submit="register(registerAsDealerForm)"
+        novalidate
+        ng-cloak>
+    <md-content>
+        <md-tabs md-selected="selectedTab" md-dynamic-height md-border-botton>
+            <md-tab md-on-select="onTabSelected(0)">
+                <md-tab-label>
+                    <span class="tabIndex">1</span>
+                    <div>General Info</div>
+                </md-tab-label>
+                <md-tab-body class="md-padding">
+                    <p class="text-center">
+                        In just a few steps, you'll be ready to start selling your products!
+                    </p>
+                    <div id="rad-dealer-profile-photo" class="text-center">
+                        <input id="rad-input-profile-pic" name="inputProfilePic" type="file" class="inputfile"
+                               accept="image/*"
+                               photo-input photo="photo" photo-url="photoURL"/>
+                        <label
+                                for="rad-input-profile-pic"
+                                class="profile-pic-btn clickable"
+                                style="background: url({{croppedPhotoURL}}); background-size: contain;">
+                        </label>
+                        <label for="rad-input-profile-pic" class="md-button">
+                            {{editProfilePic}}
+                        </label>
+                        <p class="dl-note text-center text-muted" style="margin: -6px 0 0">
+                            Upload a photo of you or your business
+                        </p>
+                    </div>
+                    <div class="dl-form-col single-col">
+                        <div class="dl-field-plus">
+                            <div class="dl-field">
+                                <img src="/assets/images/icons/@2x/Web_Icons_name_icon.png"/>
+                                    <textarea id="rad-about" name="about" placeholder="About"
+                                              class="dl-input form-control"
+                                              ng-model="dealer.about"
+                                              required>
+                                    </textarea>
+                            </div>
+                            <p class="dl-note dl-input-note">
+                                Tell us about yourself - what are you selling? What are your products about?
+                            </p>
+                        </div>
+                        <div class="dl-field-plus">
+                            <div class="dl-field">
+                                <img src="/assets/images/icons/@2x/Web_Icons_location_user_icon.png"/>
+                                <input id="rad-location" name="rad-location" type="text"
+                                       placeholder="Location"
+                                       class="form-control dl-input"
+                                       ng-model="dealer.location"
+                                       required
+                                       google-location-autocomplete
+                                       location="dealer.location"
+                                />
+                            </div>
+                            <p class="dl-note dl-input-note">
+                                Where are you or your business located?
+                            </p>
+                        </div>
+                    </div>
+                </md-tab-body>
+            </md-tab>
+            <md-tab md-on-select="onTabSelected(1)">
+                <md-tab-label>
+                    <span class="tabIndex">2</span>
+                    <div>Bank Info</div>
+                </md-tab-label>
+                <md-tab-body class="md-padding">
+                    <p class="text-center">
+                        Add your bank account information. This is where you will receive your income.
+                    </p>
+                    <div class="dl-form-col single-col">
+                        <div class="dl-field no-icon-field form-group">
+                            <label for="rad-account-number">
+                                Account Number
+                            </label>
+                            <input id="rad-account-number" name="rad-account-number" type="text"
+                                   placeholder="Eg. 123123"
+                                   class="form-control dl-input"
+                                   ng-model="bank_account.account_number"
+                                   required
+                            />
+                        </div>
+                        <div class="dl-field no-icon-field form-group">
+                            <label for="rad-branch-number">
+                                Branch Number
+                            </label>
+                            <input id="rad-branch-number" name="rad-branch-number" type="text"
+                                   placeholder="Eg. 456"
+                                   class="form-control dl-input"
+                                   ng-model="bank_account.branch_number"
+                                   required
+                            />
+                        </div>
+                        <div class="dl-field no-icon-field form-group">
+                            <label for="rad-bank">
+                                Bank Name
+                            </label>
+                            <input id="rad-bank" name="rad-bank" type="text"
+                                   placeholder="Eg. Hapoalim"
+                                   class="form-control dl-input"
+                                   ng-model="bank_account.bank"
+                                   required
+                            />
+                        </div>
+                        <div class="dl-field no-icon-field form-group">
+                            <label for="rad-bank">
+                                Account Holder Name
+                            </label>
+                            <input id="rad-account-holder" name="rad-account-holder" type="text"
+                                   placeholder="Eg. Yossi Cohen"
+                                   class="form-control dl-input"
+                                   ng-model="bank_account.account_holder"
+                                   required
+                            />
+                        </div>
+                    </div>
+                    <p class="dl-error dl-note text-center" ng-show="showError">{{errorMessage}}</p>
+                </md-tab-body>
+            </md-tab>
+        </md-tabs>
+        <md-button type="submit" class="btn btn-primary btn-single dl-submit md-primary md-raised" md-autofocus>
+            {{submitButtonTitle}}
+        </md-button>
+    </md-content>
+</form>

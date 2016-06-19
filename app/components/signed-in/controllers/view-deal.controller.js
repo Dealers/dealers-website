@@ -8,7 +8,9 @@
 
                     var ctrl = this;
 
-                    const PRODUCT_URL = $rootScope.baseUrl + '/alldeals/' + $routeParams.productID + '/';
+                    var PRODUCT_URL = $rootScope.baseUrl + '/alldeals/' + $routeParams.productID + '/';
+                    var PRODUCT_PAGE_BASE_URL = $rootScope.baseUrl + '/products/';
+
 
                     $scope.product = {};
                     $scope.status = 'loading';
@@ -34,15 +36,15 @@
                     $scope.addComment = addComment;
                     $scope.presentCommentError = presentCommentError;
 
-                    $scope.product = ActiveSession.getTempData(); // Retrieves the product from the Active Session service.
-                    if (!$scope.product.id) {
+
+                    $scope.product = ActiveSession.getTempData("PRODUCT"); // Retrieves the product from the Active Session service.
+                    if (!$scope.product) {
                         // There is no product in the session, download it form the server.
                         downloadProduct();
                     } else {
                         $scope.status = 'downloaded';
                         fillData();
                     }
-
 
                     function downloadProduct() {
                         var productID = $routeParams.productID;
@@ -65,20 +67,23 @@
                     function fillData() {
                         setProductPhotos();
                         setDealerProfile();
+
                         $scope.firstPhotoHeight = $scope.product.main_photo_height;
                         $scope.discountTypePP = $scope.product.discount_type === "123";
                         $scope.totalLikes = $scope.product.dealattribs.dealers_that_liked.length;
 
-                        // Comments
-                        if (!$rootScope.userProfilePic) {
-                            waitForProfilePic();
-                        } else {
-                            $scope.userProfilePic = $rootScope.userProfilePic;
-                        }
-                        if ($scope.product.comments.length > 1) {
-                            $scope.commentPlaceholder = "Add a comment...";
-                        } else {
-                            $scope.commentPlaceholder = "Be the first to comment...";
+                        // Comments (only if the user has a dealer object, meaning he's signed in)
+                        if ($scope.user) {
+                            if (!$rootScope.userProfilePic) {
+                                waitForProfilePic();
+                            } else {
+                                $scope.userProfilePic = $rootScope.userProfilePic;
+                            }
+                            if ($scope.product.comments.length > 1) {
+                                $scope.commentPlaceholder = "Add a comment...";
+                            } else {
+                                $scope.commentPlaceholder = "Be the first to comment...";
+                            }
                         }
                     }
 
@@ -231,8 +236,10 @@
                     }
 
                     $scope.canEdit = function() {
-                        if ($scope.product.dealer.id == $rootScope.dealer.id) {
-                            return true;
+                        if ($scope.user) {
+                            if ($scope.product.dealer.id == $rootScope.dealer.id) {
+                                return true;
+                            }
                         }
                         return false;
                     };
@@ -302,7 +309,7 @@
                             comment.upload_date = new Date();
                             comment.product = $scope.product.id;
                             comment.dealer = $rootScope.dealer.id;
-                            comment.type = "Product";
+                            comment.type = "Deal";
                             $scope.showCommentError = false;
                             $http.post($rootScope.baseUrl + '/addcomments/', comment)
                                 .then(function (response) {
@@ -317,7 +324,7 @@
                                         // error
                                         console.log(httpError.status + " : " + httpError.data);
                                         $scope.showCommmentError = true;
-                                        $scope.presentErrorMessage("There was an error, please try again");
+                                        $scope.presentCommentError("There was an error, please try again");
                                     });
                         }
                     }
@@ -328,6 +335,8 @@
                          */
                         if (errorMessage) {
                             $scope.commentErrorMessage = errorMessage;
+                        } else {
+                            $scope.commentErrorMessage = "There was an error, please try again";
                         }
                         $scope.showCommentError = true;
                     }

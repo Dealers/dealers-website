@@ -10,11 +10,11 @@
     AddProductFactory.$inject = ['$http', '$rootScope', 'Product', 'ProductPhotos'];
     function AddProductFactory($http, $rootScope, Product, ProductPhotos) {
 
-        const AP_SESSION = 'apSession';
-        const AP_SESSION_PHOTOS = 'apSessionPhotos';
-        const ADD_PRODUCT_PATH = '/adddeals/';
-        const UPLOAD_STARTED_MESSAGE = 'ap-upload-started';
-        const UPLOAD_FINISHED_MESSAGE = 'ap-upload-finished';
+        var AP_SESSION = 'apSession';
+        var AP_SESSION_PHOTOS = 'apSessionPhotos';
+        var ADD_PRODUCT_PATH = '/adddeals/';
+        var UPLOAD_STARTED_MESSAGE = 'ap-upload-started';
+        var UPLOAD_FINISHED_MESSAGE = 'ap-upload-finished';
 
         function setListeners() {
             $scope.$on('photos-downloaded-for-' + AP_SESSION, function (event, args) {

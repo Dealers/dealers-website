@@ -9,18 +9,18 @@
         .controller('AddProduct2Controller', ['$scope', '$rootScope', '$location', '$mdDialog', 'AddProduct', 'ProductPhotos',
             function ($scope, $rootScope, $location, $mdDialog, AddProduct, ProductPhotos) {
 
-                const SHEKEL = '₪';
-                const DOLLAR = '$';
-                const EURO = '€';
-                const PERCENTAGE = '%';
-                const PREV_PRICE = '123';
-                const CONFIRM_EXIT_MESSAGE = "The content will be lost.";
-                const BASIC_INFO_PATH = "/new-product/basic-info";
-                const NEXT_PAGE_PATH = "/new-product/spread-the-word";
-                const LOADING_MESSAGE = "Uploading your product...";
-                const AP_SESSION = 'apSession';
-                const BROADCASTING_PREFIX = 'photos-downloaded-for-';
-                const UPLOAD_FINISHED_MESSAGE = 'ap-upload-finished';
+                var SHEKEL = '₪';
+                var DOLLAR = '$';
+                var EURO = '€';
+                var PERCENTAGE = '%';
+                var PREV_PRICE = '123';
+                var CONFIRM_EXIT_MESSAGE = "The content will be lost.";
+                var BASIC_INFO_PATH = "/new-product/basic-info";
+                var NEXT_PAGE_PATH = "/new-product/spread-the-word";
+                var LOADING_MESSAGE = "Uploading your product...";
+                var AP_SESSION = 'apSession';
+                var BROADCASTING_PREFIX = 'photos-downloaded-for-';
+                var UPLOAD_FINISHED_MESSAGE = 'ap-upload-finished';
 
                 $scope.currency = SHEKEL;
                 $scope.discountType = PERCENTAGE;
@@ -236,7 +236,7 @@
                  * @type {*|(function())}
                  */
                 $scope.$on('$locationChangeStart', function (event, next) {
-                    const processTitle = "new-product";
+                    var processTitle = "new-product";
                     if (next.indexOf(processTitle) == -1) {
                         // The page that the user navigated to is not a part of the Add Product process. Present the
                         // confirm dialog.

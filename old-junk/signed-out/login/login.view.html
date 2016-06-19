@@ -1,0 +1,28 @@
+<header>
+    <div class="header-content">
+        <div class="header-content-inner">
+        	<form name="loginForm" class="dl-form form-sm clearfix" ng-submit="logIn(logInForm)" novalidate>
+            	<h2>Log In</h2>
+            	<div class="dl-field">
+        			<input name="email" type="email" placeholder="Email" ng-model="email" required/>                			
+        		</div>
+        		<div class="dl-field">
+        			<input name="password" type="password" placeholder="Password" ng-model="password" required/>                			
+        		</div>
+            	<p class="dl-error dl-note text-center" ng-show="showError">{{errorMessage}}</p>
+            	<div class="btn-container pull-left">
+            		<button type="submit" class="btn btn-primary btn-xl">{{buttonTitle}}</button>
+            	</div>
+            	<p class="dl-note text-center text-muted no-margin pull-left">Don't have an account? <a href="#/sign-up">Sign Up!</a></p>
+            </form>
+        </div>
+    </div>
+    <div class="find-out-more" find-out-more>
+    </div>
+</header>
+
+<about-section></about-section>
+
+<ios-section></ios-section>
+
+<footer-section></footer-section>

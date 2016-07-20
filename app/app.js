@@ -37,6 +37,11 @@
                 // Global functions
                 $rootScope.setUserProfilePic = setUserProfilePic;
 
+                $rootScope.INTERCOM_APP_ID = "z1b3ijln";
+                window.Intercom("boot", {
+                    app_id: $rootScope.INTERCOM_APP_ID
+                });
+
                 // keep user logged in after page refresh
                 if ($cookies.get('globals') !== '[object Object]') { // checking if there's an object in the cookies key
                     $rootScope.globals = $cookies.getObject('globals') || {};
@@ -129,6 +134,8 @@
                 $rootScope.$on('$locationChangeStart', function (event, next, current) {
                     var roles = $rootScope.roles;
                     var role, restricted;
+
+                    window.Intercom("update");
 
                     if (!$rootScope.dealer) {
                         role = roles.guest;

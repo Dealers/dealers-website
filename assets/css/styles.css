@@ -150,6 +150,12 @@ h4 {
     padding: 0px;
   }
 }
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+.margin-bottom-30 {
+  margin-bottom: 30px;
+}
 .container-background {
   background-color: white;
   box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.05);
@@ -222,6 +228,9 @@ md-dialog.dl-loading-dialog p {
 }
 md-content.dl-grid {
   background: #f5f5fb;
+}
+.container-padding {
+  padding: 10px 30px 40px !important;
 }
 .breadcrumb {
   background-color: transparent;
@@ -500,9 +509,12 @@ img-crop {
 }
 img-crop canvas {
   display: block;
+  margin: auto !important;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   outline: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   /* mobile webkit */
@@ -510,8 +522,12 @@ img-crop canvas {
 .cropArea {
   background: #E4E4E4;
   overflow: hidden;
-  width: 500px;
   height: 350px;
+}
+@media (min-width: 599px) {
+  .cropArea {
+    width: 500px;
+  }
 }
 .dg-title {
   text-align: center;
@@ -658,7 +674,11 @@ div.noImageBackground {
 }
 .vd-dealer-profile {
   margin: 20px 0 0;
-  padding: 0 15px 0 45px;
+}
+@media (min-width: 599px) {
+  .vd-dealer-profile {
+    padding: 0 15px 0 45px;
+  }
 }
 .vd-dealer-profile .dealerProfilePic {
   width: 80px;
@@ -720,6 +740,7 @@ div.noImageBackground {
   }
   .vd-actions .vd-actions-container .vd-buttons-container button {
     height: 38px;
+    margin-right: 8px;
   }
 }
 @media (min-width: 768px) and (max-width: 959px) {
@@ -877,6 +898,48 @@ div.noImageBackground {
   margin: 20px 0 0;
   color: #8c8c9b;
 }
+.checkout {
+  padding: 10px 40px 30px;
+}
+@media (min-width: 1201px) {
+  .checkout form .dl-form-col {
+    width: 509px;
+  }
+}
+@media (min-width: 991px) and (max-width: 1200px) {
+  .checkout form .dl-form-col {
+    width: 409px;
+  }
+}
+@media (min-width: 768px) and (max-width: 990px) {
+  .checkout form .dl-form-col {
+    width: 299px;
+  }
+}
+.checkout .dl-form-col.left-col {
+  margin-right: 40px;
+}
+.checkout .dl-form-col.right-col {
+  max-width: 340px;
+}
+.checkout .co-product-pic {
+  width: inherit;
+  max-width: 340px;
+  margin-bottom: 14px;
+}
+.checkout .co-product-pic img {
+  width: inherit;
+  max-width: 340px;
+}
+.checkout .co-product-pic img.photoHeight {
+  width: initial;
+  height: 320px;
+}
+.checkout .co-price {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 20px;
+}
 .ap-navbar ul.breadcrumb {
   display: inline-block;
   margin-left: 20px;
@@ -988,7 +1051,7 @@ div.noImageBackground {
   margin: 20px;
 }
 button.ap-done {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .pr-header-section {
   position: relative;
@@ -1093,6 +1156,10 @@ button.ap-done {
   color: white;
   background-color: #9c27b0;
 }
+md-list md-list-item.md-3-line,
+md-list md-list-item.md-3-line > ._md-no-style {
+  min-height: 128px;
+}
 md-list .purchase-list-item button.received {
   color: white;
   font-weight: 600;
@@ -1101,6 +1168,18 @@ md-list .purchase-list-item button.received {
 md-list .purchase-list-item.md-3-line .md-list-item-text h4.purchase-amount {
   color: #4caf50;
   font-weight: bold;
+}
+.purchase-details li {
+  line-height: 2.0;
+}
+.purchase-details .purchase-amount {
+  color: #4caf50;
+  font-weight: bold;
+}
+.purchase-details button.received {
+  color: white;
+  font-weight: 600;
+  background-color: #4cd964;
 }
 .dl-form {
   color: #323241;
@@ -1259,6 +1338,9 @@ button.dl-submit {
   color: #fafafc;
   background-color: #323241;
 }
+.btn-colored {
+  color: #9c27b0 !important;
+}
 .btn-default {
   color: #323241;
   background-color: #ebebf5;
@@ -1322,7 +1404,7 @@ button.dl-submit {
 .md-button.btn-primary {
   color: white;
   background-color: #9c27b0;
-  border: 1px solid #9c27b0;
+  border: 1px solid transparent;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all ease-out 0.3s;
@@ -1337,6 +1419,11 @@ button.dl-submit {
   font-size: 1.1em;
   margin: 30px auto;
   padding: 4px 24px;
+}
+@media (max-width: 599px) {
+  .md-button.btn-primary.btn-single {
+    width: 100%;
+  }
 }
 .md-button.btn-secondary {
   color: #9c27b0;
@@ -1378,9 +1465,10 @@ button.dl-submit {
 .btn-glass:focus {
   background-color: rgba(255, 255, 255, 0.6);
 }
-.facebook {
+.md-button.facebook {
   color: white;
   background-color: #3a569c;
+  margin-top: 20px;
 }
 .md-button:not([disabled]):hover.facebook {
   background-color: #4B6FC9;
@@ -1492,6 +1580,19 @@ md-tabs-canvas {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
+.framed-container.small-container {
+  color: #323241;
+  width: 640px;
+  padding: 10px 40px 30px;
+  margin: 20px auto 30px;
+}
+@media (max-width: 721px) {
+  .framed-container.small-container {
+    width: 100%;
+    padding: 24px;
+    margin: 0 auto;
+  }
+}
 md-tabs .tabIndex {
   width: 24px;
   height: 24px;
@@ -1539,6 +1640,11 @@ button.btn-primary.md-button:not([disabled]):focus {
 }
 md-toolbar:not(.md-menu-toolbar) {
   color: #323241;
+}
+.md-btn-small {
+  font-size: 0.9em;
+  padding: 0 8px;
+  min-width: 80px !important;
 }
 :-ms-input-placeholder body[style],
 :root body[style] {

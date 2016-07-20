@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('DealersApp')
-        .controller('ProfileController', ['$scope', '$rootScope', '$routeParams', 'Product', 'Dealer', 'DealerPhotos',
-            function ($scope, $rootScope, $routeParams, Product, Dealer, DealerPhotos) {
+        .controller('ProfileController', ['$scope', '$rootScope', '$routeParams', '$location', 'Product', 'Dealer', 'DealerPhotos',
+            function ($scope, $rootScope, $routeParams, $location, Product, Dealer, DealerPhotos) {
                 /*
                  * The controller that manages the dealers' Profile view.
                  */
@@ -32,9 +32,9 @@
                 $scope.profileMode = "";
                 $scope.displayModes = {
                     myProducts: "MY PRODUCTS",
-                    purchases: "SALES"
+                    purchases: "SALES",
+                    orders: "ORDERS"
                 };
-                $scope.displayMode = $scope.displayModes.myProducts;
                 $scope.message = "";
                 $scope.status = LOADING_STATUS;
                 $scope.downloadDealerStatus = LOADING_STATUS;
@@ -62,9 +62,15 @@
                     // The dealer is the user, can get his details from the root scope.
                     $scope.profileMode = MY_PROFILE_MODE;
                     $scope.profile.dealer = $rootScope.dealer;
+                    if ($scope.profile.dealer.role == $rootScope.roles.viewer) {
+                        $scope.displayMode = $scope.displayModes.orders;
+                    } else {
+                        $scope.displayMode = $scope.displayModes.myProducts;
+                    }
                 } else {
                     // The dealer is not the user.
                     $scope.profileMode = OTHER_PROFILE_MODE;
+                    $scope.displayMode = $scope.displayModes.myProducts;
                 }
                 dealerUrl += '/dealers/' + dealerID;
 

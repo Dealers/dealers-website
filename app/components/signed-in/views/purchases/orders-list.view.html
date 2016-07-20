@@ -4,20 +4,25 @@
     </div>
     <div ng-switch-when="downloaded">
         <md-list flex ng-show="purchases.length > 0">
-            <md-list-item class="purchase-list-item md-3-line" ng-repeat="purchase in purchases">
+            <div class="list-item-container" ng-repeat="purchase in purchases">
+            <md-list-item class="purchase-list-item md-3-line" ng-click="purchaseDetails(purchase, $event)">
                 <div class="md-list-item-text">
                     <h3>{{purchase.deal.title}}</h3>
-                    <h4 class="purchase-amount">{{purchase.amount | currency: purchase.currency}}</h4>
-                    <p>Bought from <a href="/#/dealers/{{purchase.dealer.id}}">{{purchase.dealer.full_name}}</a> on the
+                    <h4 class="purchase-amount">{{(purchase.amount / 100) * purchase.quantity | currency: purchase.currency}}</h4>
+                    <p>Qty: {{purchase.quantity}} <span ng-show="purchase.quantity > 1">({{purchase.amount / 100 | currency: purchase.currency}} each)</span> </p>
+                    <p>Bought from <a href="/dealers/{{purchase.dealer.id}}">{{purchase.dealer.full_name}}</a> on the
                         {{purchase.purchase_date | date: 'short'}}</p>
                     <p>Status: {{purchase.status}}</p>
-                    <md-button class="md-secondary"
+                    <p ng-show="purchase.estimated_delivery_time > 0">ETD: {{purchase.estimated_delivery_time}} days</p>
+                    <md-button class="md-secondary md-btn-small"
                                ng-class="{'received': purchase.status == 'Received'}"
                                ng-click="changeStatus($event, purchase)">
                         {{markButtonTitle(purchase)}}
                     </md-button>
                 </div>
             </md-list-item>
+                <md-divider></md-divider>
+            </div>
         </md-list>
         <h4 ng-show="purchases.length == 0" class="text-center">You haven't bought anything yet.</h4>
     </div>

@@ -5,8 +5,8 @@
         /**
          *
          */
-        .controller('HomeController', ['$scope', '$rootScope', '$routeParams', 'Product',
-            function ($scope, $rootScope, $routeParams, Product) {
+        .controller('HomeController', ['$scope', '$rootScope',
+            function ($scope, $rootScope) {
 
                 if ($rootScope.dealer) {
                     $scope.role = $rootScope.dealer.role;
@@ -17,6 +17,7 @@
                 $scope.gridDescription = "";
                 
                 setGridTitles();
+                checkForActionsToRun();
 
                 /**
                  * Sets the title of the grid according to the role of the user.

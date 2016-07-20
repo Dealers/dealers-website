@@ -1,0 +1,90 @@
+<dl-navbar></dl-navbar>
+
+<div class="container" ng-cloak>
+    <div class="framed-container checkout nav-margin" ng-switch on="status">
+        <div ng-switch-when="downloading">
+            <loading-spinner></loading-spinner>
+        </div>
+        <div ng-switch-when="failed">
+            <h1 class="dl-download-error">{{errorMessage}} <br> {{errorPrompt}} </h1>
+        </div>
+        <div ng-switch-when="downloaded">
+            <h2>Checkout</h2>
+            <form name="checkoutForm" class="clearfix" ng-submit="checkout(checkoutForm, $event)" novalidate>
+                <div class="dl-form-col left-col pull-left co-shipping-address">
+                    <h4>Shipping Address</h4>
+                    <div class="dl-field no-icon-field form-group">
+                        <label for="co-shipping-address">
+                            Street Address
+                        </label>
+                        <input id="co-shipping-address" name="co-shipping-address" type="text"
+                               class="form-control dl-input"
+                               ng-model="shipping_address.address1"
+                               required
+                        />
+                    </div>
+                    <div class="dl-field no-icon-field form-group">
+                        <label for="co-city">
+                            City
+                        </label>
+                        <input id="co-city" name="co-city" type="text"
+                               class="form-control dl-input"
+                               ng-model="shipping_address.city"
+                               required
+                        />
+                    </div>
+                    <div class="dl-field no-icon-field form-group">
+                        <label for="co-state">
+                            State
+                        </label>
+                        <input id="co-state" name="co-state" type="text"
+                               class="form-control dl-input"
+                               ng-model="shipping_address.state"
+                        />
+                    </div>
+                    <div class="dl-field no-icon-field form-group">
+                        <label for="co-country">
+                            Country
+                        </label>
+                        <input id="co-country" name="co-country" type="text"
+                               class="form-control dl-input"
+                               ng-model="shipping_address.country"
+                               required
+                        />
+                    </div>
+                </div>
+                <div class="dl-form-col right-col pull-right co-product-info">
+                    <h4>{{product.title}}</h4>
+                    <div class="co-product-pic">
+                        <img ng-src="{{productImage}}"/>
+                    </div>
+                    <div class="co-product-details">
+                        <p ng-show="product.more_description">
+                            {{product.more_description}}
+                        </p>
+                        <div class="dl-field no-icon-field form-group">
+                            <label for="co-quantity">Quantity</label>
+                            <input id="co-quantity"
+                                   name="co-quantity"
+                                   type="number"
+                                   value="1"
+                                   min="1" max="30"
+                                   style="width: 54px"
+                                   class="form-control dl-input"
+                                   ng-model="purchase.quantity"/>
+                        <span class="co-price">
+                            {{product.price * purchase.quantity | currency:product.currency}}
+                        </span>
+                        </div>
+                    </div>
+                    <md-button id="co-pay"
+                               class="btn-primary btn-single btn-xl"
+                               style="margin: 14px 0 0 0;"
+                               type="submit">
+                        Continue to Payment
+                    </md-button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

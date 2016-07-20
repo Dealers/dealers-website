@@ -57,7 +57,7 @@
                     <li tab-list ng-if="dealer.role == roles.dealer">
                         <md-button>Sales</md-button>
                     </li>
-                    <li tab-list ng-if="dealer.role == roles.viewer || dealer.role == roles.dealer">
+                    <li tab-list ng-class="{active: dealer.role == roles.viewer}" ng-if="dealer.role == roles.viewer || dealer.role == roles.dealer">
                         <md-button>Orders</md-button>
                     </li>
                 </ul>

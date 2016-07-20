@@ -111,7 +111,7 @@
                     });
 
                     /**
-                     * Listens to the Dealer service's broadcasts when the dealer' info has finished to upload.
+                     * Listens to the Dealer service's broadcasts when the dealer's info has finished to upload.
                      */
                     $scope.$on(REGISTER_BROADCASTING_PREFIX + RAD_SESSION, function (event, args) {
                         if (args.success) {

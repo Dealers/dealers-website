@@ -80,20 +80,10 @@
         /**
          * Sends the buy request to the server and from there to Stripe.
          * @param charge - the charge object.
-         * @param product - the purchased product.
-         * @param saveCustomer - the customer information.
+         * @returns {promise} - the promise object of the post method.
          */
-        function buyProduct(charge, product, saveCustomer) {
-            $http.post($rootScope.baseUrl + '/transactions/', charge)
-                .then(function (response) {
-                        // success
-                        console.log("Payment successful!");
-                        Purchase.addPurchase(charge, product);
-                    },
-                    function (httpError) {
-                        // error
-                        console.log("Error!");
-                    });
+        function buyProduct(charge) {
+            return $http.post($rootScope.baseUrl + '/transactions/', charge);
         }
 
         /**

@@ -17,6 +17,7 @@
 
         service.getTempData = getTempData;
         service.setTempData = setTempData;
+        service.removeTempData = removeTempData;
         service.addActionToRun = addActionToRun;
         service.shouldRunAction = shouldRunAction;
 
@@ -60,6 +61,16 @@
          */
         function setTempData(key, data) {
             tempData[key] = data;
+        }
+
+        /**
+         * Removes the received key from the tempData object.
+         * @param key - the key to remove.
+         */
+        function removeTempData(key) {
+            if (tempData.hasOwnProperty(key)) {
+                delete tempData.key;
+            }
         }
     }
 })();

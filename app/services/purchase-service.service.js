@@ -26,8 +26,10 @@
 
         service.getOrders = getOrders;
         service.getSales = getSales;
+        service.getPurchase = getPurchase;
         service.addPurchase = addPurchase;
         service.updateStatus = updateStatus;
+        service.updateEstimatedDeliveryTime = updateEstimatedDeliveryTime;
 
         return service;
 
@@ -51,21 +53,17 @@
             return $http.get(SALES_SOURCE + dealerID + '/');
         }
 
+        function getPurchase(purchaseID) {
+            return $http.get(PURCHASES_SOURCE + purchaseID + '/');
+        }
+
         /**
          * Posts the purchase information to the server.
-         * @param charge - the purchase information.
-         * @param product - the purchased product.
+         * @param purchase - the purchase object.
          */
-        function addPurchase(charge, product) {
-            var purchase = {
-                buyer: charge.buyer,
-                dealer: charge.dealer,
-                deal: product.id,
-                amount: charge.amount,
-                purchase_date: new Date(),
-                status: "Purchased"
-            };
-            $http.post($rootScope.baseUrl + '/purchases/', purchase)
+        function addPurchase(purchase) {
+            purchase.purchase_date = new Date();
+            $http.post(PURCHASES_SOURCE, purchase)
                 .then(function (response) {
                         // success
                         console.log("Purchase saved.");
@@ -95,6 +93,21 @@
                 data.receive_date = null;
             }
             return $http.patch(PURCHASES_SOURCE + purchase.id + '/', data)
+        }
+
+        /**
+         * Updates the estimated delivery time of the purchase.
+         *
+         * @param estimatedDeliveryTime - the estimated delivery time of the purchase.
+         * @param purchase - the purchase object to update.
+         * @returns the callback function of the $http.patch function.
+         */
+        function updateEstimatedDeliveryTime(estimatedDeliveryTime, purchase) {
+            if (estimatedDeliveryTime >= 0) {
+                var data = { estimated_delivery_time: estimatedDeliveryTime };
+                return $http.patch(PURCHASES_SOURCE + purchase.id + '/', data);
+            }
+            console.log("Invalid estimated delivery time value.");
         }
     }
 })();

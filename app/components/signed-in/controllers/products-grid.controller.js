@@ -137,8 +137,8 @@
                      * Map the data that should be converted from server keys to regular strings.
                      */
                     for (var i = 0; i < data.length; i++) {
-                        var prodcut = data[i];
-                        prodcut = Product.mapData(prodcut);
+                        var product = data[i];
+                        product = Product.mapData(product);
                     }
                 }
             }]);

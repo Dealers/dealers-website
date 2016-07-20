@@ -1,8 +1,7 @@
 angular.module('DealersApp')
-    .config(['$routeProvider', function ($routeProvider) {
+    .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+
         $routeProvider
-
-
             .when('/', {
                 templateUrl: 'app/components/home/home.view.html',
                 controller: 'HomeController'
@@ -60,5 +59,20 @@ angular.module('DealersApp')
             .when('/done-registration', {
                 templateUrl: 'app/components/signed-in/views/sign-in/done-registration.view.html'
             })
+            .when('/products/:productID/checkout', {
+                templateUrl: 'app/components/signed-in/views/checkout.view.html',
+                controller: 'CheckoutController'
+            })
+            .when('/products/:productID/checkout-finish', {
+                templateUrl: 'app/components/signed-in/views/checkout-finish.view.html',
+                controller: 'CheckoutFinishController'
+            })
+            .when('/purchase/:purchaseID', {
+                templateUrl: 'app/components/signed-in/views/purchases/purchase-details.view.html',
+                controller: 'PurchaseDetailsController'
+            })
             .otherwise({redirectTo: '/'});
+
+        $locationProvider.html5Mode(true);
+
     }]);

@@ -154,6 +154,14 @@ h4 {
 
 // General
 
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.margin-bottom-30 {
+  margin-bottom: 30px;
+}
+
 .container-background {
   background-color: white;
   box-shadow: @container-shadow;
@@ -236,6 +244,10 @@ md-dialog.dl-loading-dialog {
 
 md-content.dl-grid {
   background: @background-gray;
+}
+
+.container-padding {
+  padding: 10px 30px 40px !important;
 }
 
 // Bootstrap Overrides
@@ -508,9 +520,12 @@ img-crop {
   overflow: hidden;
   canvas {
     display: block;
+    margin: auto !important;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
     // Disable Outline
     outline: none;
@@ -521,8 +536,10 @@ img-crop {
 .cropArea {
   background: #E4E4E4;
   overflow: hidden;
-  width: 500px;
   height: 350px;
+  @media (min-width: @phone-width) {
+    width: 500px;
+  }
 }
 
 // Grids
@@ -704,7 +721,9 @@ div.noImageBackground {
 
 .vd-dealer-profile {
   margin: @vd-section-margin;
-  padding: 0 15px 0 45px;
+  @media (min-width: @phone-width) {
+    padding: 0 15px 0 45px;
+  }
   .dealerProfilePic {
     width: 80px;
     height: 80px;
@@ -766,6 +785,7 @@ div.noImageBackground {
         margin-right: 8px;
         button {
           height: 38px;
+          margin-right: 8px;
         }
       }
     }
@@ -918,6 +938,49 @@ div.noImageBackground {
   }
 }
 
+// Checkout
+
+.checkout {
+  form {
+    .dl-form-col {
+      @media (min-width: 1201px) {
+        width: 509px;
+      }
+      @media (min-width: 991px) and (max-width: 1200px) {
+        width: 409px;
+      }
+      @media (min-width: @tablet-width) and (max-width: 990px) {
+        width: 299px;
+      }
+    }
+  }
+  .dl-form-col.left-col {
+    margin-right: 40px;
+  }
+  .dl-form-col.right-col {
+    max-width: 340px;
+  }
+  padding: 10px 40px 30px;
+  .co-product-pic {
+    width: inherit;
+    max-width: 340px;
+    margin-bottom: 14px;
+    img {
+      width: inherit;
+      max-width: 340px;
+      &.photoHeight {
+        width: initial;
+        height: 320px;
+      }
+    }
+  }
+  .co-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 20px;
+  }
+}
+
 // Add Product
 
 .ap-navbar {
@@ -1038,7 +1101,7 @@ div.noImageBackground {
 }
 
 button.ap-done {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 // Profile
@@ -1157,6 +1220,9 @@ button.ap-done {
 // Purchases
 
 md-list {
+  md-list-item.md-3-line, md-list-item.md-3-line>._md-no-style {
+    min-height: 128px;
+  }
   .purchase-list-item {
     button.received {
       color: white;
@@ -1167,6 +1233,21 @@ md-list {
       color: @text-price-green;
       font-weight: bold;
     }
+  }
+}
+
+.purchase-details {
+  li {
+    line-height: 2.0;
+  }
+  .purchase-amount {
+    color: @text-price-green;
+    font-weight: bold;
+  }
+  button.received {
+    color: white;
+    font-weight: 600;
+    background-color: @text-success;
   }
 }
 
@@ -1331,6 +1412,10 @@ button.dl-submit {
   .button-variant(@theme-dark; @theme-white; @theme-white);
 }
 
+.btn-colored {
+  color: @theme-primary !important;
+}
+
 .btn-default {
   .button-variant(@theme-dark; @theme-button; @theme-button);
 }
@@ -1352,13 +1437,16 @@ button.dl-submit {
 }
 
 .md-button.btn-primary {
-  .button-variant(white; @theme-primary; @theme-primary);
+  .button-variant(white; @theme-primary; transparent);
   &.btn-single {
     display: block;
     font-weight: bold;
     font-size: 1.1em;
     margin: 30px auto;
     padding: 4px 24px;
+    @media (max-width: @phone-width) {
+      width: 100%;
+    }
   }
 }
 
@@ -1398,9 +1486,10 @@ button.dl-submit {
   }
 }
 
-.facebook {
+.md-button.facebook {
   color: white;
   background-color: @theme-facebook;
+  margin-top: 20px;
 }
 
 .md-button:not([disabled]):hover.facebook {
@@ -1538,6 +1627,18 @@ md-tabs-canvas {
   }
 }
 
+.framed-container.small-container {
+    color: @theme-dark;
+    width: 640px;
+    padding: 10px 40px 30px;
+    margin: 20px auto 30px;
+    @media (max-width: 721px) {
+      width: 100%;
+      padding: 24px;
+      margin: 0 auto;
+    }
+}
+
 md-tabs .tabIndex {
   width: 24px;
   height: 24px;
@@ -1594,6 +1695,12 @@ button.btn-primary.md-button:not([disabled]):hover, button.btn-primary.md-button
 
 md-toolbar:not(.md-menu-toolbar) {
   color: @theme-dark;
+}
+
+.md-btn-small {
+  font-size: 0.9em;
+  padding: 0 8px;
+  min-width: 80px !important;
 }
 
 // For handling the top page jump when using md-select and others.

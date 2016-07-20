@@ -1,4 +1,3 @@
-
 <dl-navbar></dl-navbar>
 
 <div class="container" ng-cloak>
@@ -20,9 +19,11 @@
                     <div class="ap-image-container text-center" ng-show="photosURLs.length > 0">
                         <div id="photosCarousel" class="carousel slide" data-interval="false">
                             <div class="carousel-inner">
-                                <carousel-item ng-repeat="photoURL in photosURLs track by $index" photo-url="photoURL"></carousel-item>
+                                <carousel-item ng-repeat="photoURL in photosURLs track by $index"
+                                               photo-url="photoURL"></carousel-item>
                             </div>
-                            <div ng-show="photosURLs.length > 1" ng-click="nextPhoto($event)" class="carousel-controller">
+                            <div ng-show="photosURLs.length > 1" ng-click="nextPhoto($event)"
+                                 class="carousel-controller">
                                 <a
                                         class="left carousel-control"
                                         href="#photosCarousel"
@@ -48,22 +49,26 @@
                     <div class="ap-photos-thumbnails" ng-show="photosURLs.length > 0">
                         <ul class="clearfix">
                             <li id="0">
-                                <button class="ap-thumbnail clickable" ng-click="selectPhoto(0)" ng-if="photosURLs[0] && photosURLs.length > 1">
-                                    <img ng-src="{{photosURLs[0]}}" />
+                                <button class="ap-thumbnail clickable" ng-click="selectPhoto(0)"
+                                        ng-if="photosURLs[0] && photosURLs.length > 1">
+                                    <img ng-src="{{photosURLs[0]}}"/>
                                 </button>
                             </li>
                             <li id="1">
-                                <button class="ap-thumbnail clickable" ng-click="selectPhoto(1)" ng-show="photosURLs[1]">
+                                <button class="ap-thumbnail clickable" ng-click="selectPhoto(1)"
+                                        ng-show="photosURLs[1]">
                                     <img ng-src="{{photosURLs[1]}}" ng-show="photosURLs[1]"/>
                                 </button>
                             </li>
                             <li id="2">
-                                <button class="ap-thumbnail clickable" ng-click="selectPhoto(2)" ng-show="photosURLs[2]">
+                                <button class="ap-thumbnail clickable" ng-click="selectPhoto(2)"
+                                        ng-show="photosURLs[2]">
                                     <img ng-src="{{photosURLs[2]}}" ng-show="photosURLs[2]"/>
                                 </button>
                             </li>
                             <li id="3">
-                                <button class="ap-thumbnail clickable" ng-click="selectPhoto(3)" ng-show="photosURLs[3]">
+                                <button class="ap-thumbnail clickable" ng-click="selectPhoto(3)"
+                                        ng-show="photosURLs[3]">
                                     <img ng-src="{{photosURLs[3]}}" ng-show="photosURLs[3]"/>
                                 </button>
                             </li>
@@ -99,9 +104,8 @@
                     </div>
                     <md-button id="vd-buy"
                                class="btn-primary btn-sm btn-single btn-xl"
-                               buy-button
-                               product="product"
-                               dealer-pic="profilePic" >
+                               style="margin: 22px 0 0 0;"
+                               ng-click="proceedToCheckout()">
                         Buy
                     </md-button>
                     <div class="vd-more-description"
@@ -116,34 +120,36 @@
                         <p class="dl-note text-muted">Uploaded in the {{product.upload_date | date:'short'}} by</p>
                     </div>
                     <div class="profilePicContainer">
-                        <a ng-href="/#/dealers/{{product.dealer.id}}"><img ng-src="{{profilePic}}"
+                        <a ng-href="/dealers/{{product.dealer.id}}"><img ng-src="{{profilePic}}"
                                                                            class="dealerProfilePic {{productImageStatus}}"
                                                                            ng-show="hasProfilePic"/></a>
                         <div class="dealerProfilePic defaultProfilePic" ng-hide="hasProfilePic"></div>
                     </div>
-                    <a ng-href="/#/dealers/{{product.dealer.id}}">
+                    <a ng-href="/dealers/{{product.dealer.id}}">
                         <p class="vd-dealer-name">
                             {{product.dealer.full_name}}
                         </p>
                     </a>
                 </div>
                 <div class="vd-actions col-sm-3 clearfix">
-                    <div class="vd-actions-container">
+                    <div class="vd-actions-container pull-left">
                         <div class="vd-likes-counter" ng-show="totalLikes > 0">
                             <p class="dl-note text-muted"><img
                                     src="../../../../assets/images/icons/Web_Icons_my_feed_like_icon.png"/>
                                 {{totalLikes}} liked this</p>
                         </div>
                         <div class="vd-buttons-container">
-                            <md-button id="vd-like" class="btn-sm like-btn" ng-click="likeClicked($event)" like-button>
+                            <md-button id="vd-like" class="btn-sm md-btn-small like-btn" ng-click="likeClicked($event)"
+                                       like-button>
                                 <img class="side-icon" src="/assets/images/icons/@2x/Web_Icons_like_icon.png"/>
                                 <span>Like</span>
                             </md-button>
-                            <md-button id="vd-share" class="btn-sm" share-button>
+                            <md-button id="vd-share" class="btn-sm md-btn-small" share-button>
                                 <img class="side-icon" src="/assets/images/icons/@2x/Web_Icons_share_icon.png"/>
                                 Share
                             </md-button>
-                            <md-button id="vd-edit" class="btn-sm" ng-show="canEdit()" ng-click="editProduct()">
+                            <md-button id="vd-edit" class="btn-sm md-btn-small" ng-show="canEdit()"
+                                       ng-click="editProduct()">
                                 <img class="side-icon" src="/assets/images/icons/@2x/Web_Icons_edit_icon.png"/>
                                 Edit
                             </md-button>

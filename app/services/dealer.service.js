@@ -14,6 +14,7 @@
         var DEFAULT_UN = "g@g.com";
         var DEFAULT_PW = "09";
         var BROADCASTING_PREFIX = 'register-as-dealer-for-';
+        var DEALERS_BASE_URL = $rootScope.baseUrl + '/dealers/';
 
         this.saveCurrent = saveCurrent;
         this.setCredentials = setCredentials;
@@ -27,6 +28,8 @@
         service.logOut = logOut;
         service.getDealer = getDealer;
         service.registerDealer = registerDealer;
+        service.setIntercom = setIntercom;
+        service.updateShippingAddress = updateShippingAddress;
 
         return service;
 
@@ -37,7 +40,7 @@
         function create(dealer) {
             var password = dealer.user.password;
             var credentials = Authentication.getCredentials(DEFAULT_UN, DEFAULT_PW);
-            $http.post($rootScope.baseUrl + '/dealers/', dealer, {headers: {'Authorization': credentials}})
+            $http.post(DEALERS_BASE_URL, dealer, {headers: {'Authorization': credentials}})
                 .then(function (response) {
                         // success
                         var dealer = response.data;
@@ -80,6 +83,7 @@
         function logOut() {
             Authentication.clearCredentials();
             localStorage.clear();
+            logOutIntercom();
             $rootScope.dealer = null;
         }
 
@@ -127,7 +131,7 @@
          * Downloads the dealer's information according to the received dealer id.
          */
         function getDealer(dealerID) {
-            return $http.get($rootScope.baseUrl + '/dealers/' + dealerID + '/');
+            return $http.get(DEALERS_BASE_URL + dealerID + '/');
         }
 
         /**
@@ -142,7 +146,7 @@
                         console.log("Added the bank account information successfully. Now upload the the dealer's information.");
                         $rootScope.dealer.role = $rootScope.roles.dealer;
                         var dealer = cleanDealerObject($rootScope.dealer);
-                        $http.patch($rootScope.baseUrl + '/dealers/' + dealer.id + '/', dealer)
+                        $http.patch(DEALERS_BASE_URL + dealer.id + '/', dealer)
                             .then(function (response) {
                                     // success
                                     var dealer = response.data;
@@ -173,6 +177,38 @@
                 delete clean_dealer["screen_counters"];
             }
             return clean_dealer;
+        }
+
+        /**
+         * Sets the user's information in Intercom.
+         * @param dealer - the user.
+         */
+        function setIntercom(dealer) {
+            var date = new Date(dealer.register_date);
+            window.Intercom("update", {
+                name: dealer.full_name, // Full name
+                email: dealer.email, // Email address
+                created_at: date.getTime() // Signup date as a Unix timestamp
+            });
+        }
+
+        /**
+         * Sets the logout notice to Intercom.
+         */
+        function logOutIntercom() {
+            window.Intercom("shutdown");
+        }
+
+        /**
+         * Updates the shipping_address field of the current user.
+         * @param shippingAddress - the new shipping address.
+         * @returns {promise} - the promise object of the dealer.
+         */
+        function updateShippingAddress(shippingAddress) {
+            var data = {
+                shipping_address: shippingAddress
+            };
+            return $http.patch(DEALERS_BASE_URL + $rootScope.dealer.id, data);
         }
     }
 

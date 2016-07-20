@@ -18,7 +18,7 @@
                 scope: {
                     category: '='
                 },
-                template: '<a href="/#/categories/{{category}}"><li>{{category}}</li></a>'
+                template: '<a href="/categories/{{category}}"><li>{{category}}</li></a>'
             };
         })
         .directive('dlComment', ['DealerPhotos',

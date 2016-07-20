@@ -176,6 +176,7 @@
 
                 $scope.enter = function () {
                     $rootScope.setUserProfilePic();
+                    Dealer.setIntercom($rootScope.dealer);
                     $scope.hide();
                 };
 

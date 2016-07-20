@@ -126,7 +126,7 @@
             if (service.product.discount_value && service.product.discount_value > 0) {
                 service.product.discount_type = Product.keyForDiscountType(service.product.discount_type);
             } else {
-                service.prodcut.discount_value = null;
+                service.product.discount_value = null;
                 service.product.discount_type = null;
             }
             service.product.category = Product.keyForCategory(service.product.category);

@@ -1,38 +1,43 @@
 (function () {
     'use strict';
 
-	angular.module('DealersApp')
-	.factory('ProductPhotos', ProductPhotosFactory);
-	
-	ProductPhotosFactory.$inject = ['$rootScope'];
-	function ProductPhotosFactory($rootScope) {
+    angular.module('DealersApp')
+        .factory('ProductPhotos', ProductPhotosFactory);
+
+    ProductPhotosFactory.$inject = ['$rootScope', 'Photos'];
+    function ProductPhotosFactory($rootScope, Photos) {
 
         var KEY = "media/Deals_Photos/";
         var BROADCASTING_PREFIX = 'photos-downloaded-for-';
 
-		var service = {};
-		
-		service.hasPhoto = hasPhoto;
-		service.downloadPhoto = downloadPhoto;
+        var service = {};
+
+        service.hasPhoto = hasPhoto;
+        service.downloadPhoto = downloadPhoto;
         service.downloadPhotos = downloadPhotos;
         service.photosNum = photosNum;
-		service.colorForNum = colorForNum;
+        service.colorForNum = colorForNum;
         service.generatePhotoName = generatePhotoName;
         service.addPhotoUrlToProduct = addPhotoUrlToProduct;
         service.uploadPhotosOfProduct = uploadPhotosOfProduct;
         service.setProductPhotosInArray = setProductPhotosInArray;
         service.deletePhotos = deletePhotos;
-		
-		return service;
+
+        service.process = {};
+        service.process.sender = ""; // The originator of the current uploading process
+        service.process.amount = 0; // The amount of photos to upload in the current process
+        service.process.product = null; // The product object of the current process
+
+        return service;
 
         /**
          * Determines if the product has photos.
          * @param photoAddress
          * @returns {boolean}
          */
-		function hasPhoto(photoAddress) {
-			return (photoAddress.length > 2) && (photoAddress != "None");
-		}
+        function hasPhoto(photoAddress) {
+            return (photoAddress.length > 2) && (photoAddress != "None");
+        }
 
         /**
          * Downloads the photo from the s3.
@@ -40,30 +45,30 @@
          * @param productID - the id of the product.
          * @param photoIndex - the index of the photo, if it is one out of a number of photos.
          */
-		function downloadPhoto(key, productID, photoIndex) {
-			$rootScope.s3.getObject(
-				{ Bucket: $rootScope.AWSS3Bucket, Key: key, ResponseContentType: "image/jpg"},
-				function (error, result) {
-					var data = {};
+        function downloadPhoto(key, productID, photoIndex) {
+            $rootScope.s3.getObject(
+                {Bucket: $rootScope.AWSS3Bucket, Key: key, ResponseContentType: "image/jpg"},
+                function (error, result) {
+                    var data = {};
                     data.photoIndex = photoIndex;
-			    	if (error != null) {
-			      		data.message = "Failed to download photo of product" + productID + ":\n" + error.message;
-			      		$rootScope.$broadcast('downloaded-photo-' + productID, {success: false, data: data});
-			    	} else {
+                    if (error != null) {
+                        data.message = "Failed to download photo of product" + productID + ":\n" + error.message;
+                        $rootScope.$broadcast('downloaded-photo-' + productID, {success: false, data: data});
+                    } else {
                         var blob = new Blob([result.Body], {'type': 'image/png'});
                         data.rawImage = blob;
                         data.url = URL.createObjectURL(blob);
-			      		$rootScope.$broadcast('downloaded-photo-' + productID, {success: true, data: data});
-			  		}
-				}
-			);
-		}
+                        $rootScope.$broadcast('downloaded-photo-' + productID, {success: true, data: data});
+                    }
+                }
+            );
+        }
 
         /**
          * Downloads the photos of the received product.
          * @param product - the product.
          */
-		function downloadPhotos(product) {
+        function downloadPhotos(product) {
             if (product.photo1) {
                 downloadPhoto(product.photo1, product.id, 1);
             }
@@ -153,26 +158,26 @@
                 count++;
             return count;
         }
-		
-		function colorForNum(num) {
-			switch(parseInt(num, 10)) {
-			    case 0:
-			        return "rgb(79,195,247)";
-			        break;
-			    case 1:
-			        return "rgb(129,216,132)";
-			        break;
-			    case 2:
-			        return "rgb(255,100,105)";
-			        break;
-			    case 3:
-			        return "rgb(255,212,40)";
-				    break;
-			    default:
-			        return "rgb(79,195,247)";
-			        break;
-			}
-		}
+
+        function colorForNum(num) {
+            switch (parseInt(num, 10)) {
+                case 0:
+                    return "rgb(79,195,247)";
+                    break;
+                case 1:
+                    return "rgb(129,216,132)";
+                    break;
+                case 2:
+                    return "rgb(255,100,105)";
+                    break;
+                case 3:
+                    return "rgb(255,212,40)";
+                    break;
+                default:
+                    return "rgb(79,195,247)";
+                    break;
+            }
+        }
 
         /**
          * Uploads the photos of the received product.
@@ -181,41 +186,71 @@
          */
         function uploadPhotosOfProduct(product, sender) {
             var photos = product.photos;
+
+            service.process.sender = sender;
+            service.process.amount = photos.length;
+            service.process.product = product;
+
             if (!photos) {
                 console.log("The photos array that was sent to the upload function is null!");
-                $rootScope.$broadcast(BROADCASTING_PREFIX + sender, {success: false, data: "There was a problem, please try again!"});
+                $rootScope.$broadcast(BROADCASTING_PREFIX + sender, {
+                    success: false,
+                    data: "There was a problem, please try again!"
+                });
                 return;
             }
             if (photos.length == 0) {
                 console.log("The photos array that was sent to the upload function is empty!");
-                $rootScope.$broadcast(BROADCASTING_PREFIX + sender, {success: false, data: "There was a problem, please try again!"});
+                $rootScope.$broadcast(BROADCASTING_PREFIX + sender, {
+                    success: false,
+                    data: "There was a problem, please try again!"
+                });
                 return;
             }
-            var photoCount = 0;
             product = clearPhotosUrlsOfProduct(product);
+            var uploadFunc = uploadData;
             for (var i = 0; i < photos.length; i++) {
                 var photoName = generatePhotoName(i);
                 addPhotoUrlToProduct(i, photoName, KEY, product);
-                var params = {
-                    Bucket: $rootScope.AWSS3Bucket,
-                    Key: KEY + photoName,
-                    Body: photos[i]
-                };
-                $rootScope.s3.putObject(params, function (err, data) {
-                    if (err) {
-                        // There Was An Error With Your S3 Config
-                        console.log("There was an error with s3 config: " + err.message);
-                        $rootScope.$broadcast(BROADCASTING_PREFIX + sender, {success: false, data: err.message});
-                    }
-                    else {
-                        photoCount++;
-                        console.log("Photo number " + photoCount + " upload complete.");
-                        if (photoCount == photos.length) {
-                            $rootScope.$broadcast(BROADCASTING_PREFIX + sender, {success: true, data: data, product: product});
-                        }
-                    }
-                });
+                Photos.preparePhotoForUpload(i, photoName, photos[i], uploadFunc);
             }
+        }
+
+        /**
+         * Uploads the received photo and photo metadata to the S3.
+         * @param photoCount - the photo index (in the product's photos array).
+         * @param photoName - the name of the photo.
+         * @param photo - the photo.
+         */
+        function uploadData(photoCount, photoName, photo) {
+            var params = {
+                Bucket: $rootScope.AWSS3Bucket,
+                Key: KEY + photoName,
+                Body: photo
+            };
+            $rootScope.s3.putObject(params, function (err, data) {
+                var sender = service.process.sender;
+                if (err) {
+                    // There Was An Error With Your S3 Config
+                    console.log("There was an error with s3 config: " + err.message);
+                    $rootScope.$broadcast(BROADCASTING_PREFIX + sender, {success: false, data: err.message});
+                }
+                else {
+                    photoCount++;
+                    console.log("Photo number " + photoCount + " upload complete.");
+                    if (photoCount == service.process.amount) {
+                        $rootScope.$broadcast(BROADCASTING_PREFIX + sender, {
+                            success: true,
+                            data: data,
+                            product: service.process.product
+                        });
+                        // Reset the service process global values.
+                        service.process.sender = "";
+                        service.process.amount = 0;
+                        service.process.product = null;
+                    }
+                }
+            });
         }
 
         /**
@@ -246,17 +281,17 @@
                     Bucket: $rootScope.AWSS3Bucket,
                     Key: KEY + photosToDelete[i]
                 };
-                $rootScope.s3.deleteObject(params, function(err, data) {
+                $rootScope.s3.deleteObject(params, function (err, data) {
                     if (err) {
                         console.log(err, err.stack); // an error occurred
                     }
                     else {
-                        console.log("Old photo was deleted successfully!\n" + data); 
+                        console.log("Old photo was deleted successfully!\n" + data);
                     }
                 });
             }
 
         }
-	}
+    }
 })();
 

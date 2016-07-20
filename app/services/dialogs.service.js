@@ -28,14 +28,14 @@
          */
         function showSignInDialog(ev, tabIndex) {
             return $mdDialog.show({
-                    controller: 'SignInDialogController',
-                    templateUrl: 'app/components/signed-in/views/sign-in/sign-in-dialog.view.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    fullscreen: customFullscreen,
-                    locals: {tab: tabIndex}
-                });
+                controller: 'SignInDialogController',
+                templateUrl: 'app/components/signed-in/views/sign-in/sign-in-dialog.view.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: customFullscreen,
+                locals: {tab: tabIndex}
+            });
         }
     }
 })();

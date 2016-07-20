@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a ng-href="#/home" class="navbar-brand clickable" title="Home">
+            <a ng-href="/home" class="navbar-brand clickable" title="Home">
                 <img ng-src="../../assets/images/icons/logo_clean_small.png"/>
             </a>
         </div>
@@ -31,25 +31,31 @@
             <li>
                 <md-menu md-offset="0 62">
                     <a class="nav-button non-mobile" ng-click="toggleMenu($mdOpenMenu, $mdMenuIsOpen, $event)">
+                        <md-tooltip>
+                            Categories
+                        </md-tooltip>
                         <img src="../../../../assets/images/icons/@2x/Web_Icons_navbar_categories_icon.png">
                         <span class="caret"></span>
                     </a>
                     <md-menu-content width="5">
                         <md-menu-item ng-repeat="category in categories">
-                            <md-button href="/#/categories/{{category}}">
+                            <md-button href="/categories/{{category}}">
                                 {{category}}
                             </md-button>
                         </md-menu-item>
                     </md-menu-content>
                 </md-menu>
-                <a href="/#/categories" class="nav-button mobile">
+                <a href="/categories" class="nav-button mobile">
                     <img src="../../../../assets/images/icons/@2x/Web_Icons_navbar_categories_icon.png">
                 </a>
             </li>
         </ul>
         <ul id="nav-add-product" class="navbar-right nav" ng-if="mode == 'Dealer'">
             <li>
-                <a href="/#/new-product/basic-info">
+                <a href="/new-product/basic-info">
+                    <md-tooltip>
+                        Add Product
+                    </md-tooltip>
                     <div>
                         <img src="../../../../assets/images/icons/@2x/Web_Icons_add_product_button.png"/>
                     </div>
@@ -58,7 +64,10 @@
         </ul>
         <ul id="nav-profile" class="navbar-right nav" ng-if="mode != 'Guest'">
             <li>
-                <a href="/#/dealers/{{dealer.id}}">
+                <a href="/dealers/{{dealer.id}}">
+                    <md-tooltip>
+                        Profile
+                    </md-tooltip>
                     <div>
                         <img class="profileThumbnail img-circle" ng-src="{{userProfilePic}}"/>
                         <span>{{dealer.full_name}}</span>

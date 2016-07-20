@@ -3,14 +3,14 @@
 
     angular.module('DealersApp')
         .controller('ViewDealController',
-            ['$scope', '$rootScope', '$http', '$routeParams', '$location', '$timeout', '$mdDialog', 'Product', 'ProductPhotos', 'DealerPhotos', 'ActiveSession', 'EditProduct',
-                function ($scope, $rootScope, $http, $routeParams, $location, $timeout, $mdDialog, Product, ProductPhotos, DealerPhotos, ActiveSession, EditProduct) {
+            ['$scope', '$rootScope', '$http', '$routeParams', '$route', '$location', '$timeout', '$mdDialog', 'Product', 'ProductPhotos', 'DealerPhotos', 'ActiveSession', 'EditProduct', 'Dialogs',
+                function ($scope, $rootScope, $http, $routeParams, $route, $location, $timeout, $mdDialog, Product, ProductPhotos, DealerPhotos, ActiveSession, EditProduct, Dialogs) {
 
                     var ctrl = this;
 
                     var PRODUCT_URL = $rootScope.baseUrl + '/alldeals/' + $routeParams.productID + '/';
                     var PRODUCT_PAGE_BASE_URL = $rootScope.baseUrl + '/products/';
-
+                    var BUY_FUNCTION_REPR = "buyClicked";
 
                     $scope.product = {};
                     $scope.status = 'loading';
@@ -35,7 +35,7 @@
                     $scope.checkIfActive = checkIfActive;
                     $scope.addComment = addComment;
                     $scope.presentCommentError = presentCommentError;
-
+                    $scope.proceedToCheckout = proceedToCheckout;
 
                     $scope.product = ActiveSession.getTempData("PRODUCT"); // Retrieves the product from the Active Session service.
                     if (!$scope.product) {
@@ -43,6 +43,12 @@
                         downloadProduct();
                     } else {
                         $scope.status = 'downloaded';
+
+                        // Check if should go to the checkout view (in case the user signed up in order to buy the product).
+                        if (ActiveSession.shouldRunAction(BUY_FUNCTION_REPR)) {
+                            proceedToCheckout();
+                        }
+
                         fillData();
                     }
 
@@ -53,6 +59,12 @@
                                 $scope.status = 'downloaded';
                                 $scope.product = result.data;
                                 $scope.product = Product.mapData($scope.product);
+
+                                // Check if should go to the checkout view (in case the user signed up in order to buy the product).
+                                if (ActiveSession.shouldRunAction(BUY_FUNCTION_REPR)) {
+                                    proceedToCheckout();
+                                }
+                                
                                 fillData();
                             }, function (httpError) {
                                 $scope.status = 'failed';
@@ -339,6 +351,29 @@
                             $scope.commentErrorMessage = "There was an error, please try again";
                         }
                         $scope.showCommentError = true;
+                    }
+
+                    /**
+                     * Takes the user to the checkout view after clicking the buy button.
+                     */
+                    function proceedToCheckout() {
+
+                        // First check that the user is signed in
+                        if (!$rootScope.dealer) {
+                            // The user is not signed in, present the Sign In dialog and quit this function.
+                            Dialogs.showSignInDialog(event, 0)
+                                .then(function (finished) {
+                                    // Reinstantiate the page after adding the buyClicked function to the Actions To Run stack
+                                    ActiveSession.addActionToRun(BUY_FUNCTION_REPR);
+                                    $route.reload();
+                                });
+                            return;
+                        }
+
+                        $scope.product.photo = $scope.photosURLs ? $scope.photosURLs[0] : null;
+                        ActiveSession.setTempData("PRODUCT", $scope.product);
+                        var path = "/products/" + $scope.product.id + "/checkout";
+                        $location.path(path);
                     }
                 }]);
 })();

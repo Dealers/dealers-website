@@ -3,8 +3,8 @@
 
     angular.module('DealersApp')
         .controller('ViewDealController',
-            ['$scope', '$rootScope', '$http', '$routeParams', '$route', '$location', '$timeout', '$mdDialog', 'Product', 'ProductPhotos', 'DealerPhotos', 'ActiveSession', 'EditProduct', 'Dialogs',
-                function ($scope, $rootScope, $http, $routeParams, $route, $location, $timeout, $mdDialog, Product, ProductPhotos, DealerPhotos, ActiveSession, EditProduct, Dialogs) {
+            ['$scope', '$rootScope', '$http', '$routeParams', '$route', '$location', '$timeout', '$mdDialog', '$mdMedia', 'Product', 'ProductPhotos', 'DealerPhotos', 'ActiveSession', 'EditProduct', 'Dialogs',
+                function ($scope, $rootScope, $http, $routeParams, $route, $location, $timeout, $mdDialog, $mdMedia, Product, ProductPhotos, DealerPhotos, ActiveSession, EditProduct, Dialogs) {
 
                     var ctrl = this;
 
@@ -36,6 +36,10 @@
                     $scope.addComment = addComment;
                     $scope.presentCommentError = presentCommentError;
                     $scope.proceedToCheckout = proceedToCheckout;
+
+                    $scope.$watch(function() { return $mdMedia('gt-sm'); }, function(big) {
+                        $scope.bigScreen = big;
+                    });
 
                     $scope.product = ActiveSession.getTempData("PRODUCT"); // Retrieves the product from the Active Session service.
                     if (!$scope.product) {

@@ -2,49 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf2767dd-ff52-4566-8c25-987d52c3a3fb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/checkout-finish.controller.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/checkout.controller.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/purchase-details.controller.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/signed-in/views/checkout-finish.view.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/signed-in/views/checkout.view.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/signed-in/views/purchases/purchase-details.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/gullumbroso.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/gullumbroso.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/signed-in/views/about/about.view.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/signed-in/views/about/terms-and-privacy.view.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/signed-in/views/view-deal-info-pane.view.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/images/Icons/@2x/Web_Icons_options_icon.png" afterPath="$PROJECT_DIR$/assets/images/Icons/@2x/Web_Icons_options_icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/home/home.controller.js" afterPath="$PROJECT_DIR$/app/components/home/home.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/products-grid.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/products-grid.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/profile.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/profile.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/register-as-dealer.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/register-as-dealer.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/sign-in-dialog.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/sign-in-dialog.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/navbar.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/navbar.controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/view-deal.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/view-deal.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/directives/about-directives.js" afterPath="$PROJECT_DIR$/app/components/signed-in/directives/about-directives.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/directives/elements.directives.js" afterPath="$PROJECT_DIR$/app/components/signed-in/directives/elements.directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/directives/purchases.directives.js" afterPath="$PROJECT_DIR$/app/components/signed-in/directives/purchases.directives.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/directives/widgets.directives.js" afterPath="$PROJECT_DIR$/app/components/signed-in/directives/widgets.directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/categories-list.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/categories-list.view.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/about/footer-section.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/about/footer-section.view.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/about/intro-section.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/about/intro-section.view.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/navbar.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/navbar.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/profile.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/profile.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/purchases/orders-list.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/purchases/orders-list.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/purchases/sales-list.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/purchases/sales-list.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/sign-in/done-registration.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/sign-in/done-registration.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/sign-in/register-as-dealer.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/sign-in/register-as-dealer.view.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/products/add-product-1.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/products/add-product-1.view.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/products/add-product-2.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/products/add-product-2.view.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/products/edit-product.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/products/edit-product.view.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/sign-in/sign-in-dialog.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/sign-in/sign-in-dialog.view.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/view-deal.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/view-deal.view.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.js" afterPath="$PROJECT_DIR$/app/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/active-session.service.js" afterPath="$PROJECT_DIR$/app/services/active-session.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/add-product.service.js" afterPath="$PROJECT_DIR$/app/services/add-product.service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/dealer.service.js" afterPath="$PROJECT_DIR$/app/services/dealer.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/dialogs.service.js" afterPath="$PROJECT_DIR$/app/services/dialogs.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/photos.service.js" afterPath="$PROJECT_DIR$/app/services/photos.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/product-photos.service.js" afterPath="$PROJECT_DIR$/app/services/product-photos.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/product.service.js" afterPath="$PROJECT_DIR$/app/services/product.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/purchase-service.service.js" afterPath="$PROJECT_DIR$/app/services/purchase-service.service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/styles.css" afterPath="$PROJECT_DIR$/assets/css/styles.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/less/mixins.less" afterPath="$PROJECT_DIR$/assets/less/mixins.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/less/styles.less" afterPath="$PROJECT_DIR$/assets/less/styles.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/lib/js/ng-img-crop.js" afterPath="$PROJECT_DIR$/assets/lib/js/ng-img-crop.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/old-junk/home.view.html" afterPath="$PROJECT_DIR$/old-junk/home.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/old-junk/signed-out/login/login.view.html" afterPath="$PROJECT_DIR$/old-junk/signed-out/login/login.view.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/less/variables.less" afterPath="$PROJECT_DIR$/assets/less/variables.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepros.cfg" afterPath="$PROJECT_DIR$/prepros.cfg" />
     </list>
     <ignored path="dealers-website.iws" />
@@ -66,43 +50,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="purchase-details.view.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/purchases/purchase-details.view.html">
+      <file leaf-file-name="about.view.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/about/about.view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
+            <state relative-caret-position="421">
+              <caret line="149" column="59" selection-start-line="149" selection-start-column="59" selection-end-line="149" selection-end-column="59" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="purchases.directives.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/components/signed-in/directives/purchases.directives.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="44" column="43" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="purchase-details.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/purchase-details.controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="72" column="99" selection-start-line="72" selection-start-column="99" selection-end-line="72" selection-end-column="99" />
-              <folding>
-                <element signature="e#0#48#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="widgets.directives.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="widgets.directives.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/components/signed-in/directives/widgets.directives.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="106" column="39" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="39" />
+            <state relative-caret-position="180">
+              <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sign-in-dialog.view.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/sign-in/sign-in-dialog.view.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="39" column="71" selection-start-line="39" selection-start-column="71" selection-end-line="39" selection-end-column="71" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.view.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/home/home.view.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="intro-section.view.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/about/intro-section.view.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="50" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -111,18 +103,38 @@
       <file leaf-file-name="styles.less" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/less/styles.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="161" column="18" selection-start-line="161" selection-start-column="18" selection-end-line="161" selection-end-column="18" />
+            <state relative-caret-position="215">
+              <caret line="1637" column="54" selection-start-line="1637" selection-start-column="49" selection-end-line="1637" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sales-list.view.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/purchases/sales-list.view.html">
+      <file leaf-file-name="edit-product.view.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/products/edit-product.view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+            <state relative-caret-position="466">
+              <caret line="216" column="70" selection-start-line="216" selection-start-column="70" selection-end-line="216" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add-product-2.view.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/products/add-product-2.view.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="553">
+              <caret line="84" column="72" selection-start-line="84" selection-start-column="72" selection-end-line="84" selection-end-column="72" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add-product-1.view.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/products/add-product-1.view.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="508">
+              <caret line="130" column="65" selection-start-line="130" selection-start-column="56" selection-end-line="130" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -133,8 +145,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -144,57 +156,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/components/signed-in/views/products/products-grid.view.html" />
-        <option value="$PROJECT_DIR$/app/components/home/home.view.html" />
-        <option value="$PROJECT_DIR$/app/components/signed-in/views/products/product-cell.view.html" />
-        <option value="$PROJECT_DIR$/app/components/signed-in/views/products/products-page.view.html" />
-        <option value="$PROJECT_DIR$/app/services/purchase-service.js" />
-        <option value="$PROJECT_DIR$/app/components/general/directives.js" />
-        <option value="$PROJECT_DIR$/assets/less/variables.less" />
-        <option value="$PROJECT_DIR$/assets/css/styles.css" />
-        <option value="$PROJECT_DIR$/app/services/add-product.service.js" />
-        <option value="$PROJECT_DIR$/app/components/signed-in/controllers/products-grid.controller.js" />
-        <option value="$PROJECT_DIR$/app/components/signed-in/views/sign-in/sign-in-dialog.view.html" />
-        <option value="$PROJECT_DIR$/app/components/signed-in/controllers/register-as-dealer.controller.js" />
-        <option value="$PROJECT_DIR$/assets/lib/js/ng-img-crop.js" />
-        <option value="$PROJECT_DIR$/app/components/signed-in/controllers/sign-in-dialog.controller.js" />
-        <option value="$PROJECT_DIR$/app/components/signed-in/views/profile.view.html" />
-        <option value="$PROJECT_DIR$/app/components/signed-in/controllers/profile.controller.js" />
-        <option value="$PROJECT_DIR$/app/components/signed-in/views/sign-in/register-as-dealer.view.html" />
         <option value="$PROJECT_DIR$/app/services/product-photos.service.js" />
         <option value="$PROJECT_DIR$/app/services/photos.service.js" />
         <option value="$PROJECT_DIR$/app/components/signed-in/controllers/shipping.controller.js" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/shipping.view.html" />
-        <option value="$PROJECT_DIR$/app/services/dealer.service.js" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/checkout.view.html" />
-        <option value="$PROJECT_DIR$/app/components/signed-in/controllers/view-deal.controller.js" />
         <option value="$PROJECT_DIR$/app/services/product.service.js" />
         <option value="$PROJECT_DIR$/app/services/dialogs.service.js" />
-        <option value="$PROJECT_DIR$/app/components/home/home.controller.js" />
-        <option value="$PROJECT_DIR$/app/components/signed-in/directives/widgets.directives.js" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/products/add-product-3.view.html" />
         <option value="$PROJECT_DIR$/app/services/active-session.service.js" />
         <option value="$PROJECT_DIR$/app/components/signed-in/controllers/checkout-finish.controller.js" />
         <option value="$PROJECT_DIR$/app/components/signed-in/controllers/checkout.controller.js" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/checkout-finish.view.html" />
-        <option value="$PROJECT_DIR$/app/app.js" />
-        <option value="$PROJECT_DIR$/app/components/signed-in/directives/elements.directives.js" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/categories-list.view.html" />
-        <option value="$PROJECT_DIR$/app/components/signed-in/views/view-deal.view.html" />
         <option value="$PROJECT_DIR$/old-junk/home.view.html" />
         <option value="$PROJECT_DIR$/old-junk/signed-out/login/login.view.html" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/sign-in/done-registration.view.html" />
         <option value="$PROJECT_DIR$/app/services/purchase-service.service.js" />
-        <option value="$PROJECT_DIR$/app/routes.js" />
         <option value="$PROJECT_DIR$/app/components/signed-in/directives/purchases.directives.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/purchases/sales-list.view.html" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/purchases/orders-list.view.html" />
-        <option value="$PROJECT_DIR$/app/components/signed-in/views/navbar.view.html" />
         <option value="$PROJECT_DIR$/app/components/signed-in/directives/product-directives.js" />
-        <option value="$PROJECT_DIR$/assets/less/styles.less" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/purchases/purchase-details.view.html" />
         <option value="$PROJECT_DIR$/app/components/signed-in/controllers/purchase-details.controller.js" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/controllers/sign-in-dialog.controller.js" />
+        <option value="$PROJECT_DIR$/assets/less/variables.less" />
+        <option value="$PROJECT_DIR$/assets/less/mixins.less" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/views/view-deal-info-pane.view.html" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/directives/elements.directives.js" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/controllers/view-deal.controller.js" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/views/view-deal.view.html" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/controllers/navbar.controller.js" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/views/navbar.view.html" />
+        <option value="$PROJECT_DIR$/app/services/dealer.service.js" />
+        <option value="$PROJECT_DIR$/app/components/home/home.controller.js" />
+        <option value="$PROJECT_DIR$/app/app.js" />
+        <option value="$PROJECT_DIR$/app/components/home/about.view.html" />
+        <option value="$USER_HOME$/Downloads/mail_template.html" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/views/about/email.html" />
+        <option value="$PROJECT_DIR$/app/routes.js" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/directives/about-directives.js" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/views/about/footer-section.view.html" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/views/about/terms-and-privacy.view.html" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/directives/widgets.directives.js" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/views/sign-in/sign-in-dialog.view.html" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/views/about/intro-section.view.html" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/views/about/about.view.html" />
+        <option value="$PROJECT_DIR$/assets/less/styles.less" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/views/products/edit-product.view.html" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/views/products/add-product-1.view.html" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/views/products/add-product-2.view.html" />
       </list>
     </option>
   </component>
@@ -205,6 +217,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="1" />
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="817" />
@@ -234,8 +247,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -352,7 +363,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="purchases" />
+              <option name="myItemId" value="products" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -382,7 +393,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="products" />
+              <option name="myItemId" value="about" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -480,29 +491,31 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/mail_template.html" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="js.last.introduce.type" value="CONST" />
-    <property name="SearchEverywhereHistoryKey" value="register&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/sign-in/register-as-dealer.view.html&#10;viewdeal&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/view-deal.view.html&#10;profile&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/controllers/profile.controller.js&#10;index&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/index.html&#10;product-grid.view&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/products/products-grid.view.html&#10;home&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/home/home.view.html&#10;products&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/product.service.js&#10;style&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/assets/less/styles.less&#10;app&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/app.js&#10;styles.&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/assets/less/styles.less&#10;product-photos&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/product-photos.service.js&#10;dealphotos&#9;null&#9;null&#10;photoservice&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/photos.service.js" />
+    <property name="SearchEverywhereHistoryKey" value="view-deal&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/view-deal.view.html&#10;register&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/sign-in/register-as-dealer.view.html&#10;viewdeal&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/view-deal.view.html&#10;profile&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/controllers/profile.controller.js&#10;index&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/index.html&#10;product-grid.view&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/products/products-grid.view.html&#10;home&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/home/home.view.html&#10;products&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/product.service.js&#10;style&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/assets/less/styles.less&#10;app&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/app.js&#10;styles.&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/assets/less/styles.less&#10;product-photos&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/product-photos.service.js&#10;dealphotos&#9;null&#9;null&#10;photoservice&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/photos.service.js" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/assets/lib/css" />
-      <recent name="$PROJECT_DIR$/assets/lib/js" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/components/signed-in/views/about" />
       <recent name="$PROJECT_DIR$/assets/lib/js" />
       <recent name="$PROJECT_DIR$/assets/lib/css" />
       <recent name="$PROJECT_DIR$/assets/css" />
       <recent name="$PROJECT_DIR$/old-junk" />
-      <recent name="$PROJECT_DIR$/app/components/signed-in/views/products" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/lib/css" />
+      <recent name="$PROJECT_DIR$/assets/lib/js" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.index.html">
@@ -605,21 +618,22 @@
       <workItem from="1464533842365" duration="7928000" />
       <workItem from="1464797622238" duration="31000" />
       <workItem from="1464797680676" duration="71597000" />
-      <workItem from="1467233588390" duration="50612000" />
+      <workItem from="1467233588390" duration="55139000" />
+      <workItem from="1469081722937" duration="43350000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="466090000" />
+    <option name="totallyTimeSpent" value="513967000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="817" extended-state="6" />
+    <frame x="1" y="23" width="1440" height="817" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20930232" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32462174" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32413793" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32965517" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -653,240 +667,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/css/home-styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="137" column="13" selection-start-line="137" selection-start-column="13" selection-end-line="137" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/profile.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="72" column="72" selection-start-line="72" selection-start-column="72" selection-end-line="72" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/less/mixins.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/register-as-dealer.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="113" column="83" selection-start-line="113" selection-start-column="83" selection-end-line="113" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/photos.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="90" column="48" selection-start-line="90" selection-start-column="48" selection-end-line="90" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/product-photos.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="222" column="36" selection-start-line="222" selection-start-column="36" selection-end-line="222" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/add-product-2.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="120" column="27" selection-start-line="120" selection-start-column="27" selection-end-line="120" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/add-product.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="142" column="9" selection-start-line="142" selection-start-column="9" selection-end-line="142" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/checkout.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/sign-in-dialog.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="76" column="30" selection-start-line="76" selection-start-column="30" selection-end-line="76" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/sign-in/register-as-dealer.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="122" column="26" selection-start-line="77" selection-start-column="20" selection-end-line="122" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#md-content#0;n#form#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/less/variables.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_ajax.googleapis.com_ajax_libs_angular_material_1.0.0_angular-material.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="6315" column="0" selection-start-line="6315" selection-start-column="0" selection-end-line="6315" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/dealer.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="209" column="14" selection-start-line="209" selection-start-column="14" selection-end-line="209" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/lib/js/angular-route.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="6" column="452" selection-start-line="6" selection-start-column="452" selection-end-line="6" selection-end-column="452" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/sign-in/sign-in-dialog.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="14" column="115" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="115" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/home/home.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/dialogs.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/home/home.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="53" selection-start-line="13" selection-start-column="53" selection-end-line="13" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/view-deal.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="62" column="45" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/products/add-product-3.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="52" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/add-product-3.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="34" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/checkout-finish.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/checkout-finish.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="66" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/products/add-product-1.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="143" column="21" selection-start-line="143" selection-start-column="21" selection-end-line="143" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/checkout.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="160" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="193" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/categories-list.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/directives/elements.directives.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/old-junk/signed-out/login/login.view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -903,22 +683,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/view-deal.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="127" column="33" selection-start-line="127" selection-start-column="33" selection-end-line="127" selection-end-column="33" />
-          <folding>
-            <element signature="n#style#0;n#md-button#0;n#div#2;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/sign-in/done-registration.view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
           <folding>
-            <element signature="n#style#0;n#md-button#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#md-button#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -939,26 +709,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="83" column="107" selection-start-line="83" selection-start-column="107" selection-end-line="83" selection-end-column="107" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/profile.view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1021">
           <caret line="71" column="12" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="71" column="54" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="54" />
           <folding />
         </state>
       </provider>
@@ -979,23 +733,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/navbar.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="56" column="35" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="35" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#li#0;n#ul#5;n#div#0;n#nav#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/checkout.view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-677">
           <caret line="3" column="14" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#1;n#form#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#md-button#0;n#div#1;n#form#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#1;n#form#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#md-button#0;n#div#1;n#form#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1032,14 +776,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/less/styles.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="161" column="18" selection-start-line="161" selection-start-column="18" selection-end-line="161" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/purchases/purchase-details.view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="423">
@@ -1066,10 +802,286 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/directives/sign-in.directives.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/sign-in-dialog.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="178" column="27" selection-start-line="178" selection-start-column="27" selection-end-line="178" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/lib/css/animations.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/less/mixins.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/view-deal.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="121" selection-start-line="5" selection-start-column="121" selection-end-line="5" selection-end-column="121" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/directives/elements.directives.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/view-deal-info-pane.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#md-button#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/about/about-section.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/view-deal.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="157" column="48" selection-start-line="157" selection-start-column="48" selection-end-line="157" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/register-as-dealer.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/about/find-out-more.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/about/sell-with-dealers.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/navbar.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="115" selection-start-line="11" selection-start-column="115" selection-end-line="11" selection-end-column="115" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/home/home.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="61" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="25" column="79" selection-start-line="25" selection-start-column="79" selection-end-line="25" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/dealer.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/navbar.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/mail_template.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1740">
+          <caret line="116" column="5" selection-start-line="116" selection-start-column="5" selection-end-line="116" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/about/email.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2220">
+          <caret line="148" column="19" selection-start-line="148" selection-start-column="19" selection-end-line="148" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="487">
+          <caret line="76" column="41" selection-start-line="76" selection-start-column="41" selection-end-line="76" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/about/footer-section.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="54" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="54" />
+          <folding>
+            <marker date="1469403750000" expanded="true" signature="309:361" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/about/terms-and-privacy.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/directives/about-directives.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/lib/js/ui-bootstrap-tpls-1.3.3.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2842">
+          <caret line="7" column="11632" selection-start-line="7" selection-start-column="11632" selection-end-line="7" selection-end-column="11632" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/home/home.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/sign-in/sign-in-dialog.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="39" column="71" selection-start-line="39" selection-start-column="71" selection-end-line="39" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/signed-in/directives/widgets.directives.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="106" column="39" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="39" />
+        <state relative-caret-position="180">
+          <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/about/intro-section.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="50" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/about/about.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="149" column="59" selection-start-line="149" selection-start-column="59" selection-end-line="149" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/less/variables.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="23" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/less/styles.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="1637" column="54" selection-start-line="1637" selection-start-column="49" selection-end-line="1637" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/products/edit-product.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="216" column="70" selection-start-line="216" selection-start-column="70" selection-end-line="216" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/products/add-product-1.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="130" column="65" selection-start-line="130" selection-start-column="56" selection-end-line="130" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/products/add-product-2.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="553">
+          <caret line="84" column="72" selection-start-line="84" selection-start-column="72" selection-end-line="84" selection-end-column="72" />
           <folding />
         </state>
       </provider>

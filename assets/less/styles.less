@@ -481,19 +481,221 @@ md-menu-item > .md-button > a {
 // About
 
 .intro-section {
-  background: url("/assets/images/backgrounds/sky-night-stars.jpg") center;
-  background-size: cover;
-  padding: 120px 30px;
-  @media (max-width: @phone-width) {
-    padding: 30px 20px;
+  &.home-background {
+    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url("/assets/images/backgrounds/people_working_on_laptop.jpg") center;
+    background-size: cover;
+    @media (min-width: @phone-width) {
+      background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url("/assets/images/backgrounds/people_working_on_laptop.jpg") center;
+      background-size: cover;
+    }
+    @media (min-width: @tablet-width) {
+      background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url("/assets/images/backgrounds/people_working_on_laptop.jpg") center;
+      background-size: cover;
+      background-position-y: -200px;
+    }
+    @media (min-width: 1200px) {
+      background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url("/assets/images/backgrounds/people_working_on_laptop.jpg") center;
+      background-size: cover;
+      background-position-y: -300px;
+    }
+    padding: 120px 30px;
+    @media (max-width: @phone-width) {
+      padding: 30px 20px;
+    }
   }
-  h1, h4 {
-    color: white;
+  h1, h4, h3 {
+    color: @theme-white;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     margin: 0;
   }
-  button {
-    margin-top: 20px;
+  h4 {
+    font-size: 1.4em;
+    margin-top: 10px;
+  }
+  ul {
+    margin-top: 10px;
+  }
+  li {
+    display: inline-block;
+    margin: 10px;
+    button.md-button, a.md-button {
+      font-size: 1em;
+      margin-right: 8px;
+    }
+  }
+}
+
+.about-page {
+  .lead {
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .intro-header {
+    padding-top: 25px;
+    padding-bottom: 50px;
+    text-align: center;
+    background: url(/assets/images/backgrounds/intro-bg.jpg) no-repeat center center;
+    background-size: cover;
+  }
+
+  .intro-message {
+    position: relative;
+    padding-top: 15%;
+    padding-bottom: 10%;
+    @media (max-width: @phone-width) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
+  .intro-message > h1 {
+    margin: 0;
+    color: @theme-white;
+    font-size: 5em;
+  }
+
+  .intro-divider {
+    width: 400px;
+    border-top: 1px solid @theme-white;
+  }
+
+  .intro-message > h3 {
+    color: @theme-white;
+  }
+
+  @media (max-width: 767px) {
+    .intro-message {
+      padding-bottom: 15%;
+    }
+
+    .intro-message > h1 {
+      font-size: 3em;
+    }
+
+    ul.intro-social-buttons > li {
+      display: block;
+      margin-bottom: 20px;
+      padding: 0;
+    }
+
+    ul.intro-social-buttons > li:last-child {
+      margin-bottom: 0;
+    }
+
+    .intro-divider {
+      width: 100%;
+    }
+  }
+
+  .content-section-a {
+    padding: 50px 0;
+    background-color: #f8f8f8;
+    @media (max-width: @phone-width) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
+  .content-section-b {
+    padding: 50px 0;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+    @media (max-width: @phone-width) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    &.what-is-dealers {
+      padding: 35px 20px;
+      @media(min-width: @phone-width) {
+        padding: 70px 20px;
+        h3, h4 {
+          margin: 20px 50px;
+        }
+      }
+    }
+  }
+
+  .section-heading {
+    margin-bottom: 30px;
+  }
+
+  .section-heading-spacer {
+    float: left;
+    width: 200px;
+    border-top: 3px solid #e7e7e7;
+  }
+
+  .banner {
+    padding: 100px 20px;
+    background: radial-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url("/assets/images/backgrounds/laptop-working.jpg") center no-repeat;
+    background-size: cover;
+  }
+
+  .banner h2 {
+    margin: 0;
+    color: #f8f8f8;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    font-size: 3em;
+  }
+
+  .banner ul {
+    margin-bottom: 0;
+  }
+
+  .banner-social-buttons {
+    float: right;
+    margin-top: 0;
+  }
+
+  @media (max-width: 1199px) {
+    ul.banner-social-buttons {
+      float: left;
+      margin-top: 15px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .banner h2 {
+      margin: 0;
+      text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+      font-size: 3em;
+    }
+
+    ul.banner-social-buttons > li {
+      display: block;
+      margin-bottom: 20px;
+      padding: 0;
+    }
+
+    ul.banner-social-buttons > li:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  p.copyright {
+    margin: 15px 0 0;
+  }
+
+  p {
+    a {
+      text-decoration: underline;
+    }
+  }
+}
+
+.terms-and-privacy {
+  background: white;
+  padding: 30px 24px 20px;
+  max-width: @phone-width;
+  margin: 0 auto 10px;
+  border-radius: @rounded-corners-large;
+  box-shadow: @product-cell-shadow;
+  p {
+    color: @text-dark-gray;
+  }
+  @media (min-width: @phone-width) {
+    padding: 20px 40px 30px;
   }
 }
 
@@ -696,21 +898,24 @@ div.noImageBackground {
 
 .framed-container {
   min-height: 220px;
+  max-width: 940px;
   background-color: white;
   border-radius: @rounded-corners-xl;
   box-shadow: @container-shadow;
   padding: 5px 0 30px;
-  margin: 50px 0;
+  margin: 50px auto;
   overflow: hidden;
   @media (max-width: @phone-width) {
-    border-radius: 0px;
+    border-radius: 0;
   }
 }
 
 .vd-title {
   width: 100%;
-  padding: 0 45px; // Not using @vd-side-padding because need to compensate on the 15px offset caused by Bootstrap's '.row' class
-  margin-bottom: @vd-margin-bottom;
+  padding: 0 20px;
+  @media (min-width: @phone-width) {
+    padding: 0 30px;
+  }
 }
 
 .vd-product-photo-container {
@@ -721,8 +926,9 @@ div.noImageBackground {
 
 .vd-dealer-profile {
   margin: @vd-section-margin;
-  @media (min-width: @phone-width) {
-    padding: 0 15px 0 45px;
+  text-align: center;
+  .vd-upload-date p {
+    margin: 0 0 12px 0 !important;
   }
   .dealerProfilePic {
     width: 80px;
@@ -730,109 +936,75 @@ div.noImageBackground {
     border-radius: 40px;
     background-color: rgb(200, 200, 215);
     position: initial;
-    float: left;
   }
   .vd-dealer-name {
-    font-size: 16px;
-    margin: 24px 8px;
-    float: left;
+    display: block;
   }
-  @media (max-width: @tablet-width) {
-    & {
-      text-align: center;
-    }
-
-    .vd-upload-date p {
-      margin: 0 0 12px 0 !important;
-    }
-
+  @media (min-width: @tablet-width) {
+    margin-left: 35px;
+    text-align: inherit;
     .dealerProfilePic {
       float: none;
       display: inline-block;
     }
 
     .vd-dealer-name {
-      float: none;
-      margin: 8px 10px 0;
+      display: inline-block;
+      a {
+        top: 12px;
+      }
     }
   }
 }
 
 .vd-actions {
   margin: @vd-section-margin;
-  padding: 0;
-  .vd-actions-container {
-    float: right;
-    margin-right: 15px;
-    #vd-options {
-      padding: 5px;
-      border: none;
-      img {
-        height: 18px;
-        margin: 0;
-      }
-    }
-    @media (max-width: @tablet-width) {
-      float: none;
-      text-align: center;
-      padding: 0 30px;
-      .vd-likes-counter p {
-        text-align: left !important;
-      }
-
-      .vd-buttons-container {
-        display: inline-block;
-        margin-right: 8px;
-        button {
-          height: 38px;
-          margin-right: 8px;
-        }
-      }
-    }
-    @media (min-width: @tablet-width) and (max-width: @desktop-width) {
-      width: 50%;
-    }
-    .vd-likes-counter {
-      p {
-        font-size: 14px;
-        text-align: right;
-        img {
-          width: 16px;
-          margin-right: 4px;
-          position: relative;
-          top: -1px;
-        }
-      }
+  float: none;
+  padding: 0 12px;
+  .vd-likes-counter p {
+    margin-top: 0;
+    text-align: left !important;
+    padding: 0 8px;
+    font-size: 14px;
+    img {
+      width: 16px;
+      margin-right: 4px;
+      position: relative;
+      top: -1px;
     }
   }
-  button.md-button {
-    margin: 8px 0 8px 8px;
-    color: @theme-primary;
-    border: 1px solid @theme-primary;
+  button.md-button, md-menu {
+    margin: 0 8px 0 0;
+    color: @theme-dark;
+    height: 40px;
     background-color: transparent;
-    .clickable;
-    .transition-all;
-    @media (min-width: @tablet-width) and (max-width: @desktop-width) {
-      width: 100%;
-      margin: 6px 0;
-      &#vd-options {
-        width: 38%;
-        float: right;
-      }
+    #vd-options {
+      width: 44px;
+      margin: 0;
+      top: -8px;
     }
-    #vd-like .side-icon {
-      position: absolute;
-      top: -1px;
+    .transition-all;
+  }
+  @media (min-width: @tablet-width) {
+    float: right;
+    padding: 0;
+    margin-right: 35px;
+    .vd-likes-counter p {
+      padding: 0 8px 0 12px;
+    }
+
+    button.md-button, md-menu {
+      margin: 4px 0 4px 4px;
     }
   }
 }
 
 .vd-comments {
   margin: @vd-section-margin;
-  padding: 0 45px;
+  padding: 0 20px;
   float: left;
   clear: both;
-  @media (max-width: @tablet-width) {
+  @media (min-width: @phone-width) {
     width: 100%;
     padding: 0 30px;
   }
@@ -885,12 +1057,8 @@ div.noImageBackground {
 }
 
 .vd-info-pane {
-  padding-left: 15px !important;
-  padding-right: 45px !important;
-  @media (max-width: @tablet-width) {
-    margin: @vd-section-margin;
-    padding: @vd-side-padding !important;
-  }
+  padding: 0 20px;
+  margin-bottom: 20px;
   .vd-basic-info {
     .vd-bullet {
       margin-bottom: 18px;
@@ -920,13 +1088,13 @@ div.noImageBackground {
       }
       .vd-price {
         color: white;
-        font-size: 24px;
+        font-size: 1.5em;
         font-weight: 600;
       }
       .vd-discount {
-        color: lighten(@text-light-gray, 20%);
-        font-size: 18px;
-        font-weight: 400;
+        color: lighten(@text-light-gray, 25%);
+        font-size: 1.2em;
+        font-weight: 600;
         margin-left: 8px;
       }
     }
@@ -1016,7 +1184,7 @@ div.noImageBackground {
 .ap-image-section {
   position: relative;
   color: @theme-primary;
-  margin: 0 auto;
+  margin: 0 auto 20px;
   .dropzone {
     position: relative;
     top: 0;
@@ -1220,7 +1388,7 @@ button.ap-done {
 // Purchases
 
 md-list {
-  md-list-item.md-3-line, md-list-item.md-3-line>._md-no-style {
+  md-list-item.md-3-line, md-list-item.md-3-line > ._md-no-style {
     min-height: 128px;
   }
   .purchase-list-item {
@@ -1394,11 +1562,23 @@ button.dl-submit {
   border-radius: 5px;
   text-transform: uppercase;
   padding: 4px 12px;
+  .transition-all;
   img.side-icon {
-    height: 14px;
+    height: 16px;
     position: relative;
     margin-right: 2px;
-    top: -1px;
+    top: -2px;
+  }
+  div.side-icon {
+    display: inline-block;
+    height: 16px;
+    position: relative;
+    margin-right: 18px;
+    top: 5px;
+    img {
+      height: inherit;
+      position: absolute;
+    }
   }
   img.main-icon {
     height: 20px;
@@ -1408,20 +1588,12 @@ button.dl-submit {
   }
 }
 
-.btn-white {
-  .button-variant(@theme-dark; @theme-white; @theme-white);
-}
-
 .btn-colored {
   color: @theme-primary !important;
 }
 
 .btn-default {
   .button-variant(@theme-dark; @theme-button; @theme-button);
-}
-
-.btn-primary {
-  .button-variant(white; @theme-primary; @theme-primary);
 }
 
 .btn-secondary {
@@ -1437,13 +1609,18 @@ button.dl-submit {
 }
 
 .md-button.btn-primary {
+  font-weight: bold;
+  font-size: 0.9em;
   .button-variant(white; @theme-primary; transparent);
+  &.btn-white {
+    background-color: @theme-white;
+    color: @theme-dark;
+  }
   &.btn-single {
     display: block;
-    font-weight: bold;
-    font-size: 1.1em;
     margin: 30px auto;
-    padding: 4px 24px;
+    font-size: 1.1em;
+    padding: 2px 24px;
     @media (max-width: @phone-width) {
       width: 100%;
     }
@@ -1452,6 +1629,14 @@ button.dl-submit {
 
 .md-button.btn-secondary {
   .button-variant(@theme-primary; white; @theme-primary);
+}
+
+.md-button.btn-primary:not([disabled]):hover {
+  background-color: #b443c7;
+}
+
+.md-button.btn-primary.btn-white:not([disabled]):hover {
+  background-color: white;
 }
 
 .inputfile {
@@ -1628,15 +1813,15 @@ md-tabs-canvas {
 }
 
 .framed-container.small-container {
-    color: @theme-dark;
-    width: 640px;
-    padding: 10px 40px 30px;
-    margin: 20px auto 30px;
-    @media (max-width: 721px) {
-      width: 100%;
-      padding: 24px;
-      margin: 0 auto;
-    }
+  color: @theme-dark;
+  width: 640px;
+  padding: 10px 40px 30px;
+  margin: 20px auto 30px;
+  @media (max-width: 721px) {
+    width: 100%;
+    padding: 24px;
+    margin: 0 auto;
+  }
 }
 
 md-tabs .tabIndex {
@@ -1689,18 +1874,15 @@ md-dialog.md-dialog-fullscreen {
   border-radius: 0 !important;
 }
 
-button.btn-primary.md-button:not([disabled]):hover, button.btn-primary.md-button:not([disabled]):focus {
-  background-color: @theme-primary;
-}
-
 md-toolbar:not(.md-menu-toolbar) {
   color: @theme-dark;
 }
 
 .md-btn-small {
   font-size: 0.9em;
+  font-weight: bold;
   padding: 0 8px;
-  min-width: 80px !important;
+  min-width: 0 !important;
 }
 
 // For handling the top page jump when using md-select and others.
@@ -1740,7 +1922,12 @@ md-toolbar:not(.md-menu-toolbar) {
 // Footer
 
 footer {
-  padding: 30px 10px;
+  padding: 50px 0;
+  background-color: @background-gray;
+  @media (max-width: @phone-width) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 .footer {

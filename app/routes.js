@@ -71,6 +71,12 @@ angular.module('DealersApp')
                 templateUrl: 'app/components/signed-in/views/purchases/purchase-details.view.html',
                 controller: 'PurchaseDetailsController'
             })
+            .when('/about', {
+                templateUrl: '/app/components/signed-in/views/about/about.view.html'
+            })
+            .when('/terms-and-privacy', {
+                templateUrl: 'app/components/signed-in/views/about/terms-and-privacy.view.html'
+            })
             .otherwise({redirectTo: '/'});
 
         $locationProvider.html5Mode(true);

@@ -17,6 +17,7 @@
 
                 // global constants
                 $rootScope.baseUrl = 'http://api.dealers-web.com';
+                $rootScope.homeUrl = 'http://www.dealers-web.com';
                 $rootScope.AWSKey = 'AKIAIWJFJX72FWKD2LYQ';
                 $rootScope.AWSSecretKey = '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';
                 $rootScope.AWSS3Bucket = 'dealers-app';
@@ -37,10 +38,26 @@
                 // Global functions
                 $rootScope.setUserProfilePic = setUserProfilePic;
 
-                $rootScope.INTERCOM_APP_ID = "z1b3ijln";
-                window.Intercom("boot", {
-                    app_id: $rootScope.INTERCOM_APP_ID
-                });
+                /**
+                 * Initializing the Intercom SDK.
+                 * @param user - the user.
+                 */
+                function initIntercom(user) {
+                    $rootScope.INTERCOM_APP_ID = "z1b3ijln";
+                    window.Intercom("boot", {
+                        app_id: $rootScope.INTERCOM_APP_ID,
+                        user_id: user.id,
+                        user_hash: user.intercom_code,
+                        name: user.full_name, // Full name
+                        email: user.email,
+                        date_of_birth: user.date_of_birth,
+                        gender: user.gender,
+                        about: user.about,
+                        location: user.location,
+                        role: user.role,
+                        rank: user.rank
+                    });
+                }
 
                 // keep user logged in after page refresh
                 if ($cookies.get('globals') !== '[object Object]') { // checking if there's an object in the cookies key
@@ -54,6 +71,7 @@
                             $rootScope.userProfilePic = "";
                             $rootScope.userProfilePicSender = "user-profile-pic";
                             setUserProfilePic();
+                            initIntercom($rootScope.dealer);
                         }
                     }
                 }

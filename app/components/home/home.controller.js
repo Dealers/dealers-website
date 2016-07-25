@@ -5,8 +5,8 @@
         /**
          *
          */
-        .controller('HomeController', ['$scope', '$rootScope',
-            function ($scope, $rootScope) {
+        .controller('HomeController', ['$scope', '$rootScope', '$mdDialog', '$mdMedia',
+            function ($scope, $rootScope, $mdDialog, $mdMedia) {
 
                 if ($rootScope.dealer) {
                     $scope.role = $rootScope.dealer.role;
@@ -15,9 +15,9 @@
                 }
                 $scope.gridTitle = "";
                 $scope.gridDescription = "";
-                
+                $scope.customFullscreen = $mdMedia('xs');
+
                 setGridTitles();
-                checkForActionsToRun();
 
                 /**
                  * Sets the title of the grid according to the role of the user.

@@ -21,6 +21,13 @@
                 template: '<a href="/categories/{{category}}"><li>{{category}}</li></a>'
             };
         })
+        .directive('vdInfoPane', function () {
+            return {
+                restrict: 'E',
+                replace: true,
+                templateUrl: 'app/components/signed-in/views/view-deal-info-pane.view.html'
+            };
+        })
         .directive('dlComment', ['DealerPhotos',
             function (DealerPhotos) {
                 return {

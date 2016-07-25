@@ -3,117 +3,168 @@
 
     angular.module('DealersApp')
 
-        /**
-         * The LIKE button.
-         */
+    /**
+     * The LIKE button.
+     */
         .directive('likeButton', ['$rootScope', '$http', '$route', 'Product', 'Dialogs', 'ActiveSession',
             function ($rootScope, $http, $route, Product, Dialogs, ActiveSession) {
-            return {
-                link: function (scope, element) {
+                return {
+                    link: function (scope, element) {
 
-                    var LIKE_FUNCTION_REPR = "likeClicked";
+                        var LIKE_FUNCTION_REPR = "likeClicked";
 
-                    // First of all check if the scope is defined properly
-                    if (!scope.product) {
-                        console.log("There's a problem - the parent scope doesn't have a product attribute.");
-                        return;
-                    }
-
-                    var dealersThatLiked = scope.product.dealattribs.dealers_that_liked;
-                    if ($rootScope.dealer) {
-                        var userID = $rootScope.dealer.id;
-                        updateLikeAppearance();
-                    }
-
-                    scope.likeClicked = likeClicked;
-
-                    if (ActiveSession.shouldRunAction(LIKE_FUNCTION_REPR)) {
-                        scope.likeClicked();
-                    }
-                    
-                    function isLiked() {
-                        /*
-                         * Check if the user liked this product, if so, mark the button.
-                         */
-                        var likedByUser = $.inArray(userID, dealersThatLiked);
-                        if (likedByUser == -1) {
-                            // The user didn't like the product before, should like it now.
-                            return false;
-                        }
-                        return true;
-                    }
-
-                    function updateLikeAppearance() {
-                        /*
-                         * If the user liked the product, unmark it. If he didn't, mark it.
-                         */
-                        if (isLiked()) {
-                            $(element).css('background-color', '#9C27B0').css('color', 'white').find("span").replaceWith("<span> Unlike<span>");
-                        } else {
-                            $(element).css('background-color', 'white').css('color', '#9C27B0').find("span").replaceWith("<span> Like<span>");
-                        }
-                    }
-
-                    /**
-                     * The user clicked the like button.
-                     */
-                    function likeClicked(event) {
-
-                        // First check that the user is signed in
-                        if (!userID) {
-                            // The user is not signed in, present the Sign In dialog and quit this function.
-                            Dialogs.showSignInDialog(event, 0)
-                                .then(function (finished) {
-                                    // Reinstantiate the page after adding the likeClicked function to the Actions To Run stack
-                                    ActiveSession.addActionToRun(LIKE_FUNCTION_REPR);
-                                    $route.reload();
-                                });
+                        // First of all check if the scope is defined properly
+                        if (!scope.product) {
+                            console.log("There's a problem - the parent scope doesn't have a product attribute.");
                             return;
                         }
 
-                        if (isLiked()) {
-                            // Remove the user from the dealersThatLiked array and update the appearance when done.
-                            var index = dealersThatLiked.indexOf(userID);
-                            if (index > -1) {
-                                dealersThatLiked.splice(index, 1);
-                            }
-                        } else {
-                            // Add the user to the dealersThatLiked array and update the appearance when done.
-                            dealersThatLiked.push(userID);
+                        var dealersThatLiked = scope.product.dealattribs.dealers_that_liked;
+                        if ($rootScope.dealer) {
+                            var userID = $rootScope.dealer.id;
+                            updateLikeAppearance();
                         }
-                        $http.patch($rootScope.baseUrl + '/dealattribs/' + scope.product.dealattribs.id + '/', scope.product.dealattribs)
-                            .then(function (response) {
-                                    // success
-                                    scope.product.dealattribs = response.data;
-                                    updateLikeAppearance();
-                                    // scope.$apply();
-                                },
-                                function (httpError) {
-                                    // error
-                                    console.log(httpError.status + " : " + httpError.data);
-                                });
+
+                        scope.likeClicked = likeClicked;
+
+                        if (ActiveSession.shouldRunAction(LIKE_FUNCTION_REPR)) {
+                            scope.likeClicked();
+                        }
+
+                        function isLiked() {
+                            /*
+                             * Check if the user liked this product, if so, mark the button.
+                             */
+                            var likedByUser = $.inArray(userID, dealersThatLiked);
+                            if (likedByUser == -1) {
+                                // The user didn't like the product before, should like it now.
+                                return false;
+                            }
+                            return true;
+                        }
+
+                        function updateLikeAppearance() {
+                            /*
+                             * If the user liked the product, unmark it. If he didn't, mark it.
+                             */
+                            if (isLiked()) {
+                                scope.likeStatus = 'LIKED';
+                                $(element).css('color', '#9C27B0').find("span").replaceWith("<span> Liked<span>");
+                            } else {
+                                scope.likeStatus = 'LIKE';
+                                $(element).css('color', '#313140').find("span").replaceWith("<span> Like<span>");
+                            }
+                        }
+
+                        /**
+                         * The user clicked the like button.
+                         */
+                        function likeClicked(event) {
+
+                            // First check that the user is signed in
+                            if (!userID) {
+                                // The user is not signed in, present the Sign In dialog and quit this function.
+                                Dialogs.showSignInDialog(event, 0)
+                                    .then(function (finished) {
+                                        // Reinstantiate the page after adding the likeClicked function to the Actions To Run stack
+                                        ActiveSession.addActionToRun(LIKE_FUNCTION_REPR);
+                                        $route.reload();
+                                    });
+                                return;
+                            }
+
+                            if (isLiked()) {
+                                // Remove the user from the dealersThatLiked array and update the appearance when done.
+                                var index = dealersThatLiked.indexOf(userID);
+                                if (index > -1) {
+                                    dealersThatLiked.splice(index, 1);
+                                }
+                            } else {
+                                // Add the user to the dealersThatLiked array and update the appearance when done.
+                                dealersThatLiked.push(userID);
+                            }
+                            $http.patch($rootScope.baseUrl + '/dealattribs/' + scope.product.dealattribs.id + '/', scope.product.dealattribs)
+                                .then(function (response) {
+                                        // success
+                                        scope.product.dealattribs = response.data;
+                                        updateLikeAppearance();
+                                        // scope.$apply();
+                                    },
+                                    function (httpError) {
+                                        // error
+                                        console.log(httpError.status + " : " + httpError.data);
+                                    });
+                        }
                     }
+                };
+            }])
+
+        /**
+         * The FACEBOOK SHARE button.
+         */
+        .directive('shareButton', ['$rootScope', function ($rootScope) {
+            return {
+                link: function (scope, element) {
+                    $(element).on("click", function (ev) {
+                        var url = $rootScope.homeUrl + "/item/" + scope.product.id + "/";
+                        FB.ui({
+                            method: 'share',
+                            mobile_iframe: true,
+                            href: url
+                        }, function (response) {
+                        });
+                    });
                 }
             };
         }])
 
         /**
-         * The FACEBOOK SHARE button.
+         * Register As Dealer button.
          */
-        .directive('shareButton', function () {
-                return {
-                    link: function (scope, element) {
-                        $(element).on("click", function (ev) {
-                            var url = "www.dealers-web.com/#" + "/products/" + scope.product.id + "/";
-                            FB.ui({
-                                method: 'share',
-                                mobile_iframe: true,
-                                href: url
-                            }, function(response){});
-                        });
-                    }
-                };
-            })
+        .directive('registerAsDealer', ['$rootScope', '$location', '$mdMedia', '$mdDialog', function ($rootScope, $location, $mdMedia, $mdDialog) {
+            return {
+                link: function (scope, element) {
+                    scope.customFullscreen = $mdMedia('xs');
+
+                    /**
+                     * Presents the sign in dialog (sign up and log in).
+                     * @param ev - The event that triggered the function.
+                     * @param tabIndex - the index of the selected option (sign up is 0, log in is 1).
+                     * @param registerCallback - a boolean indicating if the sign in is part of the register-as-dealer process.
+                     */
+                    scope.showSignInDialog = function (ev, tabIndex, registerCallback) {
+                        $mdDialog.show({
+                            controller: 'SignInDialogController',
+                            templateUrl: 'app/components/signed-in/views/sign-in/sign-in-dialog.view.html',
+                            parent: angular.element(document.body),
+                            targetEvent: ev,
+                            fullscreen: scope.customFullscreen,
+                            locals: {tab: tabIndex}
+                        })
+                            .then(function (finished) {
+                                // Finished the sign in process
+                                if (registerCallback) {
+                                    $location.path("/register");
+                                } else {
+                                    $location.path("/home");
+                                }
+                            });
+                    };
+
+                    /**
+                     * Takes the user to the register-as-dealer page. If he is not signed in, takes him through the sign in process first.
+                     * @param ev - the event that triggered the function.
+                     */
+                    $(element).on("click", function (ev) {
+                        if ($rootScope.dealer) {
+                            $location.path("/register");
+                        } else {
+                            scope.showSignInDialog(ev, 0, true);
+                        }
+                    });
+                }
+            };
+        }])
         .directive('loadingSpinner', function () {
             return {
                 restrict: 'E',

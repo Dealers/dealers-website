@@ -1,191 +1,174 @@
 <dl-navbar></dl-navbar>
 
 <div class="container" ng-cloak>
-    <div class="framed-container ap-form-container nav-margin col-lg-10 col-lg-push-1" ng-switch on="status">
-        <div class="row">
+    <div class="framed-container ap-form-container nav-margin" ng-switch on="status">
+        <div>
             <div ng-switch-when="loading">
                 <loading-spinner></loading-spinner>
             </div>
             <div ng-switch-when="failed">
                 <h1 class="dl-download-error">{{errorMessage}} <br> {{errorPrompt}} </h1>
             </div>
-            <div ng-switch-when="downloaded">
+            <div ng-switch-when="downloaded" layout="column">
                 <div class="vd-title">
                     <h2>{{product.title}}</h2>
                 </div>
 
-                <div class="ap-image-section vd-product-photo-container text-center col-sm-8">
+                <div layout="row" flex>
+                    <div layout="column" flex flex-gt-sm="65">
+                        <div class="ap-image-section vd-product-photo-container text-center">
+                            <div class="ap-image-container text-center" ng-show="photosURLs.length > 0">
+                                <div id="photosCarousel" class="carousel slide" data-interval="false">
+                                    <div class="carousel-inner">
+                                        <carousel-item ng-repeat="photoURL in photosURLs track by $index"
+                                                       photo-url="photoURL"></carousel-item>
+                                    </div>
+                                    <div ng-show="photosURLs.length > 1" ng-click="nextPhoto($event)"
+                                         class="carousel-controller">
+                                        <a
+                                                class="left carousel-control"
+                                                href="#photosCarousel"
+                                                target="_self"
+                                                role="button"
+                                                ng-non-bindable
+                                                data-slide="prev">
+                                            <span class="glyphicon glyphicon-chevron-left"></span>
+                                        </a>
+                                        <a
+                                                class="right carousel-control"
+                                                href="#photosCarousel"
+                                                target="_self"
+                                                role="button"
+                                                ng-non-bindable
+                                                data-slide="next">
+                                            <span class="glyphicon glyphicon-chevron-right"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div> <!-- vp-image-container -->
 
-                    <div class="ap-image-container text-center" ng-show="photosURLs.length > 0">
-                        <div id="photosCarousel" class="carousel slide" data-interval="false">
-                            <div class="carousel-inner">
-                                <carousel-item ng-repeat="photoURL in photosURLs track by $index"
-                                               photo-url="photoURL"></carousel-item>
-                            </div>
-                            <div ng-show="photosURLs.length > 1" ng-click="nextPhoto($event)"
-                                 class="carousel-controller">
-                                <a
-                                        class="left carousel-control"
-                                        href="#photosCarousel"
-                                        target="_self"
-                                        role="button"
-                                        ng-non-bindable
-                                        data-slide="prev">
-                                    <span class="glyphicon glyphicon-chevron-left"></span>
-                                </a>
-                                <a
-                                        class="right carousel-control"
-                                        href="#photosCarousel"
-                                        target="_self"
-                                        role="button"
-                                        ng-non-bindable
-                                        data-slide="next">
-                                    <span class="glyphicon glyphicon-chevron-right"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div> <!-- vp-image-container -->
+                            <div class="ap-photos-thumbnails" ng-show="photosURLs.length > 0">
+                                <ul class="clearfix">
+                                    <li id="0">
+                                        <button class="ap-thumbnail clickable" ng-click="selectPhoto(0)"
+                                                ng-if="photosURLs[0] && photosURLs.length > 1">
+                                            <img ng-src="{{photosURLs[0]}}"/>
+                                        </button>
+                                    </li>
+                                    <li id="1">
+                                        <button class="ap-thumbnail clickable" ng-click="selectPhoto(1)"
+                                                ng-show="photosURLs[1]">
+                                            <img ng-src="{{photosURLs[1]}}" ng-show="photosURLs[1]"/>
+                                        </button>
+                                    </li>
+                                    <li id="2">
+                                        <button class="ap-thumbnail clickable" ng-click="selectPhoto(2)"
+                                                ng-show="photosURLs[2]">
+                                            <img ng-src="{{photosURLs[2]}}" ng-show="photosURLs[2]"/>
+                                        </button>
+                                    </li>
+                                    <li id="3">
+                                        <button class="ap-thumbnail clickable" ng-click="selectPhoto(3)"
+                                                ng-show="photosURLs[3]">
+                                            <img ng-src="{{photosURLs[3]}}" ng-show="photosURLs[3]"/>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>  <!-- vp-photos-thumbnails -->
 
-                    <div class="ap-photos-thumbnails" ng-show="photosURLs.length > 0">
-                        <ul class="clearfix">
-                            <li id="0">
-                                <button class="ap-thumbnail clickable" ng-click="selectPhoto(0)"
-                                        ng-if="photosURLs[0] && photosURLs.length > 1">
-                                    <img ng-src="{{photosURLs[0]}}"/>
-                                </button>
-                            </li>
-                            <li id="1">
-                                <button class="ap-thumbnail clickable" ng-click="selectPhoto(1)"
-                                        ng-show="photosURLs[1]">
-                                    <img ng-src="{{photosURLs[1]}}" ng-show="photosURLs[1]"/>
-                                </button>
-                            </li>
-                            <li id="2">
-                                <button class="ap-thumbnail clickable" ng-click="selectPhoto(2)"
-                                        ng-show="photosURLs[2]">
-                                    <img ng-src="{{photosURLs[2]}}" ng-show="photosURLs[2]"/>
-                                </button>
-                            </li>
-                            <li id="3">
-                                <button class="ap-thumbnail clickable" ng-click="selectPhoto(3)"
-                                        ng-show="photosURLs[3]">
-                                    <img ng-src="{{photosURLs[3]}}" ng-show="photosURLs[3]"/>
-                                </button>
-                            </li>
-                        </ul>
-                    </div>  <!-- vp-photos-thumbnails -->
+                        </div> <!--vp-image-section-->
 
-                </div> <!--vp-image-section-->
+                        <!--Info section for small screens-->
+                        <div class="vd-info-pane-container" ng-hide="bigScreen">
+                            <vd-info-pane></vd-info-pane>
+                        </div>
 
-                <div class="vd-info-pane col-sm-4">
-                    <div class="vd-basic-info">
-                        <div class="vd-bullet vd-category clearfix" ng-show="product.category">
-                            <img class="vd-info-icon" src="/assets/images/icons/@2x/Web_Icons_category_icon.png"/>
-                            <p>{{product.category}}</p>
-                        </div>
-                        <div class="vd-bullet vd-expiration clearfix" ng-show="product.expiration">
-                            <img class="vd-info-icon"
-                                 src="/assets/images/icons/@2x/Web_Icons_expiration_date_icon.png"/>
-                            <p>Expires on {{product.expiration | date: 'dd/MM/yyyy'}}</p>
-                        </div>
-                    </div>
-                    <div class="vd-price-discount" ng-show="product.price || product.discount_value">
-                        <div class="vd-price-discount-frame">
-                            <div class="vd-price" ng-show="product.price">
-                                {{product.price | currency:product.currency}}
-                            </div>
-                            <div class="vd-discount previousPrice" ng-show="discountTypePP">
-                                {{product.discount_value | currency:product.currency}}
-                            </div>
-                            <div class="vd-discount" ng-show="!discountTypePP && product.discount_value">
-                                {{product.discount_value}}%
-                            </div>
-                        </div>
-                    </div>
-                    <md-button id="vd-buy"
-                               class="btn-primary btn-sm btn-single btn-xl"
-                               style="margin: 22px 0 0 0;"
-                               ng-click="proceedToCheckout()">
-                        Buy
-                    </md-button>
-                    <div class="vd-more-description"
-                         ng-show="product.more_description && product.more_description!='None'">
-                        <p>
-                            {{product.more_description}}
-                        </p>
-                    </div>
-                </div>
-                <div class="vd-dealer-profile col-sm-5 clearfix">
-                    <div class="vd-upload-date clearfix">
-                        <p class="dl-note text-muted">Uploaded in the {{product.upload_date | date:'short'}} by</p>
-                    </div>
-                    <div class="profilePicContainer">
-                        <a ng-href="/dealers/{{product.dealer.id}}"><img ng-src="{{profilePic}}"
-                                                                           class="dealerProfilePic {{productImageStatus}}"
-                                                                           ng-show="hasProfilePic"/></a>
-                        <div class="dealerProfilePic defaultProfilePic" ng-hide="hasProfilePic"></div>
-                    </div>
-                    <a ng-href="/dealers/{{product.dealer.id}}">
-                        <p class="vd-dealer-name">
-                            {{product.dealer.full_name}}
-                        </p>
-                    </a>
-                </div>
-                <div class="vd-actions col-sm-3 clearfix">
-                    <div class="vd-actions-container pull-left">
-                        <div class="vd-likes-counter" ng-show="totalLikes > 0">
-                            <p class="dl-note text-muted"><img
-                                    src="../../../../assets/images/icons/Web_Icons_my_feed_like_icon.png"/>
-                                {{totalLikes}} liked this</p>
-                        </div>
-                        <div class="vd-buttons-container">
-                            <md-button id="vd-like" class="btn-sm md-btn-small like-btn" ng-click="likeClicked($event)"
-                                       like-button>
-                                <img class="side-icon" src="/assets/images/icons/@2x/Web_Icons_like_icon.png"/>
-                                <span>Like</span>
-                            </md-button>
-                            <md-button id="vd-share" class="btn-sm md-btn-small" share-button>
-                                <img class="side-icon" src="/assets/images/icons/@2x/Web_Icons_share_icon.png"/>
-                                Share
-                            </md-button>
-                            <md-button id="vd-edit" class="btn-sm md-btn-small" ng-show="canEdit()"
-                                       ng-click="editProduct()">
-                                <img class="side-icon" src="/assets/images/icons/@2x/Web_Icons_edit_icon.png"/>
-                                Edit
-                            </md-button>
-                            <md-menu>
-                                <button id="vd-options" class="btn-sm" ng-click="openMenu($mdOpenMenu, $event)">
-                                    <img class="side-icon" src="/assets/images/icons/@2x/Web_Icons_options_icon.png"/>
-                                </button>
-                                <md-menu-content width="3">
-                                    <md-menu-item ng-show="canEdit()">
-                                        <md-button class="dl-danger" ng-click="deleteProduct($event)">
-                                            Delete Product
+                        <div class="vd-dealer-actions-section" layout="column" layout-gt-sm="row">
+                            <div class="vd-dealer-profile clearfix" flex-gt-sm="60">
+                                <div class="vd-upload-date clearfix">
+                                    <p class="dl-note text-muted">Uploaded in the {{product.upload_date |
+                                        date:'short'}}
+                                        by</p>
+                                </div>
+                                <div class="profilePicContainer">
+                                    <a ng-href="/dealers/{{product.dealer.id}}"><img ng-src="{{profilePic}}"
+                                                                                     class="dealerProfilePic {{productImageStatus}}"
+                                                                                     ng-show="hasProfilePic"/></a>
+                                    <div class="dealerProfilePic defaultProfilePic" ng-hide="hasProfilePic"></div>
+                                    <div class="vd-dealer-name">
+                                        <md-button href="/dealers/{{product.dealer.id}}" class="md-btn-small">
+                                            {{product.dealer.full_name}}
                                         </md-button>
-                                    </md-menu-item>
-                                    <md-menu-item>
-                                        <md-button ng-click="report($event)">
-                                            Report this product
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="vd-actions" flex-gt-sm="40">
+                                <div class="vd-likes-counter" ng-show="totalLikes > 0">
+                                    <p class="dl-note text-muted"><img
+                                            src="../../../../assets/images/icons/Web_Icons_my_feed_like_icon.png"/>
+                                        {{totalLikes}} liked this</p>
+                                </div>
+                                <div class="vd-buttons-container" layout="row">
+                                    <md-button id="vd-like" class="md-btn-small like-btn"
+                                               ng-click="likeClicked($event)"
+                                               like-button>
+                                        <div class="side-icon">
+                                            <img ng-show="likeStatus != 'LIKED'" class="side-icon dl-fade"
+                                                 src="/assets/images/icons/@2x/Web_Icons_like_icon_black.png"/>
+                                            <img ng-show="likeStatus == 'LIKED'" class="side-icon dl-fade"
+                                                 src="/assets/images/icons/@2x/Web_Icons_like_icon.png"/>
+                                        </div>
+                                        <span>Like</span>
+                                    </md-button>
+                                    <md-button id="vd-share" class="md-btn-small" share-button>
+                                        <img class="side-icon"
+                                             src="/assets/images/icons/@2x/Web_Icons_facebook_share_black.png"/>
+                                        Share
+                                    </md-button>
+                                    <md-button id="vd-edit" class="md-btn-small" ng-show="canEdit()"
+                                               ng-click="editProduct()">
+                                        <img class="side-icon"
+                                             src="/assets/images/icons/@2x/Web_Icons_edit_icon_black.png"/>
+                                        Edit
+                                    </md-button>
+                                    <md-menu>
+                                        <md-button id="vd-options" class="md-btn-small"
+                                                   ng-click="openMenu($mdOpenMenu, $event)">
+                                            <img class="side-icon"
+                                                 src="/assets/images/icons/@2x/Web_Icons_options_icon.png"/>
                                         </md-button>
-                                    </md-menu-item>
-                                </md-menu-content>
-                            </md-menu>
-                        </div>
-                    </div>
-                </div>
-                <div class="vd-comments col-sm-8">
-                    <h4 class="text-muted" ng-show="product.comments.length > 0">
-                        {{product.comments.length}} comments
-                    </h4>
-                    <dl-comment ng-repeat="comment in product.comments" comment="comment"></dl-comment>
-                    <div class="comment" ng-show="user != null">
-                        <div class="vd-user-pic-container">
-                            <img ng-src="{{userProfilePic}}" class="vd-commenter-pic" ng-show="user.photo"/>
-                            <div class="vd-commenter-pic defaultProfilePic" ng-hide="user.photo"></div>
-                        </div>
-                        <form name="addCommentForm" class="vd-comment-text-container"
-                              ng-submit="addComment(addCommentForm)" novalidate>
-                            <p class="dl-error dl-note" ng-show="showCommentError">{{commentErrorMessage}}</p>
+                                        <md-menu-content width="3">
+                                            <md-menu-item ng-show="canEdit()">
+                                                <md-button class="dl-danger" ng-click="deleteProduct($event)">
+                                                    Delete Product
+                                                </md-button>
+                                            </md-menu-item>
+                                            <md-menu-item>
+                                                <md-button ng-click="report($event)">
+                                                    Report this product
+                                                </md-button>
+                                            </md-menu-item>
+                                        </md-menu-content>
+                                    </md-menu>
+                                </div>
+                            </div>
+                        </div> <!--Dealer and Actions section-->
+
+                        <div class="vd-comments">
+                            <h4 class="text-muted" ng-show="product.comments.length > 0">
+                                {{product.comments.length}} comments
+                            </h4>
+                            <dl-comment ng-repeat="comment in product.comments" comment="comment"></dl-comment>
+                            <div class="comment" ng-show="user != null">
+                                <div class="vd-user-pic-container">
+                                    <img ng-src="{{userProfilePic}}" class="vd-commenter-pic" ng-show="user.photo"/>
+                                    <div class="vd-commenter-pic defaultProfilePic" ng-hide="user.photo"></div>
+                                </div>
+                                <form name="addCommentForm" class="vd-comment-text-container"
+                                      ng-submit="addComment(addCommentForm)" novalidate>
+                                    <p class="dl-error dl-note" ng-show="showCommentError">
+                                        {{commentErrorMessage}}</p>
 							<textarea
                                     type="text"
                                     name="comment"
@@ -194,10 +177,18 @@
                                     ng-model="comment.text"
                                     ng-focus="showCommentButton = true"
                                     required></textarea>
-                            <md-button type="submit" class="btn-primary btn-sm" ng-show="showCommentButton">Add
-                                Comment
-                            </md-button>
-                        </form>
+                                    <md-button type="submit" class="btn-primary btn-sm" ng-show="showCommentButton">
+                                        Add
+                                        Comment
+                                    </md-button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Info section for big screens-->
+                    <div class="vd-info-pane-container" ng-show="bigScreen" flex="35">
+                        <vd-info-pane></vd-info-pane>
                     </div>
                 </div>
             </div>

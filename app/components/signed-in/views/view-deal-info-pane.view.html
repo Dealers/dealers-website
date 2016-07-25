@@ -1,0 +1,38 @@
+<div class="vd-info-pane">
+    <div class="vd-basic-info">
+        <div class="vd-bullet vd-category clearfix" ng-show="product.category">
+            <img class="vd-info-icon" src="/assets/images/icons/@2x/Web_Icons_category_icon.png"/>
+            <p>{{product.category}}</p>
+        </div>
+        <div class="vd-bullet vd-expiration clearfix" ng-show="product.expiration">
+            <img class="vd-info-icon"
+                 src="/assets/images/icons/@2x/Web_Icons_expiration_date_icon.png"/>
+            <p>Expires on {{product.expiration | date: 'dd/MM/yyyy'}}</p>
+        </div>
+    </div>
+    <div class="vd-price-discount" ng-show="product.price || product.discount_value">
+        <div class="vd-price-discount-frame">
+            <div class="vd-price" ng-show="product.price">
+                {{product.price | currency:product.currency}}
+            </div>
+            <div class="vd-discount previousPrice" ng-show="discountTypePP">
+                {{product.discount_value | currency:product.currency}}
+            </div>
+            <div class="vd-discount" ng-show="!discountTypePP && product.discount_value">
+                {{product.discount_value}}%
+            </div>
+        </div>
+    </div>
+    <md-button id="vd-buy"
+               class="btn-primary btn-sm btn-single btn-xl"
+               style="margin: 22px 0 0 0;"
+               ng-click="proceedToCheckout()">
+        Buy
+    </md-button>
+    <div class="vd-more-description"
+         ng-show="product.more_description && product.more_description!='None'">
+        <p>
+            {{product.more_description}}
+        </p>
+    </div>
+</div>

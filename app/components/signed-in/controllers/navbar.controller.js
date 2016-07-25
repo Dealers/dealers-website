@@ -9,8 +9,8 @@
         /**
          * Manages the navigation bar and its presentation according to the user's role.
          */
-        .controller('NavbarController', ['$scope', '$rootScope', '$location', '$routeParams', '$mdMedia', '$mdMenu', '$mdDialog',
-            function ($scope, $rootScope, $location, $routeParams, $mdMedia, $mdMenu, $mdDialog) {
+        .controller('NavbarController', ['$scope', '$rootScope', '$location', '$routeParams', '$mdMedia', '$mdMenu',
+            function ($scope, $rootScope, $location, $routeParams, $mdMedia, $mdMenu) {
 
                 $scope.dealer = $rootScope.dealer;
                 $scope.searchTerm = {};
@@ -101,43 +101,5 @@
                         }
                     });
                 }
-
-                /**
-                 * Presents the sign in dialog (sign up and log in).
-                 * @param ev - The event that triggered the function.
-                 * @param tabIndex - the index of the selected option (sign up is 0, log in is 1).
-                 * @param registerCallback - a boolean indicating if the sign in is part of the register-as-dealer process.
-                 */
-                $scope.showSignInDialog = function (ev, tabIndex, registerCallback) {
-                    $mdDialog.show({
-                            controller: 'SignInDialogController',
-                            templateUrl: 'app/components/signed-in/views/sign-in/sign-in-dialog.view.html',
-                            parent: angular.element(document.body),
-                            targetEvent: ev,
-                            clickOutsideToClose: true,
-                            fullscreen: $scope.customFullscreen,
-                            locals: {tab: tabIndex}
-                        })
-                        .then(function (finished) {
-                            // Finished the sign in process
-                            if (registerCallback) {
-                                $location.path("/register");
-                            } else {
-                                $location.path("/home");
-                            }
-                        });
-                };
-
-                /**
-                 * Takes the user to the register-as-dealer page. If he is not signed in, takes him through the sign in process first.
-                 * @param ev - the event that triggered the function.
-                 */
-                $scope.registerAsDealer = function (ev) {
-                    if ($rootScope.dealer) {
-                        $location.path("/register");
-                    } else {
-                        $scope.showSignInDialog(ev, 0, true);
-                    }
-                };
             }]);
 })();

@@ -11,8 +11,8 @@
     DealerFactory.$inject = ['$http', '$rootScope', 'Authentication'];
     function DealerFactory($http, $rootScope, Authentication) {
 
-        var DEFAULT_UN = "g@g.com";
-        var DEFAULT_PW = "09";
+        var DEFAULT_UN = "ubuntu";
+        var DEFAULT_PW = "090909deal";
         var BROADCASTING_PREFIX = 'register-as-dealer-for-';
         var DEALERS_BASE_URL = $rootScope.baseUrl + '/dealers/';
 
@@ -181,13 +181,22 @@
 
         /**
          * Sets the user's information in Intercom.
-         * @param dealer - the user.
+         * @param user - the user.
          */
-        function setIntercom(dealer) {
-            var date = new Date(dealer.register_date);
+        function setIntercom(user) {
+            var date = new Date(user.register_date);
             window.Intercom("update", {
-                name: dealer.full_name, // Full name
-                email: dealer.email, // Email address
+                app_id: $rootScope.INTERCOM_APP_ID,
+                user_id: user.id,
+                user_hash: user.intercom_code,
+                name: user.full_name, // Full name
+                email: user.email,
+                date_of_birth: user.date_of_birth,
+                gender: user.gender,
+                about: user.about,
+                location: user.location,
+                role: user.role,
+                rank: user.rank,
                 created_at: date.getTime() // Signup date as a Unix timestamp
             });
         }

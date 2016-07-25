@@ -44,7 +44,7 @@
         .directive('footerSection', function() {
             return {
                 restrict: 'E',
-                templateUrl: 'app/components/signed-out/shared/footer-section.view.html'
+                templateUrl: 'app/components/signed-in/views/about/footer-section.view.html'
             };
         });
 })();

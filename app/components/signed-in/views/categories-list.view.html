@@ -3,8 +3,9 @@
 <div class="full-screen-categories nav-padding">
 
     <md-list>
-        <md-list-item ng-repeat="category in categories" ng-href="/categories/{{category}}">
+        <md-list-item ng-repeat="category in categories" href="/categories/{{category}}">
             <p>{{category}}</p>
         </md-list-item>
     </md-list>
 </div>
+<menu-footer></menu-footer>

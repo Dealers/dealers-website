@@ -32,7 +32,8 @@ a {
   color: @theme-primary;
   &:hover,
   &:focus {
-    color: inherit;
+    color: #c531df;
+    opacity: 0.75;
     text-decoration: none;
   }
   .link {
@@ -63,6 +64,10 @@ p {
 ul {
   padding: 0;
   list-style-type: none;
+}
+
+label {
+  font-weight: 400;
 }
 
 .bg-primary {
@@ -105,8 +110,8 @@ aside {
   }
 }
 
-.nav-margin-exact {
-  margin-top: @navbar-height !important;
+.nav-padding-exact {
+  padding-top: @navbar-height !important;
 }
 
 button {
@@ -154,6 +159,10 @@ h4 {
 
 // General
 
+.margin-bottom-0 {
+  margin-bottom: 0px;
+}
+
 .margin-bottom-20 {
   margin-bottom: 20px;
 }
@@ -177,8 +186,12 @@ h4 {
   margin: 10px 0;
 }
 
+.info-note {
+  color: @text-light-gray;
+}
+
 .dl-note.dl-input-note {
-  padding: 4px 11px 10px 49px;
+  padding: 2px 11px 10px 10px;
   color: @text-light-gray;
   margin: -20px 0 0;
 }
@@ -196,6 +209,10 @@ p.dl-error {
   background-color: @background-gray;
   border-radius: @rounded-corners-small;
   border: 1px solid rgb(232, 232, 247);
+}
+
+.no-upper-case {
+  text-transform: none !important;
 }
 
 .like-btn {
@@ -275,6 +292,9 @@ md-content.dl-grid {
 
 .uib-datepicker .btn-default {
   background-color: transparent;
+  &.active {
+    background: @theme-primary;
+  }
 }
 
 // Nav Bar
@@ -311,11 +331,6 @@ md-content.dl-grid {
   }
   li > ul.dropdown-menu {
     width: 100%;
-  }
-  @media (max-width: @tablet-width) {
-    span {
-      display: none;
-    }
   }
   .container {
     @media (max-width: @phone-width) {
@@ -544,6 +559,7 @@ md-menu-item > .md-button > a {
     padding-top: 15%;
     padding-bottom: 10%;
     @media (max-width: @phone-width) {
+      padding-top: 25%;
       padding-left: 20px;
       padding-right: 20px;
     }
@@ -688,7 +704,7 @@ md-menu-item > .md-button > a {
   background: white;
   padding: 30px 24px 20px;
   max-width: @phone-width;
-  margin: 0 auto 10px;
+  margin: 0 auto 30px;
   border-radius: @rounded-corners-large;
   box-shadow: @product-cell-shadow;
   p {
@@ -860,10 +876,6 @@ div.noImageBackground {
   text-decoration: line-through;
 }
 
-.profilePicContainer {
-  position: relative;
-}
-
 .dealerProfilePic {
   width: 60px;
   height: 60px;
@@ -873,6 +885,7 @@ div.noImageBackground {
   position: absolute;
   top: -45px;
   right: 0;
+  left: 0;
 }
 
 .defaultProfilePic {
@@ -1111,10 +1124,7 @@ div.noImageBackground {
 .checkout {
   form {
     .dl-form-col {
-      @media (min-width: 1201px) {
-        width: 509px;
-      }
-      @media (min-width: 991px) and (max-width: 1200px) {
+      @media (min-width: 991px) {
         width: 409px;
       }
       @media (min-width: @tablet-width) and (max-width: 990px) {
@@ -1128,7 +1138,10 @@ div.noImageBackground {
   .dl-form-col.right-col {
     max-width: 340px;
   }
-  padding: 10px 40px 30px;
+  padding: 10px 20px 30px;
+  @media(min-width: @phone-width) {
+    padding: 10px 40px 30px;
+  }
   .co-product-pic {
     width: inherit;
     max-width: 340px;
@@ -1158,10 +1171,22 @@ div.noImageBackground {
   }
 }
 
+div.ap-container.nav-padding {
+  @media (max-width:@phone-width) {
+    padding-top: @navbar-height !important;
+  }
+  .framed-container {
+    padding: 5px 20px 30px;
+  }
+}
+
 .ap-form-container {
   .transition-all;
   h2 {
     margin: 24px 0 28px;
+  }
+  &.dl-form {
+    padding: 0 24px 24px;
   }
   .ap-title-container {
     color: @theme-dark;
@@ -1264,47 +1289,41 @@ div.noImageBackground {
   margin: 20px 0;
 }
 
-.ap-share-options-container {
-  margin: 20px;
-}
-
 button.ap-done {
   margin-top: 20px;
 }
 
 // Profile
 
+.pr-settings-container {
+  height: 0;
+  .pr-settings {
+    float: right;
+    @media (min-width: @phone-width) {
+    }
+  }
+}
+
 .pr-header-section {
   position: relative;
   text-align: center;
   background-color: white;
-  padding: @vd-side-padding;
+  padding: 0 10px;
   margin: 50px 0 30px;
   box-shadow: @product-cell-shadow;
 
-  .spinnerContainer {
-    margin-top: 120px auto !important;
+  @media (min-width: @phone-width) {
+    padding: @vd-side-padding;
   }
 
-  .pr-settings {
-    float: right;
-    height: 0px;
-    top: -46px;
-    .pr-settings-button-container {
-      position: relative;
-      top: -44px;
-    }
-    button {
-      position: relative;
-      font-size: 13px;
-    }
+  .spinnerContainer {
+    margin-top: 120px auto !important;
   }
 
   .pr-profile-pic {
     height: 40px;
     border-top: 1px solid rgb(215, 215, 230);
     .dealerProfilePic {
-      position: relative;
       top: -60px;
       width: 100px;
       height: 100px;
@@ -1385,6 +1404,14 @@ button.ap-done {
   }
 }
 
+// Edit Profile
+
+.epr-container {
+  .md-button.btn-primary.btn-single {
+    margin: 0 auto;
+  }
+}
+
 // Purchases
 
 md-list {
@@ -1392,11 +1419,6 @@ md-list {
     min-height: 128px;
   }
   .purchase-list-item {
-    button.received {
-      color: white;
-      font-weight: 600;
-      background-color: @text-success;
-    }
     &.md-3-line .md-list-item-text h4.purchase-amount {
       color: @text-price-green;
       font-weight: bold;
@@ -1412,10 +1434,16 @@ md-list {
     color: @text-price-green;
     font-weight: bold;
   }
-  button.received {
-    color: white;
-    font-weight: 600;
-    background-color: @text-success;
+  h4 {
+    margin: 6px 0;
+  }
+}
+
+button.received {
+  color: white;
+  background-color: @text-success;
+  &.md-button:not([disabled]):hover {
+    background-color: #56F571;
   }
 }
 
@@ -1511,6 +1539,9 @@ md-dialog .dl-form {
   }
   input[type="radio"] {
     margin-left: 12px;
+    &.first {
+      margin-left: 0;
+    }
   }
   div.dl-inline-field-icon {
     display: none;
@@ -1556,7 +1587,11 @@ button.dl-submit {
   }
 }
 
-// Button Styles
+.form-section {
+  margin-bottom: 40px;
+}
+
+  // Button Styles
 
 .md-button {
   border-radius: 5px;
@@ -1744,8 +1779,8 @@ md-dialog {
   }
   md-dialog-actions {
     background-color: @theme-white;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
@@ -1798,6 +1833,12 @@ md-menu-content {
 md-content {
   color: @theme-dark;
   background-color: white;
+  .md-button.btn-primary.btn-single {
+    margin: 0 auto;
+    @media(min-width:@phone-width) {
+      margin: 15px auto;
+    }
+  }
 }
 
 md-tabs-canvas {
@@ -1842,12 +1883,20 @@ md-tabs .md-tab.md-active .tabIndex {
   margin-bottom: 5px;
 }
 
+md-tab-content .dl-form {
+  padding: 0 8px;
+}
+
 .register-as-dealer {
   md-pagination-wrapper, md-tabs-canvas {
     height: 72px;
   }
   md-content {
     padding-bottom: 20px;
+  }
+  p.dl-note.info-note {
+    width: 300px;
+    margin: -10px auto 20px;
   }
 }
 
@@ -1902,7 +1951,10 @@ md-toolbar:not(.md-menu-toolbar) {
 
 // To fix Google's locations autocomplete position.
 .pac-container {
-  top: 540px !important;
+  margin-top: -50px;
+  @media(min-width: @phone-width) {
+    margin-top: -70px;
+  }
 }
 
 // Placeholders
@@ -1922,11 +1974,32 @@ md-toolbar:not(.md-menu-toolbar) {
 // Footer
 
 footer {
-  padding: 50px 0;
-  background-color: @background-gray;
+  padding: 40px 0;
+  background-color: rgba(237,237,246,1);
+  border-top: solid 1px rgb(215, 215, 222);
+  .dark-links;
   @media (max-width: @phone-width) {
     padding-left: 20px;
     padding-right: 20px;
+  }
+}
+
+menu-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  font-size: 0.85em;
+  line-height: 3.1em;
+  padding: 0 16px;
+  background-color: @background-gray;
+  border-top: solid 1px rgb(227,227,232);
+  .dark-links;
+  ul {
+    margin-bottom: 0;
+  }
+  @media(min-width: @phone-width) {
+    position: absolute;
   }
 }
 

@@ -1,0 +1,172 @@
+<dl-navbar></dl-navbar>
+
+<div class="container nav-margin epr-container">
+    <div class="dl-form framed-container ap-form-container">
+
+        <h2>Edit Profile</h2>
+
+        <div>
+            <form name="editProfileForm" ng-submit="submitEdit(editProfileForm)" class="ap-title-container" novalidate>
+                <div id="epr-dealer-profile-photo" class="text-center margin-bottom-20">
+                    <input id="epr-input-profile-pic" name="inputProfilePic" type="file" class="inputfile"
+                           accept="image/*"
+                           photo-input photo="photo" photo-url="photoURL"/>
+                    <label
+                            for="epr-input-profile-pic"
+                            class="profile-pic-btn clickable"
+                            style="background: url({{croppedPhotoURL}}); background-size: contain; background-color: rgb(225,225,231)">
+                    </label>
+                    <label for="epr-input-profile-pic" class="md-button md-btn-small">
+                        {{editProfilePic}}
+                    </label>
+                </div>
+                <div class="dl-form-col single-col">
+                    <div ng-if="userMode == 'viewer_mode'" class="form-section">
+                        <h4>Basic Information</h4>
+                        <div class="dl-field no-icon-field form-group">
+                            <label for="epr-name">
+                                Name
+                            </label>
+                            <input id="epr-name" name="name" type="text"
+                                   placeholder="Your or your business name"
+                                   class="form-control dl-input"
+                                   value="profile.full_name"
+                                   ng-model="profile.full_name"
+                                   required
+                            />
+                        </div>
+                        <div class="dl-field-plus">
+                            <label for="epr-date-of-birth">
+                                Date of Birth
+                            </label>
+                            <input id="epr-date-of-birth" type="text" class="dl-input form-control"
+                                   uib-datepicker-popup="dd.MM.yyyy"
+                                   ng-model="profile.date_of_birth"
+                                   is-open="datepicker.opened"
+                                   datepicker-options="datepicker.options"
+                                   ng-required="false"
+                                   ng-value="profile.date_of_birth | date: 'dd.MM.yyyy'"
+                                   close-text="Close"
+                                   placeholder="Date of Birth"
+                                   ng-focus="openDatepicker()"/>
+                        </div>
+                        <div class="dl-field no-icon-field form-group">
+                            <label for="epr-gender">
+                                Gender
+                            </label>
+                            <div id="epr-gender" class="dl-field" style="display:block">
+                                <input type="radio" name="gender" value="Male" ng-model="profile.gender" class="first">
+                                Male
+                                <input type="radio" name="gender" value="Female" ng-model="profile.gender"> Female
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="userMode == 'dealer_mode'" class="form-section">
+                        <h4>Basic Information</h4>
+                        <div class="dl-field no-icon-field form-group">
+                            <label for="epr-name-dealer">
+                                Your or your business name
+                            </label>
+                            <input id="epr-name-dealer" name="name" type="text"
+                                   placeholder="Your or your business name"
+                                   class="form-control dl-input"
+                                   value="profile.full_name"
+                                   ng-model="profile.full_name"
+                                   required
+                            />
+                        </div>
+                        <div class="dl-field-plus">
+                            <div class="dl-field no-icon-field form-group">
+                                <label for="epr-about">
+                                    About
+                                </label>
+                                <textarea id="epr-about" name="about" placeholder="About"
+                                          class="dl-input form-control"
+                                          ng-model="profile.about"
+                                          required>
+                                </textarea>
+                            </div>
+                            <p class="dl-note dl-input-note">
+                                Tell us about yourself - what are you selling? What are your products about?
+                            </p>
+                        </div>
+                        <div class="dl-field-plus">
+                            <div class="dl-field no-icon-field form-group">
+                                <label for="epr-location">
+                                    Location
+                                </label>
+                                <div style="position: relative">
+                                    <input id="epr-location" name="epr-location" type="text"
+                                           placeholder="Location"
+                                           class="form-control dl-input"
+                                           ng-model="profile.location"
+                                           required
+                                           google-location-autocomplete
+                                           location="profile.location"
+                                           autocomplete="on"
+                                    /></div>
+                            </div>
+                            <p class="dl-note dl-input-note">
+                                Where are you or your business located?
+                            </p>
+                        </div>
+                    </div>
+                    <div ng-if="userMode == 'dealer_mode'" class="form-section">
+                        <h4>Bank Account</h4>
+                        <div class="dl-field no-icon-field form-group">
+                            <label for="rad-account-number">
+                                Account Number
+                            </label>
+                            <input id="rad-account-number" name="rad-account-number" type="text"
+                                   placeholder="Eg. 123123"
+                                   class="form-control dl-input"
+                                   value="bank_account.account_number"
+                                   ng-model="bank_account.account_number"
+                                   required
+                            />
+                        </div>
+                        <div class="dl-field no-icon-field form-group">
+                            <label for="rad-branch-number">
+                                Branch Number
+                            </label>
+                            <input id="rad-branch-number" name="rad-branch-number" type="text"
+                                   placeholder="Eg. 456"
+                                   class="form-control dl-input"
+                                   value="bank_account.branch_number"
+                                   ng-model="bank_account.branch_number"
+                                   required
+                            />
+                        </div>
+                        <div class="dl-field no-icon-field form-group">
+                            <label for="rad-bank">
+                                Bank Name
+                            </label>
+                            <input id="rad-bank" name="rad-bank" type="text"
+                                   placeholder="Eg. Hapoalim"
+                                   class="form-control dl-input"
+                                   value="bank_account.bank"
+                                   ng-model="bank_account.bank"
+                                   required
+                            />
+                        </div>
+                        <div class="dl-field no-icon-field form-group">
+                            <label for="rad-bank">
+                                Account Holder Name
+                            </label>
+                            <input id="rad-account-holder" name="rad-account-holder" type="text"
+                                   placeholder="Eg. Yossi Cohen"
+                                   class="form-control dl-input"
+                                   value="bank_account.account_holder"
+                                   ng-model="bank_account.account_holder"
+                                   required
+                            />
+                        </div>
+                        <p class="dl-error dl-note text-center" ng-show="showError">{{errorMessage}}</p>
+                    </div>
+                </div> <!--dl-form-col single-col-->
+                <md-button type="submit" class="btn-primary btn-single dl-submit">Save</md-button>
+            </form>
+        </div> <!-- the entire form -->
+
+    </div>    <!-- ep-form-container -->
+</div>    <!-- container -->

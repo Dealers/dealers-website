@@ -25,6 +25,12 @@
                 }
 
                 $scope.done = function() {
+                    if ($scope.product) {
+                        if ($scope.product.id) {
+                            $location.path("/products/" + $scope.product.id);
+                            return;
+                        }
+                    }
                     $location.path("/home");
                 };
 

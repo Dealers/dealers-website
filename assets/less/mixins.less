@@ -27,6 +27,15 @@
   }
 }
 
+.dark-links {
+  a {
+    color: @text-dark-gray;
+    &:hover, &:active {
+      color: @text-light-gray;
+    }
+  }
+}
+
 .button-variant(@color; @background; @border) {
 	color: @color;
 	background-color: @background;

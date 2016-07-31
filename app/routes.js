@@ -6,7 +6,6 @@ angular.module('DealersApp')
                 templateUrl: 'app/components/home/home.view.html',
                 controller: 'HomeController'
             })
-            .when('/home', {redirectTo: '/'})
             .when('/register', {
                 templateUrl: 'app/components/signed-in/views/sign-in/register-as-dealer.view.html',
                 controller: 'RegisterAsDealerController'
@@ -35,6 +34,11 @@ angular.module('DealersApp')
                 templateUrl: 'app/components/signed-in/views/profile.view.html',
                 controller: 'ProfileController',
                 controllerAs: 'prCtrl'
+            })
+            .when('/edit-profile/:dealerID', {
+                templateUrl: 'app/components/signed-in/views/edit-profile.view.html',
+                controller: 'EditProfileController',
+                controllerAs: 'eprCtrl'
             })
             .when('/new-product/basic-info', {
                 templateUrl: 'app/components/signed-in/views/products/add-product-1.view.html',
@@ -76,6 +80,9 @@ angular.module('DealersApp')
             })
             .when('/terms-and-privacy', {
                 templateUrl: 'app/components/signed-in/views/about/terms-and-privacy.view.html'
+            })
+            .when('/contact', {
+                templateUrl: 'app/components/signed-in/views/about/contact.view.html'
             })
             .otherwise({redirectTo: '/'});
 

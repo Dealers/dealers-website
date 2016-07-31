@@ -13,7 +13,8 @@
 
         var DEFAULT_UN = "ubuntu";
         var DEFAULT_PW = "090909deal";
-        var BROADCASTING_PREFIX = 'register-as-dealer-for-';
+        var REGISTER_BROADCASTING_PREFIX = 'register-as-dealer-for-';
+        var UPDATE_BROADCASTING_PREFIX = 'update-as-dealer-for-';
         var DEALERS_BASE_URL = $rootScope.baseUrl + '/dealers/';
 
         this.saveCurrent = saveCurrent;
@@ -27,7 +28,10 @@
         service.logIn = logIn;
         service.logOut = logOut;
         service.getDealer = getDealer;
+        service.getShortDealer = getShortDealer;
         service.registerDealer = registerDealer;
+        service.updateDealer = updateDealer;
+        service.updateViewer = updateViewer;
         service.setIntercom = setIntercom;
         service.updateShippingAddress = updateShippingAddress;
 
@@ -135,6 +139,15 @@
         }
 
         /**
+         * Downloads the dealer's information in short format (name, photo and user object).
+         * @param dealerID - the id of the dealer to download.
+         * @returns {*} the $http get response object.
+         */
+        function getShortDealer(dealerID) {
+            return $http.get($rootScope.baseUrl + "/dealershorts/" + dealerID + "/")
+        }
+
+        /**
          * Register the received dealer.
          * @param bankAccount - the new dealer's bank account object.
          * @param sender - the controller that asked for the service.
@@ -151,16 +164,66 @@
                                     // success
                                     var dealer = response.data;
                                     ctrl.saveCurrent(dealer);
-                                    broadcastResult(BROADCASTING_PREFIX + sender, true, dealer);
+                                    broadcastResult(REGISTER_BROADCASTING_PREFIX + sender, true, dealer);
                                 },
                                 function (httpError) {
                                     // error
-                                    broadcastResult(BROADCASTING_PREFIX + sender, false, httpError);
+                                    broadcastResult(REGISTER_BROADCASTING_PREFIX + sender, false, httpError);
                                 });
                     },
                     function (httpError) {
                         // error
-                        broadcastResult(BROADCASTING_PREFIX + sender, false, httpError);
+                        broadcastResult(REGISTER_BROADCASTING_PREFIX + sender, false, httpError);
+                    });
+        }
+
+        /**
+         * Updates the received dealer's information (via Edit Profile).
+         * @param bankAccount - the dealer's bank account object.
+         * @param dealer - the updated dealer object.
+         * @param sender - the controller that asked for the service.
+         */
+        function updateDealer(bankAccount, dealer, sender) {
+            $http.patch($rootScope.baseUrl + '/bank_accounts/' + bankAccount.id + '/', bankAccount)
+                .then(function (response) {
+                        // success
+                        console.log("Updated the bank account information successfully. Now update the the dealer's information.");
+                        dealer = cleanDealerObject(dealer);
+                        $http.patch(DEALERS_BASE_URL + dealer.id + '/', dealer)
+                            .then(function (response) {
+                                    // success
+                                    dealer = response.data;
+                                    ctrl.saveCurrent(dealer);
+                                    broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, true, dealer);
+                                },
+                                function (httpError) {
+                                    // error
+                                    broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, false, httpError);
+                                });
+                    },
+                    function (httpError) {
+                        // error
+                        broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, false, httpError);
+                    });
+        }
+
+        /**
+         * Updates the received viewer's information (via Edit Profile).
+         * @param viewer - the updated profile object of the viewer.
+         * @param sender - the controller that asked for the service.
+         */
+        function updateViewer(viewer, sender) {
+            viewer = cleanDealerObject(viewer);
+            $http.patch(DEALERS_BASE_URL + viewer.id + '/', viewer)
+                .then(function (response) {
+                        // success
+                        viewer = response.data;
+                        ctrl.saveCurrent(viewer);
+                        broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, true, viewer);
+                    },
+                    function (httpError) {
+                        // error
+                        broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, false, httpError);
                     });
         }
 

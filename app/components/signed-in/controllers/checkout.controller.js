@@ -15,8 +15,8 @@
      * @param $scope - the isolated scope of the controller.
      * @param $mdDialog - the mdDialog service of the Material Angular library.
      */
-        .controller('CheckoutController', ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', 'ActiveSession', 'Product', 'ProductPhotos', 'Purchase',
-            function ($scope, $rootScope, $routeParams, $location, $mdDialog, ActiveSession, Product, ProductPhotos, Purchase) {
+        .controller('CheckoutController', ['$scope', '$rootScope', '$routeParams', '$location', '$mdMedia', '$mdDialog', 'ActiveSession', 'Product', 'ProductPhotos', 'Purchase',
+            function ($scope, $rootScope, $routeParams, $location, $mdMedia, $mdDialog, ActiveSession, Product, ProductPhotos, Purchase) {
 
                 // First check if there's a product object in the ActiveSession service. If not, download it.
                 // Then create the purchase object.
@@ -34,6 +34,11 @@
 
                 function initializeView() {
                     $scope.product = ActiveSession.getTempData("PRODUCT"); // Retrieves the product from the Active Session service.
+                    $scope.$watch(function () {
+                        return $mdMedia('(max-width: 722px)');
+                    }, function (isSmallSize) {
+                        $scope.smallSize = isSmallSize;
+                    });
                     if (!$scope.product) {
                         // There is no product in the session, download it form the server.
                         downloadProduct();
@@ -141,7 +146,7 @@
                     $scope.purchase.currency = product_currency;
 
                     var handler = StripeCheckout.configure({
-                        key: 'pk_test_q3cpGyBIL6rsGswSQbP3tMpK',
+                        key: $rootScope.stripe_publishable_key,
                         image: imagePath,
                         locale: 'auto',
                         email: $rootScope.dealer.email,

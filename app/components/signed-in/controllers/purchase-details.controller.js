@@ -12,8 +12,8 @@
      * @param $scope - the isolated scope of the controller.
      * @param $mdDialog - the mdDialog service of the Material Angular library.
      */
-        .controller('PurchaseDetailsController', ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', '$mdMedia', 'ActiveSession', 'Purchase', 'Product',
-            function ($scope, $rootScope, $routeParams, $location, $mdDialog, $mdMedia, ActiveSession, Purchase, Product) {
+        .controller('PurchaseDetailsController', ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', '$mdMedia', 'ActiveSession', 'Purchase', 'Product', 'Dealer',
+            function ($scope, $rootScope, $routeParams, $location, $mdDialog, $mdMedia, ActiveSession, Purchase, Product, Dealer) {
 
                 var DOWNLOADED_STATUS = "downloaded";
                 var DOWNLOADING_STATUS = "downloading";
@@ -26,12 +26,12 @@
                     $scope.status = DOWNLOADING_STATUS;
                     $scope.screenIsSmall = $mdMedia('xs');
                     $scope.purchase = ActiveSession.getTempData(ACTIVE_SESSION_PURCHASE_KEY); // Retrieves the product from the Active Session service.
+                    $scope.isDealer = false; // Whether the user is the dealer of this purchase or not.
                     if (!$scope.purchase) {
                         // There is no purchase in the session, download it form the server.
                         downloadPurchase();
                     } else {
                         $scope.status = DOWNLOADED_STATUS;
-                        $scope.shipping_address = $scope.purchase.shipping_address;
                         setPurchaseDetails();
                     }
                 }
@@ -42,7 +42,6 @@
                         .then(function (result) {
                             $scope.status = DOWNLOADED_STATUS;
                             $scope.purchase = result.data;
-                            $scope.shipping_address = $scope.purchase.shipping_address;
                             setPurchaseDetails();
                         }, function (httpError) {
                             $scope.status = FAILED_STATUS;
@@ -52,9 +51,25 @@
                 }
 
                 function setPurchaseDetails() {
+                    $scope.shipping_address = $scope.purchase.shipping_address;
+                    if (!$scope.purchase.buyer.id) {
+                        // purchase.buyer contains the id of the buyer. Need to download his name and photo.
+                        Dealer.getShortDealer($scope.purchase.buyer)
+                            .then(function (result) {
+                                $scope.purchase.buyer = result.data;
+                            }, function (httpError) {
+                                console.log("Couldn't download the buyer's name and photo.");
+                            })
+                    }
+                    var dealerID = $scope.purchase.dealer.id ? $scope.purchase.dealer.id : $scope.purchase.dealer;
+                    $scope.isDealer = dealerID == $rootScope.dealer.id;
                     var key = $scope.purchase.currency;
                     $scope.purchase.currency = Product.currencyForKey(key);
-                    downloadProduct($scope.purchase.deal);
+                    if ($scope.purchase.deal.id) {
+                        downloadProduct($scope.purchase.deal.id);
+                    } else {
+                        downloadProduct($scope.purchase.deal);
+                    }
                 }
 
                 function downloadProduct(productID) {
@@ -75,20 +90,20 @@
                  * @returns {string} the title of the button.
                  */
                 $scope.markButtonTitle = function (purchase) {
-                    if ($scope.purchase) {
-                        if ($scope.purchase.dealer == $rootScope.dealer.id) {
-                            if (purchase.status == Purchase.SENT_STATUS) {
-                                return "Marked as sent";
-                            } else {
-                                return "Mark as sent";
-                            }
+                    if (!purchase) return "";
+                    if ($scope.isDealer) {
+                        if (purchase.status == Purchase.SENT_STATUS) {
+                            return "Marked as sent";
+                        } else if (purchase.status == Purchase.RECEIVED_STATUS) {
+                            return "Received!"
+                        } else {
+                            return "Mark as sent";
                         }
-                        else {
-                            if (purchase.status == Purchase.RECEIVED_STATUS) {
-                                return "Marked as received";
-                            } else {
-                                return "Mark as received";
-                            }
+                    } else {
+                        if (purchase.status == Purchase.RECEIVED_STATUS) {
+                            return "Marked as received";
+                        } else {
+                            return "Mark as received";
                         }
                     }
                 };

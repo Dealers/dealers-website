@@ -16,19 +16,19 @@
                         <div class="dl-form-col left-col pull-left">
                             <div class="dl-field">
                                 <img src="/assets/images/icons/@2x/Web_Icons_name_icon.png"/>
-                                <input id="fullName" name="fullName" type="text" placeholder="Full Name"
+                                <input id="fullName" name="fullName" type="text" placeholder="Full Name *"
                                        class="form-control dl-input"
                                        ng-model="dealer.full_name" required/>
                             </div>
                             <div class="dl-field">
                                 <img src="/assets/images/icons/@2x/Web_Icons_email_icon.png"/>
-                                <input id="email" name="email" type="email" placeholder="Email"
+                                <input id="email" name="email" type="email" placeholder="Email *"
                                        class="form-control dl-input"
                                        ng-model="dealer.email" required/>
                             </div>
                             <div class="dl-field">
                                 <img src="/assets/images/icons/@2x/Web_Icons_password_icon.png"/>
-                                <input id="password" name="password" type="password" placeholder="Password"
+                                <input id="password" name="password" type="password" placeholder="Password *"
                                        class="form-control dl-input"
                                        ng-model="dealer.user.password" required/>
                             </div>
@@ -50,10 +50,9 @@
                                 <img src="/assets/images/icons/@2x/Web_Icons_gender_icon.png"/>
                                 <input type="radio" name="gender" value="Male" ng-model="dealer.gender"> Male
                                 <input type="radio" name="gender" value="Female" ng-model="dealer.gender"> Female
-                                <span class="text-muted" style="margin-left: 5px">*</span>
                             </div>
                             <p class="dl-note text-muted it">
-                                <i>* optional</i>
+                                <i>* required</i>
                             </p>
                         </div>
                         <p class="dl-error dl-note text-center" ng-show="showError">{{errorMessage}}</p>
@@ -72,7 +71,7 @@
                                    ng-model="logIn.email" required/>
                         </div>
                         <div class="dl-field">
-                            <input name="password" type="password" placeholder="Password" class="form-control dl-input"
+                            <input name="password" type="password" placeholder="Password *" class="form-control dl-input"
                                    ng-model="logIn.password" required/>
                         </div>
                         <p class="dl-error dl-note text-center" ng-show="showError">{{errorMessage}}</p>

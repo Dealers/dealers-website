@@ -147,8 +147,8 @@
             $http.post($rootScope.baseUrl + ADD_PRODUCT_PATH, data)
                 .then(function (response) {
                     console.log("Product uploaded successfully!");
+                    setProduct(response.data);
                     $rootScope.$broadcast(UPLOAD_FINISHED_MESSAGE, {success: true, message: null});
-                    clearSession();
                 }, function (err) {
                     console.log("There was an error while uploading the product: " + err.data);
                     $rootScope.$broadcast(UPLOAD_FINISHED_MESSAGE, {success: false, message: err.data});

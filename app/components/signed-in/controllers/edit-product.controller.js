@@ -23,8 +23,9 @@
                 var UPLOAD_FINISHED_MESSAGE = 'ep-upload-finished';
                 var EP_SESSION = 'epSession';
                 var DONE_UPLOAD_MESSAGE = "Changes Saved!";
+                var PRODUCT_URL = $rootScope.baseUrl + '/alldeals/' + $routeParams.productID + '/';
 
-                $scope.originalProduct = {}; // The product without the changes that were taken place in this Edit Product session.
+                $scope.originalDealer = {}; // The product without the changes that were taken place in this Edit Product session.
                 $scope.product = {};
                 $scope.currency = SHEKEL;
                 $scope.discountType = PERCENTAGE;
@@ -71,8 +72,8 @@
                 function setProductInView(product) {
                     if (product) {
                         $scope.status = 'downloaded';
-                        $scope.originalProduct = Product.mapData(product);
-                        $scope.product = $.extend({}, $scope.originalProduct);
+                        $scope.originalDealer = Product.mapData(product);
+                        $scope.product = $.extend({}, $scope.originalDealer);
                         fillOptionMenus();
                         setProductPhotos();
                     } else {
@@ -378,7 +379,7 @@
                         $scope.product.discount_type = $scope.discountType;
                     }
                     // See if there were any changes
-                    if ($scope.changedPhotos || !Product.areEqual($scope.originalProduct, $scope.product)) {
+                    if ($scope.changedPhotos || !Product.areEqual($scope.originalDealer, $scope.product)) {
                         // There were changes, validate and upload them to the server.
                         if (!validation(form, event)) {
                             return;
@@ -460,6 +461,39 @@
                     return true;
                 }
 
+                $scope.deleteProduct = function (event) {
+                    var confirm = $mdDialog.confirm()
+                        .title('Delete Product')
+                        .textContent('Are you absolutely sure that you want to delete this product? It cannot be undone!')
+                        .ariaLabel('Delete product')
+                        .targetEvent(event)
+                        .ok('Yes, delete this product')
+                        .cancel('Cancel');
+                    $mdDialog.show(confirm).then(function () {
+                        Product.deleteProduct(PRODUCT_URL)
+                            .then(function (response) {
+                                    // success
+                                    console.log("Product deleted successfully.");
+                                    $timeout($rootScope.showToast, 1000, true, "Deleted the product.");
+                                    $location.path("/home");
+                                },
+                                function (httpError) {
+                                    // error
+                                    console.log(httpError.status + " : " + httpError.data);
+                                    $mdDialog.show(
+                                        $mdDialog.alert()
+                                            .parent(angular.element(document.body))
+                                            .clickOutsideToClose(true)
+                                            .title("Couldn't delete the product")
+                                            .textContent("Please try again!")
+                                            .ariaLabel('Alert Dialog')
+                                            .ok("OK")
+                                            .targetEvent(ev)
+                                    );
+                                });
+                    });
+                };
+
                 window.onbeforeunload = function () {
                     return CONFIRM_EXIT_MESSAGE;
                 };
@@ -470,7 +504,7 @@
                  * @type {*|(function())}
                  */
                 $scope.$on('$locationChangeStart', function (event, next) {
-                    if (($scope.changedPhotos || !Product.areEqual($scope.originalProduct, $scope.product)) && !$scope.savedChanges) {
+                    if (($scope.changedPhotos || !Product.areEqual($scope.originalDealer, $scope.product)) && !$scope.savedChanges) {
                         var answer = confirm("Are you sure you want to leave this page? The changes will be lost.");
                         if (!answer) {
                             event.preventDefault();

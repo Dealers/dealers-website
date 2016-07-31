@@ -8,8 +8,8 @@
     angular.module('DealersApp')
         .factory('Photos', PhotosFactory);
 
-    PhotosFactory.$inject = ['$rootScope'];
-    function PhotosFactory($rootScope) {
+    PhotosFactory.$inject = ['$mdMedia'];
+    function PhotosFactory($mdMedia) {
 
         var service = {};
 
@@ -17,6 +17,7 @@
             maxWidth: 480,
             quality: 0.6
         };
+        var isMobile = $mdMedia('xs') || $mdMedia('sm');
 
         service.hexToBase64 = hexToBase64;
         service.imageDataToUrls = imageDataToUrls;
@@ -100,8 +101,14 @@
             };
             reader.onload = function (e) {
                 img.src = e.target.result;
-                var photoBlob = dataURItoBlob(reduceSize(img));
-                uploadFunc(counter, photoName, photoBlob);
+                var photoBlob;
+                if (!isMobile) {
+                    photoBlob = dataURItoBlob(reduceSize(img));
+                    uploadFunc(counter, photoName, photoBlob);
+                } else {
+                    uploadFunc(counter, photoName, photo);
+                }
+
             };
 
             reader.readAsDataURL(photo);

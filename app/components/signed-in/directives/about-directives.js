@@ -46,5 +46,12 @@
                 restrict: 'E',
                 templateUrl: 'app/components/signed-in/views/about/footer-section.view.html'
             };
+        })
+        .directive('menuFooter', function() {
+            
+            return {
+                restrict: 'E',
+                templateUrl: 'app/components/signed-in/views/about/menu-footer.view.html'
+            };
         });
 })();

@@ -47,7 +47,7 @@
                             DealerPhotos.getPhoto(scope.comment.dealer.photo, scope.comment.dealer.id, sender);
                             scope.profilePicStatus = "loading";
                         }
-                        scope.$on('downloaded-' + sender + '-profile-pic-' + scope.comment.dealer.id, function (event, args) {
+                        scope.$on('downloaded-' + sender + '-dealer-pic-' + scope.comment.dealer.id, function (event, args) {
                             if (args.success) {
                                 scope.commenterPhoto = args.data;
                                 scope.profilePicStatus = "doneLoading";

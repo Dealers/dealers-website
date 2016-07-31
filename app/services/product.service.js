@@ -4,8 +4,8 @@
     angular.module('DealersApp')
         .factory('Product', ProductFactory);
 
-    ProductFactory.$inject = ['$http', '$rootScope', 'Purchase'];
-    function ProductFactory($http, $rootScope, Purchase) {
+    ProductFactory.$inject = ['$http', '$rootScope'];
+    function ProductFactory($http, $rootScope) {
 
         var ctrl = this;
         var service = {};

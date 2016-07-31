@@ -1,7 +1,7 @@
 <dl-navbar></dl-navbar>
 
-<div class="container nav-margin" ng-cloak>
-    <div class="framed-container container-padding purchase-details nav-margin" ng-switch on="status">
+<div class="container nav-padding" ng-cloak>
+    <div class="framed-container container-padding purchase-details" ng-switch on="status">
         <div ng-switch-when="downloading">
             <loading-spinner></loading-spinner>
         </div>
@@ -19,10 +19,18 @@
                             </li>
                             <li>Qty: <b>{{purchase.quantity}}</b> <span ng-show="purchase.quantity > 1"><b>({{purchase.amount / 100 | currency: purchase.currency}} each)</b></span>
                             </li>
-                            <li>Bought on the on the <b>{{purchase.purchase_date | date: 'short'}}</b></li>
                             <li>Status: <b>{{purchase.status}}</b></li>
+                            <li>Purchase Date: <b>{{purchase.purchase_date | date: 'short'}}</b></li>
+                            <li ng-show="purchase.send_date != null">Send Date: <b>{{purchase.send_date | date:
+                                'short'}}</b></li>
+                            <li ng-show="purchase.receive_date != null">Receive Date: <b>{{purchase.receive_date | date:
+                                'short'}}</b></li>
                             <li ng-show="purchase.estimated_delivery_time > 0">ETD: <b>{{purchase.estimated_delivery_time}}
                                 days</b>
+                            </li>
+                            <li>
+                                Bought by: <a
+                                    ng-href="/dealers/{{purchase.buyer.id}}"><b>{{purchase.buyer.full_name}}</b></a>
                             </li>
                         </ul>
                     </div>
@@ -35,6 +43,20 @@
                             </li>
                             <li>Country: <b>{{purchase.shipping_address.country}}</b></li>
                         </ul>
+                    </div>
+                    <div class="margin-bottom-30">
+                        <h4>Status</h4>
+                        <md-button ng-show="isDealer" class="md-button md-btn-small"
+                                   ng-class="{'received': purchase.status == 'Sent'}"
+                                   ng-click="changeStatus($event, purchase)" update-status-dealer
+                                   ng-disabled="purchase.status == 'Received'">
+                            {{markButtonTitle(purchase)}}
+                        </md-button>
+                        <md-button ng-hide="isDealer" class="md-button md-btn-small"
+                                   ng-class="{'received': purchase.status == 'Received'}"
+                                   ng-click="changeStatus($event, purchase)" update-status-buyer>
+                            {{markButtonTitle(purchase)}}
+                        </md-button>
                     </div>
                 </div>
                 <div flex flex-xs="40">

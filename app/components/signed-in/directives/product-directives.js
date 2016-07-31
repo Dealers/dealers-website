@@ -93,7 +93,7 @@
                         } else {
                             scope.profilePic = DealerPhotos
                         }
-                        scope.$on('downloaded-' + sender + '-profile-pic-' + scope.product.dealer.id, function (event, args) {
+                        scope.$on('downloaded-' + sender + '-dealer-pic-' + scope.product.dealer.id, function (event, args) {
                             if (args.success) {
                                 scope.profilePic = args.data;
                                 product.dealer.profilePic = scope.profilePic;

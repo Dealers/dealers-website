@@ -5,16 +5,17 @@
                 <img ng-src="../../assets/images/icons/logo_clean_small.png"/>
             </a>
         </div>
-        <ul class="navbar-left nav">
+        <ul class="nav navbar-left">
             <li>
                 <a class="nav-button mobile" ng-click="toggleSearchBar($event)" ng-show="phoneMode">
                     <img src="../../../../assets/images/icons/@2x/Web_Icons_navbar_search_button.png">
                 </a>
             </li>
         </ul>
-        <div class="navbar-search navbar-left nav dl-fade" ng-hide="!searchBarPresented && phoneMode"
-             ng-class="{searchBarPresented: searchBarPresented }">
-            <form name="searchForm" class="navbar-left" ng-submit="search(searchForm)" novalidate="">
+        <div class="navbar-search nav dl-fade"
+             ng-hide="!searchBarPresented && phoneMode" ng-class="{searchBarPresented: searchBarPresented,
+             'navbar-left': !phoneMode && !tabletMode}">
+            <form name="searchForm" ng-submit="search(searchForm)" novalidate="">
                 <div class="form-group">
                     <input
                             name="search"
@@ -27,22 +28,22 @@
                 </div>
             </form>
         </div>
-        <ul class="navbar-left nav">
+        <ul ng-class="{'navbar-left': !phoneMode && !tabletMode}"  class="nav">
             <li>
-                <md-menu md-offset="0 62">
+                <md-menu md-offset="0 62" class="dark-links">
                     <a class="nav-button non-mobile" ng-click="toggleMenu($mdOpenMenu, $mdMenuIsOpen, $event)">
-                        <md-tooltip>
-                            Categories
-                        </md-tooltip>
                         <img src="../../../../assets/images/icons/@2x/Web_Icons_navbar_categories_icon.png">
                         <span class="caret"></span>
                     </a>
-                    <md-menu-content width="5">
-                        <md-menu-item ng-repeat="category in categories">
-                            <md-button href="/categories/{{category}}">
-                                {{category}}
-                            </md-button>
-                        </md-menu-item>
+                    <md-menu-content style="position: relative; padding-bottom: 40px" width="5">
+                        <md-content>
+                            <md-menu-item ng-repeat="category in categories">
+                                <md-button href="/categories/{{category}}">
+                                    {{category}}
+                                </md-button>
+                            </md-menu-item>
+                        </md-content>
+                        <menu-footer></menu-footer>
                     </md-menu-content>
                 </md-menu>
                 <a href="/categories" class="nav-button mobile">
@@ -50,54 +51,39 @@
                 </a>
             </li>
         </ul>
-        <ul id="nav-add-product" class="navbar-right nav" ng-if="mode == 'Dealer'">
+        <ul id="nav-add-product" ng-class="{'navbar-right': !phoneMode && !tabletMode}" class="nav" ng-if="mode == 'Dealer'">
             <li>
                 <a href="/new-product/basic-info">
-                    <md-tooltip>
-                        Add Product
-                    </md-tooltip>
                     <div>
                         <img src="../../../../assets/images/icons/@2x/Web_Icons_add_product_button.png"/>
                     </div>
                 </a>
             </li>
         </ul>
-        <ul id="nav-profile" class="navbar-right nav" ng-if="mode != 'Guest'">
+        <ul id="nav-profile" ng-class="{'navbar-right': !phoneMode && !tabletMode}" class="nav" ng-if="mode != 'Guest'">
             <li>
                 <a href="/dealers/{{dealer.id}}">
-                    <md-tooltip>
-                        Profile
-                    </md-tooltip>
                     <div>
                         <img class="profileThumbnail img-circle" ng-src="{{userProfilePic}}"/>
-                        <span>{{dealer.full_name}}</span>
+                        <span class="non-mobile">{{dealer.full_name}}</span>
                     </div>
                 </a>
             </li>
         </ul>
-        <ul id="nav-sell" class="navbar-right nav" style="margin-right: 10px;" ng-if="mode != 'Dealer'"
+        <ul id="nav-sell" ng-class="{'navbar-right': !phoneMode && !tabletMode}" class="nav" ng-if="mode != 'Dealer'"
             register-as-dealer>
             <li>
                 <a>
                     <div class="emphasize">
-                        Sell <span class="non-mobile"> with Dealers </span>
+                        Sell <span class="non-mobile"> with Dealers</span>
                     </div>
                 </a>
             </li>
         </ul>
-        <ul id="nav-sign-up" class="navbar-right nav" ng-if="mode == 'Guest'" ng-click="showSignInDialog($event, 0)">
+        <ul id="nav-login" ng-class="{'navbar-right': !phoneMode && !tabletMode}" class="nav" ng-if="mode == 'Guest'" register-as-dealer>
             <li>
                 <a style="padding-top: 12px;">
-                    <div>
-                        Sign Up
-                    </div>
-                </a>
-            </li>
-        </ul>
-        <ul id="nav-login" class="navbar-right nav" ng-if="mode == 'Guest'" ng-click="showSignInDialog($event, 1)">
-            <li>
-                <a style="padding-top: 12px;">
-                    <div>
+                    <div id="log-in">
                         Log In
                     </div>
                 </a>

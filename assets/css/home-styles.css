@@ -5,6 +5,13 @@
 .clickable:hover {
   opacity: 0.4;
 }
+.dark-links a {
+  color: #646473;
+}
+.dark-links a:hover,
+.dark-links a:active {
+  color: #8c8c9b;
+}
 .xs-font {
   font-size: 12px;
 }

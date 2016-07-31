@@ -8,7 +8,7 @@
     function DealerPhotosFactory($rootScope) {
 
         var KEY = "media/Profile_Photos/";
-        var BROADCASTING_PREFIX = 'profile-pic-uploaded-for-';
+        var BROADCASTING_PREFIX = 'dealer-pic-uploaded-for-';
 
         var service = {};
 
@@ -21,7 +21,7 @@
         return service;
 
         /**
-         * Determines if the dealer has a profile picture or not.
+         * Determines if the dealer has a dealer picture or not.
          * @param photoAdderss - the address of the photo (if exists).
          * @returns {boolean} - true if exists, else false.
          */
@@ -30,7 +30,7 @@
         }
 
         /**
-         * Downloads the profile pic of the received user.
+         * Downloads the dealer pic of the received user.
          * @param key - the key in which the photo is located.
          * @param dealerID - the id of the user.
          * @param sender - the controller that asked for the service.
@@ -41,16 +41,16 @@
                 function (error, data) {
                     var message;
                     if (error != null) {
-                        message = "Failed to download dealer's profile pic" + dealerID + ":" + error.message;
-                        $rootScope.$broadcast('downloaded-' + sender + '-profile-pic-' + dealerID, {
+                        message = "Failed to download dealer's dealer pic" + dealerID + ":" + error.message;
+                        $rootScope.$broadcast('downloaded-' + sender + '-dealer-pic-' + dealerID, {
                             success: false,
                             message: message
                         });
                     } else {
-                        message = "Downloaded dealer's profile pic successfully!";
+                        message = "Downloaded dealer's dealer pic successfully!";
                         var blob = new Blob([data.Body], {'type': 'image/png'});
                         var url = URL.createObjectURL(blob);
-                        $rootScope.$broadcast('downloaded-' + sender + '-profile-pic-' + dealerID, {
+                        $rootScope.$broadcast('downloaded-' + sender + '-dealer-pic-' + dealerID, {
                             success: true,
                             data: url
                         });
@@ -60,8 +60,8 @@
         }
 
         /**
-         * Uploads the profile pic of the user.
-         * @param photo - the user's profile pic.
+         * Uploads the dealer pic of the user.
+         * @param photo - the user's dealer pic.
          * @param sender - the controller that asked for the service.
          */
         function uploadPhoto(photo, sender) {
@@ -93,7 +93,7 @@
             var dealerID = String($rootScope.dealer.id);
             var d = new Date();
             var date = String(d.getTime() / 1000);
-            return dealerID + "_" + date + "_" + "profile" + ".png";
+            return dealerID + "_" + date + "_" + "dealer" + ".png";
         }
     }
 })();

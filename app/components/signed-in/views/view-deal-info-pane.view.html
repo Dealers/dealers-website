@@ -31,6 +31,9 @@
     </md-button>
     <div class="vd-more-description"
          ng-show="product.more_description && product.more_description!='None'">
+        <p ng-repeat="paragraph in product.more_description.split('\n')">
+            {{paragraph}}
+        </p>
         <p>
             {{product.more_description}}
         </p>

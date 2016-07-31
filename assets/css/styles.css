@@ -21,6 +21,13 @@
 .clickable:hover {
   opacity: 0.4;
 }
+.dark-links a {
+  color: #646473;
+}
+.dark-links a:hover,
+.dark-links a:active {
+  color: #8c8c9b;
+}
 html,
 body {
   width: 100%;
@@ -48,7 +55,8 @@ a {
 }
 a:hover,
 a:focus {
-  color: inherit;
+  color: #c531df;
+  opacity: 0.75;
   text-decoration: none;
 }
 a .link:hover,
@@ -73,6 +81,9 @@ p {
 ul {
   padding: 0;
   list-style-type: none;
+}
+label {
+  font-weight: 400;
 }
 .bg-primary {
   background-color: #9c27b0;
@@ -107,8 +118,8 @@ aside {
     margin-top: 54px !important;
   }
 }
-.nav-margin-exact {
-  margin-top: 54px !important;
+.nav-padding-exact {
+  padding-top: 54px !important;
 }
 button {
   background: none;
@@ -150,6 +161,9 @@ h4 {
     padding: 0px;
   }
 }
+.margin-bottom-0 {
+  margin-bottom: 0px;
+}
 .margin-bottom-20 {
   margin-bottom: 20px;
 }
@@ -172,8 +186,11 @@ h4 {
   font-size: 0.9em;
   margin: 10px 0;
 }
+.info-note {
+  color: #8c8c9b;
+}
 .dl-note.dl-input-note {
-  padding: 4px 11px 10px 49px;
+  padding: 2px 11px 10px 10px;
   color: #8c8c9b;
   margin: -20px 0 0;
 }
@@ -188,6 +205,9 @@ p.dl-error {
   background-color: #f5f5fb;
   border-radius: 5px;
   border: 1px solid #e8e8f7;
+}
+.no-upper-case {
+  text-transform: none !important;
 }
 .like-btn {
   position: relative;
@@ -254,6 +274,9 @@ md-content.dl-grid {
 .uib-datepicker .btn-default {
   background-color: transparent;
 }
+.uib-datepicker .btn-default.active {
+  background: #9c27b0;
+}
 .navbar-default {
   font-size: 0.84em;
   font-weight: 400;
@@ -292,11 +315,6 @@ md-content.dl-grid {
 }
 .navbar-default li > ul.dropdown-menu {
   width: 100%;
-}
-@media (max-width: 959px) {
-  .navbar-default span {
-    display: none;
-  }
 }
 @media (max-width: 599px) {
   .navbar-default .container {
@@ -541,6 +559,7 @@ md-menu-item > .md-button > a:focus {
 }
 @media (max-width: 599px) {
   .about-page .intro-message {
+    padding-top: 25%;
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -666,7 +685,7 @@ md-menu-item > .md-button > a:focus {
   background: white;
   padding: 30px 24px 20px;
   max-width: 599px;
-  margin: 0 auto 10px;
+  margin: 0 auto 30px;
   border-radius: 10px;
   box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.05);
 }
@@ -811,9 +830,6 @@ div.noImageBackground {
 .previousPrice {
   text-decoration: line-through;
 }
-.profilePicContainer {
-  position: relative;
-}
 .dealerProfilePic {
   width: 60px;
   height: 60px;
@@ -823,6 +839,7 @@ div.noImageBackground {
   position: absolute;
   top: -45px;
   right: 0;
+  left: 0;
 }
 .defaultProfilePic {
   background: url("../images/icons/@2x/default_profile_pic.png") no-repeat;
@@ -1050,14 +1067,9 @@ div.noImageBackground {
   color: #8c8c9b;
 }
 .checkout {
-  padding: 10px 40px 30px;
+  padding: 10px 20px 30px;
 }
-@media (min-width: 1201px) {
-  .checkout form .dl-form-col {
-    width: 509px;
-  }
-}
-@media (min-width: 991px) and (max-width: 1200px) {
+@media (min-width: 991px) {
   .checkout form .dl-form-col {
     width: 409px;
   }
@@ -1072,6 +1084,11 @@ div.noImageBackground {
 }
 .checkout .dl-form-col.right-col {
   max-width: 340px;
+}
+@media (min-width: 599px) {
+  .checkout {
+    padding: 10px 40px 30px;
+  }
 }
 .checkout .co-product-pic {
   width: inherit;
@@ -1095,6 +1112,14 @@ div.noImageBackground {
   display: inline-block;
   margin-left: 20px;
 }
+@media (max-width: 599px) {
+  div.ap-container.nav-padding {
+    padding-top: 54px !important;
+  }
+}
+div.ap-container.nav-padding .framed-container {
+  padding: 5px 20px 30px;
+}
 .ap-form-container {
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
@@ -1102,6 +1127,9 @@ div.noImageBackground {
 }
 .ap-form-container h2 {
   margin: 24px 0 28px;
+}
+.ap-form-container.dl-form {
+  padding: 0 24px 24px;
 }
 .ap-form-container .ap-title-container {
   color: #323241;
@@ -1198,42 +1226,36 @@ div.noImageBackground {
   height: 60px;
   margin: 20px 0;
 }
-.ap-share-options-container {
-  margin: 20px;
-}
 button.ap-done {
   margin-top: 20px;
+}
+.pr-settings-container {
+  height: 0;
+}
+.pr-settings-container .pr-settings {
+  float: right;
 }
 .pr-header-section {
   position: relative;
   text-align: center;
   background-color: white;
-  padding: 0 30px;
+  padding: 0 10px;
   margin: 50px 0 30px;
   box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.05);
 }
+@media (min-width: 599px) {
+  .pr-header-section {
+    padding: 0 30px;
+  }
+}
 .pr-header-section .spinnerContainer {
   margin-top: 120px auto !important;
-}
-.pr-header-section .pr-settings {
-  float: right;
-  height: 0px;
-  top: -46px;
-}
-.pr-header-section .pr-settings .pr-settings-button-container {
-  position: relative;
-  top: -44px;
-}
-.pr-header-section .pr-settings button {
-  position: relative;
-  font-size: 13px;
 }
 .pr-header-section .pr-profile-pic {
   height: 40px;
   border-top: 1px solid #d7d7e6;
 }
 .pr-header-section .pr-profile-pic .dealerProfilePic {
-  position: relative;
   top: -60px;
   width: 100px;
   height: 100px;
@@ -1307,14 +1329,12 @@ button.ap-done {
   color: white;
   background-color: #9c27b0;
 }
+.epr-container .md-button.btn-primary.btn-single {
+  margin: 0 auto;
+}
 md-list md-list-item.md-3-line,
 md-list md-list-item.md-3-line > ._md-no-style {
   min-height: 128px;
-}
-md-list .purchase-list-item button.received {
-  color: white;
-  font-weight: 600;
-  background-color: #4cd964;
 }
 md-list .purchase-list-item.md-3-line .md-list-item-text h4.purchase-amount {
   color: #4caf50;
@@ -1327,10 +1347,15 @@ md-list .purchase-list-item.md-3-line .md-list-item-text h4.purchase-amount {
   color: #4caf50;
   font-weight: bold;
 }
-.purchase-details button.received {
+.purchase-details h4 {
+  margin: 6px 0;
+}
+button.received {
   color: white;
-  font-weight: 600;
   background-color: #4cd964;
+}
+button.received.md-button:not([disabled]):hover {
+  background-color: #56F571;
 }
 .dl-form {
   color: #323241;
@@ -1421,6 +1446,9 @@ md-list .purchase-list-item.md-3-line .md-list-item-text h4.purchase-amount {
 .dl-field input[type="radio"] {
   margin-left: 12px;
 }
+.dl-field input[type="radio"].first {
+  margin-left: 0;
+}
 .dl-field div.dl-inline-field-icon {
   display: none;
   width: 40px;
@@ -1462,6 +1490,9 @@ button.dl-submit {
   button.dl-submit {
     width: 100%;
   }
+}
+.form-section {
+  margin-bottom: 40px;
 }
 .md-button {
   border-radius: 5px;
@@ -1679,8 +1710,8 @@ md-dialog.seller-dialog {
 }
 md-dialog md-dialog-actions {
   background-color: #fafafc;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .md-datepicker-input-mask {
   width: inherit !important;
@@ -1724,6 +1755,14 @@ md-content {
   color: #323241;
   background-color: white;
 }
+md-content .md-button.btn-primary.btn-single {
+  margin: 0 auto;
+}
+@media (min-width: 599px) {
+  md-content .md-button.btn-primary.btn-single {
+    margin: 15px auto;
+  }
+}
 md-tabs-canvas {
   background-color: #fafafc;
 }
@@ -1760,12 +1799,19 @@ md-tabs .md-tab.md-active .tabIndex {
 .md-tab > .tabIndex {
   margin-bottom: 5px;
 }
+md-tab-content .dl-form {
+  padding: 0 8px;
+}
 .register-as-dealer md-pagination-wrapper,
 .register-as-dealer md-tabs-canvas {
   height: 72px;
 }
 .register-as-dealer md-content {
   padding-bottom: 20px;
+}
+.register-as-dealer p.dl-note.info-note {
+  width: 300px;
+  margin: -10px auto 20px;
 }
 .md-padding {
   padding: 30px 20px 10px;
@@ -1808,7 +1854,12 @@ md-toolbar:not(.md-menu-toolbar) {
   width: 100%;
 }
 .pac-container {
-  top: 540px !important;
+  margin-top: -50px;
+}
+@media (min-width: 599px) {
+  .pac-container {
+    margin-top: -70px;
+  }
 }
 ::-webkit-input-placeholder {
   color: #8c8c9b;
@@ -1823,13 +1874,47 @@ md-toolbar:not(.md-menu-toolbar) {
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 footer {
-  padding: 50px 0;
-  background-color: #f5f5fb;
+  padding: 40px 0;
+  background-color: #ededf6;
+  border-top: solid 1px #d7d7de;
+}
+footer a {
+  color: #646473;
+}
+footer a:hover,
+footer a:active {
+  color: #8c8c9b;
 }
 @media (max-width: 599px) {
   footer {
     padding-left: 20px;
     padding-right: 20px;
+  }
+}
+menu-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  font-size: 0.85em;
+  line-height: 3.1em;
+  padding: 0 16px;
+  background-color: #f5f5fb;
+  border-top: solid 1px #e3e3e8;
+}
+menu-footer a {
+  color: #646473;
+}
+menu-footer a:hover,
+menu-footer a:active {
+  color: #8c8c9b;
+}
+menu-footer ul {
+  margin-bottom: 0;
+}
+@media (min-width: 599px) {
+  menu-footer {
+    position: absolute;
   }
 }
 .footer > li > a {

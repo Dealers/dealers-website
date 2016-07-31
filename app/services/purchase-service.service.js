@@ -11,8 +11,8 @@
      */
         .factory('Purchase', PurchaseFactory);
 
-    PurchaseFactory.$inject = ['$http', '$rootScope'];
-    function PurchaseFactory($http, $rootScope) {
+    PurchaseFactory.$inject = ['$http', '$rootScope', 'Product'];
+    function PurchaseFactory($http, $rootScope, Product) {
 
         var PURCHASES_SOURCE = $rootScope.baseUrl + '/purchases/';
         var ORDERS_SOURCE = $rootScope.baseUrl + "/orders/";
@@ -28,7 +28,7 @@
         service.getSales = getSales;
         service.getPurchase = getPurchase;
         service.addPurchase = addPurchase;
-        service.updateStatus = updateStatus;
+        service.updatePurchase = updatePurchase;
         service.updateEstimatedDeliveryTime = updateEstimatedDeliveryTime;
 
         return service;
@@ -75,24 +75,45 @@
         }
 
         /**
-         * Updates the status of the purchase.
+         * Updates the purchase object.
          *
          * @param newStatus - the new status of the purchase.
          * @param purchase - the purchase object to update.
          * @returns the callback function of the $http.patch function.
          */
-        function updateStatus(newStatus, purchase) {
-            var data = { status: newStatus };
+        function updatePurchase(newStatus, purchase) {
             if (newStatus == service.SENT_STATUS && purchase.status == service.PURCHASED_STATUS) {
-                data.send_date = new Date();
+                purchase.send_date = new Date();
             } else if (newStatus == service.RECEIVED_STATUS && purchase.status == service.SENT_STATUS) {
-                data.receive_date = new Date();
+                purchase.receive_date = new Date();
             } else if (newStatus == service.PURCHASED_STATUS && purchase.status == service.SENT_STATUS) {
-                data.send_date = null;
+                purchase.send_date = null;
+                purchase.estimated_delivery_time = null;
             } else if (newStatus == service.SENT_STATUS && purchase.status == service.RECEIVED_STATUS) {
-                data.receive_date = null;
+                purchase.receive_date = null;
             }
-            return $http.patch(PURCHASES_SOURCE + purchase.id + '/', data)
+            purchase.status = newStatus;
+            purchase = preparePurchaseForServer(purchase);
+            return $http.patch(PURCHASES_SOURCE + purchase.id + '/', purchase)
+        }
+
+        /**
+         * Maps all the relevant properties to the matching values in the server.
+         * @param purchase - the purchase object.
+         * @returns {purchase} the mapped purchase object.
+         */
+        function preparePurchaseForServer(purchase) {
+            purchase.currency = Product.keyForCurrency(purchase.currency);
+            if (purchase.dealer.id) {
+                purchase.dealer = purchase.dealer.id;
+            }
+            if (purchase.deal.id) {
+                purchase.deal = purchase.deal.id;
+            }
+            if (purchase.buyer.id) {
+                purchase.buyer = purchase.buyer.id;
+            }
+            return purchase;
         }
 
         /**

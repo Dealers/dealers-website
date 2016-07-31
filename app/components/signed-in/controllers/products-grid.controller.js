@@ -8,8 +8,9 @@
         .controller('ProductsGridController', ['$scope', '$rootScope', '$routeParams', 'ActiveSession', 'Product', 'ProductsGrid',
             function ($scope, $rootScope, $routeParams, ActiveSession, Product, ProductsGrid) {
 
+                var PROFILE_DEALER_AS_KEY = "profile_dealer_id";
                 var PROFILE_AS_KEY = "profile_products";
-                var PROFILE_PAGE = "profile";
+                var PROFILE_PAGE = "dealer";
                 var LOADING_STATUS = "loading";
                 var DOWNLOADED_STATUS = "downloaded";
                 var FAILED_STATUS = "failed";
@@ -38,13 +39,17 @@
                     if ($scope.source) {
                         // There is a specific source to download products from.
                         if ($scope.page == PROFILE_PAGE) {
+                            var dealerID = ActiveSession.getTempData(PROFILE_DEALER_AS_KEY);
                             var tempData = ActiveSession.getTempData(PROFILE_AS_KEY);
-                            if (tempData) {
-                                mode = "activeSession";
-                                noProductsMessage = "There are no products.";
-                                $scope.status = DOWNLOADED_STATUS;
-                                updateGrid(tempData);
-                                return;
+                            routeParams = $routeParams.dealerID;
+                            if (dealerID == routeParams) {
+                                if (tempData) {
+                                    mode = "activeSession";
+                                    noProductsMessage = "There are no products.";
+                                    $scope.status = DOWNLOADED_STATUS;
+                                    updateGrid(tempData);
+                                    return;
+                                }
                             }
                         }
                         mode = "custom";
@@ -99,6 +104,7 @@
                             $scope.update.loadingMore = false;
 
                             if ($scope.page == PROFILE_PAGE) {
+                                ActiveSession.setTempData(PROFILE_DEALER_AS_KEY, routeParams);
                                 ActiveSession.setTempData(PROFILE_AS_KEY, products);
                             }
 

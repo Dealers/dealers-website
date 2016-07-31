@@ -26,36 +26,53 @@
                                 class="profile-pic-btn clickable"
                                 style="background: url({{croppedPhotoURL}}); background-size: contain;">
                         </label>
-                        <label for="rad-input-profile-pic" class="md-button">
+                        <label for="rad-input-profile-pic" class="md-button md-btn-small">
                             {{editProfilePic}}
                         </label>
                         <p class="dl-note text-center text-muted" style="margin: -6px 0 0">
                             Upload a photo of you or your business
                         </p>
                     </div>
-                    <div class="dl-form-col single-col">
+                    <div class="dl-form dl-form-col single-col">
+                        <div class="dl-field no-icon-field form-group">
+                            <label for="rad-name">
+                                Your or your business name
+                            </label>
+                            <input id="rad-name" name="name" type="text"
+                                   placeholder="Your or your business name"
+                                   class="form-control dl-input"
+                                   value="dealer.full_name"
+                                   ng-model="dealer.full_name"
+                                   required
+                            />
+                        </div>
                         <div class="dl-field-plus">
-                            <div class="dl-field">
-                                <img src="/assets/images/icons/@2x/Web_Icons_name_icon.png"/>
-                                    <textarea id="rad-about" name="about" placeholder="About"
-                                              class="dl-input form-control"
-                                              ng-model="dealer.about"
-                                              required>
-                                    </textarea>
+                            <div class="dl-field no-icon-field form-group">
+                                <label for="rad-about">
+                                    About
+                                </label>
+                                <textarea id="rad-about" name="about" placeholder="About"
+                                          class="dl-input form-control"
+                                          ng-model="dealer.about"
+                                          required>
+                                </textarea>
                             </div>
                             <p class="dl-note dl-input-note">
                                 Tell us about yourself - what are you selling? What are your products about?
                             </p>
                         </div>
                         <div class="dl-field-plus">
-                            <div class="dl-field">
-                                <img src="/assets/images/icons/@2x/Web_Icons_location_user_icon.png"/>
+                            <div class="dl-field no-icon-field form-group">
+                                <label for="rad-location">
+                                    Location
+                                </label>
                                 <input id="rad-location" name="rad-location" type="text"
                                        placeholder="Location"
                                        class="form-control dl-input"
                                        ng-model="dealer.location"
                                        required
                                        google-location-autocomplete
+                                       autocomplete="on"
                                        location="dealer.location"
                                 />
                             </div>
@@ -73,9 +90,12 @@
                 </md-tab-label>
                 <md-tab-body class="md-padding">
                     <p class="text-center">
-                        Add your bank account information. This is where you will receive your income.
+                        Add your bank account information. This is where you will receive your sales income.
                     </p>
-                    <div class="dl-form-col single-col">
+                    <p class="text-center dl-note info-note">
+                        All the information you provide to us is securely maintained and is kept strictly confidential.
+                    </p>
+                    <div class="dl-form dl-form-col single-col">
                         <div class="dl-field no-icon-field form-group">
                             <label for="rad-account-number">
                                 Account Number

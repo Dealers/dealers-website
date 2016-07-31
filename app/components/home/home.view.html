@@ -1,5 +1,7 @@
 <dl-navbar></dl-navbar>
 
-<intro ng-show="role == roles.guest"></intro>
+<div ng-show="role == roles.guest" class="nav-padding-exact">
+    <intro></intro>
+</div>
 
-<dl-products-grid title="gridTitle" description="gridDescription" class="nav-margin"></dl-products-grid>
+<dl-products-grid title="gridTitle" description="gridDescription" class="nav-padding"></dl-products-grid>

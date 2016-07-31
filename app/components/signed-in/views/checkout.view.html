@@ -11,7 +11,7 @@
         <div ng-switch-when="downloaded">
             <h2>Checkout</h2>
             <form name="checkoutForm" class="clearfix" ng-submit="checkout(checkoutForm, $event)" novalidate>
-                <div class="dl-form-col left-col pull-left co-shipping-address">
+                <div ng-class="{'pull-left': !smallSize}" class="dl-form-col left-col co-shipping-address">
                     <h4>Shipping Address</h4>
                     <div class="dl-field no-icon-field form-group">
                         <label for="co-shipping-address">
@@ -19,7 +19,7 @@
                         </label>
                         <input id="co-shipping-address" name="co-shipping-address" type="text"
                                class="form-control dl-input"
-                               ng-model="shipping_address.address1"
+                               ng-model="shipping_address.st_address"
                                required
                         />
                     </div>
@@ -53,7 +53,7 @@
                         />
                     </div>
                 </div>
-                <div class="dl-form-col right-col pull-right co-product-info">
+                <div ng-class="{'pull-right': !smallSize}" class="dl-form-col right-col co-product-info">
                     <h4>{{product.title}}</h4>
                     <div class="co-product-pic">
                         <img ng-src="{{productImage}}"/>

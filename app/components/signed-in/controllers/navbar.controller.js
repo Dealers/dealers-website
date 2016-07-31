@@ -15,7 +15,6 @@
                 $scope.dealer = $rootScope.dealer;
                 $scope.searchTerm = {};
                 $scope.catDropdownDisplay = false;
-                $scope.userProfilePic = $rootScope.userProfilePic;
                 $scope.mode = ""; // Guest, Viewer, Dealer or Admin
                 $scope.phoneMode = false;
                 $scope.searchBarPresented = false;
@@ -23,14 +22,6 @@
 
                 determineMode();
                 setMediaQueryWatchers();
-
-                if ($scope.mode != $scope.roles.guest) {
-                    if (!$rootScope.userProfilePic) {
-                        waitForProfilePic();
-                    } else {
-                        $scope.userProfilePic = $rootScope.userProfilePic;
-                    }
-                }
 
                 var currentPath = $location.path().split("/")[1];
                 if (currentPath == "search") {
@@ -55,6 +46,12 @@
                         return $mdMedia('xs');
                     }, function (isPhone) {
                         $scope.phoneMode = isPhone;
+                    });
+
+                    $scope.$watch(function () {
+                        return $mdMedia('sm');
+                    }, function (isTablet) {
+                        $scope.tabletMode = isTablet;
                     });
                 }
 
@@ -89,10 +86,10 @@
                 };
 
                 /**
-                 * Waits for the root scope to broadcast the user's profile pic.
+                 * Waits for the root scope to broadcast the user's dealer pic. (Obsolete)
                  */
                 function waitForProfilePic() {
-                    $scope.$on('downloaded-' + $rootScope.userProfilePicSender + '-profile-pic-' + $rootScope.dealer.id, function (event, args) {
+                    $scope.$on('downloaded-' + $rootScope.userProfilePicSender + '-dealer-pic-' + $rootScope.dealer.id, function (event, args) {
                         if (args.success) {
                             $scope.userProfilePic = args.data;
                         } else {

@@ -12,17 +12,20 @@
                     'default': '500'
                 })
         })
-        .run(['$rootScope', '$location', '$cookies', '$http', '$mdToast', 'DealerPhotos',
-            function ($rootScope, $location, $cookies, $http, $mdToast, DealerPhotos) {
+        .run(['$rootScope', '$location', '$cookies', '$http', '$timeout', '$mdToast', 'DealerPhotos',
+            function ($rootScope, $location, $cookies, $http, $timeout, $mdToast, DealerPhotos) {
 
                 // global constants
-                $rootScope.baseUrl = 'http://api.dealers-web.com';
-                $rootScope.homeUrl = 'http://www.dealers-web.com';
+                // $rootScope.baseUrl = 'http://api.dealers-web.com'; // Test
+                // $rootScope.homeUrl = 'http://www.dealers-web.com'; // Test
+                // $rootScope.stripe_publishable_key = 'pk_test_q3cpGyBIL6rsGswSQbP3tMpK'; // Test
+                $rootScope.baseUrl = 'https://api.dealers-app.com'; // Live
+                $rootScope.homeUrl = 'https://www.dealers-app.com'; // Live
+                $rootScope.stripe_publishable_key = 'pk_live_mgdZB9xHsOnYaQDXMXJJm4xU'; // Live
                 $rootScope.AWSKey = 'AKIAIWJFJX72FWKD2LYQ';
                 $rootScope.AWSSecretKey = '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';
                 $rootScope.AWSS3Bucket = 'dealers-app';
                 $rootScope.directImageURlPrefix = 'https://' + $rootScope.AWSS3Bucket + '.s3.amazonaws.com/';
-
                 $rootScope.DEFAULT_PRODUCT_PHOTO_URL = "assets/images/icons/@2x/Web_Icons_product_photo_placeholder.png";
 
                 // AWS configuration
@@ -69,25 +72,28 @@
                         if (dealerString) {
                             $rootScope.dealer = JSON.parse(dealerString);
                             $rootScope.userProfilePic = "";
-                            $rootScope.userProfilePicSender = "user-profile-pic";
+                            $rootScope.userProfilePicSender = "user-dealer-pic";
                             setUserProfilePic();
                             initIntercom($rootScope.dealer);
+                            $rootScope.$broadcast("DEALER_LOADED");
                         }
                     }
                 }
 
                 /**
-                 * Checks if the current user has a profile pic, and if so, downloads it. Otherwise, sets the default user profile image.
+                 * Checks if the current user has a dealer pic, and if so, downloads it. Otherwise, sets the default user dealer image.
                  */
                  function setUserProfilePic() {
                     var dealer = $rootScope.dealer;
                     var photo = $rootScope.dealer.photo;
                     if (photo != "None" && photo != "") {
                         DealerPhotos.getPhoto(photo, dealer.id, $rootScope.userProfilePicSender);
-                        $rootScope.$on('downloaded-' + $rootScope.userProfilePicSender + '-profile-pic-' + dealer.id, function (event, args) {
+                        $rootScope.$on('downloaded-' + $rootScope.userProfilePicSender + '-dealer-pic-' + dealer.id, function (event, args) {
                             if (args.success) {
-                                $rootScope.userProfilePic = args.data;
-                                $rootScope.$apply();
+                                $timeout(function() {
+                                    $rootScope.userProfilePic = args.data;
+                                    $rootScope.$apply();
+                                }, 1000);
                             } else {
                                 $rootScope.userProfilePic = null;
                                 console.log(args.message);

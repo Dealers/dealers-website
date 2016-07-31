@@ -16,6 +16,7 @@
         var customFullscreen = $mdMedia('xs');
 
         service.showSignInDialog = showSignInDialog;
+        service.confirmDialog = confirmDialog;
 
         return service;
 
@@ -36,6 +37,27 @@
                 fullscreen: customFullscreen,
                 locals: {tab: tabIndex}
             });
+        }
+
+        /**
+         * Returns the confirm dialog object of type confirm.
+         *
+         * @param title - the title of the alert dialog.
+         * @param content - the content of the alert dialog.
+         * @param confirm - the confirm button title.
+         * @param ev - the event that triggered the alert.
+         * @return {mdDialog} - the confirm dialog object.
+         */
+        function confirmDialog(title, content, confirm, ev) {
+            return $mdDialog.confirm(ev)
+                .parent(angular.element(document.body))
+                .clickOutsideToClose(false)
+                .title(title)
+                .textContent(content)
+                .ariaLabel('Confirm Dialog')
+                .ok(confirm)
+                .cancel("Cancel")
+                .targetEvent(ev);
         }
     }
 })();

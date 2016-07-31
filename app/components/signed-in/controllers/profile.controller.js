@@ -167,7 +167,7 @@
                         DealerPhotos.getPhoto($scope.profile.dealer.photo, $scope.profile.dealer.id, sender);
                         $scope.profilePicStatus = LOADING_STATUS;
                     }
-                    $scope.$on('downloaded-' + sender + '-profile-pic-' + $scope.profile.dealer.id, function (event, args) {
+                    $scope.$on('downloaded-' + sender + '-dealer-pic-' + $scope.profile.dealer.id, function (event, args) {
                         if (args.success) {
                             $scope.$apply(function () {
                                 $scope.profilePic = args.data;
@@ -189,6 +189,19 @@
                         $scope.settingsDisplay = true;
                     }
                 }
+
+                /**
+                 * Opens an angular-material dropdown menu.
+                 * @param $mdOpenMenu - the menu to open.
+                 * @param ev - the event that triggered the function.
+                 */
+                $scope.openMenu = function ($mdOpenMenu, ev) {
+                    $mdOpenMenu(ev);
+                };
+                
+                $scope.editProfile = function(event) {
+                    $location.path("/edit-profile/" + dealerID);
+                };
 
                 function logOut() {
                     Dealer.logOut();

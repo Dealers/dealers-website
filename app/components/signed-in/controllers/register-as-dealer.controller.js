@@ -22,7 +22,7 @@
                 var ADD_PHOTO_BUTTON_TITLE = "Add Photo";
                 var CHANGE_PHOTO_BUTTON_TITLE = "Change Photo";
                 var ADD_PROFILE_PIC_BUTTON = "/assets/images/icons/@2x/Web_Icons_add_profile_pic_button.png";
-                var PROFILE_PIC_BROADCASTING_PREFIX = 'profile-pic-uploaded-for-';
+                var PROFILE_PIC_BROADCASTING_PREFIX = 'dealer-pic-uploaded-for-';
                 var REGISTER_BROADCASTING_PREFIX = 'register-as-dealer-for-';
                 var LOADING_MESSAGE = "Uploading...";
                 var CONFIRM_EXIT_MESSAGE = "The content will be lost.";
@@ -98,15 +98,16 @@
                 function setWatchersAndListeners() {
 
                     /**
-                     * Listens to the DealerPhotos service's broadcasts when the profile pic of the user has finished to upload.
+                     * Listens to the DealerPhotos service's broadcasts when the dealer pic of the user has finished to upload.
                      */
                     $scope.$on(PROFILE_PIC_BROADCASTING_PREFIX + RAD_SESSION, function (event, args) {
                         if (args.success) {
-                            // Finished uploading the profile pic, start uploading the bank account, and then the dealer object.
+                            // Finished uploading the dealer pic, start uploading the bank account, and then the dealer object.
+                            $rootScope.userProfilePic = $scope.croppedPhotoURL;
                             Dealer.registerDealer($scope.bank_account, RAD_SESSION);
                         } else {
                             hideLoadingDialog(event);
-                            console.log("Couldn't upload the profile pic. Aborting upload process.");
+                            console.log("Couldn't upload the dealer pic. Aborting upload process.");
                         }
                     });
 
@@ -145,7 +146,7 @@
                     });
 
                     /**
-                     * Watching for changes in the $scope.photoURL object so to know when to present the crop dialog for the profile pic.
+                     * Watching for changes in the $scope.photoURL object so to know when to present the crop dialog for the dealer pic.
                      */
                     $scope.$watch('photoURL', function () {
                         if ($scope.photoURL) {
@@ -194,7 +195,7 @@
                 }
 
                 /**
-                 * Presents the crop dialog when the user wishes to upload a new profile pic.
+                 * Presents the crop dialog when the user wishes to upload a new dealer pic.
                  */
                 $scope.showCropDialog = function () {
                     var useFullScreen = ($mdMedia('xs'));
@@ -202,7 +203,6 @@
                             controller: "CropPhotoDialog",
                             templateUrl: 'app/components/signed-in/views/crop-photo-dialog.view.html',
                             parent: angular.element(document.body),
-                            clickOutsideToClose: true,
                             fullscreen: useFullScreen,
                             locals: {rawPhoto: $scope.photoURL}
                         })

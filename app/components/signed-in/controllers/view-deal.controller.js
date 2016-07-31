@@ -11,6 +11,7 @@
                     var PRODUCT_URL = $rootScope.baseUrl + '/alldeals/' + $routeParams.productID + '/';
                     var PRODUCT_PAGE_BASE_URL = $rootScope.baseUrl + '/products/';
                     var BUY_FUNCTION_REPR = "buyClicked";
+                    var PRODUCT_AS_KEY = "PRODUCT";
 
                     $scope.product = {};
                     $scope.status = 'loading';
@@ -22,8 +23,8 @@
                     $scope.discountTypePP = "";
                     $scope.totalLikes = 0;
                     $scope.firstPhotoSelected = false;
+                    $scope.movedToCheckout = false;
 
-                    $scope.userProfilePic = null;
                     $scope.commentPlaceholder = "";
                     $scope.comment = {};
                     $scope.showCommentError = false;
@@ -37,13 +38,17 @@
                     $scope.presentCommentError = presentCommentError;
                     $scope.proceedToCheckout = proceedToCheckout;
 
-                    $scope.$watch(function() { return $mdMedia('gt-sm'); }, function(big) {
+                    $scope.$watch(function () {
+                        return $mdMedia('gt-sm');
+                    }, function (big) {
                         $scope.bigScreen = big;
                     });
 
-                    $scope.product = ActiveSession.getTempData("PRODUCT"); // Retrieves the product from the Active Session service.
+                    $scope.product = ActiveSession.getTempData(PRODUCT_AS_KEY); // Retrieves the product from the Active Session service.
                     if (!$scope.product) {
                         // There is no product in the session, download it form the server.
+                        downloadProduct();
+                    } else if ($scope.product.id != $routeParams.productID) {
                         downloadProduct();
                     } else {
                         $scope.status = 'downloaded';
@@ -68,7 +73,7 @@
                                 if (ActiveSession.shouldRunAction(BUY_FUNCTION_REPR)) {
                                     proceedToCheckout();
                                 }
-                                
+
                                 fillData();
                             }, function (httpError) {
                                 $scope.status = 'failed';
@@ -90,11 +95,6 @@
 
                         // Comments (only if the user has a dealer object, meaning he's signed in)
                         if ($scope.user) {
-                            if (!$rootScope.userProfilePic) {
-                                waitForProfilePic();
-                            } else {
-                                $scope.userProfilePic = $rootScope.userProfilePic;
-                            }
                             if ($scope.product.comments.length > 1) {
                                 $scope.commentPlaceholder = "Add a comment...";
                             } else {
@@ -219,7 +219,7 @@
 
                     function setDealerProfile() {
                         /*
-                         * Arranges the dealer's profile section.
+                         * Arranges the dealer's dealer section.
                          */
                         var photo = $scope.product.dealer.photo;
                         var sender = 'view-deal';
@@ -229,7 +229,7 @@
                             DealerPhotos.getPhoto(photo, $scope.product.dealer.id, sender);
                             $scope.profilePicStatus = "loading";
                         }
-                        $scope.$on('downloaded-' + sender + '-profile-pic-' + $scope.product.dealer.id, function (event, args) {
+                        $scope.$on('downloaded-' + sender + '-dealer-pic-' + $scope.product.dealer.id, function (event, args) {
                             if (args.success) {
                                 $scope.profilePic = args.data;
                                 $scope.profilePicStatus = "doneLoading";
@@ -240,18 +240,7 @@
                         });
                     }
 
-                    function waitForProfilePic() {
-                        $scope.$on('downloaded-' + $rootScope.userProfilePicSender + '-profile-pic-' + $scope.product.dealer.id, function (event, args) {
-                            if (args.success) {
-                                $scope.userProfilePic = args.data;
-                            } else {
-                                $scope.userProfilePic = null;
-                                console.log(args.message);
-                            }
-                        });
-                    }
-
-                    $scope.canEdit = function() {
+                    $scope.canEdit = function () {
                         if ($scope.user) {
                             if ($scope.product.dealer.id == $rootScope.dealer.id) {
                                 return true;
@@ -260,7 +249,7 @@
                         return false;
                     };
 
-                    $scope.editProduct = function() {
+                    $scope.editProduct = function () {
                         if ($scope.canEdit()) {
                             EditProduct.product = $scope.product;
                             $location.path("edit-product/" + $scope.product.id);
@@ -276,7 +265,7 @@
                         $mdOpenMenu(ev);
                     };
 
-                    $scope.report = function(event) {
+                    $scope.report = function (event) {
                         console.log("Report!");
                     };
 
@@ -375,9 +364,16 @@
                         }
 
                         $scope.product.photo = $scope.photosURLs ? $scope.photosURLs[0] : null;
-                        ActiveSession.setTempData("PRODUCT", $scope.product);
+                        ActiveSession.setTempData(PRODUCT_AS_KEY, $scope.product);
+                        $scope.movedToCheckout = true;
                         var path = "/products/" + $scope.product.id + "/checkout";
                         $location.path(path);
                     }
+
+                    $scope.$on('$destroy', function () {
+                        if (!$scope.movedToCheckout) {
+                            ActiveSession.removeTempData(PRODUCT_AS_KEY);
+                        }
+                    })
                 }]);
 })();

@@ -106,7 +106,7 @@
             return {
                 link: function (scope, element) {
                     $(element).on("click", function (ev) {
-                        var url = $rootScope.homeUrl + "/item/" + scope.product.id + "/";
+                        var url = $rootScope.homeUrl + "/products/" + scope.product.id;
                         FB.ui({
                             method: 'share',
                             mobile_iframe: true,
@@ -135,7 +135,7 @@
                     scope.showSignInDialog = function (ev, tabIndex, registerCallback) {
                         $mdDialog.show({
                             controller: 'SignInDialogController',
-                            templateUrl: 'app/components/signed-in/views/sign-in/sign-in-dialog.view.html',
+                            templateUrl: 'app/components/signed-in/views/sign-in/sign-in-dealer-dialog.view.html',
                             parent: angular.element(document.body),
                             targetEvent: ev,
                             fullscreen: scope.customFullscreen,
@@ -158,8 +158,13 @@
                     $(element).on("click", function (ev) {
                         if ($rootScope.dealer) {
                             $location.path("/register");
+                            scope.$apply();
                         } else {
-                            scope.showSignInDialog(ev, 0, true);
+                            if ($(element).is("#nav-login")) {
+                                scope.showSignInDialog(ev, 1, true);
+                            } else {
+                                scope.showSignInDialog(ev, 0, true);
+                            }
                         }
                     });
                 }

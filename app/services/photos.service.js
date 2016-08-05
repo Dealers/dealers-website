@@ -117,7 +117,7 @@
                             case 7: ctx.rotate(0.5 * Math.PI);   ctx.translate(width,-height); ctx.scale(-1,1); break;
                             case 8: ctx.rotate(-0.5 * Math.PI);  ctx.translate(-width,0); break;
                         }
-                        ctx.drawImage(img, 0, 0, width * compressionFactor, height * compressionFactor);
+                        ctx.drawImage(img, 0, 0, width, height);
                         var dataUrl = canvas.toDataURL('image/jpeg', service.product.quality);
                         var blob = dataURItoBlob(dataUrl);
                         uploadFunc(counter, photoName, blob);
@@ -154,7 +154,6 @@
                 case 7: ctx.rotate(0.5 * Math.PI);   ctx.translate(width,-height); ctx.scale(-1,1); break;
                 case 8: ctx.rotate(-0.5 * Math.PI);  ctx.translate(-width,0); break;
             }
-
             return ctx;
         }
 

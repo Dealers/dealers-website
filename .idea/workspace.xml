@@ -2,34 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf2767dd-ff52-4566-8c25-987d52c3a3fb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/signed-in/views/about/security.view.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/signed-in/views/about/step-by-step.view.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/lib/js/angular-google-analytics.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/lib/js/exif.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/add-product-2.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/add-product-2.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/checkout.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/checkout.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/directives/widgets.directives.js" afterPath="$PROJECT_DIR$/app/components/signed-in/directives/widgets.directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/about/about.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/about/about.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/about/contact.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/about/contact.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/about/terms-and-privacy.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/about/terms-and-privacy.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/products/edit-product.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/products/edit-product.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/sign-in/done-registration.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/sign-in/done-registration.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/sign-in/register-as-dealer.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/sign-in/register-as-dealer.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.js" afterPath="$PROJECT_DIR$/app/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/comment.service.js" afterPath="$PROJECT_DIR$/app/services/comment.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/dealer.service.js" afterPath="$PROJECT_DIR$/app/services/dealer.service.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/about/step-by-step.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/about/step-by-step.view.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/photos.service.js" afterPath="$PROJECT_DIR$/app/services/photos.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/product.service.js" afterPath="$PROJECT_DIR$/app/services/product.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/purchase-service.service.js" afterPath="$PROJECT_DIR$/app/services/purchase-service.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/animations.css" afterPath="$PROJECT_DIR$/assets/css/animations.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/home-styles.css" afterPath="$PROJECT_DIR$/assets/css/home-styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/styles.css" afterPath="$PROJECT_DIR$/assets/css/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/less/styles.less" afterPath="$PROJECT_DIR$/assets/less/styles.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/less/variables.less" afterPath="$PROJECT_DIR$/assets/less/variables.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepros.cfg" afterPath="$PROJECT_DIR$/prepros.cfg" />
     </list>
     <ignored path="dealers-website.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,11 +24,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
               <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="photos.service.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/services/photos.service.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="119" column="62" selection-start-line="119" selection-start-column="62" selection-end-line="119" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="step-by-step.view.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/about/step-by-step.view.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="403">
+              <caret line="109" column="41" selection-start-line="109" selection-start-column="41" selection-end-line="109" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -123,7 +117,6 @@
         <option value="$PROJECT_DIR$/app/components/signed-in/directives/widgets.directives.js" />
         <option value="$PROJECT_DIR$/app/components/signed-in/controllers/checkout.controller.js" />
         <option value="$PROJECT_DIR$/app/services/purchase-service.service.js" />
-        <option value="$PROJECT_DIR$/app/services/photos.service.js" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/products/edit-product.view.html" />
         <option value="$PROJECT_DIR$/assets/less/variables.less" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/about/contact.view.html" />
@@ -131,12 +124,13 @@
         <option value="$PROJECT_DIR$/app/components/signed-in/views/sign-in/register-as-dealer.view.html" />
         <option value="$PROJECT_DIR$/app/routes.js" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/about/security.view.html" />
-        <option value="$PROJECT_DIR$/app/components/signed-in/views/about/step-by-step.view.html" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/about/about.view.html" />
         <option value="$PROJECT_DIR$/assets/less/styles.less" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/sign-in/done-registration.view.html" />
         <option value="$PROJECT_DIR$/app/app.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/views/about/step-by-step.view.html" />
+        <option value="$PROJECT_DIR$/app/services/photos.service.js" />
       </list>
     </option>
   </component>
@@ -455,7 +449,7 @@
     <property name="settings.editor.selected.configurable" value="settings.github" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="js.last.introduce.type" value="CONST" />
-    <property name="SearchEverywhereHistoryKey" value="done-registration&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/sign-in/done-registration.view.html&#10;app.js&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/app.js&#10;photos.service&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/photos.service.js&#10;add-product&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/controllers/add-product-3.controller.js&#10;add-pro&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/controllers/add-product-2.controller.js&#10;profile&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/profile.view.html&#10;view-deal&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/view-deal.view.html&#10;navbar&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/navbar.view.html&#10;app.&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/app.js&#10;register&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/sign-in/register-as-dealer.view.html&#10;viewdeal&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/view-deal.view.html&#10;index&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/index.html&#10;product-grid.view&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/products/products-grid.view.html&#10;home&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/home/home.view.html&#10;products&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/product.service.js&#10;style&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/assets/less/styles.less&#10;app&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/app.js&#10;styles.&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/assets/less/styles.less&#10;product-photos&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/product-photos.service.js&#10;dealphotos&#9;null&#9;null&#10;photoservice&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/photos.service.js" />
+    <property name="SearchEverywhereHistoryKey" value="photos.service&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/photos.service.js&#10;step-by-&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/about/step-by-step.view.html&#10;done-registration&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/sign-in/done-registration.view.html&#10;app.js&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/app.js&#10;add-product&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/controllers/add-product-3.controller.js&#10;add-pro&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/controllers/add-product-2.controller.js&#10;profile&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/profile.view.html&#10;view-deal&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/view-deal.view.html&#10;navbar&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/navbar.view.html&#10;app.&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/app.js&#10;register&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/sign-in/register-as-dealer.view.html&#10;viewdeal&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/view-deal.view.html&#10;index&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/index.html&#10;product-grid.view&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/signed-in/views/products/products-grid.view.html&#10;home&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/home/home.view.html&#10;products&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/product.service.js&#10;style&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/assets/less/styles.less&#10;app&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/app.js&#10;styles.&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/assets/less/styles.less&#10;product-photos&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/product-photos.service.js&#10;dealphotos&#9;null&#9;null&#10;photoservice&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/photos.service.js" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
@@ -576,12 +570,12 @@
       <workItem from="1469446055547" duration="95311000" />
       <workItem from="1470061601192" duration="5682000" />
       <workItem from="1470216203335" duration="4625000" />
-      <workItem from="1470235537514" duration="18931000" />
+      <workItem from="1470235537514" duration="21891000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="640675000" />
+    <option name="totallyTimeSpent" value="643635000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="817" extended-state="6" />
@@ -854,14 +848,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/photos.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="117" column="92" selection-start-line="117" selection-start-column="92" selection-end-line="117" selection-end-column="92" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
@@ -958,14 +944,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/about/step-by-step.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="96" column="27" selection-start-line="96" selection-start-column="27" selection-end-line="96" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/sign-in/done-registration.view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1002,6 +980,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/views/about/step-by-step.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="109" column="41" selection-start-line="109" selection-start-column="41" selection-end-line="109" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/photos.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="119" column="62" selection-start-line="119" selection-start-column="62" selection-end-line="119" selection-end-column="62" />
           <folding />
         </state>
       </provider>

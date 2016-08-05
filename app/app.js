@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial', 'ui.bootstrap', 'ngImgCrop'])
+    angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial', 'ui.bootstrap', 'ngImgCrop', 'angular-google-analytics'])
 
         .config(function ($mdThemingProvider) {
             $mdThemingProvider.theme('default')
@@ -12,8 +12,20 @@
                     'default': '500'
                 })
         })
-        .run(['$rootScope', '$location', '$cookies', '$http', '$timeout', '$mdToast', 'DealerPhotos',
-            function ($rootScope, $location, $cookies, $http, $timeout, $mdToast, DealerPhotos) {
+
+        .config(function (AnalyticsProvider) {
+            AnalyticsProvider.setAccount({
+                tracker: "UA-62425106-3",
+                trackEvent: true,
+                trackEcommerce: true
+            });
+            AnalyticsProvider.useECommerce(true, false);
+            AnalyticsProvider.setCurrency('ILS');
+            AnalyticsProvider.readFromRoute(true);
+        })
+
+        .run(['$rootScope', '$location', '$cookies', '$http', '$timeout', '$mdToast', 'DealerPhotos', 'Analytics',
+            function ($rootScope, $location, $cookies, $http, $timeout, $mdToast, DealerPhotos, Analytics) {
 
                 // global constants
                 // $rootScope.baseUrl = 'http://api.dealers-web.com'; // Test
@@ -116,13 +128,13 @@
                 $rootScope.categories = [
                     "Art",
                     "Automotive",
-                    "Beauty & Personal Care",
+                    "Health & Beauty",
                     "Books & Magazines",
                     "Electronics",
                     "Entertainment & Events",
                     "Fashion",
                     "Food & Groceries",
-                    "Home & Forniture",
+                    "Home & Furniture",
                     "Kids & Babies",
                     "Music",
                     "Pets",

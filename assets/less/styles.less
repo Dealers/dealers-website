@@ -84,7 +84,7 @@ label {
 }
 
 .text-muted {
-  color: @text-light-gray;
+  color: @text-light-gray !important;
 }
 
 aside {
@@ -153,14 +153,18 @@ h4 {
 
 .container {
   @media (max-width: @phone-width) {
-    padding: 0px;
+    padding: 0;
   }
 }
 
 // General
 
 .margin-bottom-0 {
-  margin-bottom: 0px;
+  margin-bottom: 0;
+}
+
+.margin-bottom-10 {
+  margin-bottom: 10px;
 }
 
 .margin-bottom-20 {
@@ -169,6 +173,10 @@ h4 {
 
 .margin-bottom-30 {
   margin-bottom: 30px;
+}
+
+.margin-bottom-40 {
+  margin-bottom: 40px;
 }
 
 .container-background {
@@ -486,7 +494,7 @@ nav img.profileThumbnail {
   }
 }
 
-md-menu-item > .md-button > a {
+md-menu-item > a {
   color: @theme-dark;
   &:hover, &:focus {
     color: @theme-dark;
@@ -700,20 +708,64 @@ md-menu-item > .md-button > a {
   }
 }
 
-.terms-and-privacy {
+.info-content {
   background: white;
   padding: 30px 24px 20px;
-  max-width: @phone-width;
+  max-width: 768px;
   margin: 0 auto 30px;
   border-radius: @rounded-corners-large;
   box-shadow: @product-cell-shadow;
-  p {
-    color: @text-dark-gray;
+  p, ul, ol {
+    color: @theme-dark;
+  }
+  ul {
+    margin-left: 40px;
+    list-style-type: disc;
   }
   @media (min-width: @phone-width) {
-    padding: 20px 40px 30px;
+    padding: 40px 60px 40px;
   }
 }
+
+div.step-by-step-header {
+  display: flex;
+  color: white;
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  line-height: 2.0;
+  margin-bottom: 10px;
+  h3, h4, h5 {
+    margin: 0 0 0 8px;
+    line-height: 1.7;
+    text-align: left;
+  }
+  .colorful-ordered-list {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    &.red {
+      background-color: #FF727A;
+    }
+    &.blue {
+      background-color: #4EC2F6;
+    }
+    &.yellow {
+      background-color: #FFD327;
+    }
+    &.green {
+      background-color: #80D783;
+    }
+    &.brown {
+      background-color: #BD9D82;
+    }
+    &.pink {
+      background-color: #F69CF1;
+    }
+  }
+}
+
 
 // Sign Up & Log In
 
@@ -1894,10 +1946,25 @@ md-tab-content .dl-form {
   md-content {
     padding-bottom: 20px;
   }
-  p.dl-note.info-note {
-    width: 300px;
-    margin: -10px auto 20px;
+  div#security-message {
+    display: flex;
+    max-width: 400px;
+    margin: 26px auto 0;
+    padding: 0 8px;
+    p.dl-note.info-note {
+      margin: -10px 0 20px 12px;
+    }
+    img {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+    }
   }
+}
+
+.done-registration {
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 .md-padding {
@@ -1932,6 +1999,9 @@ md-toolbar:not(.md-menu-toolbar) {
   font-weight: bold;
   padding: 0 8px;
   min-width: 0 !important;
+  &.md-button:not([disabled]):hover {
+    color: @theme-dark;
+  }
 }
 
 // For handling the top page jump when using md-select and others.
@@ -1977,6 +2047,7 @@ footer {
   padding: 40px 0;
   background-color: rgba(237,237,246,1);
   border-top: solid 1px rgb(215, 215, 222);
+  text-align: center;
   .dark-links;
   @media (max-width: @phone-width) {
     padding-left: 20px;

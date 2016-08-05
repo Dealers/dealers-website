@@ -6,8 +6,8 @@
         /**
          * The controller that manages the second step of the Add Product Procedure.
          */
-        .controller('AddProduct2Controller', ['$scope', '$rootScope', '$location', '$mdDialog', 'AddProduct', 'ProductPhotos',
-            function ($scope, $rootScope, $location, $mdDialog, AddProduct, ProductPhotos) {
+        .controller('AddProduct2Controller', ['$scope', '$rootScope', '$location', '$mdDialog', 'AddProduct', 'ProductPhotos', 'Analytics',
+            function ($scope, $rootScope, $location, $mdDialog, AddProduct, ProductPhotos, Analytics) {
 
                 var SHEKEL = '₪';
                 var DOLLAR = '$';
@@ -124,6 +124,7 @@
                         // Finished uploading photos, start uploading the product's data.
                         $scope.product = args.product;
                         AddProduct.uploadProduct($scope.product);
+                        Analytics.trackEvent('Product', 'add', $scope.product.category);
                     } else {
                         hideLoadingDialog(event);
                         console.log("Couldn't upload the photos. Aborting upload process.");

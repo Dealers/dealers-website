@@ -164,7 +164,7 @@
                                 .then(function (response) {
                                         // success
                                         console.log("Payment successful!");
-                                        Purchase.addPurchase($scope.purchase);
+                                        Purchase.addPurchase($scope.purchase, $scope.product);
                                         ActiveSession.setTempData("PRODUCT", $scope.product);
                                         $location.path("/products/" + $scope.product.id + "/checkout-finish");
                                     },

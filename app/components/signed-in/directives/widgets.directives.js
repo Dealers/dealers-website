@@ -6,8 +6,8 @@
     /**
      * The LIKE button.
      */
-        .directive('likeButton', ['$rootScope', '$http', '$route', 'Product', 'Dialogs', 'ActiveSession',
-            function ($rootScope, $http, $route, Product, Dialogs, ActiveSession) {
+        .directive('likeButton', ['$rootScope', '$http', '$route', 'Product', 'Dialogs', 'ActiveSession', 'Analytics',
+            function ($rootScope, $http, $route, Product, Dialogs, ActiveSession, Analytics) {
                 return {
                     link: function (scope, element) {
 
@@ -81,6 +81,7 @@
                                 }
                             } else {
                                 // Add the user to the dealersThatLiked array and update the appearance when done.
+                                Analytics.trackEvent('Product', 'like', String(scope.product.id));
                                 dealersThatLiked.push(userID);
                             }
                             $http.patch($rootScope.baseUrl + '/dealattribs/' + scope.product.dealattribs.id + '/', scope.product.dealattribs)
@@ -102,10 +103,11 @@
         /**
          * The FACEBOOK SHARE button.
          */
-        .directive('shareButton', ['$rootScope', function ($rootScope) {
+        .directive('shareButton', ['$rootScope', 'Analytics', function ($rootScope, Analytics) {
             return {
                 link: function (scope, element) {
                     $(element).on("click", function (ev) {
+                        Analytics.trackEvent('Product', 'share', String(scope.product.id));
                         var url = $rootScope.homeUrl + "/products/" + scope.product.id;
                         FB.ui({
                             method: 'share',

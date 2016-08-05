@@ -41,7 +41,7 @@
 	            "Fa": "Fashion", 	
 	            "Au" : "Automotive",
 	            "Ar" : "Art",
-	            "Be" : "Beauty & Personal Care",
+	            "Be" : "Health & Beauty",
 	            "Bo" : "Books & Magazines",
 	            "El" : "Electronics",
 	            "En" : "Entertainment & Events",

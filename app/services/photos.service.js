@@ -91,27 +91,71 @@
          */
         function preparePhotoForUpload(counter, photoName, photo, uploadFunc) {
             var img = document.createElement("img");
-            var reader = new FileReader();
 
-            reader.onabort = function () {
-                alert("The upload was aborted.");
-            };
-            reader.onerror = function () {
-                alert("An error occurred while reading the file.");
-            };
-            reader.onload = function (e) {
-                img.src = e.target.result;
-                var photoBlob;
-                if (!isMobile) {
+            if (isMobile) { // The photo was taken in mobile, need to check orientation before uploading.
+                EXIF.getData(photo, function () {
+                    var compressionFactor = 0.65;
+                    var orientation = EXIF.getTag(this, "Orientation");
+                    img.onload = function () {
+                        var canvas = createCanvasForImage(img);
+                        var ctx = canvas.getContext('2d');
+                        var width  = canvas.width * compressionFactor;  var styleWidth  = canvas.style.width * compressionFactor;
+                        var height = canvas.height * compressionFactor; var styleHeight = canvas.style.height * compressionFactor;
+                        if (orientation > 4) {
+                            canvas.width  = height; canvas.style.width  = styleHeight;
+                            canvas.height = width; canvas.style.height = styleWidth;
+                        } else {
+                            canvas.width  = width; canvas.style.width  = styleWidth;
+                            canvas.height = height; canvas.style.height = styleHeight;
+                        }
+                        switch (orientation) {
+                            case 2: ctx.translate(width, 0);     ctx.scale(-1,1); break;
+                            case 3: ctx.translate(width,height); ctx.rotate(Math.PI); break;
+                            case 4: ctx.translate(0,height);     ctx.scale(1,-1); break;
+                            case 5: ctx.rotate(0.5 * Math.PI);   ctx.scale(1,-1); break;
+                            case 6: ctx.rotate(0.5 * Math.PI);   ctx.translate(0,-height); break;
+                            case 7: ctx.rotate(0.5 * Math.PI);   ctx.translate(width,-height); ctx.scale(-1,1); break;
+                            case 8: ctx.rotate(-0.5 * Math.PI);  ctx.translate(-width,0); break;
+                        }
+                        ctx.drawImage(img, 0, 0, width * compressionFactor, height * compressionFactor);
+                        var dataUrl = canvas.toDataURL('image/jpeg', service.product.quality);
+                        var blob = dataURItoBlob(dataUrl);
+                        uploadFunc(counter, photoName, blob);
+                    };
+                    img.src = URL.createObjectURL(photo);
+                });
+
+            } else { // The photo was taken in desktop computer.
+                var reader = new FileReader();
+                reader.onabort = function () {
+                    alert("The upload was aborted.");
+                };
+                reader.onerror = function () {
+                    alert("An error occurred while reading the file.");
+                };
+                reader.onload = function (e) {
+                    img.src = e.target.result;
+                    var photoBlob;
                     photoBlob = dataURItoBlob(reduceSize(img));
                     uploadFunc(counter, photoName, photoBlob);
-                } else {
-                    uploadFunc(counter, photoName, photo);
-                }
+                };
 
-            };
+                reader.readAsDataURL(photo);
+            }
+        }
 
-            reader.readAsDataURL(photo);
+        function contextAccordingToOrientation(canvas, ctx, orientation) {
+            switch (orientation) {
+                case 2: ctx.translate(width, 0);     ctx.scale(-1,1); break;
+                case 3: ctx.translate(width,height); ctx.rotate(Math.PI); break;
+                case 4: ctx.translate(0,height);     ctx.scale(1,-1); break;
+                case 5: ctx.rotate(0.5 * Math.PI);   ctx.scale(1,-1); break;
+                case 6: ctx.rotate(0.5 * Math.PI);   ctx.translate(0,-height); break;
+                case 7: ctx.rotate(0.5 * Math.PI);   ctx.translate(width,-height); ctx.scale(-1,1); break;
+                case 8: ctx.rotate(-0.5 * Math.PI);  ctx.translate(-width,0); break;
+            }
+
+            return ctx;
         }
 
         /**
@@ -121,10 +165,7 @@
          * @returns {string} the image data url.
          */
         function reduceSize(image) {
-            var canvas = document.createElement("canvas");
-            canvas.width = image.width;
-            canvas.height = image.height;
-            canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
+            var canvas = createCanvasForImage(image);
 
             while (canvas.width >= (2 * service.product.maxWidth)) {
                 canvas = getHalfScaleCanvas(canvas);
@@ -134,9 +175,21 @@
                 canvas = scaleCanvasWithAlgorithm(canvas);
             }
 
-            return canvas.toDataURL('image/png', service.product.quality);
+            return canvas.toDataURL('image/jpeg', service.product.quality);
         }
 
+        /**
+         * Creates a canvas object for the received image.
+         * @param image - the image.
+         * @returns {canvas} - the new canvas object.
+         */
+        function createCanvasForImage(image) {
+            var canvas = document.createElement("canvas");
+            canvas.width = image.width;
+            canvas.height = image.height;
+            canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
+            return canvas;
+        }
 
         function getHalfScaleCanvas(canvas) {
             var halfCanvas = document.createElement('canvas');

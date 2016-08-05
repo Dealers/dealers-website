@@ -22,11 +22,11 @@
   opacity: 0.4;
 }
 .dark-links a {
-  color: #646473;
+  color: #5f5f6e;
 }
 .dark-links a:hover,
 .dark-links a:active {
-  color: #8c8c9b;
+  color: #828291;
 }
 html,
 body {
@@ -96,7 +96,7 @@ label {
   color: rgba(255, 255, 255, 0.7);
 }
 .text-muted {
-  color: #8c8c9b;
+  color: #828291 !important;
 }
 aside {
   padding: 50px 0;
@@ -158,17 +158,23 @@ h4 {
 }
 @media (max-width: 599px) {
   .container {
-    padding: 0px;
+    padding: 0;
   }
 }
 .margin-bottom-0 {
-  margin-bottom: 0px;
+  margin-bottom: 0;
+}
+.margin-bottom-10 {
+  margin-bottom: 10px;
 }
 .margin-bottom-20 {
   margin-bottom: 20px;
 }
 .margin-bottom-30 {
   margin-bottom: 30px;
+}
+.margin-bottom-40 {
+  margin-bottom: 40px;
 }
 .container-background {
   background-color: white;
@@ -187,11 +193,11 @@ h4 {
   margin: 10px 0;
 }
 .info-note {
-  color: #8c8c9b;
+  color: #828291;
 }
 .dl-note.dl-input-note {
   padding: 2px 11px 10px 10px;
-  color: #8c8c9b;
+  color: #828291;
   margin: -20px 0 0;
 }
 p.dl-error {
@@ -256,7 +262,7 @@ md-content.dl-grid {
   background-color: transparent;
 }
 .breadcrumb a.disabled {
-  color: #8c8c9b;
+  color: #828291;
 }
 .carousel-inner {
   min-height: 320px;
@@ -481,11 +487,11 @@ nav img.profileThumbnail {
 .dl-dropdown ul a li:hover {
   background-color: #f5f5fb;
 }
-md-menu-item > .md-button > a {
+md-menu-item > a {
   color: #323241;
 }
-md-menu-item > .md-button > a:hover,
-md-menu-item > .md-button > a:focus {
+md-menu-item > a:hover,
+md-menu-item > a:focus {
   color: #323241;
 }
 .intro-section.home-background {
@@ -681,21 +687,67 @@ md-menu-item > .md-button > a:focus {
 .about-page p a {
   text-decoration: underline;
 }
-.terms-and-privacy {
+.info-content {
   background: white;
   padding: 30px 24px 20px;
-  max-width: 599px;
+  max-width: 768px;
   margin: 0 auto 30px;
   border-radius: 10px;
   box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.05);
 }
-.terms-and-privacy p {
-  color: #646473;
+.info-content p,
+.info-content ul,
+.info-content ol {
+  color: #323241;
+}
+.info-content ul {
+  margin-left: 40px;
+  list-style-type: disc;
 }
 @media (min-width: 599px) {
-  .terms-and-privacy {
-    padding: 20px 40px 30px;
+  .info-content {
+    padding: 40px 60px 40px;
   }
+}
+div.step-by-step-header {
+  display: flex;
+  color: white;
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  line-height: 2.0;
+  margin-bottom: 10px;
+}
+div.step-by-step-header h3,
+div.step-by-step-header h4,
+div.step-by-step-header h5 {
+  margin: 0 0 0 8px;
+  line-height: 1.7;
+  text-align: left;
+}
+div.step-by-step-header .colorful-ordered-list {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+}
+div.step-by-step-header .colorful-ordered-list.red {
+  background-color: #FF727A;
+}
+div.step-by-step-header .colorful-ordered-list.blue {
+  background-color: #4EC2F6;
+}
+div.step-by-step-header .colorful-ordered-list.yellow {
+  background-color: #FFD327;
+}
+div.step-by-step-header .colorful-ordered-list.green {
+  background-color: #80D783;
+}
+div.step-by-step-header .colorful-ordered-list.brown {
+  background-color: #BD9D82;
+}
+div.step-by-step-header .colorful-ordered-list.pink {
+  background-color: #F69CF1;
 }
 #rad-dealer-profile-photo {
   margin: 30px;
@@ -748,7 +800,7 @@ img-crop canvas {
 }
 .dg-download-message {
   font-size: 24px;
-  color: #8c8c9b;
+  color: #828291;
   width: 100%;
   text-align: center;
   margin: 114px auto;
@@ -786,7 +838,7 @@ img-crop canvas {
 .productImage.loading {
   width: 100%;
   margin: 0 auto;
-  background-color: #8c8c9b;
+  background-color: #828291;
 }
 md-card.product md-card-avatar {
   border-radius: 30px;
@@ -825,7 +877,7 @@ div.noImageBackground {
   margin-right: 12px;
 }
 .discount {
-  color: #8c8c9b;
+  color: #828291;
 }
 .previousPrice {
   text-decoration: line-through;
@@ -854,7 +906,7 @@ div.noImageBackground {
   height: 16px;
 }
 .productInfo {
-  color: #8c8c9b;
+  color: #828291;
 }
 .framed-container {
   min-height: 220px;
@@ -1001,13 +1053,13 @@ div.noImageBackground {
   margin: 0 0 4px;
 }
 .vd-comments .comment .vd-comment-text-container h5 span.vd-comment-date {
-  color: #8c8c9b;
+  color: #828291;
   font-size: 12px;
   font-weight: 200;
   margin-left: 8px;
 }
 .vd-comments .comment .vd-comment-text-container p {
-  color: #8c8c9b;
+  color: #828291;
 }
 .vd-comments .comment form {
   flex: 1;
@@ -1057,14 +1109,14 @@ div.noImageBackground {
   font-weight: 600;
 }
 .vd-info-pane .vd-price-discount .vd-price-discount-frame .vd-discount {
-  color: #d0d0d6;
+  color: #c6c6cd;
   font-size: 1.2em;
   font-weight: 600;
   margin-left: 8px;
 }
 .vd-info-pane .vd-more-description {
   margin: 20px 0 0;
-  color: #8c8c9b;
+  color: #828291;
 }
 .checkout {
   padding: 10px 20px 30px;
@@ -1293,7 +1345,7 @@ button.ap-done {
   height: 18px;
 }
 .pr-header-section .pr-location {
-  color: #8c8c9b;
+  color: #828291;
   margin: 10px;
 }
 .pr-header-section .pr-location img {
@@ -1302,7 +1354,7 @@ button.ap-done {
   height: 14px;
 }
 .pr-header-section .pr-about {
-  color: #8c8c9b;
+  color: #828291;
   margin: 0 auto;
   width: 80%;
   min-width: 260px;
@@ -1472,7 +1524,7 @@ button.received.md-button:not([disabled]):hover {
   position: absolute;
   top: 18px;
   right: 15px;
-  color: #8c8c9b;
+  color: #828291;
 }
 .dl-date-field .btn {
   font-weight: 400;
@@ -1694,7 +1746,7 @@ button.dl-submit {
   margin: 0 !important;
 }
 .dl-form .md-select-value.md-select-placeholder {
-  color: #8c8c9b;
+  color: #828291;
 }
 .md-button {
   margin: 0;
@@ -1809,9 +1861,23 @@ md-tab-content .dl-form {
 .register-as-dealer md-content {
   padding-bottom: 20px;
 }
-.register-as-dealer p.dl-note.info-note {
-  width: 300px;
-  margin: -10px auto 20px;
+.register-as-dealer div#security-message {
+  display: flex;
+  max-width: 400px;
+  margin: 26px auto 0;
+  padding: 0 8px;
+}
+.register-as-dealer div#security-message p.dl-note.info-note {
+  margin: -10px 0 20px 12px;
+}
+.register-as-dealer div#security-message img {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+}
+.done-registration {
+  padding-right: 20px;
+  padding-left: 20px;
 }
 .md-padding {
   padding: 30px 20px 10px;
@@ -1841,6 +1907,9 @@ md-toolbar:not(.md-menu-toolbar) {
   padding: 0 8px;
   min-width: 0 !important;
 }
+.md-btn-small.md-button:not([disabled]):hover {
+  color: #323241;
+}
 :-ms-input-placeholder body[style],
 :root body[style] {
   position: inherit !important;
@@ -1862,28 +1931,29 @@ md-toolbar:not(.md-menu-toolbar) {
   }
 }
 ::-webkit-input-placeholder {
-  color: #8c8c9b;
+  color: #828291;
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 :-moz-placeholder {
-  color: #8c8c9b;
+  color: #828291;
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 :-ms-input-placeholder {
-  color: #8c8c9b;
+  color: #828291;
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 footer {
   padding: 40px 0;
   background-color: #ededf6;
   border-top: solid 1px #d7d7de;
+  text-align: center;
 }
 footer a {
-  color: #646473;
+  color: #5f5f6e;
 }
 footer a:hover,
 footer a:active {
-  color: #8c8c9b;
+  color: #828291;
 }
 @media (max-width: 599px) {
   footer {
@@ -1903,11 +1973,11 @@ menu-footer {
   border-top: solid 1px #e3e3e8;
 }
 menu-footer a {
-  color: #646473;
+  color: #5f5f6e;
 }
 menu-footer a:hover,
 menu-footer a:active {
-  color: #8c8c9b;
+  color: #828291;
 }
 menu-footer ul {
   margin-bottom: 0;

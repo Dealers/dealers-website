@@ -11,8 +11,8 @@
      */
         .factory('Purchase', PurchaseFactory);
 
-    PurchaseFactory.$inject = ['$http', '$rootScope', 'Product'];
-    function PurchaseFactory($http, $rootScope, Product) {
+    PurchaseFactory.$inject = ['$http', '$rootScope', 'Product', 'Analytics'];
+    function PurchaseFactory($http, $rootScope, Product, Analytics) {
 
         var PURCHASES_SOURCE = $rootScope.baseUrl + '/purchases/';
         var ORDERS_SOURCE = $rootScope.baseUrl + "/orders/";
@@ -60,13 +60,17 @@
         /**
          * Posts the purchase information to the server.
          * @param purchase - the purchase object.
+         * @param product - the purchased product.
          */
-        function addPurchase(purchase) {
+        function addPurchase(purchase, product) {
             purchase.purchase_date = new Date();
             $http.post(PURCHASES_SOURCE, purchase)
                 .then(function (response) {
                         // success
                         console.log("Purchase saved.");
+                        purchase = response.data;
+                        Analytics.addTrans(String(purchase.id), String(purchase.dealer), String((purchase.amount * purchase.quantity) / 100), '', '', '', '', '', purchase.currency);
+                        Analytics.addItem(String(purchase.id), '', product.title, product.category, String(purchase.amount / 100), String(purchase.quantity));
                     },
                     function (httpError) {
                         // error
@@ -125,7 +129,7 @@
          */
         function updateEstimatedDeliveryTime(estimatedDeliveryTime, purchase) {
             if (estimatedDeliveryTime >= 0) {
-                var data = { estimated_delivery_time: estimatedDeliveryTime };
+                var data = {estimated_delivery_time: estimatedDeliveryTime};
                 return $http.patch(PURCHASES_SOURCE + purchase.id + '/', data);
             }
             console.log("Invalid estimated delivery time value.");

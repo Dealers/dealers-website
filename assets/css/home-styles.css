@@ -6,11 +6,11 @@
   opacity: 0.4;
 }
 .dark-links a {
-  color: #646473;
+  color: #5f5f6e;
 }
 .dark-links a:hover,
 .dark-links a:active {
-  color: #8c8c9b;
+  color: #828291;
 }
 .xs-font {
   font-size: 12px;

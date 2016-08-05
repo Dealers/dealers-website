@@ -239,6 +239,12 @@
             if (clean_dealer.hasOwnProperty("screen_counters")) {
                 delete clean_dealer["screen_counters"];
             }
+            if (clean_dealer.hasOwnProperty("uploaded_deals")) {
+                delete clean_dealer["uploaded_deals"];
+            }
+            if (clean_dealer.hasOwnProperty("liked_deals")) {
+                delete clean_dealer["liked_deals"];
+            }
             return clean_dealer;
         }
 

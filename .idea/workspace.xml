@@ -2,52 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf2767dd-ff52-4566-8c25-987d52c3a3fb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.htaccess" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/add-product.controller.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/signed-in/views/about/help.view.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/signed-in/views/products/add-product.view.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/services/checkout.service.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/services/root-dealer-ready.service.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/add-product-1.controller.js" afterPath="$PROJECT_DIR$/old-junk/add-product-1.controller.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/add-product-2.controller.js" afterPath="$PROJECT_DIR$/old-junk/add-product-2.controller.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/add-product-3.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/add-product-finish.controller.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/signed-in/views/products/add-product-1.view.html" afterPath="$PROJECT_DIR$/old-junk/add-product-1.view.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/signed-in/views/products/add-product-2.view.html" afterPath="$PROJECT_DIR$/old-junk/add-product-2.view.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/signed-in/views/products/add-product-3.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/products/add-product-finish.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/general/directives.js" afterPath="$PROJECT_DIR$/app/components/general/directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/checkout.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/checkout.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/add-product.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/add-product.controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/edit-product.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/edit-product.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/navbar.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/navbar.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/controllers/view-deal.controller.js" afterPath="$PROJECT_DIR$/app/components/signed-in/controllers/view-deal.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/directives/product-directives.js" afterPath="$PROJECT_DIR$/app/components/signed-in/directives/product-directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/directives/widgets.directives.js" afterPath="$PROJECT_DIR$/app/components/signed-in/directives/widgets.directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/about/footer-section.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/about/footer-section.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/about/step-by-step.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/about/step-by-step.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/checkout-finish.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/checkout-finish.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/checkout.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/checkout.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/navbar.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/navbar.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/products/edit-product.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/products/edit-product.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/profile.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/profile.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/purchases/purchase-details.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/purchases/purchase-details.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/sign-in/register-as-dealer.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/sign-in/register-as-dealer.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/view-deal-info-pane.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/view-deal-info-pane.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/signed-in/views/view-deal.view.html" afterPath="$PROJECT_DIR$/app/components/signed-in/views/view-deal.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.js" afterPath="$PROJECT_DIR$/app/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/add-product.service.js" afterPath="$PROJECT_DIR$/app/services/add-product.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/dealer.service.js" afterPath="$PROJECT_DIR$/app/services/dealer.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/edit-product.service.js" afterPath="$PROJECT_DIR$/app/services/edit-product.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/product.service.js" afterPath="$PROJECT_DIR$/app/services/product.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/animations.css" afterPath="$PROJECT_DIR$/assets/css/animations.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/home-styles.css" afterPath="$PROJECT_DIR$/assets/css/home-styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/styles.css" afterPath="$PROJECT_DIR$/assets/css/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/less/mixins.less" afterPath="$PROJECT_DIR$/assets/less/mixins.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/less/styles.less" afterPath="$PROJECT_DIR$/assets/less/styles.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepros.cfg" afterPath="$PROJECT_DIR$/prepros.cfg" />
     </list>
     <ignored path="dealers-website.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,11 +24,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
+            <state relative-caret-position="15">
               <caret line="39" column="89" selection-start-line="39" selection-start-column="89" selection-end-line="39" selection-end-column="89" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add-product.controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/add-product.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="413">
+              <caret line="231" column="18" selection-start-line="231" selection-start-column="18" selection-end-line="231" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#48#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit-product.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/edit-product.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="518">
+              <caret line="110" column="17" selection-start-line="107" selection-start-column="16" selection-end-line="110" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -80,7 +59,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="435">
               <caret line="29" column="34" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
               <folding />
             </state>
@@ -141,7 +120,6 @@
         <option value="$PROJECT_DIR$/app/components/signed-in/views/products/add-product-finish.view.html" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/checkout-finish.view.html" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/view-deal-info-pane.view.html" />
-        <option value="$PROJECT_DIR$/app/components/signed-in/controllers/edit-product.controller.js" />
         <option value="$PROJECT_DIR$/app/components/signed-in/controllers/navbar.controller.js" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/navbar.view.html" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/profile.view.html" />
@@ -151,9 +129,10 @@
         <option value="$PROJECT_DIR$/app/components/signed-in/views/about/footer-section.view.html" />
         <option value="$PROJECT_DIR$/app/components/signed-in/views/about/help.view.html" />
         <option value="$PROJECT_DIR$/app/components/signed-in/controllers/add-product-1.controller.js" />
-        <option value="$PROJECT_DIR$/app/components/signed-in/controllers/add-product.controller.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/app/app.js" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/controllers/edit-product.controller.js" />
+        <option value="$PROJECT_DIR$/app/components/signed-in/controllers/add-product.controller.js" />
       </list>
     </option>
   </component>
@@ -193,6 +172,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -547,7 +527,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -690,34 +669,35 @@
       <workItem from="1471609002761" duration="7683000" />
       <workItem from="1471623211702" duration="23153000" />
       <workItem from="1471777733608" duration="25530000" />
-      <workItem from="1471934302728" duration="664000" />
+      <workItem from="1471934302728" duration="3014000" />
+      <workItem from="1471945380383" duration="1401000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="768200000" />
+    <option name="totallyTimeSpent" value="771951000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="817" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19591261" sideWeight="0.4951724" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19591261" sideWeight="0.4951724" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918397" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19591261" sideWeight="0.50482756" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37037036" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3994528" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3100137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37037036" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -742,7 +722,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
           <caret line="156" column="43" selection-start-line="156" selection-start-column="43" selection-end-line="156" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -750,7 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
           <caret line="376" column="39" selection-start-line="376" selection-start-column="39" selection-end-line="376" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -787,7 +765,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -802,7 +779,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="466">
           <caret line="80" column="54" selection-start-line="80" selection-start-column="52" selection-end-line="80" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -810,7 +786,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
           <caret line="18" column="34" selection-start-line="18" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -832,7 +807,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="51" column="18" selection-start-line="41" selection-start-column="16" selection-end-line="51" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -840,7 +814,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="55" column="40" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -848,7 +821,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="136" column="36" selection-start-line="136" selection-start-column="34" selection-end-line="136" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -863,7 +835,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
           <caret line="35" column="25" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -878,7 +849,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
           <caret line="50" column="17" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -886,7 +856,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
           <caret line="321" column="20" selection-start-line="321" selection-start-column="20" selection-end-line="321" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -901,7 +870,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="35" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -917,7 +885,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2205">
           <caret line="149" column="33" selection-start-line="149" selection-start-column="33" selection-end-line="149" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -925,7 +892,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="539">
           <caret line="220" column="44" selection-start-line="220" selection-start-column="44" selection-end-line="220" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -933,7 +899,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="26" column="42" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -948,9 +913,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="34" column="17" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#48#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -958,7 +920,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-994">
           <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -966,14 +927,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/edit-product.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="489" column="56" selection-start-line="489" selection-start-column="56" selection-end-line="489" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1002,7 +955,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="78" column="18" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1010,7 +962,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
           <caret line="55" column="86" selection-start-line="55" selection-start-column="86" selection-end-line="55" selection-end-column="86" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1018,7 +969,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
           <caret line="105" column="71" selection-start-line="105" selection-start-column="71" selection-end-line="105" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1026,7 +976,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="36" column="28" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1034,7 +983,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="47" column="14" selection-start-line="46" selection-start-column="40" selection-end-line="47" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1042,7 +990,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1050,7 +997,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="747" column="23" selection-start-line="747" selection-start-column="23" selection-end-line="747" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1058,7 +1004,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1066,7 +1011,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="9" selection-start-line="3" selection-start-column="4" selection-end-line="8" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1074,7 +1018,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
           <caret line="200" column="16" selection-start-line="200" selection-start-column="16" selection-end-line="200" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1082,23 +1025,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="32" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="32" />
-          <folding>
-            <element signature="n#style#0;n#md-button#0;n#md-menu#0;n#div#0;n#div#0;n#div#0;n#div#0;n#md-tab-body#0;n#md-tab#1;n#md-tabs#0;n#md-content#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#md-tab-body#0;n#md-tab#1;n#md-tabs#0;n#md-content#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#md-tab-body#0;n#md-tab#1;n#md-tabs#0;n#md-content#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#md-tab-body#0;n#md-tab#1;n#md-tabs#0;n#md-content#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#2;n#div#0;n#md-tab-body#0;n#md-tab#1;n#md-tabs#0;n#md-content#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/add-product.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="473" column="38" selection-start-line="473" selection-start-column="38" selection-end-line="473" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#48#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1114,13 +1040,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="118" column="25" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="435">
           <caret line="29" column="34" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
           <folding />
         </state>
@@ -1128,9 +1053,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
+        <state relative-caret-position="15">
           <caret line="39" column="89" selection-start-line="39" selection-start-column="89" selection-end-line="39" selection-end-column="89" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/edit-product.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="110" column="17" selection-start-line="107" selection-start-column="16" selection-end-line="110" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/signed-in/controllers/add-product.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="231" column="18" selection-start-line="231" selection-start-column="18" selection-end-line="231" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#48#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

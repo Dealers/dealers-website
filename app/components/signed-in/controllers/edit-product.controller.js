@@ -95,15 +95,19 @@
 
                 function changePercentageOff(event) {
                     if ($scope.product.percentage_off) {
-                        $scope.product.original_price = $scope.product.price + $scope.product.price * ($scope.product.percentage_off / 100);
+                        var margin = 100 - $scope.product.percentage_off;
+                        if (margin <= 0) {
+                            $scope.product.price = 0;
+                            $scope.product.original_price = null;
+                        } else {
+                            $scope.product.original_price = ($scope.product.price / margin) * 100;
+                        }
                     }
                 }
 
                 function changeOriginalPrice(event) {
-                    if ($scope.product.original_price) {
-                        var percentage_off = (($scope.product.original_price - $scope.product.price) / $scope.product.price) * 100;
-                        $scope.product.percentage_off = Math.round(percentage_off * 100) / 100; // Keep only 2 decimals.
-                    }
+                    var percentage_off = (1 - ($scope.product.price / $scope.product.original_price)) * 100;
+                    $scope.product.percentage_off = Math.round(percentage_off * 100) / 100; // Keep only 2 decimals.
                 }
 
                 /**

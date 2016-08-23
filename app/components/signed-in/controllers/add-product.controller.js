@@ -219,15 +219,21 @@
                     }
                 };
 
-                $scope.changeOriginalPrice = function (event) {
-                    var percentage_off = (($scope.product.original_price - $scope.product.price) / $scope.product.price) * 100;
-                    $scope.product.percentage_off = Math.round(percentage_off * 100) / 100; // Keep only 2 decimals.
-                };
-
                 $scope.changePercentageOff = function (event) {
                     if ($scope.product.percentage_off) {
-                        $scope.product.original_price = $scope.product.price + $scope.product.price * ($scope.product.percentage_off / 100);
+                        var margin = 100 - $scope.product.percentage_off;
+                        if (margin <= 0) {
+                            $scope.product.price = 0;
+                            $scope.product.original_price = null;
+                        } else {
+                            $scope.product.original_price = ($scope.product.price / margin) * 100;
+                        }
                     }
+                };
+
+                $scope.changeOriginalPrice = function (event) {
+                    var percentage_off = (1 - ($scope.product.price / $scope.product.original_price)) * 100;
+                    $scope.product.percentage_off = Math.round(percentage_off * 100) / 100; // Keep only 2 decimals.
                 };
 
                 $scope.getVariantsLength = function () {

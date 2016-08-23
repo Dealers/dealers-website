@@ -156,10 +156,9 @@
             $http.post($rootScope.baseUrl + '/bank_accounts/', bankAccount)
                 .then(function (response) {
                         // success
-                        console.log("Added the bank account information successfully. Now upload the the dealer's information.");
                         $rootScope.dealer.role = $rootScope.roles.dealer;
                         var dealer = cleanDealerObject($rootScope.dealer);
-                        $http.patch(DEALERS_BASE_URL + dealer.id + '/', dealer)
+                        $http.patch(DEALERS_BASE_URL + dealer.id + '/', dealer, {params: {mode: "new"}})
                             .then(function (response) {
                                     // success
                                     var dealer = response.data;
@@ -189,7 +188,7 @@
                         // success
                         console.log("Updated the bank account information successfully. Now update the the dealer's information.");
                         dealer = cleanDealerObject(dealer);
-                        $http.patch(DEALERS_BASE_URL + dealer.id + '/', dealer)
+                        $http.patch(DEALERS_BASE_URL + dealer.id + '/', dealer, {params: {mode: "edit"}})
                             .then(function (response) {
                                     // success
                                     dealer = response.data;
@@ -214,7 +213,7 @@
          */
         function updateViewer(viewer, sender) {
             viewer = cleanDealerObject(viewer);
-            $http.patch(DEALERS_BASE_URL + viewer.id + '/', viewer)
+            $http.patch(DEALERS_BASE_URL + viewer.id + '/', viewer, {params: {mode: "edit"}})
                 .then(function (response) {
                         // success
                         viewer = response.data;

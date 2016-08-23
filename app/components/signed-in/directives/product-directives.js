@@ -2,6 +2,60 @@
     'use strict';
 
     angular.module('DealersApp')
+        .directive('productPrice', function () {
+            return {
+                require: 'ngModel',
+                link: function (scope, element, attr, ngModel) {
+                    ngModel.$parsers.push(function(value) {
+                        value = parseFloat(value);
+                        if (value) {
+                            value = Math.round(value * 100) / 100; // Keep 2 decimals.
+                            return value;
+                        }
+                    });
+                    ngModel.$formatters.push(function(value) {
+                        value = parseFloat(value);
+                        if (value) {
+                            value = Math.round(value * 100) / 100; // Keep 2 decimals.
+                            return value;
+                        }
+                    });
+                }
+            }
+        })
+        .directive('productPercentageOff', function () {
+            return {
+                require: 'ngModel',
+                link: function (scope, element, attr, ngModel) {
+                    ngModel.$parsers.push(function(value) {
+                        value = parseFloat(value);
+                        if (value) {
+                            if (value > 100 || value < 0) {
+                                ngModel.$setValidity('is_valid', false);
+                                return null;
+                            } else if (value == 0) {
+                                ngModel.$setValidity('is_valid', undefined);
+                                return null;
+                            } else {
+                                ngModel.$setValidity('is_valid', true);
+                            }
+                            return value;
+                        }
+                    });
+                    ngModel.$formatters.push(function(value) {
+                        value = parseFloat(value);
+                        if (value) {
+                            if (value > 100 || value < 0) {
+                                return null;
+                            } else {
+                                ngModel.$setValidity('is_valid', true);
+                            }
+                            return value;
+                        }
+                    });
+                }
+            }
+        })
         .directive('dlProductsGrid',
             function () {
                 return {

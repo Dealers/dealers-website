@@ -17,6 +17,9 @@
                             <li class="purchase-amount">{{purchase.amount / 100 * purchase.quantity |
                                 currency:purchase.currency}}
                             </li>
+                            <li ng-repeat="selection in purchase.selections">
+                                {{selection.name}}: <b>{{selection.selection}}</b>
+                            </li>
                             <li>Qty: <b>{{purchase.quantity}}</b> <span ng-show="purchase.quantity > 1"><b>({{purchase.amount / 100 | currency: purchase.currency}} each)</b></span>
                             </li>
                             <li>Status: <b>{{purchase.status}}</b></li>

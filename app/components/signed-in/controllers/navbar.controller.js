@@ -79,6 +79,23 @@
                 };
 
                 /**
+                 * Opens an angular-material dropdown menu.
+                 * @param $mdOpenMenu - the menu to open.
+                 * @param ev - the event that triggered the function.
+                 */
+                $scope.openMenu = function ($mdOpenMenu, ev) {
+                    $mdOpenMenu(ev);
+                };
+
+                /**
+                 * Closes an angular-material dropdown menu.
+                 * @param ev - the event that triggered the function.
+                 */
+                $scope.closeMenu = function (ev) {
+                    $mdMenu.hide();
+                };
+
+                /**
                  * Takes the user to the product's View Deal page.
                  */
                 $scope.search = function (form) {

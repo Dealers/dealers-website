@@ -56,6 +56,9 @@
                 var productWithoutPhotos = $.extend({}, product);
                 productWithoutPhotos = Product.removePhotoPaths(productWithoutPhotos);
                 productWithoutPhotos = Product.extractData(productWithoutPhotos);
+                if (typeof productWithoutPhotos.price == "string") {
+                    productWithoutPhotos.price = parseFloat(productWithoutPhotos.price);
+                }
                 try {
                     localStorage.setItem(AP_SESSION, JSON.stringify(productWithoutPhotos));
                 }

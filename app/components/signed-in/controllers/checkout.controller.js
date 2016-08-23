@@ -15,8 +15,8 @@
      * @param $scope - the isolated scope of the controller.
      * @param $mdDialog - the mdDialog service of the Material Angular library.
      */
-        .controller('CheckoutController', ['$scope', '$rootScope', '$routeParams', '$location', '$mdMedia', '$mdDialog', 'ActiveSession', 'Product', 'ProductPhotos', 'Purchase',
-            function ($scope, $rootScope, $routeParams, $location, $mdMedia, $mdDialog, ActiveSession, Product, ProductPhotos, Purchase) {
+        .controller('CheckoutController', ['$scope', '$rootScope', '$routeParams', '$location', '$mdMedia', '$mdDialog', 'Checkout', 'ActiveSession', 'Product', 'ProductPhotos', 'Purchase',
+            function ($scope, $rootScope, $routeParams, $location, $mdMedia, $mdDialog, Checkout, ActiveSession, Product, ProductPhotos, Purchase) {
 
                 // First check if there's a product object in the ActiveSession service. If not, download it.
                 // Then create the purchase object.
@@ -27,6 +27,7 @@
                 var FAILED_STATUS = "failed";
 
                 $scope.status = DOWNLOADING_STATUS;
+                $scope.finished = false;
                 var shippingAddress = $rootScope.dealer.shipping_address;
                 $scope.shipping_address = shippingAddress ? shippingAddress : {};
 
@@ -56,6 +57,7 @@
                             $scope.status = DOWNLOADED_STATUS;
                             $scope.product = result.data;
                             $scope.product = Product.mapData($scope.product);
+                            if (!($scope.product.max_quantity > 0)) $scope.product.max_quantity = 30;
                             createPurchaseObject();
                             setProductPic();
                         }, function (httpError) {
@@ -66,6 +68,15 @@
                 }
 
                 function createPurchaseObject() {
+                    var purchase = Checkout.purchase;
+                    if (!purchase || $.isEmptyObject(purchase)) {
+                        purchase = Checkout.retrieveSavedSession();
+                        if (!purchase || $.isEmptyObject(purchase)) {
+                            console.log("No purchase object!")
+                            $location.path("/products/" + $scope.product.id);
+                        }
+                    }
+
                     $scope.purchase = {
                         buyer: $rootScope.dealer.id,
                         dealer: $scope.product.dealer.id,
@@ -73,27 +84,12 @@
                         amount: $scope.product.price * 100, // Convert to cents
                         currency: $scope.product.currency,
                         status: "Purchased",
-                        quantity: 1
+                        quantity: purchase.quantity,
+                        selections: purchase.selections
                     }
                 }
 
                 function setProductPic() {
-
-                    /*
-                     var ratio = DEFAULT_PHOTO_RATIO;
-                     var width = product.main_photo_width;
-                     var height = product.main_photo_height;
-                     $scope.greaterHeight = height > width;
-                     if (width && height) {
-                     ratio = product.main_photo_height / product.main_photo_width;
-                     }
-
-                     var currentWidth = element.width();
-                     var imageHeight = ratio * currentWidth;
-                     var heightString = String(imageHeight) + "px";
-                     imageContainer.css("height", heightString);
-
-                     */
 
                     if ($scope.product.photo) {
                         $scope.productImage = $scope.product.photo;
@@ -119,6 +115,19 @@
                 $scope.checkout = function (form, ev) {
 
                     if (!form.$valid) {
+                        if (!$scope.purchase.quantity) {
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                    .parent(angular.element(document.body))
+                                    .clickOutsideToClose(true)
+                                    .title("Invalid Quantity")
+                                    .textContent("The maximum quantity available is " + $scope.product.max_quantity + ".")
+                                    .ariaLabel('Alert Dialog')
+                                    .ok("Got it")
+                                    .targetEvent(ev)
+                            );
+                            return;
+                        }
                         $mdDialog.show(
                             $mdDialog.alert()
                                 .parent(angular.element(document.body))
@@ -164,6 +173,7 @@
                                 .then(function (response) {
                                         // success
                                         console.log("Payment successful!");
+                                        $scope.finished = true;
                                         Purchase.addPurchase($scope.purchase, $scope.product);
                                         ActiveSession.setTempData("PRODUCT", $scope.product);
                                         $location.path("/products/" + $scope.product.id + "/checkout-finish");
@@ -193,7 +203,23 @@
 
                      });
                      */
-                }
+                };
+
+                window.onbeforeunload = function () {
+                    Checkout.saveSession($scope.purchase);
+                };
+
+                var $locationChangeStartUnbind = $scope.$on('$locationChangeStart', function () {
+                    if ($scope.finished) {
+                        Checkout.clearSession();
+                    } else {
+                        Checkout.saveSession($scope.purchase);
+                    }
+                });
+
+                $scope.$on('$destroy', function () {
+                    Checkout.clearSession();
+                })
 
             }]);
 })();

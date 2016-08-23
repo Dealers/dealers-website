@@ -3,19 +3,17 @@
 
     angular.module('DealersApp')
 
-        /**
-         * The controller that manages the second step of the Add Product Procedure.
-         */
-        .controller('EditProductController', ['$scope', '$rootScope', '$location', '$mdDialog', '$mdToast', '$routeParams', '$timeout', 'Product', 'ProductPhotos', 'EditProduct',
-            function ($scope, $rootScope, $location, $mdDialog, $mdToast, $routeParams, $timeout, Product, ProductPhotos, EditProduct) {
+    /**
+     * The controller that manages the second step of the Add Product Procedure.
+     */
+        .controller('EditProductController', ['$scope', '$rootScope', '$location', '$mdDialog', '$mdConstant', '$mdToast', '$routeParams', '$timeout', 'Product', 'ProductPhotos', 'EditProduct',
+            function ($scope, $rootScope, $location, $mdDialog, $mdConstant, $mdToast, $routeParams, $timeout, Product, ProductPhotos, EditProduct) {
 
                 var SHEKEL = '₪';
                 var DOLLAR = '$';
                 var EURO = '€';
                 var PERCENTAGE = '%';
-                var PREV_PRICE = '123';
                 var CONFIRM_EXIT_MESSAGE = "The changes you made will be lost.";
-                var BASIC_INFO_PATH = "/new-product/basic-info";
                 var VIEW_PRODUCT_PATH = "/products/" + $routeParams.productID + "/";
                 var LOADING_MESSAGE = "Saving changes...";
                 var BROADCASTING_PREFIX = 'photos-downloaded-for-';
@@ -41,12 +39,24 @@
                 $scope.selectedIndex = 0;
                 $scope.addPhotoText = "Add a Photo";
 
+                $scope.variants = {};
+                $scope.maxVariants = 3;
+                $scope.variations = [];
+                $scope.keys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, $mdConstant.KEY_CODE.TAB];
+                $scope.placeholderNames = ["e.g. Color", "e.g. Size", "e.g. Material"];
+                $scope.placeholderOptions = ["Red, Blue", "S, M, L, XL", "Silk, Cotton"];
+
                 $scope.selectPhoto = selectPhoto;
                 $scope.changeThumbnailSelection = changeThumbnailSelection;
                 $scope.checkIfActive = checkIfActive;
+                $scope.changePercentageOff = changePercentageOff;
+                $scope.changeOriginalPrice = changeOriginalPrice;
+                $scope.setProductInView = setProductInView;
 
                 if (EditProduct.product.id) {
-                    setProductInView(EditProduct.product);
+                    setProduct(EditProduct.product);
+                    $scope.setProductInView();
+                    $scope.variants = Product.parseVariantsFromServer($scope.product.variants);
                 } else {
                     $scope.status = 'loading';
                     downloadProduct();
@@ -57,7 +67,9 @@
                     var productID = $routeParams.productID;
                     Product.getProduct(productID)
                         .then(function (result) {
-                            setProductInView(result.data);
+                            setProduct(result.data);
+                            $scope.setProductInView();
+                            $scope.variants = Product.parseVariantsFromServer($scope.product.variants);
                         }, function (httpError) {
                             $scope.status = 'failed';
                             $scope.errorMessage = "Couldn't download the product";
@@ -65,21 +77,54 @@
                         });
                 }
 
-                /**
-                 * Sets the view to present the product.
-                 * @param product - the product.
-                 */
-                function setProductInView(product) {
+                function setProduct(product) {
                     if (product) {
                         $scope.status = 'downloaded';
                         $scope.originalDealer = Product.mapData(product);
                         $scope.product = $.extend({}, $scope.originalDealer);
-                        fillOptionMenus();
-                        setProductPhotos();
                     } else {
-                        console.log("Something is wrong - setProductInView called but there's no product!");
+                        console.log("Something is wrong - setProduct called but there's no product!");
                     }
                 }
+
+                $scope.changePrice = function (event) {
+                    if ($scope.product.percentage_off > 0) {
+                        $scope.changePercentageOff(event);
+                    }
+                };
+
+                function changePercentageOff(event) {
+                    if ($scope.product.percentage_off) {
+                        $scope.product.original_price = $scope.product.price + $scope.product.price * ($scope.product.percentage_off / 100);
+                    }
+                }
+
+                function changeOriginalPrice(event) {
+                    if ($scope.product.original_price) {
+                        var percentage_off = (($scope.product.original_price - $scope.product.price) / $scope.product.price) * 100;
+                        $scope.product.percentage_off = Math.round(percentage_off * 100) / 100; // Keep only 2 decimals.
+                    }
+                }
+
+                /**
+                 * Sets the view to present the product.
+                 */
+                function setProductInView() {
+                    $scope.presentPercentageOff = $scope.product.percentage_off ? true : false;
+                    $scope.presentOriginalPrice = $scope.product.original_price ? true : false;
+                    $scope.changePercentageOff();
+                    $scope.changeOriginalPrice();
+                    fillOptionMenus();
+                    setProductPhotos();
+                }
+
+                $scope.changePresentPercentageOff = function (event) {
+                    $scope.presentPercentageOff = !$scope.presentPercentageOff;
+                };
+
+                $scope.changePresentOriginalPrice = function (event) {
+                    $scope.presentOriginalPrice = !$scope.presentOriginalPrice;
+                };
 
                 /**
                  * Checks if there are photos in the current product object, and if so loads them into the scope's photos array.
@@ -137,9 +182,6 @@
                     var product = $scope.product;
                     if (product) {
                         $scope.currency = product.currency;
-                        if (product.discount_type) {
-                            $scope.discountType = product.discount_type;
-                        }
                         $scope.category = product.category;
                     }
                 }
@@ -159,7 +201,7 @@
                                 $(this).removeClass("active");
                             }
                         });
-                    }, 100);
+                    }, 500);
                 }
 
                 /**
@@ -178,8 +220,8 @@
                  * @param index - the index of the new selected thumbnail.
                  */
                 function changeThumbnailSelection(index) {
-                    $('button.ap-thumbnail').removeClass('selected');
-                    $('li#' + index + " button.ap-thumbnail").addClass('selected');
+                    $('div.ap-thumbnail').removeClass('selected');
+                    $('li#' + index + "-photo div.ap-thumbnail").addClass('selected');
                 }
 
                 /**
@@ -309,18 +351,35 @@
                     $scope.currency = EURO;
                 };
 
-                /**
-                 * Change the selected discount type to PERCENTAGE.
-                 */
-                $scope.percentage = function () {
-                    $scope.discountType = PERCENTAGE;
+                $scope.getVariantsLength = function () {
+                    return Object.keys($scope.variants).length;
                 };
 
                 /**
-                 * Change the selected discount type to PREV_PRICE.
+                 * Adds another Variant field to the view.
+                 * @param event
                  */
-                $scope.prevPrice = function () {
-                    $scope.discountType = PREV_PRICE;
+                $scope.addVariant = function (event) {
+                    if ($scope.getVariantsLength() < $scope.maxVariants) {
+                        $scope.variants[$scope.getVariantsLength()] = {
+                            name: "",
+                            options: []
+                        }
+                    }
+                };
+
+                /**
+                 * Removes the Variant field from the view.
+                 * @param index - the index of the Variant to remove.
+                 * @param event
+                 */
+                $scope.removeVariant = function (index, event) {
+                    delete $scope.variants[index];
+                    while ($scope.variants[index + 1]) {
+                        $scope.variants[index] = $scope.variants[index + 1];
+                        delete $scope.variants[index + 1];
+                        index++;
+                    }
                 };
 
                 /**
@@ -360,6 +419,11 @@
                     hideLoadingDialog();
                     if (args.success) {
                         $scope.savedChanges = true;
+                        if (args.data) {
+                            $scope.product = args.data;
+                            $scope.product.variants = $scope.variantsForLater;
+                            EditProduct.product = $scope.product;
+                        }
                         $location.path(VIEW_PRODUCT_PATH);
                         $timeout($rootScope.showToast, 1500, true, DONE_UPLOAD_MESSAGE);
                     } else {
@@ -367,34 +431,97 @@
                         showAlertDialog("We're sorry, but there was a problem", args.message, event);
                     }
                 });
-                
+
+                /**
+                 * Organizes the price and discount input before upload.
+                 */
+                function preparePriceAndDiscount() {
+                    if ($scope.product.percentage_off && !$scope.presentPercentageOff) {
+                        $scope.product.percentage_off = null;
+                    }
+                    if ($scope.product.original_price && !$scope.presentOriginalPrice) {
+                        $scope.product.original_price = null;
+                    }
+                }
+
+                /**
+                 * Removes variants with empty names and also removes empty options.
+                 */
+                function prepareVariants() {
+                    for (var property in $scope.variants) {
+                        if ($scope.variants.hasOwnProperty(property)) {
+                            var name = $scope.variants[property].name;
+                            if (!(name.length > 0)) {
+                                delete $scope.variants[property];
+                                continue;
+                            }
+                            var options = $scope.variants[property].options;
+                            for (var i = options.length - 1; i >= 0 ; i--) {
+                                if (options[i].length == 0) {
+                                    options.splice(i, 1);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                /**
+                 * Update the variants in the server.
+                 */
+                function updateVariants() {
+                    EditProduct.deleteVariants($scope.product.variants);
+                    delete $scope.product.variants;
+                    var variants = Product.parseVariantsToServer($scope.variants);
+                    var postedVariants = [];
+                    for (var i = 0; i < variants.length; i++) {
+                        variants[i].deal = $scope.product.id;
+                        EditProduct.postVariant(variants[i])
+                            .then(function (result) {
+                                postedVariants.push(result.data);
+                                if (postedVariants.length == variants.length) {
+                                    $scope.variantsForLater = postedVariants; // To add to the product when uploading is finished.
+                                    $scope.uploadPhotosAndProduct();
+                                }
+                            }, function (err) {
+                                console.log("Failed to post variant.");
+                            });
+                    }
+                    if (variants.length == 0) {
+                        $scope.uploadPhotosAndProduct();
+                    }
+                }
+
                 /**
                  * Submits the new product object to the server.
                  * @param form - the form.
                  */
                 $scope.submitEdit = function (form) {
                     $scope.product.photos = $scope.photos;
-                    $scope.product.currency = $scope.currency;
-                    if ($scope.product.discount_value) {
-                        $scope.product.discount_type = $scope.discountType;
+                    if (!validation(form, event)) {
+                        return;
                     }
-                    // See if there were any changes
-                    if ($scope.changedPhotos || !Product.areEqual($scope.originalDealer, $scope.product)) {
-                        // There were changes, validate and upload them to the server.
-                        if (!validation(form, event)) {
-                            return;
-                        }
-                        showLoadingDialog();
-                        // If there were changes in the photos, then upload the changes and wait for the message
-                        // that indicates that the upload is finished. If not, then just upload the product object.
-                        if ($scope.changedPhotos) {
-                            $scope.oldPhotosURLs = ProductPhotos.setProductPhotosInArray($scope.product);
-                            ProductPhotos.uploadPhotosOfProduct($scope.product, EP_SESSION);
-                        } else {
-                            EditProduct.uploadModifiedProduct($scope.product);
-                        }
+                    preparePriceAndDiscount();
+                    $scope.product.photos = $scope.photos;
+                    $scope.product.max_quantity = Math.round($scope.product.max_quantity);
+                    showLoadingDialog();
+                    // Update variants
+                    if (!$.isEmptyObject($scope.variants)) {
+                        prepareVariants();
+                        updateVariants();
                     } else {
-                        $location.path(VIEW_PRODUCT_PATH);
+                        delete $scope.product.variants;
+                        $scope.uploadPhotosAndProduct();
+                    }
+                };
+
+                $scope.uploadPhotosAndProduct = function () {
+                    // If there were changes in the photos, then upload the changes and wait for the message
+                    // that indicates that the upload is finished. If not, then just upload the product object.
+                    if ($scope.changedPhotos) {
+                        $scope.oldPhotosURLs = ProductPhotos.setProductPhotosInArray($scope.product);
+                        ProductPhotos.uploadPhotosOfProduct($scope.product, EP_SESSION);
+                    } else {
+                        EditProduct.uploadModifiedProduct($scope.product);
                     }
                 };
 
@@ -436,12 +563,20 @@
                         showAlertDialog("Not a Valid Price", "Please enter a valid price.", event);
                         return false;
                     }
-                    if ($scope.product.discount_value < 0) {
+                    if ($scope.product.percentage_off < 0) {
                         showAlertDialog("Not a Valid Discount", "Please enter a valid discount (not required).", event);
                         return false;
                     }
-                    if ($scope.product.discount_value > 100 && $scope.discountType == PERCENTAGE) {
+                    if ($scope.product.percentage_off > 100) {
                         showAlertDialog("Not a Valid Discount", "You entered a discount of more than 100%!", event);
+                        return false;
+                    }
+                    if ($scope.product.original_price <= $scope.product.price) {
+                        showAlertDialog("Not a Valid Discount", "The original price must be greater than the current price.", event);
+                        return false;
+                    }
+                    if (!($scope.product.max_quantity > 0)) {
+                        showAlertDialog("Not a Valid Max Quantity Value", "Please add a valid quantity.", event);
                         return false;
                     }
                     if ($scope.product.category != null) {
@@ -451,10 +586,6 @@
                         }
                     } else {
                         showAlertDialog("Blank Category", "Please add a category to which your product relates.", event);
-                        return false;
-                    }
-                    if (form.expirationDate.$invalid) {
-                        showAlertDialog("Not a Valid Date", "Please enter a valid expiration date (not required).", event);
                         return false;
                     }
 
@@ -504,7 +635,7 @@
                  * @type {*|(function())}
                  */
                 $scope.$on('$locationChangeStart', function (event, next) {
-                    if (($scope.changedPhotos || !Product.areEqual($scope.originalDealer, $scope.product)) && !$scope.savedChanges) {
+                    if (!$scope.savedChanges) {
                         var answer = confirm("Are you sure you want to leave this page? The changes will be lost.");
                         if (!answer) {
                             event.preventDefault();
@@ -513,6 +644,7 @@
                 });
 
                 $scope.$on('$destroy', function () {
+                    EditProduct.product = null;
                     window.onbeforeunload = null;
                     // $locationChangeStartUnbind();
                 });

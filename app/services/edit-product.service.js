@@ -20,6 +20,8 @@
         service.product = {};
         service.savedPhotosURLs = [];
         service.uploadModifiedProduct = uploadModifiedProduct;
+        service.deleteVariants = deleteVariants;
+        service.postVariant = postVariant;
         return service;
 
         /**
@@ -58,11 +60,37 @@
             $http.patch($rootScope.baseUrl + EDIT_PRODUCT_PATH + service.product.id + '/', data)
                 .then(function (response) {
                     console.log("Product uploaded successfully!");
-                    $rootScope.$broadcast(UPLOAD_FINISHED_MESSAGE, {success: true, message: null});
+                    $rootScope.$broadcast(UPLOAD_FINISHED_MESSAGE, {success: true, data: response.data});
                 }, function (err) {
                     console.log("There was an error while uploading the product: " + err.data);
                     $rootScope.$broadcast(UPLOAD_FINISHED_MESSAGE, {success: false, message: err.data});
                 });
+        }
+
+        /**
+         * Deletes the received variants from the server.
+         * @param variants - the variants to delete.
+         */
+        function deleteVariants(variants) {
+            for (var i = 0; i < variants.length; i++) {
+                var varID = variants[i].id;
+                if (varID) {
+                    $http.delete($rootScope.baseUrl + "/variants/" + varID + "/")
+                        .then(function (result) {
+                        }, function (err) {
+                            console.log("Failed to delete variant.");
+                        });
+                }
+            }
+        }
+
+        /**
+         * Posts the received variant to the server.
+         * @param variant - the variant to post.
+         * @return {promise} - the promise object.
+         */
+        function postVariant(variant) {
+            return $http.post($rootScope.baseUrl + "/variants/", variant);
         }
     }
 })();

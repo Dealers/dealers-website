@@ -44,6 +44,7 @@
         service.removePhotoPaths = removePhotoPaths;
 
         service.mapData = mapData;
+        service.unStringifyObject = unStringifyObject;
         service.categoryForKey = categoryForKey;
         service.keyForCategory = keyForCategory;
         service.currencyForKey = currencyForKey;
@@ -52,8 +53,9 @@
         service.discountTypeForKey = discountTypeForKey;
         service.keyForDiscountType = keyForDiscountType;
         service.areEqual = areEqual;
+        service.parseVariantsToServer = parseVariantsToServer;
+        service.parseVariantsFromServer = parseVariantsFromServer;
         service.extractData = extractData;
-
 
         return service;
 
@@ -136,6 +138,48 @@
         }
 
         /**
+         * Parses the string representation of the product object into a valid product object with various value types.
+         * @param product - the product to parse.
+         * @returns {product} - a new valid product object.
+         */
+        function unStringifyObject(product) {
+            if (product.id) {
+                product.id = parseInt(product.id);
+            }
+            if (product.dealer) {
+                if (product.dealer.id) {
+                    product.dealer.id = parseInt(product.dealer.id);
+                }
+            }
+            if (product.price) {
+                product.price = parseFloat(product.price);
+            }
+            if (product.percentage_off) {
+                product.percentage_off = parseFloat(product.percentage_off);
+            }
+            if (product.original_price) {
+                product.original_price = parseFloat(product.original_price);
+            }
+            if (product.max_quantity) {
+                product.max_quantity = parseInt(product.max_quantity);
+            }
+            if (product.expiration) {
+                product.expiration = new Date(product.expiration);
+            }
+            if (product.upload_date) {
+                product.upload_date = new Date(product.upload_date);
+            }
+            if (product.main_photo_width) {
+                product.main_photo_width = parseInt(product.main_photo_width);
+            }
+            if (product.main_photo_height) {
+                product.main_photo_height = parseInt(product.main_photo_height);
+            }
+
+            return product;
+        }
+
+        /**
          * Returns the category that matches the received server key.
          * @param key - the server key.
          * @returns {string} the matching category.
@@ -164,7 +208,11 @@
          * @returns {string} the matching currency.
          */
         function currencyForKey(key) {
-            return currencies[key];
+            if (key) {
+                if (key.length == 3)
+                    return currencies[key];
+            }
+            return key;
         }
 
         /**
@@ -252,7 +300,56 @@
             if (product1.more_description != product2.more_description) {
                 return false;
             }
+            if (product1.more_description != product2.more_description) {
+                return false;
+            }
             return true;
+        }
+
+        /**
+         * Parses the variants of the product to the server format.
+         * @param variants - the variants to parse.
+         * @returns {Array} - the parsed variants array.
+         */
+        function parseVariantsToServer(variants) {
+            var parsedVariants = [];
+            var variant = {};
+            for (var property in variants) {
+                if (variants.hasOwnProperty(property)) {
+                    variant.name = variants[property].name;
+                    variant.options = [];
+                    var options = variants[property].options;
+                    for (var j = 0; j < options.length; j++) {
+                        variant.options.push({"option": variants[property].options[j]});
+                    }
+                    parsedVariants.push(variant);
+                    variant = {};
+                }
+            }
+            return parsedVariants;
+        }
+
+        /**
+         * Parses the variants of the product to the front format.
+         * @param variants - the variants to parse.
+         * @returns {variants} - the parsed variants.
+         */
+        function parseVariantsFromServer(variants) {
+            var parsedVariants = {};
+            var variant = {};
+            var counter = 0;
+            for (var i = 0; i < variants.length; i++) {
+                var curVar = variants[i];
+                variant.name = curVar.name;
+                variant.options = [];
+                for (var j = 0; j < curVar.options.length; j++) {
+                    variant.options.push(curVar.options[j].option);
+                }
+                parsedVariants[counter] = variant;
+                variant = {};
+                counter++;
+            }
+            return parsedVariants;
         }
 
         /**

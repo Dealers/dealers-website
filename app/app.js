@@ -29,7 +29,7 @@
 
                 // global constants
                 // $rootScope.baseUrl = 'http://api.dealers-web.com'; // Test
-                // $rootScope.homeUrl = 'http://www.dealers-web.com'; // Test
+                // $rootScope.homeUrl = "http://www.dealers-web.com"; // Test
                 // $rootScope.stripe_publishable_key = 'pk_test_q3cpGyBIL6rsGswSQbP3tMpK'; // Test
                 $rootScope.baseUrl = 'https://api.dealers-app.com'; // Live
                 $rootScope.homeUrl = 'https://www.dealers-app.com'; // Live
@@ -83,6 +83,7 @@
                         var dealerString = localStorage.getItem('dealer');
                         if (dealerString) {
                             $rootScope.dealer = JSON.parse(dealerString);
+                            // RootDealerReady.setAsReady($rootScope.dealer);
                             $rootScope.userProfilePic = "";
                             $rootScope.userProfilePicSender = "user-dealer-pic";
                             setUserProfilePic();
@@ -193,7 +194,7 @@
                         restricted = ['/register'];
                         for (i = 0; i < restricted.length; i++) {
                             if (next.indexOf(restricted[i]) > -1) {
-                                $location.path('/home');
+                                $location.path('/');
                                 return;
                             }
                         }

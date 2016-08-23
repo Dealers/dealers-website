@@ -53,7 +53,7 @@
         </ul>
         <ul id="nav-add-product" ng-class="{'navbar-right': !phoneMode && !tabletMode}" class="nav" ng-if="mode == 'Dealer'">
             <li>
-                <a href="/new-product/basic-info">
+                <a ng-href="/new-product">
                     <div>
                         <img src="../../../../assets/images/icons/@2x/Web_Icons_add_product_button.png"/>
                     </div>
@@ -62,7 +62,7 @@
         </ul>
         <ul id="nav-profile" ng-class="{'navbar-right': !phoneMode && !tabletMode}" class="nav" ng-if="mode != 'Guest'">
             <li>
-                <a href="/dealers/{{dealer.id}}">
+                <a ng-href="/dealers/{{dealer.id}}">
                     <div>
                         <img class="profileThumbnail img-circle" ng-src="{{userProfilePic}}"/>
                         <span class="non-mobile">{{dealer.full_name}}</span>

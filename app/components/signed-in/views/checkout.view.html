@@ -62,19 +62,11 @@
                         <p ng-show="product.more_description">
                             {{product.more_description}}
                         </p>
-                        <div class="dl-field no-icon-field form-group">
-                            <label for="co-quantity">Quantity</label>
-                            <input id="co-quantity"
-                                   name="co-quantity"
-                                   type="number"
-                                   value="1"
-                                   min="1" max="30"
-                                   style="width: 54px"
-                                   class="form-control dl-input"
-                                   ng-model="purchase.quantity"/>
-                        <span class="co-price">
-                            {{product.price * purchase.quantity | currency:product.currency}}
-                        </span>
+                        <div class="co-selections">
+                            <ul>
+                                <li ng-repeat="selection in purchase.selections"><b>{{selection.name}}:</b> {{selection.selection}}</li>
+                                <li><b>Quantity:</b> {{purchase.quantity}}</li>
+                            </ul>
                         </div>
                     </div>
                     <md-button id="co-pay"
@@ -88,3 +80,4 @@
         </div>
     </div>
 </div>
+<footer-section></footer-section>

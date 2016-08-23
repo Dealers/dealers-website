@@ -6,7 +6,7 @@
         /**
          * The controller that manages the second step of the Add Product Procedure.
          */
-        .controller('AddProduct3Controller', ['$scope', '$rootScope', '$location', '$mdDialog', 'AddProduct',
+        .controller('AddProductFinishController', ['$scope', '$rootScope', '$location', '$mdDialog', 'AddProduct',
             function ($scope, $rootScope, $location, $mdDialog, AddProduct) {
 
                 var PRODUCT_PAGE_BASE_URL = $rootScope.baseUrl + '/products/';

@@ -1,0 +1,375 @@
+<dl-navbar></dl-navbar>
+
+<div class="nav-padding">
+    <form
+            name="addProductForm"
+            class="no-padding dl-form paged-form framed-container"
+            ng-submit="addProduct(addProductForm, $event)"
+            novalidate
+            ng-cloak>
+        <md-content>
+            <md-tabs md-selected="selectedTab" md-dynamic-height md-border-botton>
+                <md-tab md-on-select="onTabSelected(0)">
+                    <md-tab-label>
+                        <span class="tabIndex">1</span>
+                        <div>Basic Details</div>
+                    </md-tab-label>
+                    <md-tab-body class="md-padding">
+                        <!--<p class="text-center">-->
+                        <!--Add photos, a title and a description of your product.-->
+                        <!--</p>-->
+                        <div class="dl-form-col single-col">
+                            <div class="dl-field no-icon-field form-group">
+                                <label for="ap-title">
+                                    Title
+                                </label>
+                                <input id="ap-title" name="name" type="text"
+                                       placeholder="e.g. Long Sleeve T-Shirt"
+                                       class="form-control dl-input"
+                                       value="dealer.full_name"
+                                       ng-model="product.title"
+                                       required
+                                />
+                            </div>
+                            <div class="dl-field-plus no-margin">
+                                <div class="dl-field no-icon-field form-group">
+                                    <label for="ap-description">
+                                        Description
+                                    </label>
+                                    <textarea id="ap-description" name="ap-description"
+                                              placeholder=""
+                                              class="dl-input form-control"
+                                              ng-model="product.more_description"
+                                              required>
+                                </textarea>
+                                </div>
+                            </div>
+                            <h4>Images</h4>
+                            <div class="dl-form-col single-col ap-image-section text-center"
+                                 file-dropzone="[image/png, image/jpeg, image/gif]"
+                                 photos="photos" photos-urls="photosURLs" show-alert="showAlert()" data-max-file-size="3">
+                                <div class="dropzone text-center" ng-hide="photos.length > 0">
+                                    <p class="non-mobile">Drop image here <br/> or </p>
+                                    <div class="inputfile-container" ng-hide="photos.length > 0">
+                                        <input id="inputButton" name="inputButton" type="file" class="inputfile"
+                                               accept="image/*"
+                                               photos-input photos="photos" photos-urls="photosURLs"
+                                               show-alert="showAlert()"/>
+                                        <label for="inputButton" class="md-button btn-white btn-secondary btn-md">{{addPhotoText}}</label>
+                                    </div>
+                                </div>
+
+                                <div class="ap-photos-thumbnails" ng-show="photos.length > 0">
+                                    <ul class="clearfix">
+                                        <li id="0-photo">
+                                            <div class="ap-input-button clickable" ng-click="selectPhoto(0); $event.stopPropagation();" ng-hide="photosURLs[0]">
+                                                <input id="inputButtonThumbnail0" name="inputButton" type="file"
+                                                       class="inputfile"
+                                                       accept="image/*" photos-input photos="photos"
+                                                       photos-urls="photosURLs" show-alert="showAlert()"/>
+                                                <label for="inputButtonThumbnail0" class="ap-thumbnail">
+                                                    <img src="../../../../../assets/images/icons/@2x/Web_Icons_camera_icon.png"/>
+                                                </label>
+                                            </div>
+                                            <div class="ap-thumbnail clickable" ng-click="selectPhoto(0); $event.stopPropagation();"
+                                                 ng-show="photosURLs[0]">
+                                                <img ng-src="{{photosURLs[0]}}" ng-show="photosURLs[0]"/>
+                                            </div>
+                                            <div class="ap-thumbnail-remove thumbnail-remove"
+                                                 ng-click="removePhoto($event)"
+                                                 ng-show="photosURLs[0]">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </div>
+                                        </li>
+                                        <li id="1-photo">
+                                            <div class="ap-input-button clickable" ng-hide="photosURLs[1]">
+                                                <input id="inputButtonThumbnail1" name="inputButton" type="file"
+                                                       class="inputfile"
+                                                       accept="image/*" photos-input photos="photos"
+                                                       photos-urls="photosURLs" show-alert="showAlert()"/>
+                                                <label for="inputButtonThumbnail1" class="ap-thumbnail">
+                                                    <img src="../../../../../assets/images/icons/@2x/Web_Icons_camera_icon.png"/>
+                                                </label>
+                                            </div>
+                                            <div class="ap-thumbnail clickable" ng-click="selectPhoto(1); $event.stopPropagation();"
+                                                 ng-show="photosURLs[1]">
+                                                <img ng-src="{{photosURLs[1]}}" ng-show="photosURLs[1]"/>
+                                            </div>
+                                            <div class="ap-thumbnail-remove thumbnail-remove"
+                                                 ng-click="removePhoto($event)"
+                                                 ng-show="photosURLs[1]">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </div>
+                                        </li>
+                                        <li id="2-photo">
+                                            <div class="ap-input-button clickable" ng-hide="photosURLs[2]">
+                                                <input id="inputButtonThumbnail2" name="inputButton" type="file"
+                                                       class="inputfile"
+                                                       accept="image/*" photos-input photos="photos"
+                                                       photos-urls="photosURLs" show-alert="showAlert()"/>
+                                                <label for="inputButtonThumbnail2" class="ap-thumbnail">
+                                                    <img src="../../../../../assets/images/icons/@2x/Web_Icons_camera_icon.png"/>
+                                                </label>
+                                            </div>
+                                            <div class="ap-thumbnail clickable" ng-click="selectPhoto(2); $event.stopPropagation();"
+                                                 ng-show="photosURLs[2]">
+                                                <img ng-src="{{photosURLs[2]}}" ng-show="photosURLs[2]"/>
+                                            </div>
+                                            <div class="ap-thumbnail-remove thumbnail-remove"
+                                                 ng-click="removePhoto($event)"
+                                                 ng-show="photosURLs[2]">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </div>
+                                        </li>
+                                        <li id="3-photo">
+                                            <div class="ap-input-button clickable" ng-hide="photosURLs[3]">
+                                                <input id="inputButtonThumbnail3" name="inputButton" type="file"
+                                                       class="inputfile"
+                                                       accept="image/*" photos-input photos="photos"
+                                                       photos-urls="photosURLs" show-alert="showAlert()"/>
+                                                <label for="inputButtonThumbnail3" class="ap-thumbnail">
+                                                    <img src="../../../../../assets/images/icons/@2x/Web_Icons_camera_icon.png"/>
+                                                </label>
+                                            </div>
+                                            <div class="ap-thumbnail clickable" ng-click="selectPhoto(3); $event.stopPropagation();"
+                                                 ng-show="photosURLs[3]">
+                                                <img ng-src="{{photosURLs[3]}}" ng-show="photosURLs[3]"/>
+                                            </div>
+                                            <div class="ap-thumbnail-remove thumbnail-remove"
+                                                 ng-click="removePhoto($event)"
+                                                 ng-show="photosURLs[3]">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>  <!-- ap-photos-thumbnails -->
+
+                                <div class="ap-image-container text-center" ng-show="photosURLs.length > 0">
+                                    <div id="photosCarousel" class="carousel slide" data-interval="false">
+                                        <div class="carousel-inner">
+                                            <carousel-item ng-repeat="photoURL in photosURLs"
+                                                           photo-url="photoURL"></carousel-item>
+                                        </div>
+                                        <div ng-show="photosURLs.length > 1" ng-click="nextPhoto($event)">
+                                            <a
+                                                    class="left carousel-control"
+                                                    href="#photosCarousel"
+                                                    target="_self"
+                                                    role="button"
+                                                    ng-non-bindable
+                                                    data-slide="prev">
+                                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                            </a>
+                                            <a
+                                                    class="right carousel-control"
+                                                    href="#photosCarousel"
+                                                    target="_self"
+                                                    role="button"
+                                                    ng-non-bindable
+                                                    data-slide="next">
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div> <!-- ap-image-container -->
+
+                            </div>    <!-- ap-image-section -->
+                        </div>
+                    </md-tab-body>
+                </md-tab>
+                <md-tab md-on-select="onTabSelected(1)">
+                    <md-tab-label>
+                        <span class="tabIndex">2</span>
+                        <div>More Details</div>
+                    </md-tab-label>
+                    <md-tab-body class="md-padding">
+                        <!--<p class="text-center">-->
+                        <!--Add more details like the price, the category and versions of your product.-->
+                        <!--</p>-->
+                        <div class="dl-form dl-form-col single-col">
+                            <div class="ap-price-and-discount-container margin-bottom-30">
+                                <div class="ap-price-and-discount" layout="column" layout-gt-xs="row">
+                                    <div class="dl-field no-icon-field form-group ap-current-price" flex
+                                         flex-gt-xs="33">
+                                        <label for="ap-current-price">
+                                            Current Price
+                                        </label>
+                                        <input id="ap-current-price" name="ap-current-price" type="number"
+                                               placeholder="required"
+                                               step="0.01"
+                                               ng-value="product.price"
+                                               ng-blur="formatPrice($event)"
+                                               class="form-control dl-input no-margin"
+                                               ng-model="product.price"
+                                               ng-change="changePrice($event)"
+                                               required
+                                               product-price
+                                        />
+                                        <md-menu>
+                                            <md-button class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)"
+                                                       style="margin-left: -12px">
+                                                <md-icon class="md-18">{{product.currency}}</md-icon>
+                                                <span class="caret"></span>
+                                            </md-button>
+                                            <md-menu-content width="2">
+                                                <md-menu-item>
+                                                    <md-button ng-click="product.currency = '₪'">
+                                                        <md-icon class="md-18">₪</md-icon>
+                                                    </md-button>
+                                                </md-menu-item>
+                                                <md-menu-item>
+                                                    <md-button ng-click="product.currency = '$'">
+                                                        <md-icon class="md-18">$</md-icon>
+                                                    </md-button>
+                                                </md-menu-item>
+                                                <md-menu-item>
+                                                    <md-button ng-click="product.currency = '€'">
+                                                        <md-icon class="md-18">€</md-icon>
+                                                    </md-button>
+                                                </md-menu-item>
+                                            </md-menu-content>
+                                        </md-menu>
+                                        <!--<div class="ap-dropdown-menu">-->
+                                        <!--</div>-->
+                                    </div>
+                                    <div layout="row" flex flex-gt-xs="66">
+                                        <div class="dl-field no-icon-field form-group ap-percentage-off" flex="50">
+                                            <label for="ap-percentage-off">
+                                                Percentage Off
+                                            </label>
+                                            <input id="ap-percentage-off" name="ap-percentage-off" type="number"
+                                                   class="form-control dl-input no-margin"
+                                                   ng-value="product.percentage_off"
+                                                   ng-model="product.percentage_off"
+                                                   ng-change="changePercentageOff($event)"
+                                                   max="100"
+                                                   product-percentage-off
+                                            />
+                                            <md-checkbox ng-model="presentPercentageOff" aria-label="Checkbox 1"
+                                                         class="dl-note">
+                                                Show
+                                            </md-checkbox>
+                                        </div>
+                                        <div class="dl-field no-icon-field form-group ap-original-price" flex="50">
+                                            <label for="ap-original-price">
+                                                Original Price
+                                            </label>
+                                            <input id="ap-original-price" name="ap-original-price" type="number"
+                                                   class="form-control dl-input no-margin"
+                                                   ng-value="product.original_price"
+                                                   ng-model="product.original_price"
+                                                   ng-change="changeOriginalPrice($event)"
+                                                   product-price
+                                            />
+                                            <md-checkbox ng-model="presentOriginalPrice" aria-label="Checkbox 1"
+                                                         class="dl-note">
+                                                Show
+                                            </md-checkbox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="pricePresentation" class="vd-price-discount no-margin text-center">
+                                    <div class="vd-price-discount-presentation">
+                                        <span class="dl-note info-note" style="margin-right: 8px;">preview: </span>
+                                        <span ng-show="product.price > 0" class="price">{{product.price | currency:product.currency}}</span>
+                                        <span ng-hide="product.price > 0" class="price">{{product.currency}}0.00</span>
+                                        <span ng-show="(product.percentage_off > 0 && product.percentage_off <= 100) && presentPercentageOff"
+                                              class="percentage-off">{{product.percentage_off}}% off</span>
+                                        <span ng-show="presentOriginalPrice"
+                                              class="original-price">{{product.original_price | currency:product.currency}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dl-field no-icon-field form-group">
+                                <label for="ap-category">
+                                    Category
+                                </label>
+                                <md-select id="ap-category" name="ap-category" class="dl-input form-control"
+                                           ng-model="product.category"
+                                           placeholder="eg. Art">
+                                    <md-option ng-repeat="category in categories" value="{{category}}">
+                                        {{category}}
+                                    </md-option>
+                                </md-select>
+                            </div>
+                            <!--
+                            <div class="dl-field no-icon-field form-group explanation-label-field">
+                                <label for="ap-max-quantity">
+                                    Max Quantity
+                                </label>
+                                <p class="dl-note margin-bottom">
+                                    How many of this item can a customer order in one shipment?
+                                </p>
+                                <input id="ap-max-quantity" name="ap-max-quantity" type="number"
+                                       class="form-control dl-input no-margin small-input"
+                                       min="0"
+                                       max="10000"
+                                       step="1"
+                                       ng-model="product.max_quantity"
+                                       ng-init="product.max_quantity=30"
+                                       required
+                                />
+                            </div>
+                            -->
+                            <div class="ap-variants">
+                                <h3>Variants</h3>
+                                <p class="dl-note margin-bottom">
+                                    Does this product comes in multiple variations like size or color?
+                                </p>
+                                <div class="ap-variants-container" layout="column">
+                                    <div class="dl-field no-margin" flex layout="row"
+                                         ng-repeat="variant in variants track by $index">
+                                        <div class="dl-field no-icon-field form-group no-margin" flex="30"
+                                             style="padding-right: 5px;">
+                                            <label for="ap-variant-{{$index}}" ng-show="$index == 0">
+                                                <span class="non-mobile">Option </span>Name
+                                            </label>
+                                            <input id="ap-variant-{{$index}}" name="ap-variant-{{$index}}" type="text"
+                                                   class="form-control dl-input no-margin"
+                                                   placeholder="{{placeholderNames[$index]}}"
+                                                   ng-model="variants[$index].name"
+                                            />
+                                        </div>
+                                        <div class="dl-field no-icon-field form-group ap-current-price" flex
+                                             style="padding-left: 5px;">
+                                            <label for="ap-option-{{$index}}" ng-show="$index == 0">
+                                                <span class="non-mobile">Option </span>Values
+                                            </label>
+                                            <md-chips id="ap-option-{{$index}}" name="ap-option-{{$index}}"
+                                                      class="form-control dl-input chips-input no-margin"
+                                                      ng-model="variants[$index].options"
+                                                      md-separator-keys="keys"
+                                                      placeholder="{{placeholderOptions[$index]}}"
+                                                      secondary-placeholder="">
+                                            </md-chips>
+                                        </div>
+                                        <div style="display: inline-block" flex="none">
+                                            <md-button class="md-icon-button ap-remove-variant"
+                                                       ng-class="{'first-remove-button': $index == 0}"
+                                                       ng-click="removeVariant($index, $event)">
+                                                <i class="material-icons light-gray">delete</i>
+                                            </md-button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <md-button ng-show="getVariantsLength()  < maxVariants" ng-click="addVariant($event)"
+                                           class="btn-secondary margin-bottom-40">
+                                    Add Variant
+                                </md-button>
+                                <div class="ap-variants-price">
+
+                                </div>
+                            </div>
+                        </div>
+                    </md-tab-body>
+                </md-tab>
+            </md-tabs>
+            <div style="padding: 0 20px;">
+                <md-button type="submit" class="btn btn-primary btn-single dl-submit md-primary md-raised" md-autofocus>
+                    {{submitButtonTitle}}
+                </md-button>
+            </div>
+        </md-content>
+    </form>
+</div>
+<footer-section></footer-section>

@@ -5,7 +5,22 @@ angular.module('DealersApp')
             .when('/', {
                 templateUrl: 'app/components/home/home.view.html',
                 controller: 'HomeController',
-                pageTrack: '/home'  // angular-google-analytics extension
+                resolveRedirectTo: {
+                    isDealerReady: function (RoootDealerReady) {
+                        RoootDealerReady.whenReady().then(function (dealer) {
+                            if (dealer.role == 'dealer') {
+                                return '/dealers/' + dealer.id;
+                            } else {
+                                return '/home';
+                            }
+                        });
+                    }
+                }
+            })
+            .when('/home', {
+                templateUrl: 'app/components/home/home.view.html',
+                controller: 'HomeController',
+                pageTrack: '/home' // angular-google-analytics extension
             })
             .when('/register', {
                 templateUrl: 'app/components/signed-in/views/sign-in/register-as-dealer.view.html',
@@ -42,20 +57,15 @@ angular.module('DealersApp')
                 controller: 'EditProfileController',
                 pageTrack: '/edit-profile'  // angular-google-analytics extension
             })
-            .when('/new-product/basic-info', {
-                templateUrl: 'app/components/signed-in/views/products/add-product-1.view.html',
-                controller: 'AddProduct1Controller',
-                pageTrack: '/add-product-1'  // angular-google-analytics extension
-            })
-            .when('/new-product/more-details', {
-                templateUrl: 'app/components/signed-in/views/products/add-product-2.view.html',
-                controller: 'AddProduct2Controller',
-                pageTrack: '/add-product-2'  // angular-google-analytics extension
+            .when('/new-product', {
+                templateUrl: 'app/components/signed-in/views/products/add-product.view.html',
+                controller: 'AddProductController',
+                pageTrack: '/add-product'  // angular-google-analytics extension
             })
             .when('/new-product/spread-the-word', {
-                templateUrl: 'app/components/signed-in/views/products/add-product-3.view.html',
-                controller: 'AddProduct3Controller',
-                pageTrack: '/add-product-3'  // angular-google-analytics extension
+                templateUrl: 'app/components/signed-in/views/products/add-product-finish.view.html',
+                controller: 'AddProductFinishController',
+                pageTrack: '/add-product-finish'  // angular-google-analytics extension
             })
             .when('/edit-product/:productID', {
                 templateUrl: 'app/components/signed-in/views/products/edit-product.view.html',
@@ -91,6 +101,9 @@ angular.module('DealersApp')
             })
             .when('/security', {
                 templateUrl: 'app/components/signed-in/views/about/security.view.html'
+            })
+            .when('/help', {
+                templateUrl: 'app/components/signed-in/views/about/help.view.html'
             })
             .when('/step-by-step', {
                 templateUrl: 'app/components/signed-in/views/about/step-by-step.view.html'

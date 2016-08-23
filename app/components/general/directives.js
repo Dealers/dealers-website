@@ -62,7 +62,7 @@
                             return;
                         }
                         if ($.inArray(imageFile, scope.photos) != -1) {
-                            scope.showAlertDialog();
+                            scope.showAlertDialog("Duplicate Photo", "This photo was already uploaded.");
                             return;
                         }
                         scope.photos.push(imageFile);

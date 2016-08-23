@@ -3,8 +3,8 @@
 
     angular.module('DealersApp')
         .controller('ViewDealController',
-            ['$scope', '$rootScope', '$http', '$routeParams', '$route', '$location', '$timeout', '$mdDialog', '$mdMedia', 'Product', 'ProductPhotos', 'DealerPhotos', 'ActiveSession', 'EditProduct', 'Dialogs',
-                function ($scope, $rootScope, $http, $routeParams, $route, $location, $timeout, $mdDialog, $mdMedia, Product, ProductPhotos, DealerPhotos, ActiveSession, EditProduct, Dialogs) {
+            ['$scope', '$rootScope', '$http', '$routeParams', '$route', '$location', '$timeout', '$mdDialog', '$mdMedia', 'Product', 'ProductPhotos', 'DealerPhotos', 'ActiveSession', 'EditProduct', 'Dialogs', 'Checkout',
+                function ($scope, $rootScope, $http, $routeParams, $route, $location, $timeout, $mdDialog, $mdMedia, Product, ProductPhotos, DealerPhotos, ActiveSession, EditProduct, Dialogs, Checkout) {
 
                     var ctrl = this;
 
@@ -19,8 +19,12 @@
                     $scope.photosURLs = [];
                     $scope.profilePicStatus = 'loading';
                     $scope.hasProfilePic = false;
+                    $scope.variants = [];
+                    $scope.purchase = {
+                        selections: [],
+                        quantity: 1
+                    };
                     $scope.user = $rootScope.dealer;
-                    $scope.discountTypePP = "";
                     $scope.totalLikes = 0;
                     $scope.firstPhotoSelected = false;
                     $scope.movedToCheckout = false;
@@ -37,6 +41,7 @@
                     $scope.addComment = addComment;
                     $scope.presentCommentError = presentCommentError;
                     $scope.proceedToCheckout = proceedToCheckout;
+                    $scope.showAlertDialog = showAlertDialog;
 
                     $scope.$watch(function () {
                         return $mdMedia('gt-sm');
@@ -90,7 +95,7 @@
                         setDealerProfile();
 
                         $scope.firstPhotoHeight = $scope.product.main_photo_height;
-                        $scope.discountTypePP = $scope.product.discount_type === "123";
+                        $scope.variants = Product.parseVariantsFromServer($scope.product.variants);
                         $scope.totalLikes = $scope.product.dealattribs.dealers_that_liked.length;
 
                         // Comments (only if the user has a dealer object, meaning he's signed in)
@@ -347,9 +352,25 @@
                     }
 
                     /**
-                     * Takes the user to the checkout view after clicking the buy button.
+                     * Presents the alert dialog when there is an invalid field.
+                     * @param title - the title of the alert dialog.
+                     * @param content - the content of the alert dialog.
+                     * @param ev - the event that triggered the alert.
                      */
-                    function proceedToCheckout() {
+                    function showAlertDialog(title, content, ev) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                                .parent(angular.element(document.body))
+                                .clickOutsideToClose(true)
+                                .title(title)
+                                .textContent(content)
+                                .ariaLabel('Alert Dialog')
+                                .ok("Got it")
+                                .targetEvent(ev)
+                        );
+                    }
+
+                    function validation() {
 
                         // First check that the user is signed in
                         if (!$rootScope.dealer) {
@@ -360,11 +381,57 @@
                                     ActiveSession.addActionToRun(BUY_FUNCTION_REPR);
                                     $route.reload();
                                 });
+                            return false;
+
+                        }
+
+                        for (var property in $scope.variants) {
+                            if ($scope.variants.hasOwnProperty(property)) {
+                                var variant = $scope.variants[property];
+                                if (!variant.selection) {
+                                    showAlertDialog(
+                                        "",
+                                        "Please select a " + variant.name.toLowerCase() + ".");
+                                    return false;
+                                }
+                                $scope.purchase.selections.push({
+                                    name: variant.name,
+                                    selection: variant.selection
+                                });
+                            }
+                        }
+
+                        if (!($scope.purchase.quantity > 0)) {
+                            showAlertDialog(
+                                "",
+                                "Please select a valid quantity.");
+                            return false;
+                        }
+
+                        if ($scope.purchase.quantity > $scope.product.max_quantity) {
+                            showAlertDialog(
+                                "",
+                                "The maximum quantity for order is " + $scope.product.max_quantity + ".");
+                            return false;
+                        }
+
+                        $scope.purchase.quantity = Math.round($scope.purchase.quantity);
+
+                        return true;
+                    }
+
+                    /**
+                     * Takes the user to the checkout view after clicking the buy button.
+                     */
+                    function proceedToCheckout() {
+
+                        if (!validation()) {
                             return;
                         }
 
                         $scope.product.photo = $scope.photosURLs ? $scope.photosURLs[0] : null;
                         ActiveSession.setTempData(PRODUCT_AS_KEY, $scope.product);
+                        Checkout.purchase = $scope.purchase;
                         $scope.movedToCheckout = true;
                         var path = "/products/" + $scope.product.id + "/checkout";
                         $location.path(path);

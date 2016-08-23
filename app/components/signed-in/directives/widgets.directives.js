@@ -140,6 +140,7 @@
                             templateUrl: 'app/components/signed-in/views/sign-in/sign-in-dealer-dialog.view.html',
                             parent: angular.element(document.body),
                             targetEvent: ev,
+
                             fullscreen: scope.customFullscreen,
                             locals: {tab: tabIndex}
                         })
@@ -163,7 +164,7 @@
                             scope.$apply();
                         } else {
                             if ($(element).is("#nav-login")) {
-                                scope.showSignInDialog(ev, 1, true);
+                                scope.showSignInDialog(ev, 1, false);
                             } else {
                                 scope.showSignInDialog(ev, 0, true);
                             }

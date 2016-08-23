@@ -1,0 +1,32 @@
+# DirectoryIndex xindex.html app/pages/landing-page-index.html
+
+# serve alternate default index page
+# DirectoryIndex index4.html
+
+# RewriteEngine On
+# RewriteBase /
+# RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet)
+# RewriteRule ^get/(.*)$ http://api.dealers-web.com/item/360/ [NC,L]
+
+#RewriteEngine on 
+#RewriteCond %{HTTP_USER_AGENT} !facebookexternalhit/[0-9]
+#RewriteRule (.*) http://api.dealers-web.com/item/360/
+
+AddDefaultCharset UTF-8
+RewriteEngine On
+# RewriteBase /
+
+RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Facebot|facebookexternalhit/1.1|facebookexternalhit/1.0)
+# RewriteCond %{HTTP_HOST} ^products/^(.*)$ [NC]
+# RewriteCond %{QUERY_STRING} ^/products/([0-9]*)$
+# RewriteRule ^/#/products/(.*)$ http://api.dealers-web.com/item/$1 [NC,L]
+RewriteRule ^products/(.*)$ http://api.dealers-web.com/item/$1/ [B,L]
+
+RewriteCond %{HTTP_USER_AGENT} !(facebookexternalhit/[0-9]|Facebot|facebookexternalhit/1.1|facebookexternalhit/1.0)
+# Don't rewrite files or directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Rewrite everything else to index.html to allow html5 state links
+RewriteRule ^ index.html [L]

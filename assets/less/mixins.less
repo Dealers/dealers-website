@@ -1,9 +1,9 @@
 // Mixins
 
 .transition-all() {
-  -webkit-transition: all 0.1s;
-  -moz-transition: all 0.1s;
-  transition: all ease-out 0.1s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all ease-out 0.2s;
 }
 
 .background-hover-transition() {
@@ -33,6 +33,21 @@
     &:hover, &:active {
       color: @text-light-gray;
     }
+  }
+  .md-button:not([disabled]):hover {
+    color: @theme-dark;
+  }
+}
+
+.gray-links {
+  a {
+    color: @text-light-gray;
+    &:hover, &:active {
+      color: lighten(@text-light-gray, 5%);
+    }
+  }
+  .md-button:not([disabled]):hover {
+    color: @text-light-gray;
   }
 }
 

@@ -2,14 +2,8 @@
  *  Contains methods for downloading users' info, authenticating users and registering new users.
  */
 
-(function () {
-    'use strict';
-
-    angular.module('DealersApp')
-        .factory('Dealer', DealerFactory);
-
-    DealerFactory.$inject = ['$http', '$rootScope', 'Authentication'];
-    function DealerFactory($http, $rootScope, Authentication) {
+angular.module('DealersApp')
+    .factory('Dealer', ['$http', '$rootScope', 'Authentication', function DealerFactory($http, $rootScope, Authentication) {
 
         var DEFAULT_UN = "ubuntu";
         var DEFAULT_PW = "090909deal";
@@ -33,6 +27,7 @@
         service.updateDealer = updateDealer;
         service.updateViewer = updateViewer;
         service.setIntercom = setIntercom;
+        service.updateCurrentUser = updateCurrentUser;
         service.updateShippingAddress = updateShippingAddress;
 
         return service;
@@ -66,8 +61,8 @@
         function logIn(username, password) {
             var credentials = Authentication.getCredentials(username, password);
             $http.get($rootScope.baseUrl + '/dealerlogins/', {
-                    headers: {'Authorization': credentials}
-                })
+                headers: {'Authorization': credentials}
+            })
                 .then(function (response) {
                         // success
                         var dealer = response.data.results[0];
@@ -99,6 +94,24 @@
             if (dealer) {
                 localStorage.setItem('dealer', JSON.stringify(dealer));
                 $rootScope.dealer = dealer;
+            }
+        }
+
+        /**
+         * Downloads the current dealer object from the server to update the current object in the client.
+         * @param dealerID - the id of the dealer that should be updated.
+         */
+        function updateCurrentUser(dealerID) {
+            if (dealerID) {
+                getDealer(dealerID)
+                    .then(function (response) {
+                            // success
+                            var dealer = response.data;
+                            saveCurrent(dealer);
+                        },
+                        function (httpError) {
+                            console.log("Couldn't update the user:" + httpError);
+                        });
             }
         }
 
@@ -193,6 +206,7 @@
                                     // success
                                     dealer = response.data;
                                     ctrl.saveCurrent(dealer);
+                                    setIntercom(dealer);
                                     broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, true, dealer);
                                 },
                                 function (httpError) {
@@ -218,6 +232,7 @@
                         // success
                         viewer = response.data;
                         ctrl.saveCurrent(viewer);
+                        setIntercom(viewer);
                         broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, true, viewer);
                     },
                     function (httpError) {
@@ -252,7 +267,6 @@
          * @param user - the user.
          */
         function setIntercom(user) {
-            var date = new Date(user.register_date);
             window.Intercom("update", {
                 app_id: $rootScope.INTERCOM_APP_ID,
                 user_id: user.id,
@@ -261,11 +275,9 @@
                 email: user.email,
                 date_of_birth: user.date_of_birth,
                 gender: user.gender,
-                about: user.about,
                 location: user.location,
                 role: user.role,
                 rank: user.rank,
-                created_at: date.getTime() // Signup date as a Unix timestamp
             });
         }
 
@@ -287,6 +299,4 @@
             };
             return $http.patch(DEALERS_BASE_URL + $rootScope.dealer.id, data);
         }
-    }
-
-})();
+    }]);

@@ -1,0 +1,17 @@
+<div>
+    <div class="mini-container dl-show">
+        <p ng-repeat="paragraph in text.split('\n') track by $index">
+            {{paragraph}}
+        </p>
+        <div class="text-bottom-cover" ng-show="needMinimize && !present">
+        </div>
+    </div>
+    <div class="mini-buttons" ng-show="needMinimize">
+        <md-button ng-hide="present" class="md-btn-small btn-smaller" ng-click="toggle($event)">
+            Show More
+        </md-button>
+        <md-button ng-show="present" class="md-btn-small btn-smaller" ng-click="toggle($event)">
+            Minimize
+        </md-button>
+    </div>
+</div>

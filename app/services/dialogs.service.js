@@ -1,15 +1,8 @@
 /**
  * Created by gullumbroso on 30/04/2016.
  */
-
-(function () {
-    'use strict';
-
-    angular.module('DealersApp')
-        .factory('Dialogs', DialogsFactory);
-
-    DialogsFactory.$inject = ['$rootScope', '$mdDialog', '$mdMedia'];
-    function DialogsFactory($rootScope, $mdDialog, $mdMedia) {
+angular.module('DealersApp')
+    .factory('Dialogs', ['$rootScope', '$mdDialog', '$mdMedia', function DialogsFactory($rootScope, $mdDialog, $mdMedia) {
 
         var service = {};
 
@@ -17,6 +10,7 @@
 
         service.showSignInDialog = showSignInDialog;
         service.confirmDialog = confirmDialog;
+        service.showAlertDialog = showAlertDialog;
 
         return service;
 
@@ -25,17 +19,18 @@
          * Presents the sign in dialog (sign up and log in) and returns the promise.
          * @param ev - The event that triggered the function.
          * @param tabIndex - the index of the selected option (sign up is 0, log in is 1).
+         * @param isViewer - true if triggered the sign up for viewers.
          * @return {Promise} - the promise that will run if process finished successfully.
          */
-        function showSignInDialog(ev, tabIndex) {
+        function showSignInDialog(ev, tabIndex, isViewer) {
             return $mdDialog.show({
                 controller: 'SignInDialogController',
-                templateUrl: 'app/components/signed-in/views/sign-in/sign-in-dialog.view.html',
+                templateUrl: 'app/components/views/sign-in/sign-in-dialog.view.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: true,
                 fullscreen: customFullscreen,
-                locals: {tab: tabIndex}
+                locals: {tab: tabIndex, isViewer: isViewer}
             });
         }
 
@@ -59,5 +54,23 @@
                 .cancel("Cancel")
                 .targetEvent(ev);
         }
-    }
-})();
+
+        /**
+         * Presents the alert dialog when there is an invalid field.
+         * @param title - the title of the alert dialog.
+         * @param content - the content of the alert dialog.
+         * @param ev - the event that triggered the alert.
+         */
+        function showAlertDialog(title, content, ev) {
+            $mdDialog.show(
+                $mdDialog.alert()
+                    .parent(angular.element(document.body))
+                    .clickOutsideToClose(true)
+                    .title(title)
+                    .textContent(content)
+                    .ariaLabel('Alert Dialog')
+                    .ok("Got it")
+                    .targetEvent(ev)
+            );
+        }
+    }]);

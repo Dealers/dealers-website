@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3Ceal//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="DealersApp" ng-strict-di>
+<head>
+    <title>Dealers - Selling online made simple</title>
+    <base href="/">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc.5/angular-material.min.css">
+    <link rel="stylesheet" href="/bower-libs/animate.css/animate.min.css">
+    <link rel="stylesheet" href="/assets/lib/css/angular-datepicker.css">
+    <link rel="stylesheet" href="/assets/lib/css/animations.css">
+    <link rel="stylesheet" href="/assets/css/home-styles.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="/assets/images/icons/favicon.png">
+    <script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/z1b3ijln';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
+</head>
+<body>
+
+<script>
+    /* Facebook SDK */
+    window.fbAsyncInit = function() {
+        FB.init({
+//            appId      : '307875306059843', // Live
+            appId      : '600864796760891', // Test
+            xfbml      : true,
+            status     : true,
+            version    : 'v2.6'
+        });
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div ng-view autoscroll="true"></div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc4/angular-material.min.js"></script>
+<script type="text/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.2.9.min.js"></script>
+<script type="text/javascript" src="https://checkout.stripe.com/checkout.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlK2TdEXT9XaU1IK3y-r_tZH9ts79dlgM&libraries=places"></script>
+
+<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="libs.js"></script>
+
+</body>
+</html>

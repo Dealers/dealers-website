@@ -1,0 +1,17 @@
+{
+  "name": "dealers",
+  "version": "1.3.0",
+  "dependencies": {
+    "bootstrap": "latest",
+    "font-awesome": "latest",
+    "animate.css": "latest",
+    "angular": "latest",
+    "angular-translate": "latest",
+    "angular-route": "latest",
+    "angular-translate-loader-static-files": "^2.11.1",
+    "angular-translate-storage-local": "^2.11.1",
+    "angular-translate-handler-log": "^2.11.1",
+    "angular-dynamic-locale": "^0.1.32",
+    "angular-i18n": "^1.5.8"
+  }
+}

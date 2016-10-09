@@ -1,11 +1,5 @@
-(function () {
-    'use strict';
-
-    angular.module('DealersApp')
-        .factory('Product', ProductFactory);
-
-    ProductFactory.$inject = ['$http', '$rootScope'];
-    function ProductFactory($http, $rootScope) {
+angular.module('DealersApp')
+    .factory('Product', ['$http', '$rootScope', 'ShippingMethods', function ProductFactory($http, $rootScope, ShippingMethods) {
 
         var ctrl = this;
         var service = {};
@@ -32,6 +26,7 @@
             "Mu": "Music",
             "Pe": "Pets",
             "Re": "Restaurants & Bars",
+            "Se": "Services",
             "Sp": "Sports & Outdoor",
             "Tr": "Travel",
             "Ot": "Other"
@@ -134,6 +129,7 @@
                     product.expiration = new Date(product.expiration);
                 }
             }
+            product = ShippingMethods.mapProductDeliveries(product);
             return product;
         }
 
@@ -362,5 +358,4 @@
             delete extracted.photos;
             return extracted;
         }
-    }
-})();
+    }]);

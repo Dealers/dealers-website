@@ -209,7 +209,7 @@
                  */
                 function showLoadingDialog(ev) {
                     $mdDialog.show({
-                        templateUrl: 'app/components/general/loading-dialog.view.html',
+                        templateUrl: 'app/components/views/loading-dialog.view.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
                         controller: 'LoadingDialogController',

@@ -9,9 +9,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc.5/angular-material.min.css">
-        <link rel="stylesheet" href="assets/lib/css/animate.min.css" type="text/css">
-        <link rel="stylesheet" href="assets/lib/css/angular-datepicker.css" type="text/css">
-        <link rel="stylesheet" href="assets/lib/css/animations.css">
+        <link rel="stylesheet" href="bower-libs/animate.css/animate.min.css">
+        <link rel="stylesheet" href="assets/lib/css/angular-datepicker.css">
+        <link rel="stylesheet" href="assets/css/animations.css">
         <link rel="stylesheet" href="assets/css/home-styles.css">
         <link rel="stylesheet" href="assets/css/styles.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -45,18 +45,17 @@
 
 	<!-- Libraries -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc4/angular-material.min.js"></script>
-    <script type="text/javascript" src="assets/lib/js/angular-route.min.js"></script>
-    <script type="text/javascript" src="assets/lib/js/angular-cookies.min.js"></script>
-    <script type="text/javascript" src="assets/lib/js/ui-bootstrap-tpls-1.3.3.min.js"></script>
     <script type="text/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.2.9.min.js"></script>
     <script type="text/javascript" src="https://checkout.stripe.com/checkout.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlK2TdEXT9XaU1IK3y-r_tZH9ts79dlgM&libraries=places"></script>
+    <script type="text/javascript" src="assets/lib/js/angular-route.min.js"></script>
+    <script type="text/javascript" src="assets/lib/js/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="assets/lib/js/ui-bootstrap-tpls-1.3.3.min.js"></script>
     <script type="text/javascript" src="assets/lib/js/spin.min.js"></script>
     <script type="text/javascript" src="assets/lib/js/horizontal-zoom-disabling.min.js"></script>
     <script type="text/javascript" src="assets/lib/js/ng-img-crop.js"></script>
@@ -69,31 +68,33 @@
     <script type="text/javascript" src="app/routes.js"></script>
 
     <!-- Controllers -->
-    <script type="text/javascript" src="app/components/general/controllers.js"></script>
-    <script type="text/javascript" src="app/components/home/home.controller.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/controllers/sign-in-dialog.controller.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/controllers/crop-photo-dialog.controller.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/controllers/register-as-dealer.controller.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/controllers/navbar.controller.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/controllers/products-grid.controller.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/controllers/view-deal.controller.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/controllers/categories-list.controller.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/controllers/profile.controller.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/controllers/edit-profile.controller.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/controllers/add-product.controller.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/controllers/add-product-finish.controller.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/controllers/edit-product.controller.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/controllers/checkout.controller.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/controllers/checkout-finish.controller.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/controllers/purchase-details.controller.js"></script>
+    <script type="text/javascript" src="app/components/controllers/home.controller.js"></script>
+    <script type="text/javascript" src="app/components/controllers/sign-in-dialog.controller.js"></script>
+    <script type="text/javascript" src="app/components/controllers/crop-photo-dialog.controller.js"></script>
+    <script type="text/javascript" src="app/components/controllers/register-as-dealer.controller.js"></script>
+    <script type="text/javascript" src="app/components/controllers/navbar.controller.js"></script>
+    <script type="text/javascript" src="app/components/controllers/products-grid.controller.js"></script>
+    <script type="text/javascript" src="app/components/controllers/view-deal.controller.js"></script>
+    <script type="text/javascript" src="app/components/controllers/categories-list.controller.js"></script>
+    <script type="text/javascript" src="app/components/controllers/profile.controller.js"></script>
+    <script type="text/javascript" src="app/components/controllers/edit-profile.controller.js"></script>
+    <script type="text/javascript" src="app/components/controllers/add-product.controller.js"></script>
+    <script type="text/javascript" src="app/components/controllers/add-product-finish.controller.js"></script>
+    <script type="text/javascript" src="app/components/controllers/edit-product.controller.js"></script>
+    <script type="text/javascript" src="app/components/controllers/checkout.controller.js"></script>
+    <script type="text/javascript" src="app/components/controllers/checkout-finish.controller.js"></script>
+    <script type="text/javascript" src="app/components/controllers/purchase-details.controller.js"></script>
+    <script type="text/javascript" src="app/components/controllers/loading-dialog.controller.js"></script>
+
 
     <!-- Directives -->
-    <script type="text/javascript" src="app/components/general/directives.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/directives/product-directives.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/directives/about-directives.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/directives/elements.directives.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/directives/widgets.directives.js"></script>
-    <script type="text/javascript" src="app/components/signed-in/directives/purchases.directives.js"></script>
+    <script type="text/javascript" src="app/components/directives/general-elements.directives.js"></script>
+    <script type="text/javascript" src="app/components/directives/product.directives.js"></script>
+    <script type="text/javascript" src="app/components/directives/product-edit.directives.js"></script>
+    <script type="text/javascript" src="app/components/directives/about.directives.js"></script>
+    <script type="text/javascript" src="app/components/directives/elements.directives.js"></script>
+    <script type="text/javascript" src="app/components/directives/widgets.directives.js"></script>
+    <script type="text/javascript" src="app/components/directives/purchases.directives.js"></script>
 
     <!-- Services -->
     <script type="text/javascript" src="app/services/authentication.service.js"></script>
@@ -108,9 +109,11 @@
     <script type="text/javascript" src="app/services/photos.service.js"></script>
     <script type="text/javascript" src="app/services/edit-product.service.js"></script>
     <script type="text/javascript" src="app/services/dialogs.service.js"></script>
-    <script type="text/javascript" src="app/services/purchase-service.service.js"></script>
+    <script type="text/javascript" src="app/services/purchase.service.js"></script>
     <script type="text/javascript" src="app/services/root-dealer-ready.service.js"></script>
     <script type="text/javascript" src="app/services/checkout.service.js"></script>
+    <script type="text/javascript" src="app/services/defaults.service.js"></script>
+    <script type="text/javascript" src="app/services/shipping-methods.service.js"></script>
 
     <!-- Plugin JavaScript -->
     <script type="text/javascript" src="assets/lib/js/jquery.easing.min.js"></script>

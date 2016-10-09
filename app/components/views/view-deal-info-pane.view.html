@@ -1,0 +1,48 @@
+<div class="vd-info-pane">
+    <div id="pricePresentation" class="vd-price-discount no-margin text-center">
+        <span ng-show="product.price > 0" class="price">{{product.price | currency:product.currency}}</span>
+        <span ng-show="product.percentage_off > 0" class="percentage-off">{{product.percentage_off}}% off</span>
+        <span ng-show="product.original_price > 0" class="original-price">{{product.original_price | currency:product.currency}}</span>
+    </div>
+    <div ng-repeat="variant in variants track by $index" class="dl-select">
+        <label for="vd-variant-{{variant.name}}">
+            {{variants[$index].name}}
+        </label>
+        <md-select id="vd-variant-{{variant.name}}"
+                   ng-model="variants[$index].selection"
+                   placeholder="Select">
+            <md-option ng-repeat="option in variant.options">
+                {{option}}
+            </md-option>
+        </md-select>
+    </div>
+    <div class="vd-quantity">
+        <label for="vd-quantity">Quantity</label>
+        <div>
+            <input id="vd-quantity"
+                   ng-model="purchase.quantity"
+                   ng-init="purchase.quantity = 1"
+                   type="number"
+                   min="1"
+                   max="{{product.max_quantity}}"
+                   ng-change="presentTotalPrice = true"
+                   step="1">
+            <span ng-show="presentTotalPrice" class="vd-price">
+                {{product.price * purchase.quantity | currency:product.currency}}
+            </span>
+        </div>
+    </div>
+    <md-button id="vd-buy"
+               class="btn-primary btn-sm btn-single btn-xl"
+               style="margin: 40px 0 34px 0;"
+               ng-click="proceedToCheckout()">
+        Buy
+    </md-button>
+    <div class="vd-more-description"
+         ng-show="product.more_description && product.more_description!='None'" >
+        <minimizable text="product.more_description" max-height="300"></minimizable>
+        <!--<p ng-repeat="paragraph in product.more_description.split('\n') track by $index">-->
+            <!--{{paragraph}}-->
+        <!--</p>-->
+    </div>
+</div>

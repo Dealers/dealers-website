@@ -1,0 +1,11 @@
+<div class="total-price">
+    <ul>
+        <li>{{price | currency: purchase.currency}}</li>
+        <li ng-show="purchase.quantity > 1">x {{purchase.quantity}} units</li>
+        <li ng-show="shipping_price >= 0">+
+            {{shipping_price | currency: purchase.currency}} for shipping
+        </li>
+        <li ng-hide="shipping_price >= 0" class="text-muted dl-note"><i>Didn't select a delivery option yet.</i></li>
+    </ul>
+    total: <span class="total-price-result">{{(price * purchase.quantity + shipping_price) | currency: purchase.currency}}</span>
+</div>

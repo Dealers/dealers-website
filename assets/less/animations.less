@@ -1,18 +1,47 @@
 @import "variables.less";
 @import "mixins.less";
 
-.repeated-item.ng-enter, 
-.repeated-item.ng-move, 
+
+.dl-fade {
+  .transition-all;
+}
+
+.repeated-item.ng-enter,
+.repeated-item.ng-move,
 .dl-fade.ng-hide,
 .dl-fade.ng-enter {
   .transition-all;
   opacity: 0;
 }
 
+.dl-fade:not(.ng-hide) {
+  opacity: 1;
+}
+
 .repeated-item.ng-enter.ng-enter-active,
 .repeated-item.ng-move.ng-move-active,
 .dl-fade.ng-hide-remove,
 .dl-fade.ng-enter.ng-enter-active {
+  .transition-all;
   opacity: 1;
+}
+
+.animate-height {
+  overflow: hidden !important;
+  -webkit-transition: all 0.5s;
+  -moz-transition:    all 0.5s;
+  -ms-transition:     all 0.5s;
+  -o-transition:      all 0.5s;
+  transition:         all ease 0.5s;
+  &:not(.dl-show) {
+    max-height: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    opacity: 0;
+  }
+  &.dl-show {
+    max-height: 500px;
+  }
 }
 

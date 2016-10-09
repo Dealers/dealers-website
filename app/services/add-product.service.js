@@ -1,14 +1,8 @@
 /*
  *  Manages information regarding the current session of adding a product.
  */
-(function () {
-    'use strict';
-
-    angular.module('DealersApp')
-        .factory('AddProduct', AddProductFactory);
-
-    AddProductFactory.$inject = ['$http', '$rootScope', 'Product', 'ProductPhotos'];
-    function AddProductFactory($http, $rootScope, Product, ProductPhotos) {
+angular.module('DealersApp')
+    .factory('AddProduct', ['$http', '$rootScope', 'Product', 'ProductPhotos', function AddProductFactory($http, $rootScope, Product, ProductPhotos) {
 
         var AP_SESSION = 'apSession';
         var AP_SESSION_PHOTOS = 'apSessionPhotos';
@@ -26,7 +20,7 @@
                 }
             });
         }
-        
+
         var service = {};
         service.product = {};
         service.savedPhotosURLs = [];
@@ -151,11 +145,10 @@
                 .then(function (response) {
                     console.log("Product uploaded successfully!");
                     setProduct(response.data);
-                    $rootScope.$broadcast(UPLOAD_FINISHED_MESSAGE, {success: true, message: null});
+                    $rootScope.$broadcast(UPLOAD_FINISHED_MESSAGE, {success: true, message: null, product: response.data});
                 }, function (err) {
                     console.log("There was an error while uploading the product: " + err.data);
                     $rootScope.$broadcast(UPLOAD_FINISHED_MESSAGE, {success: false, message: err.data});
                 });
         }
-    }
-})();
+    }]);

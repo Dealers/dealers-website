@@ -1,0 +1,10 @@
+<dl-navbar></dl-navbar>
+
+<div ng-show="role == roles.guest" class="nav-padding-exact intro-container">
+    <intro></intro>
+    <about-section></about-section>
+</div>
+
+<dl-products-grid title="gridTitle" description="gridDescription"
+                  ng-class="{'nav-padding': role != roles.guest, 'padding-top-30': role == roles.guest}">
+</dl-products-grid>

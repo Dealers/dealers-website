@@ -1,24 +1,20 @@
 /*
  *  Manages information regarding the current session of adding a product.
  */
-(function () {
-    'use strict';
-
-    angular.module('DealersApp')
-        .factory('EditProduct', EditProductFactory);
-
-    EditProductFactory.$inject = ['$http', '$rootScope', '$routeParams', 'Product', 'ProductPhotos'];
-    function EditProductFactory($http, $rootScope, $routeParams, Product, ProductPhotos) {
+angular.module('DealersApp')
+    .factory('EditProduct', ['$http', '$rootScope', '$routeParams', 'Product', 'ProductPhotos', function EditProductFactory($http, $rootScope, $routeParams, Product, ProductPhotos) {
 
         var EP_SESSION = 'epSession';
         var UPLOAD_STARTED_MESSAGE = 'ep-upload-started';
         var UPLOAD_FINISHED_MESSAGE = 'ep-upload-finished';
         var EP_SESSION_PHOTOS = 'epSessionPhotos';
         var EDIT_PRODUCT_PATH = '/adddeals/';
-        
+        var DELIVERY_PATH = "/deliverys/";
+
         var service = {};
         service.product = {};
         service.savedPhotosURLs = [];
+        service.isAfterEdit = false;
         service.uploadModifiedProduct = uploadModifiedProduct;
         service.deleteVariants = deleteVariants;
         service.postVariant = postVariant;
@@ -29,7 +25,7 @@
          * @param product - the product to upload.
          */
         function uploadModifiedProduct(product) {
-            service.product = product;
+            service.product = $.extend({}, product);
             setModifiedProductProperties();
             var firstPhoto = new Image();
             firstPhoto.onload = function () {
@@ -53,6 +49,9 @@
             }
             service.product.dealer = service.product.dealer.id;
             service.product.category = Product.keyForCategory(service.product.category);
+            delete service.product.dealers_delivery;
+            delete service.product.custom_delivery;
+            delete service.product.pickup_delivery;
         }
 
         function uploadData() {
@@ -92,5 +91,4 @@
         function postVariant(variant) {
             return $http.post($rootScope.baseUrl + "/variants/", variant);
         }
-    }
-})();
+    }]);

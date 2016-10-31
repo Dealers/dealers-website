@@ -11,12 +11,12 @@
             <md-menu-content width="3">
                 <md-menu-item>
                     <md-button ng-click="editProfile($event)">
-                        Edit Profile
+                        {{"general.edit-profile" | translate}}
                     </md-button>
                 </md-menu-item>
                 <md-menu-item>
                     <md-button ng-click="logOut($event)">
-                        Log Out
+                        {{"general.log-out" | translate}}
                     </md-button>
                 </md-menu-item>
             </md-menu-content>
@@ -24,22 +24,22 @@
         <md-menu class="non-mobile pr-settings">
             <md-button class="md-btn-small" ng-click="openMenu($mdOpenMenu, $event)">
                 <img ng-src="../../../../assets/images/icons/@2x/Web_Icons_settings_icon.png" class="side-icon" style="top: -1px"/>
-                Settings
+                {{"general.settings" | translate}}
             </md-button>
             <md-menu-content width="3">
                 <md-menu-item>
                     <md-button ng-click="editProfile($event)">
-                        Edit Profile
+                        {{"general.edit-profile" | translate}}
                     </md-button>
                 </md-menu-item>
                 <md-menu-item>
                     <md-button href="/help">
-                        Help
+                        {{"general.help" | translate}}
                     </md-button>
                 </md-menu-item>
                 <md-menu-item>
                     <md-button ng-click="logOut($event)">
-                        Log Out
+                        {{"general.log-out" | translate}}
                     </md-button>
                 </md-menu-item>
             </md-menu-content>
@@ -71,14 +71,20 @@
             <div ng-if="profileMode == 'myProfile'" class="pr-options">
                 <div class="pr-options-list">
                     <ul>
-                        <li tab-list ng-class="{'active': displayMode == displayModes.myProducts}" ng-if="dealer.role == roles.dealer">
-                            <md-button class="md-btn-small">My Products</md-button>
+                        <li tab-list ng-click="tabSelect('myProducts')" ng-class="{'active': displayMode == displayModes.myProducts}" ng-if="dealer.role == roles.dealer">
+                            <md-button class="md-btn-small">
+                                {{"views.profile.my-products" | translate}}
+                            </md-button>
                         </li>
-                        <li tab-list ng-class="{'active': displayMode == displayModes.purchases}" ng-if="dealer.role == roles.dealer">
-                            <md-button class="md-btn-small">Sales</md-button>
+                        <li tab-list ng-click="tabSelect('sales')" ng-class="{'active': displayMode == displayModes.purchases}" ng-if="dealer.role == roles.dealer">
+                            <md-button class="md-btn-small">
+                                {{"views.profile.sales" | translate}}
+                            </md-button>
                         </li>
-                        <li tab-list ng-class="{'active': displayMode == displayModes.orders}" ng-if="dealer.role == roles.viewer || dealer.role == roles.dealer">
-                            <md-button class="md-btn-small">Orders</md-button>
+                        <li tab-list ng-click="tabSelect('orders')" ng-class="{'active': displayMode == displayModes.orders}" ng-if="dealer.role == roles.viewer || dealer.role == roles.dealer">
+                            <md-button class="md-btn-small">
+                                {{"views.profile.orders" | translate}}
+                            </md-button>
                         </li>
                     </ul>
                 </div>

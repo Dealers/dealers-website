@@ -3,8 +3,8 @@ angular.module('DealersApp')
 /**
  * The controller that manages the second step of the Add Product Procedure.
  */
-    .controller('EditProductController', ['$scope', '$rootScope', '$location', '$mdDialog', '$mdConstant', '$mdToast', '$routeParams', '$timeout', 'Product', 'ProductPhotos', 'EditProduct', 'ShippingMethods', 'Dialogs',
-        function ($scope, $rootScope, $location, $mdDialog, $mdConstant, $mdToast, $routeParams, $timeout, Product, ProductPhotos, EditProduct, ShippingMethods, Dialogs) {
+    .controller('EditProductController', ['$scope', '$rootScope', '$location', '$mdDialog', '$mdConstant', '$mdToast', '$routeParams', '$timeout', 'Product', 'ProductPhotos', 'EditProduct', 'ShippingMethods', 'Dialogs', 'Translations',
+        function ($scope, $rootScope, $location, $mdDialog, $mdConstant, $mdToast, $routeParams, $timeout, Product, ProductPhotos, EditProduct, ShippingMethods, Dialogs, Translations) {
 
             var SHEKEL = '₪';
             var DOLLAR = '$';
@@ -25,6 +25,7 @@ angular.module('DealersApp')
             $scope.DEALERS_SHIPPING_DESCRIPTION = ShippingMethods.DEALERS_SHIPPING_DESCRIPTION;
             $scope.originalDealer = {}; // The product without the changes that were taken place in this Edit Product session.
             $scope.product = {};
+            $scope.translations = {}; // Translations that should be inserted in the scope for presentations in the view.
             $scope.currency = SHEKEL;
             $scope.discountType = PERCENTAGE;
             $scope.category = "";
@@ -38,14 +39,11 @@ angular.module('DealersApp')
             $scope.photosURLs = [];
             $scope.oldPhotosURLs = []; // If the photos array is changed, all the old photos are deleted, so this array keeps the old photos that should be deleted.
             $scope.selectedIndex = 0;
-            $scope.addPhotoText = "Add a Photo";
 
             $scope.variants = {};
             $scope.maxVariants = 3;
             $scope.variations = [];
             $scope.keys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, $mdConstant.KEY_CODE.TAB];
-            $scope.placeholderNames = ["e.g. Color", "e.g. Size", "e.g. Material"];
-            $scope.placeholderOptions = ["Red, Blue", "S, M, L, XL", "Silk, Cotton"];
 
             $scope.selectPhoto = selectPhoto;
             $scope.changeThumbnailSelection = changeThumbnailSelection;
@@ -55,6 +53,7 @@ angular.module('DealersApp')
             $scope.setProductInView = setProductInView;
 
             if (EditProduct.product.id) {
+                loadScopeTranslations();
                 setProduct(EditProduct.product);
                 $scope.setProductInView();
                 $scope.variants = Product.parseVariantsFromServer($scope.product.variants);
@@ -71,6 +70,7 @@ angular.module('DealersApp')
                         $scope.downloadedFromServer = true;
                         var product = result.data;
                         product = Product.mapData(product);
+                        loadScopeTranslations();
                         setProduct(product);
                         $scope.setProductInView();
                         $scope.variants = Product.parseVariantsFromServer($scope.product.variants);
@@ -79,6 +79,11 @@ angular.module('DealersApp')
                         $scope.errorMessage = "Couldn't download the product";
                         $scope.errorPrompt = "Please try again...";
                     });
+            }
+
+            function loadScopeTranslations() {
+                $scope.translations.placeholderNames = Translations.productEdit.placeholderNames;
+                $scope.translations.placeholderOptions = Translations.productEdit.placeholderOptions;
             }
 
             function setProduct(product) {
@@ -200,6 +205,12 @@ angular.module('DealersApp')
              * @param index - the index of the new selected photo.
              */
             function selectPhoto(index) {
+                var loadTime;
+                if ($scope.photosURLs.length == 1) {
+                    loadTime = 500;
+                } else {
+                    loadTime = 50;
+                }
                 $scope.selectedIndex = index;
                 $scope.changeThumbnailSelection(index);
                 $timeout(function () {
@@ -210,7 +221,7 @@ angular.module('DealersApp')
                             $(this).removeClass("active");
                         }
                     });
-                }, 500);
+                }, loadTime);
             }
 
             /**
@@ -266,8 +277,7 @@ angular.module('DealersApp')
                         index = 0;
                     }
                 }
-                $scope.selectedIndex = index;
-                $scope.changeThumbnailSelection(index);
+                $scope.selectPhoto(index);
             };
 
             $scope.$watchGroup(
@@ -288,12 +298,12 @@ angular.module('DealersApp')
              */
             $scope.removePhoto = function (event) {
                 var confirm = $mdDialog.confirm()
-                    .title('Remove Photo')
-                    .textContent('Are you sure you want to remove this photo?')
+                    .title(Translations.general.removePhotoTitle)
+                    .textContent(Translations.general.removePhotoConfirm)
                     .ariaLabel('Remove photo')
                     .targetEvent(event)
-                    .ok('Yes')
-                    .cancel('Cancel');
+                    .ok(Translations.general.approve)
+                    .cancel(Translations.general.cancel);
                 $mdDialog.show(confirm).then(function () {
                     var photoIndex = event.target.parentElement.parentElement.id;
                     photoIndex = parseInt(photoIndex, 10);
@@ -317,7 +327,7 @@ angular.module('DealersApp')
                         .title(title)
                         .textContent(content)
                         .ariaLabel('Alert Dialog')
-                        .ok("Got it")
+                        .ok(Translations.general.gotIt)
                         .targetEvent(ev)
                 );
             }
@@ -401,7 +411,7 @@ angular.module('DealersApp')
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     controller: 'LoadingDialogController',
-                    locals: {message: LOADING_MESSAGE},
+                    locals: {message: Translations.general.saveChanges},
                     escapeToClose: false
                 });
             }
@@ -577,44 +587,44 @@ angular.module('DealersApp')
              */
             function validation(form, event) {
                 if ($scope.photos.length == 0) {
-                    showAlertDialog("Missing Photos", "You must add photos of your product!", event);
+                    showAlertDialog(Translations.productEdit.missingPhotosTitle, Translations.productEdit.missingPhotosContent, event);
                     return false;
                 }
                 if (!$scope.product.title) {
-                    showAlertDialog("Title Is Blank", "You must add a title for you product!", event);
+                    showAlertDialog(Translations.productEdit.blankTitle, Translations.productEdit.blankTitleContent, event);
                     return false;
                 }
                 if ($scope.product.price == null) {
-                    showAlertDialog("Blank Price", "Please add the price of your product!", event);
+                    showAlertDialog(Translations.productEdit.blankPriceTitle, Translations.productEdit.blankPriceContent, event);
                     return false;
                 }
                 if ($scope.product.price <= 0) {
-                    showAlertDialog("Not a Valid Price", "Please enter a valid price.", event);
+                    showAlertDialog(Translations.productEdit.invalidPriceTitle, Translations.productEdit.invalidPriceContent, event);
                     return false;
                 }
                 if ($scope.presentPercentageOff && $scope.product.percentage_off < 0) {
-                    showAlertDialog("Invalid Discount", "Please enter a valid discount (not required).", event);
+                    showAlertDialog(Translations.productEdit.invalidDiscountTitle, Translations.productEdit.invalidDiscountContent, event);
                     return false;
                 }
                 if ($scope.presentPercentageOff && $scope.product.percentage_off > 100) {
-                    showAlertDialog("Invalid Discount", "You entered a discount of more than 100%!", event);
+                    showAlertDialog(Translations.productEdit.invalidDiscountTitle, Translations.productEdit.invalidDiscountContent100, event);
                     return false;
                 }
                 if ($scope.presentOriginalPrice && $scope.product.original_price <= $scope.product.price) {
-                    showAlertDialog("Not a Valid Discount", "The original price must be greater than the current price.", event);
+                    showAlertDialog(Translations.productEdit.invalidDiscountTitle, Translations.productEdit.invalidDiscountContentOP, event);
                     return false;
                 }
                 if (!($scope.product.max_quantity > 0)) {
-                    showAlertDialog("Not a Valid Max Quantity Value", "Please add a valid quantity.", event);
+                    showAlertDialog(Translations.productEdit.invalidMaxQuantityTitle, Translations.productEdit.invalidMaxQuantityContent, event);
                     return false;
                 }
                 if ($scope.product.category != null) {
                     if ($scope.product.category.length == 0) {
-                        showAlertDialog("Blank Category", "Please add a category to which your product relates.", event);
+                        showAlertDialog(Translations.productEdit.blankCategoryTitle, Translations.productEdit.blankCategoryContent, event);
                         return false;
                     }
                 } else {
-                    showAlertDialog("Blank Category", "Please add a category to which your product relates.", event);
+                    showAlertDialog(Translations.productEdit.blankCategoryTitle, Translations.productEdit.blankCategoryContent, event);
                     return false;
                 }
                 if (!ShippingMethods.validateShippingMethods($scope.shipping_methods)) {
@@ -626,18 +636,18 @@ angular.module('DealersApp')
 
             $scope.deleteProduct = function (event) {
                 var confirm = $mdDialog.confirm()
-                    .title('Delete Product')
-                    .textContent('Are you absolutely sure that you want to delete this product? It cannot be undone!')
+                    .title(Translations.viewDeal.deletionMessageTitle)
+                    .textContent(Translations.viewDeal.deletionMessageContent)
                     .ariaLabel('Delete product')
                     .targetEvent(event)
-                    .ok('Yes, delete this product')
-                    .cancel('Cancel');
+                    .ok(Translations.general.approve)
+                    .cancel(Translations.general.cancel);
                 $mdDialog.show(confirm).then(function () {
                     Product.deleteProduct(PRODUCT_URL)
                         .then(function (response) {
                                 // success
                                 console.log("Product deleted successfully.");
-                                $timeout($rootScope.showToast, 1000, true, "Deleted the product.");
+                                $timeout($rootScope.showToast, 1000, true, Translations.viewDeal.deletedMessage);
                                 $location.path("/home");
                             },
                             function (httpError) {
@@ -668,7 +678,7 @@ angular.module('DealersApp')
              */
             $scope.$on('$locationChangeStart', function (event, next) {
                 if (!$scope.savedChanges) {
-                    var answer = confirm("Are you sure you want to leave this page? The changes will be lost.");
+                    var answer = confirm(Translations.general.confirmLeave);
                     if (!answer) {
                         event.preventDefault();
                     }

@@ -8,27 +8,19 @@ angular.module('DealersApp')
  * @param $scope - the isolated scope of the controller.
  * @param $mdDialog - the mdDialog service of the Material Angular library.
  */
-    .controller('RegisterAsDealerController', ['$scope', '$rootScope', '$location', '$mdDialog', '$mdMedia', 'Dealer', 'DealerPhotos', 'Photos',
-        function ($scope, $rootScope, $location, $mdDialog, $mdMedia, Dealer, DealerPhotos, Photos) {
+    .controller('RegisterAsDealerController', ['$scope', '$rootScope', '$location', '$mdDialog', '$mdMedia', 'Dealer', 'DealerPhotos', 'Photos', 'Translations',
+        function ($scope, $rootScope, $location, $mdDialog, $mdMedia, Dealer, DealerPhotos, Photos, Translations) {
 
             var RAD_SESSION = "register-as-dealer-session";
             var GENERAL_TAB_INDEX = 0;
             var BANK_TAB_INDEX = 1;
-            var NEXT_BUTTON_TITLE = "Next";
-            var DONE_BUTTON_TITLE = "Done!";
-            var ADD_PHOTO_BUTTON_TITLE = "Add Photo";
-            var CHANGE_PHOTO_BUTTON_TITLE = "Change Photo";
             var ADD_PROFILE_PIC_BUTTON = "/assets/images/icons/@2x/Web_Icons_add_profile_pic_button.png";
             var PROFILE_PIC_BROADCASTING_PREFIX = 'dealer-pic-uploaded-for-';
             var REGISTER_BROADCASTING_PREFIX = 'register-as-dealer-for-';
-            var LOADING_MESSAGE = "Uploading...";
-            var CONFIRM_EXIT_MESSAGE = "The content will be lost.";
 
             $scope.photo = "";
             $scope.photoURL = "";
             $scope.croppedPhotoURL = ADD_PROFILE_PIC_BUTTON;
-            $scope.editProfilePic = ADD_PHOTO_BUTTON_TITLE;
-            $scope.submitButtonTitle = NEXT_BUTTON_TITLE;
             $scope.registrationDone = false;
 
             $scope.dealer = $rootScope.dealer;
@@ -42,9 +34,9 @@ angular.module('DealersApp')
              */
             $scope.onTabSelected = function (tab) {
                 if (tab == 0) {
-                    $scope.submitButtonTitle = NEXT_BUTTON_TITLE;
+                    $scope.submitButtonTitle = Translations.dealerRegistration.next;
                 } else {
-                    $scope.submitButtonTitle = DONE_BUTTON_TITLE;
+                    $scope.submitButtonTitle = Translations.dealerRegistration.done;
                 }
             };
 
@@ -55,13 +47,13 @@ angular.module('DealersApp')
              */
             function isGeneralInfoValid(event) {
                 if ($scope.croppedPhotoURL == ADD_PROFILE_PIC_BUTTON) {
-                    showAlertDialog("Profile Photo Missing", "You forgot to add a photo!", event);
+                    showAlertDialog(Translations.dealerRegistration.missingPhotoTitle, Translations.dealerRegistration.missingPhotoContent, event);
                     return false;
                 } else if (!$scope.dealer.about) {
-                    showAlertDialog("About field is blank", "This field is required.", event);
+                    showAlertDialog(Translations.dealerRegistration.blankAboutTitle, Translations.dealerRegistration.requiredField, event);
                     return false;
                 } else if (!$scope.dealer.location) {
-                    showAlertDialog("Location field is blank", "This field is required.", event);
+                    showAlertDialog(Translations.dealerRegistration.blankLocationTitle, Translations.dealerRegistration.requiredField, event);
                     return false;
                 }
                 return true;
@@ -74,16 +66,16 @@ angular.module('DealersApp')
              */
             function isBankInfoValid(event) {
                 if (!$scope.bank_account.account_number) {
-                    showAlertDialog("Account number is blank", "This field is required.", event);
+                    showAlertDialog(Translations.dealerRegistration.blankAccountNumberTitle, Translations.dealerRegistration.requiredField, event);
                     return false;
                 } else if (!$scope.bank_account.branch_number) {
-                    showAlertDialog("Branch number is blank", "This field is required.", event);
+                    showAlertDialog(Translations.dealerRegistration.blankBranchNumberTitle, Translations.dealerRegistration.requiredField, event);
                     return false;
                 } else if (!$scope.bank_account.bank) {
-                    showAlertDialog("The bank field is blank", "This field is required.", event);
+                    showAlertDialog(Translations.dealerRegistration.blankBankTitle, Translations.dealerRegistration.requiredField, event);
                     return false;
                 } else if (!$scope.bank_account.account_holder) {
-                    showAlertDialog("Account holder name is blank", "This field is required.", event);
+                    showAlertDialog(Translations.dealerRegistration.blankAccountHolderTitle, Translations.dealerRegistration.requiredField, event);
                     return false;
                 }
                 return true;
@@ -124,19 +116,19 @@ angular.module('DealersApp')
                         if (args.message.data) {
                             if (args.message.data.account_number[0]) {
                                 showAlertDialog(
-                                    "Account number duplicate",
-                                    "The account number you entered already exists. Please check your input again.",
+                                    Translations.dealerRegistration.accountNumberDuplicateTitle,
+                                    Translations.dealerRegistration.accountNumberDuplicateContent,
                                     event);
                             } else {
                                 showAlertDialog(
-                                    "There was a problem...",
-                                    "We're sorry, please try again!",
+                                    Translations.dealerRegistration.generalProblemTitle,
+                                    Translations.dealerRegistration.generalProblemContent,
                                     event);
                             }
                         } else {
                             showAlertDialog(
-                                "There was a problem...",
-                                "We're sorry, please try again!",
+                                Translations.dealerRegistration.generalProblemTitle,
+                                Translations.dealerRegistration.generalProblemContent,
                                 event);
                         }
                     }
@@ -158,9 +150,9 @@ angular.module('DealersApp')
                  */
                 $scope.$watch('croppedPhotoURL', function () {
                     if ($scope.croppedPhotoURL == ADD_PROFILE_PIC_BUTTON) {
-                        $scope.editProfilePic = ADD_PHOTO_BUTTON_TITLE;
+                        $scope.editProfilePic = Translations.dealerRegistration.addPhoto;
                     } else {
-                        $scope.editProfilePic = CHANGE_PHOTO_BUTTON_TITLE;
+                        $scope.editProfilePic = Translations.dealerRegistration.changePhoto;
                     }
                 });
 
@@ -186,7 +178,7 @@ angular.module('DealersApp')
                         .title(title)
                         .textContent(content)
                         .ariaLabel('Alert Dialog')
-                        .ok("Got it")
+                        .ok(Translations.general.gotIt)
                         .targetEvent(ev)
                 );
             }
@@ -221,7 +213,7 @@ angular.module('DealersApp')
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     controller: 'LoadingDialogController',
-                    locals: {message: LOADING_MESSAGE},
+                    locals: {message: Translations.dealerRegistration.uploading},
                     escapeToClose: false
                 });
             }
@@ -264,7 +256,7 @@ angular.module('DealersApp')
             };
 
             window.onbeforeunload = function () {
-                return CONFIRM_EXIT_MESSAGE;
+                return Translations.dealerRegistration.contentWillBeLost;
             };
 
             /**
@@ -274,11 +266,16 @@ angular.module('DealersApp')
              */
             $scope.$on('$locationChangeStart', function (event, next) {
                 if (!$scope.registrationDone) {
-                    var answer = confirm("Are you sure you want to leave this page? This process will be lost.");
+                    var answer = confirm(Translations.dealerRegistration.contentWillBeLostFullMessage);
                     if (!answer) {
                         event.preventDefault();
                     }
                 }
+            });
+
+            $rootScope.$on('$translateChangeSuccess', function () {
+                $scope.editProfilePic = Translations.dealerRegistration.addPhoto;
+                $scope.submitButtonTitle = Translations.dealerRegistration.next;
             });
 
             $scope.$on('$destroy', function () {

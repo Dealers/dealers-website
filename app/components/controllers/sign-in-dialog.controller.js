@@ -8,13 +8,11 @@ angular.module('DealersApp')
  * @param $scope - the isolated scope of the controller.
  * @param $mdDialog - the mdDialog service of the Material Angular library.
  */
-    .controller('SignInDialogController', ['$scope', '$rootScope', '$mdDialog', 'Dealer', 'tab', 'isViewer',
-        function ($scope, $rootScope, $mdDialog, Dealer, tab, isViewer) {
+    .controller('SignInDialogController', ['$scope', '$rootScope', '$mdDialog', 'Dealer', 'tab', 'isViewer', 'Translations',
+        function ($scope, $rootScope, $mdDialog, Dealer, tab, isViewer, Translations) {
 
             var SIGN_UP_TAB_INDEX = 0;
             var LOG_IN_TAB_INDEX = 1;
-            var SIGN_UP_BUTTON_TITLE = "Sign Up!";
-            var LOG_IN_BUTTON_TITLE = "Log In";
 
             $scope.selectedTab = tab; // 0 - Sign Up; 1 - Log In;
             $scope.selectedOperation = tab;
@@ -46,11 +44,11 @@ angular.module('DealersApp')
 
             $scope.signUp = function (form) {
                 if (!form.$valid) {
-                    showError("Not all fields are valid!");
+                    showError(Translations.signIn.invalidFields);
                     return;
                 } else {
                     $scope.showError = false;
-                    $scope.buttonTitle = "Loading...";
+                    $scope.buttonTitle = Translations.signIn.loading;
                 }
                 var dealer = $scope.dealer;
                 var subEmail = dealer.email;
@@ -71,18 +69,18 @@ angular.module('DealersApp')
             $scope.logIn = function (form) {
                 if (!form.$valid) {
                     if (!form.email.$viewValue || form.email.$viewValue === "") {
-                        showError("Please enter your email!");
+                        showError(Translations.signIn.blankEmail);
                     } else if (form.email.$invalid) {
-                        showError("The email you entered is not valid");
+                        showError(Translations.signIn.invalidEmail);
                     } else if (!form.password.$viewValue || form.password.$viewValue === "") {
-                        showError("Please enter your password!");
+                        showError(Translations.signIn.blankPassword);
                     } else {
-                        showError("There are unvalid fields!");
+                        showError(Translations.signIn.invalidFields);
                     }
                     return;
                 } else {
                     $scope.showError = false;
-                    $scope.buttonTitle = "Loading...";
+                    $scope.buttonTitle = Translations.signIn.loading;
                 }
 
                 Dealer.logIn($scope.logIn.email, $scope.logIn.password);
@@ -98,23 +96,23 @@ angular.module('DealersApp')
 
             $scope.onTabSelected = function (tab) {
                 if (tab == SIGN_UP_TAB_INDEX) {
-                    $scope.buttonTitle = SIGN_UP_BUTTON_TITLE;
+                    $scope.buttonTitle = Translations.signIn.signUpButtonTitle;
                     if (isViewer) {
                         ga('send', 'pageview', '/viewer-sign-up');
                     } else {
                         ga('send', 'pageview', '/dealer-sign-up');
                     }
                 } else {
-                    $scope.buttonTitle = LOG_IN_BUTTON_TITLE;
+                    $scope.buttonTitle = Translations.signIn.logInButtonTitle;
                     ga('send', 'pageview', '/log-in');
                 }
             };
 
             function showError(message) {
                 if ($scope.selectedTab == SIGN_UP_TAB_INDEX) {
-                    $scope.buttonTitle = SIGN_UP_BUTTON_TITLE;
+                    $scope.buttonTitle = Translations.signIn.signUpButtonTitle;
                 } else {
-                    $scope.buttonTitle = LOG_IN_BUTTON_TITLE;
+                    $scope.buttonTitle = Translations.signIn.logInButtonTitle;
                 }
                 $scope.errorMessage = message;
                 $scope.showError = true;
@@ -122,9 +120,9 @@ angular.module('DealersApp')
 
             function hideError() {
                 if ($scope.selectedTab == SIGN_UP_TAB_INDEX) {
-                    $scope.buttonTitle = SIGN_UP_BUTTON_TITLE;
+                    $scope.buttonTitle = Translations.signIn.signUpButtonTitle;
                 } else {
-                    $scope.buttonTitle = LOG_IN_BUTTON_TITLE;
+                    $scope.buttonTitle = Translations.signIn.logInButtonTitle;
                 }
                 $scope.errorMessage = "";
                 $scope.showError = false;
@@ -167,7 +165,7 @@ angular.module('DealersApp')
                         $scope.enter($scope.selectedOperation);
                     } else {
                         console.log("Couldn't get token: " + String(args.message));
-                        showError("There was a problem. Please try again");
+                        showError(Translations.signIn.generalProblem);
                     }
                 });
             }

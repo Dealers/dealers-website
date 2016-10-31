@@ -9,8 +9,8 @@ angular.module('DealersApp')
  * @param $scope - the isolated scope of the controller.
  * @param $mdDialog - the mdDialog service of the Material Angular library.
  */
-    .controller('PurchaseDetailsController', ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', '$mdMedia', 'ActiveSession', 'Purchase', 'Product', 'Dealer', 'ShippingMethods',
-        function ($scope, $rootScope, $routeParams, $location, $mdDialog, $mdMedia, ActiveSession, Purchase, Product, Dealer, ShippingMethods) {
+    .controller('PurchaseDetailsController', ['$scope', '$rootScope', '$routeParams', '$location', '$mdDialog', '$mdMedia', 'ActiveSession', 'Purchase', 'Product', 'Dealer', 'ShippingMethods', 'Translations',
+        function ($scope, $rootScope, $routeParams, $location, $mdDialog, $mdMedia, ActiveSession, Purchase, Product, Dealer, ShippingMethods, Translations) {
 
             var DOWNLOADED_STATUS = "downloaded";
             var DOWNLOADING_STATUS = "downloading";
@@ -104,18 +104,33 @@ angular.module('DealersApp')
                 if (!purchase) return "";
                 if ($scope.isDealer) {
                     if (purchase.status == Purchase.SENT_STATUS) {
-                        return "Marked as sent";
+                        return Translations.purchaseDetails.sent;
                     } else if (purchase.status == Purchase.RECEIVED_STATUS) {
-                        return "Received!"
+                        return Translations.purchaseDetails.received
                     } else {
-                        return "Mark as sent";
+                        return Translations.purchaseDetails.markSent;
                     }
                 } else {
                     if (purchase.status == Purchase.RECEIVED_STATUS) {
-                        return "Marked as received";
+                        return Translations.purchaseDetails.received;
                     } else {
-                        return "Mark as received";
+                        return Translations.purchaseDetails.markReceived;
                     }
+                }
+            };
+
+            /**
+             * Returns the appropriate representation of the purchase's status.
+             * @param purchase - the purchase.
+             * @returns {string} the representation.
+             */
+            $scope.parseForPresentation = function (purchase) {
+                if (purchase.status == Purchase.PURCHASED_STATUS) {
+                    return Translations.purchaseDetails.purchased;
+                } else if (purchase.status == Purchase.SENT_STATUS) {
+                    return Translations.purchaseDetails.sent;
+                } else if (purchase.status == Purchase.RECEIVED_STATUS) {
+                    return Translations.purchaseDetails.received;
                 }
             };
 

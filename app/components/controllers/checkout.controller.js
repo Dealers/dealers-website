@@ -8,8 +8,8 @@ angular.module('DealersApp')
  * @param $scope - the isolated scope of the controller.
  * @param $mdDialog - the mdDialog service of the Material Angular library.
  */
-    .controller('CheckoutController', ['$scope', '$rootScope', '$routeParams', '$location', '$mdMedia', '$mdDialog', 'Checkout', 'ActiveSession', 'Product', 'ProductPhotos', 'Purchase', 'Dialogs', 'ShippingMethods',
-        function ($scope, $rootScope, $routeParams, $location, $mdMedia, $mdDialog, Checkout, ActiveSession, Product, ProductPhotos, Purchase, Dialogs, ShippingMethods) {
+    .controller('CheckoutController', ['$scope', '$rootScope', '$routeParams', '$location', '$mdMedia', '$mdDialog', 'Checkout', 'ActiveSession', 'Product', 'ProductPhotos', 'Purchase', 'Dialogs', 'ShippingMethods', 'Translations',
+        function ($scope, $rootScope, $routeParams, $location, $mdMedia, $mdDialog, Checkout, ActiveSession, Product, ProductPhotos, Purchase, Dialogs, ShippingMethods, Translations) {
 
             // First check if there's a product object in the ActiveSession service. If not, download it.
             // Then create the purchase object.
@@ -165,10 +165,10 @@ angular.module('DealersApp')
                         $mdDialog.alert()
                             .parent(angular.element(document.body))
                             .clickOutsideToClose(true)
-                            .title("Invalid Quantity")
-                            .textContent("The maximum quantity available is " + $scope.product.max_quantity + ".")
+                            .title(Translations.checkout.invalidQuantityTitle)
+                            .textContent(Translations.checkout.invalidQuantityContent + $scope.product.max_quantity + ".")
                             .ariaLabel('Alert Dialog')
-                            .ok("Got it")
+                            .ok(Translations.general.gotIt)
                             .targetEvent(ev)
                     );
                     return;
@@ -178,10 +178,10 @@ angular.module('DealersApp')
                         $mdDialog.alert()
                             .parent(angular.element(document.body))
                             .clickOutsideToClose(true)
-                            .title("Please select a delivery method")
+                            .title(Translations.checkout.blankDelivery)
                             .textContent("")
                             .ariaLabel('Alert Dialog')
-                            .ok("Got it")
+                            .ok(Translations.general.gotIt)
                             .targetEvent(ev)
                     );
                     return;
@@ -191,10 +191,10 @@ angular.module('DealersApp')
                         $mdDialog.alert()
                             .parent(angular.element(document.body))
                             .clickOutsideToClose(true)
-                            .title("Invalid Shipping Address")
-                            .textContent("Please fill correctly all your shipping address information.")
+                            .title(Translations.checkout.invalidShippingAddressTitle)
+                            .textContent(Translations.checkout.invalidShippingAddressContent)
                             .ariaLabel('Alert Dialog')
-                            .ok("Got it")
+                            .ok(Translations.general.gotIt)
                             .targetEvent(ev)
                     );
                     return;

@@ -12,4 +12,14 @@ angular.module('DealersApp')
 
             }
         }
+    })
+    .directive('inventoryEdit', function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            templateUrl: 'app/components/views/products/inventory-edit.view.html',
+            link: function ($scope, element) {
+
+            }
+        }
     });

@@ -1,0 +1,39 @@
+<div class="inventory-edit-container">
+    <h3 translate>views.inventory-edit.title</h3>
+    <div layout="column" layout-gt-xs="row">
+        <div class="dl-field no-icon-field form-group explanation-label-field"
+             flex flex-gt-xs="50">
+            <label for="ap-max-quantity" translate>
+                general.quantity
+            </label>
+            <p class="dl-note margin-bottom" translate>
+                views.inventory-edit.quantity-tip
+            </p>
+            <input id="ap-quantity" name="ap-quantity" type="number"
+                   class="form-control dl-input no-margin small-input"
+                   min="0"
+                   max="10000"
+                   step="1"
+                   ng-model="product.inventory"
+                   required
+            />
+        </div>
+        <div class="dl-field no-icon-field form-group explanation-label-field"
+             flex flex-gt-xs="50">
+            <label for="ap-max-quantity" translate>
+                views.inventory-edit.quantity-max
+            </label>
+            <p class="dl-note margin-bottom" translate>
+                views.inventory-edit.quantity-max-tip
+            </p>
+            <input id="ap-max-quantity" name="ap-max-quantity" type="number"
+                   class="form-control dl-input no-margin small-input"
+                   min="0"
+                   max="{{product.max_quantity}}"
+                   step="1"
+                   ng-model="product.max_quantity"
+                   required
+            />
+        </div>
+    </div>
+</div>

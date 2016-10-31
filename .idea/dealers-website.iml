@@ -13,5 +13,10 @@
     <orderEntry type="library" name="aws-sdk-2.2.9" level="application" />
     <orderEntry type="library" name="angular-material" level="application" />
     <orderEntry type="library" name="checkout" level="application" />
+    <orderEntry type="library" name="angular-translate" level="application" />
+    <orderEntry type="library" name="angular-translate-handler-log" level="application" />
+    <orderEntry type="library" name="angular-translate-loader-static-files" level="application" />
+    <orderEntry type="library" name="angular-translate-storage-cookie" level="application" />
+    <orderEntry type="library" name="angular-translate-storage-local" level="application" />
   </component>
 </module>

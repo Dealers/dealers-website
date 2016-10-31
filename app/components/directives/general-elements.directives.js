@@ -6,10 +6,10 @@ angular.module('DealersApp')
         return {
             link: function (scope, element) {
                 var button = element.children()[0];
-                $(button).on("click", function (event) {
+                scope.tabSelect = function (selectedTab) {
                     scope.changeDisplayPresentation(element);
-                    scope.changeDisplay(event.target.innerText);
-                });
+                    scope.changeDisplayToTab(selectedTab);
+                };
             }
         };
     })

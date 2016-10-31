@@ -3,12 +3,13 @@ angular.module('DealersApp')
 /**
  * The LIKE button.
  */
-    .directive('likeButton', ['$rootScope', '$http', '$route', 'Product', 'Dialogs', 'ActiveSession', 'Analytics',
-        function ($rootScope, $http, $route, Product, Dialogs, ActiveSession, Analytics) {
+    .directive('likeButton', ['$rootScope', '$http', '$route', 'Product', 'Dialogs', 'ActiveSession', 'Analytics', '$translate',
+        function ($rootScope, $http, $route, Product, Dialogs, ActiveSession, Analytics, $translate) {
             return {
                 link: function (scope, element) {
 
                     var LIKE_FUNCTION_REPR = "likeClicked";
+                    setLikeTitle();
 
                     // First of all check if the scope is defined properly
                     if (!scope.product) {
@@ -46,10 +47,24 @@ angular.module('DealersApp')
                          */
                         if (isLiked()) {
                             scope.likeStatus = 'LIKED';
-                            $(element).css('color', '#9C27B0').find("span").replaceWith("<span> Liked<span>");
+                            scope.likeTitle = $translate.instant('general.liked');
+                            $(element).css('color', '#9C27B0').find("span").replaceWith("<span>" + scope.likeTitle + "<span>");
                         } else {
                             scope.likeStatus = 'LIKE';
-                            $(element).css('color', '#313140').find("span").replaceWith("<span> Like<span>");
+                            scope.likeTitle = $translate.instant('general.like');
+                            $(element).css('color', '#313140').find("span").replaceWith("<span>" + scope.likeTitle + "<span>");
+                        }
+                    }
+
+                    $rootScope.$on('$translateChangeSuccess', function () {
+                        setLikeTitle();
+                    });
+
+                    function setLikeTitle() {
+                        if (isLiked()) {
+                            scope.likeTitle = $translate.instant('general.liked');
+                        } else {
+                            scope.likeTitle = $translate.instant('general.like');
                         }
                     }
 
@@ -122,56 +137,56 @@ angular.module('DealersApp')
      */
     .directive('registerAsDealer', ['$rootScope', '$location', '$mdMedia', '$mdDialog',
         function ($rootScope, $location, $mdMedia, $mdDialog) {
-        return {
-            link: function (scope, element) {
-                scope.customFullscreen = $mdMedia('xs');
+            return {
+                link: function (scope, element) {
+                    scope.customFullscreen = $mdMedia('xs');
 
-                /**
-                 * Presents the sign in dialog (sign up and log in).
-                 * @param ev - The event that triggered the function.
-                 * @param tabIndex - the index of the selected option (sign up is 0, log in is 1).
-                 */
-                scope.showSignInDialog = function (ev, tabIndex) {
-                    $mdDialog.show({
-                        controller: 'SignInDialogController',
-                        templateUrl: 'app/components/views/sign-in/sign-in-dealer-dialog.view.html',
-                        parent: angular.element(document.body),
-                        targetEvent: ev,
+                    /**
+                     * Presents the sign in dialog (sign up and log in).
+                     * @param ev - The event that triggered the function.
+                     * @param tabIndex - the index of the selected option (sign up is 0, log in is 1).
+                     */
+                    scope.showSignInDialog = function (ev, tabIndex) {
+                        $mdDialog.show({
+                            controller: 'SignInDialogController',
+                            templateUrl: 'app/components/views/sign-in/sign-in-dealer-dialog.view.html',
+                            parent: angular.element(document.body),
+                            targetEvent: ev,
 
-                        fullscreen: scope.customFullscreen,
-                        locals: {tab: tabIndex, isViewer: false}
-                    })
-                        .then(function (finished) {
-                            // Finished the sign in process
-                            if (finished == 0) {
-                                $location.path("/register");
-                            } else if (finished == 1) {
-                                $location.path("/home");
-                            } else {
-                                console.error("Received something wrong to the callback of showSignInDialog");
-                            }
-                        });
-                };
+                            fullscreen: scope.customFullscreen,
+                            locals: {tab: tabIndex, isViewer: false}
+                        })
+                            .then(function (finished) {
+                                // Finished the sign in process
+                                if (finished == 0) {
+                                    $location.path("/register");
+                                } else if (finished == 1) {
+                                    $location.path("/home");
+                                } else {
+                                    console.error("Received something wrong to the callback of showSignInDialog");
+                                }
+                            });
+                    };
 
-                /**
-                 * Takes the user to the register-as-dealer page. If he is not signed in, takes him through the sign in process first.
-                 * @param ev - the event that triggered the function.
-                 */
-                $(element).on("click", function (ev) {
-                    if ($rootScope.dealer) {
-                        $location.path("/register");
-                        scope.$apply();
-                    } else {
-                        if ($(element).is("#nav-login")) {
-                            scope.showSignInDialog(ev, 1, false);
+                    /**
+                     * Takes the user to the register-as-dealer page. If he is not signed in, takes him through the sign in process first.
+                     * @param ev - the event that triggered the function.
+                     */
+                    $(element).on("click", function (ev) {
+                        if ($rootScope.dealer) {
+                            $location.path("/register");
+                            scope.$apply();
                         } else {
-                            scope.showSignInDialog(ev, 0, true);
+                            if ($(element).is("#nav-login")) {
+                                scope.showSignInDialog(ev, 1, false);
+                            } else {
+                                scope.showSignInDialog(ev, 0, true);
+                            }
                         }
-                    }
-                });
-            }
-        };
-    }])
+                    });
+                }
+            };
+        }])
     .directive('loadingSpinner', function () {
         return {
             restrict: 'E',
@@ -211,6 +226,23 @@ angular.module('DealersApp')
             }
         };
     })
+    .directive('ngTranslateLanguageSelect', function (LocalesService) {
+        'use strict';
+        return {
+            restrict: 'A',
+            controller: function ($scope) {
+                $scope.currentLocaleDisplayName = LocalesService.getLocaleDisplayName();
+                $scope.localesDisplayNames = LocalesService.getLocalesDisplayNames();
+                $scope.visible = $scope.localesDisplayNames && $scope.localesDisplayNames.length > 1;
+                $scope.changeLanguage = function (locale) {
+                    LocalesService.setLocaleByDisplayName(locale);
+                };
+                $scope.getFlag = function (locale) {
+                    return LocalesService.getFlag(locale);
+                };
+            }
+        }
+    })
     .directive('scrollDetector', ['Product', function (Product) {
         return {
             link: function (scope, element) {
@@ -218,7 +250,6 @@ angular.module('DealersApp')
                     if ($(window).scrollTop() + $(window).height() > $(document).height() - 700) {
                         if (!scope.update.loadingMore) {
                             if (scope.update.nextPage) {
-                                console.log("Loading more products");
                                 scope.update.loadingMore = true;
                                 scope.$apply();
                                 scope.getProducts(scope.update.nextPage);

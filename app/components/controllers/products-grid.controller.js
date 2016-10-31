@@ -2,8 +2,8 @@ angular.module('DealersApp')
 /**
  * The controller that manages the Product Grid view.
  */
-    .controller('ProductsGridController', ['$scope', '$rootScope', '$routeParams', 'ActiveSession', 'Product', 'ProductsGrid',
-        function ($scope, $rootScope, $routeParams, ActiveSession, Product, ProductsGrid) {
+    .controller('ProductsGridController', ['$scope', '$rootScope', '$routeParams', 'ActiveSession', 'Product', 'ProductsGrid', 'Translations',
+        function ($scope, $rootScope, $routeParams, ActiveSession, Product, ProductsGrid, Translations) {
 
             var PROFILE_DEALER_AS_KEY = "profile_dealer_id";
             var PROFILE_AS_KEY = "profile_products";
@@ -11,7 +11,6 @@ angular.module('DealersApp')
             var LOADING_STATUS = "loading";
             var DOWNLOADED_STATUS = "downloaded";
             var FAILED_STATUS = "failed";
-
 
             var mode;
             var url = $rootScope.baseUrl;
@@ -51,26 +50,31 @@ angular.module('DealersApp')
                     }
                     mode = "custom";
                     url = $scope.source;
-                    noProductsMessage = "There are no products.";
+                    noProductsMessage = Translations.productsGrid.noProducts;
 
                 } else if ($routeParams.query) {
                     // This is a search session, should get the products according to the search term.
                     mode = "search";
                     routeParams = $routeParams.query;
                     url += '/dealsearch/?search=' + routeParams;
-                    noProductsMessage = "Didn't find any results for '" + routeParams + "'.";
+                    noProductsMessage = Translations.productsGrid.didntFind + "'" + routeParams + "'.";
                 } else if ($routeParams.category) {
                     // This is a search session, should get the products according to the search term.
                     mode = "category";
                     routeParams = $routeParams.category;
-                    url += '/category_deals/?category=' + Product.keyForCategory(routeParams);
-                    noProductsMessage = "Currently there are no products in " + routeParams + "...";
-                    $scope.title = routeParams;
+                    if (routeParams == "All Categories" || routeParams == "All%20Categories") {
+                        mode = "myFeed";
+                        url += '/my_feeds/';
+                    } else {
+                        url += '/category_deals/?category=' + Product.keyForCategory(routeParams);
+                    }
+                    noProductsMessage = Translations.productsGrid.currentlyNoProducts + routeParams + "...";
+                    $scope.title = Translations.translateCategory(routeParams);
                 } else {
                     // This is a My Feed session, should get the products from the my-feed endpoint.
                     mode = "myFeed";
                     url += '/my_feeds/';
-                    noProductsMessage = "We couldn't find any products that match your interest :(";
+                    noProductsMessage = Translations.productsGrid.noProductsInterests;
                 }
 
                 $scope.getProducts();

@@ -8,6 +8,8 @@ angular.module('DealersApp')
         function ($scope, $rootScope, $location, $mdDialog, ActiveSession) {
 
             $scope.product = ActiveSession.getTempData("PRODUCT");
+            $scope.hasPurchase = false;
+            var purchaseURL;
 
             checkIfProductExists();
 
@@ -19,6 +21,17 @@ angular.module('DealersApp')
                     $location.path("/home");
                 }
             }
+
+            $scope.$on('purchaseSaved', function(event, purchaseID) {
+                $scope.hasPurchase = true;
+                purchaseURL = '/purchase/' + purchaseID;
+            });
+
+            $scope.purchaseDetails = function (event) {
+                if (purchaseURL) {
+                    $location.path(purchaseURL);
+                }
+            };
 
             $scope.done = function () {
                 $location.path("/home");

@@ -9,7 +9,7 @@
             <h1 class="dl-download-error">{{errorMessage}} <br> {{errorPrompt}} </h1>
         </div>
         <div ng-switch-when="downloaded" style="position: relative">
-            <h2>Checkout</h2>
+            <h2 translate>views.checkout.title</h2>
             <form name="checkoutForm"
                   class="clearfix"
                   ng-submit="checkout(checkoutForm, $event)"
@@ -18,10 +18,10 @@
                 <div layout="column" layout-gt-sm="row">
                     <div class="co-shipping-address"
                          flex-gt-sm="60">
-                        <h4>Shipping Address</h4>
+                        <h4 translate>views.checkout.shipping-address</h4>
                         <div class="dl-field no-icon-field form-group">
-                            <label for="co-shipping-address">
-                                Street Address
+                            <label for="co-shipping-address" translate>
+                                views.purchase-details.address
                             </label>
                             <input id="co-shipping-address" name="co-shipping-address" type="text"
                                    class="form-control dl-input"
@@ -30,8 +30,8 @@
                             />
                         </div>
                         <div class="dl-field no-icon-field form-group">
-                            <label for="co-city">
-                                City
+                            <label for="co-city" translate>
+                                views.purchase-details.city
                             </label>
                             <input id="co-city" name="co-city" type="text"
                                    class="form-control dl-input"
@@ -39,9 +39,9 @@
                                    required
                             />
                         </div>
-                        <div class="dl-field no-icon-field form-group">
-                            <label for="co-state">
-                                State
+                        <div class="dl-field no-icon-field form-group" ng-show="false">
+                            <label for="co-state" translate>
+                                views.purchase-details.state
                             </label>
                             <input id="co-state" name="co-state" type="text"
                                    class="form-control dl-input"
@@ -49,8 +49,8 @@
                             />
                         </div>
                         <div class="dl-field no-icon-field form-group">
-                            <label for="co-country">
-                                Country
+                            <label for="co-country" translate>
+                                views.purchase-details.country
                             </label>
                             <input id="co-country" name="co-country" type="text"
                                    class="form-control dl-input"
@@ -59,8 +59,8 @@
                             />
                         </div>
                         <div class="dl-field no-icon-field form-group">
-                            <label for="co-zip">
-                                ZIP
+                            <label for="co-zip" translate>
+                                views.purchase-details.zip
                             </label>
                             <input id="co-zip" name="co-zip" type="text"
                                    class="form-control dl-input"
@@ -69,8 +69,8 @@
                             />
                         </div>
                         <div class="dl-select full-width">
-                            <h4>
-                                Delivery Option:
+                            <h4 translate>
+                                views.checkout.delivery-option
                             </h4>
                             <md-radio-group ng-model="delivery.selectedShipping"
                                             ng-change="updateSelectedShipping($event)">
@@ -85,19 +85,19 @@
                                             <div flex>
                                                 <ul ng-show="shipping.delivery_method != PICKUP_METHOD"
                                                     class="list-inline no-margin">
-                                                    <li ng-show="shipping.shipping_price == 0">Free shipping</li>
+                                                    <li ng-show="shipping.shipping_price == 0" translate>views.checkout.free-shipping</li>
                                                     <li ng-show="shipping.shipping_price > 0">{{shipping.shipping_price
                                                         | currency:product.currency}}
                                                     </li>
                                                     <li class="footer-menu-divider">⋅</li>
-                                                    <li>{{shipping.estimated_delivery_time}} business days</li>
+                                                    <li>{{shipping.estimated_delivery_time}} {{'views.checkout.business-days' | translate}}</li>
                                                 </ul>
                                             </div>
                                             <div flex="none">
                                                 <md-button ng-click="presentDetails(shipping, $event)"
                                                            class="md-btn-small"
                                                            ng-show="shipping.description">
-                                                    Details
+                                                    {{'views.checkout.details' | translate}}
                                                 </md-button>
                                             </div>
                                         </div>
@@ -124,7 +124,7 @@
                                             <li ng-repeat="selection in purchase.selections"><b>{{selection.name}}:</b>
                                                 {{selection.selection}}
                                             </li>
-                                            <li><b>Quantity:</b> {{purchase.quantity}}</li>
+                                            <li><b>{{'views.checkout.quantity' | translate}}</b> {{purchase.quantity}}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -139,10 +139,10 @@
                     <md-button id="co-pay"
                                class="btn-primary btn-single btn-xl"
                                type="submit">
-                        Continue to Payment
+                        {{'views.checkout.continue' | translate}}
                     </md-button>
                 </div>
-                <div class="secure-payment-container-lower-left ">
+                <div class="secure-payment-container-lower-left mobile">
                     <secure-payment></secure-payment>
                 </div>
             </form>

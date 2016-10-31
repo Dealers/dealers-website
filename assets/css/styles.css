@@ -1,4 +1,3 @@
-@import url(https:\/\/fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
 .xs-font {
   font-size: 12px;
 }
@@ -49,13 +48,17 @@ body {
   color: #323241;
   background-color: #f5f5fb;
 }
+html:lang(he) {
+  font-family: Arial, "sans-serif", serif;
+  direction: rtl;
+}
 body {
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 hr {
-  border-color: #9c27b0;
-  border-width: 3px;
-  max-width: 50px;
+  border-color: #c8c8d7;
+  border-width: 1px;
+  max-width: 150px;
 }
 hr.light {
   border-color: white;
@@ -257,6 +260,18 @@ p.dl-error {
 .dl-danger {
   color: #ff3b30 !important;
 }
+.dl-danger-emphasize {
+  color: white;
+  display: inline-block;
+  font-weight: bold;
+  background-color: #ff3b30;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.dl-emphasize {
+  font-size: 1.1em;
+  font-weight: bold;
+}
 .form-control {
   background-color: #f5f5fb;
   border-radius: 5px;
@@ -294,6 +309,9 @@ a.disabled {
 img.quit {
   height: 20px;
   float: left;
+}
+.conceal {
+  opacity: 0 !important;
 }
 .thumbnail-remove {
   position: absolute;
@@ -1226,11 +1244,11 @@ div.noImageBackground {
   font-weight: 600;
   margin: 0 0 4px;
 }
-.vd-comments .comment .vd-comment-text-container h5 span.vd-comment-date {
+.vd-comments .comment .vd-comment-text-container span.vd-comment-date {
   color: #828291;
   font-size: 12px;
-  font-weight: 200;
-  margin-left: 8px;
+  float: right;
+  margin: -20px 8px 0 0;
 }
 .vd-comments .comment .vd-comment-text-container p {
   color: #828291;
@@ -1391,6 +1409,12 @@ div.noImageBackground {
 }
 .checkout .co-product-preview .co-selections li {
   margin: 10px 0;
+}
+.checkout-finish-options {
+  margin-bottom: 24px;
+}
+.checkout-finish-options button {
+  margin: 0 10px;
 }
 .total-price {
   display: inline-block;
@@ -1613,6 +1637,21 @@ div.ap-container.nav-padding .framed-container {
 .ap-variants-container {
   margin-top: 20px;
 }
+.variant-name {
+  margin: 0;
+  padding-right: 5px;
+}
+.variant-options {
+  padding-left: 5px;
+}
+.ap-section {
+  margin: 30px 0;
+}
+@media (min-width: 599px) {
+  .ap-section {
+    margin: 40px 0;
+  }
+}
 button.ap-remove-variant {
   margin-right: -10px;
 }
@@ -1623,7 +1662,6 @@ button.ap-done {
   margin-top: 20px;
 }
 .ap-shipping-methods {
-  margin-top: 40px;
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
   transition: all ease-out 0.2s;
@@ -2446,8 +2484,12 @@ footer .md-button:not([disabled]):hover {
     padding-right: 20px;
   }
 }
+.flag-icon {
+  margin: 0 4px;
+  height: 16px;
+}
 menu-footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
   height: 40px;
@@ -2469,11 +2511,6 @@ menu-footer .md-button:not([disabled]):hover {
 }
 menu-footer ul {
   margin-bottom: 0;
-}
-@media (min-width: 599px) {
-  menu-footer {
-    position: absolute;
-  }
 }
 .footer > li > a {
   text-transform: uppercase;

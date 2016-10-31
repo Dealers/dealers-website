@@ -1,7 +1,7 @@
 angular.module('DealersApp')
     .controller('ViewDealController',
-        ['$scope', '$rootScope', '$http', '$routeParams', '$route', '$location', '$timeout', '$mdDialog', '$mdMedia', 'Product', 'ProductPhotos', 'DealerPhotos', 'ActiveSession', 'EditProduct', 'Dialogs', 'Checkout',
-            function ($scope, $rootScope, $http, $routeParams, $route, $location, $timeout, $mdDialog, $mdMedia, Product, ProductPhotos, DealerPhotos, ActiveSession, EditProduct, Dialogs, Checkout) {
+        ['$scope', '$rootScope', '$http', '$routeParams', '$route', '$location', '$timeout', '$mdDialog', '$mdMedia', 'Product', 'ProductPhotos', 'DealerPhotos', 'ActiveSession', 'EditProduct', 'Dialogs', 'Checkout', 'Translations',
+            function ($scope, $rootScope, $http, $routeParams, $route, $location, $timeout, $mdDialog, $mdMedia, Product, ProductPhotos, DealerPhotos, ActiveSession, EditProduct, Dialogs, Checkout, Translations) {
 
                 var ctrl = this;
 
@@ -29,7 +29,7 @@ angular.module('DealersApp')
                 $scope.commentPlaceholder = "";
                 $scope.comment = {};
                 $scope.showCommentError = false;
-                $scope.commentErrorMessage = "Oops! Comment can't be blank!";
+                $scope.commentErrorMessage = Translations.viewDeal.blankComment;
                 $scope.showCommentButton = false;
 
                 $scope.selectPhoto = selectPhoto;
@@ -80,7 +80,7 @@ angular.module('DealersApp')
                             fillData();
                         }, function (httpError) {
                             $scope.status = 'failed';
-                            $scope.errorMessage = "Couldn't download the product";
+                            $scope.errorMessage = Translations.viewDeal.downloadFailed;
                             $scope.errorPrompt = "Please try again...";
                         });
                 }
@@ -99,9 +99,9 @@ angular.module('DealersApp')
                     // Comments (only if the user has a dealer object, meaning he's signed in)
                     if ($scope.user) {
                         if ($scope.product.comments.length > 1) {
-                            $scope.commentPlaceholder = "Add a comment...";
+                            $scope.commentPlaceholder = Translations.viewDeal.addComment;
                         } else {
-                            $scope.commentPlaceholder = "Be the first to comment...";
+                            $scope.commentPlaceholder = Translations.viewDeal.addFirstComment;
                         }
                     }
                 }
@@ -204,8 +204,7 @@ angular.module('DealersApp')
                             index = 0;
                         }
                     }
-                    $scope.selectedIndex = index;
-                    $scope.changeThumbnailSelection(index);
+                    $scope.selectPhoto(index);
                 };
 
                 $scope.$watchGroup(
@@ -278,12 +277,12 @@ angular.module('DealersApp')
                  */
                 $scope.deleteProduct = function (event) {
                     var confirm = $mdDialog.confirm()
-                        .title('Delete Product')
-                        .textContent('Are you absolutely sure that you want to delete this product? It cannot be undone!')
-                        .ariaLabel('Delete product')
+                        .title(Translations.viewDeal.deleteProductTitle)
+                        .textContent(Translations.viewDeal.deleteProductContent)
+                        .ariaLabel(Translations.viewDeal.deleteProductTitle)
                         .targetEvent(event)
-                        .ok('Yes, delete this product')
-                        .cancel('Cancel');
+                        .ok(Translations.viewDeal.deleteProductConfirm)
+                        .cancel(Translations.general.cancel);
                     $mdDialog.show(confirm).then(function () {
                         Product.deleteProduct(PRODUCT_URL)
                             .then(function (response) {
@@ -363,14 +362,14 @@ angular.module('DealersApp')
                             .title(title)
                             .textContent(content)
                             .ariaLabel('Alert Dialog')
-                            .ok("Got it")
+                            .ok(Translations.general.gotIt)
                             .targetEvent(ev)
                     );
                 }
 
                 function validation() {
 
-                    // First check that the user is signed in
+                    // Check that the user is signed in
                     if (!$rootScope.dealer) {
                         // The user is not signed in, present the Sign In dialog and quit this function.
                         Dialogs.showSignInDialog(event, 0, true)
@@ -380,7 +379,31 @@ angular.module('DealersApp')
                                 $route.reload();
                             });
                         return false;
+                    }
 
+                    if (!($scope.purchase.quantity > 0)) {
+                        showAlertDialog(
+                            "",
+                            Translations.viewDeal.validQuantity);
+                        return false;
+                    }
+
+                    if ($scope.purchase.quantity > $scope.product.max_quantity) {
+                        showAlertDialog(
+                            "",
+                            Translations.viewDeal.maxQuantity + $scope.product.max_quantity + ".");
+                        return false;
+                    }
+
+                    $scope.purchase.quantity = Math.round($scope.purchase.quantity);
+
+                    // Check if this product is in stock
+                    if ($scope.product.inventory == 0) {
+                        Dialogs.showAlertDialog(Translations.viewDeal.outOfStockTitle, Translations.viewDeal.outOfStockContent);
+                        return false;
+                    } else if ($scope.product.inventory < $scope.purchase.quantity) {
+                        Dialogs.showAlertDialog(Translations.viewDeal.notEnoughStockTitle, Translations.viewDeal.notEnoughStockContent1 + $scope.product.inventory + Translations.viewDeal.notEnoughStockContent2);
+                        return false;
                     }
 
                     for (var property in $scope.variants) {
@@ -389,7 +412,7 @@ angular.module('DealersApp')
                             if (!variant.selection) {
                                 showAlertDialog(
                                     "",
-                                    "Please select a " + variant.name.toLowerCase() + ".");
+                                    Translations.viewDeal.pleaseSelect + variant.name.toLowerCase() + ".");
                                 return false;
                             }
                             $scope.purchase.selections.push({
@@ -398,22 +421,6 @@ angular.module('DealersApp')
                             });
                         }
                     }
-
-                    if (!($scope.purchase.quantity > 0)) {
-                        showAlertDialog(
-                            "",
-                            "Please select a valid quantity.");
-                        return false;
-                    }
-
-                    if ($scope.purchase.quantity > $scope.product.max_quantity) {
-                        showAlertDialog(
-                            "",
-                            "The maximum quantity for order is " + $scope.product.max_quantity + ".");
-                        return false;
-                    }
-
-                    $scope.purchase.quantity = Math.round($scope.purchase.quantity);
 
                     return true;
                 }

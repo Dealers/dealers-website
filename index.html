@@ -9,13 +9,20 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc.5/angular-material.min.css">
-        <link rel="stylesheet" href="bower-libs/animate.css/animate.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="assets/lib/css/animate.css">
         <link rel="stylesheet" href="assets/lib/css/angular-datepicker.css">
         <link rel="stylesheet" href="assets/css/animations.css">
-        <link rel="stylesheet" href="assets/css/home-styles.css">
         <link rel="stylesheet" href="assets/css/styles.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/rtl-styles.css">
 		<link rel="shortcut icon" type="image/png" href="assets/images/icons/favicon.png">
+
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/images/icons/app-icons/apple-icon-57x57-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/icons/app-icons/apple-icon-72x72-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/icons/app-icons/apple-icon-114x114-precomposed.png"/>
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/icons/app-icons/apple-icon-144x144-precomposed.png" />
+
         <script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/z1b3ijln';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
     </head>
     <body>
@@ -24,8 +31,8 @@
         /* Facebook SDK */
         window.fbAsyncInit = function() {
             FB.init({
-                appId      : '307875306059843', // Live
-//                appId      : '600864796760891', // Test
+//                appId      : '307875306059843', // Live
+                appId      : '600864796760891', // Test
                 xfbml      : true,
                 status     : true,
                 version    : 'v2.6'
@@ -45,23 +52,28 @@
 
 	<!-- Libraries -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc4/angular-material.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.12.1/angular-translate.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.12.1/angular-translate-handler-log/angular-translate-handler-log.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.12.1/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.12.1/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.12.1/angular-translate-storage-local/angular-translate-storage-local.min.js"></script>
     <script type="text/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.2.9.min.js"></script>
     <script type="text/javascript" src="https://checkout.stripe.com/checkout.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlK2TdEXT9XaU1IK3y-r_tZH9ts79dlgM&libraries=places"></script>
-    <script type="text/javascript" src="assets/lib/js/angular-route.min.js"></script>
-    <script type="text/javascript" src="assets/lib/js/angular-cookies.min.js"></script>
-    <script type="text/javascript" src="assets/lib/js/ui-bootstrap-tpls-1.3.3.min.js"></script>
-    <script type="text/javascript" src="assets/lib/js/spin.min.js"></script>
-    <script type="text/javascript" src="assets/lib/js/horizontal-zoom-disabling.min.js"></script>
+    <script type="text/javascript" src="assets/lib/js/angular-route.js"></script>
+    <script type="text/javascript" src="assets/lib/js/angular-cookies.js"></script>
+    <script type="text/javascript" src="assets/lib/js/ui-bootstrap-tpls.js"></script>
+    <script type="text/javascript" src="assets/lib/js/spin.js"></script>
     <script type="text/javascript" src="assets/lib/js/ng-img-crop.js"></script>
     <script type="text/javascript" src="assets/lib/js/angular-datepicker.js"></script>
-    <script type="text/javascript" src="assets/lib/js/angular-google-analytics.min.js"></script>
+    <script type="text/javascript" src="assets/lib/js/angular-google-analytics.js"></script>
     <script type="text/javascript" src="assets/lib/js/exif.js"></script>
+    <script type="text/javascript" src="assets/lib/js/tmhDynamicLocale.js"></script>
 
     <!-- App -->
     <script type="text/javascript" src="app/app.js"></script>
@@ -114,11 +126,11 @@
     <script type="text/javascript" src="app/services/checkout.service.js"></script>
     <script type="text/javascript" src="app/services/defaults.service.js"></script>
     <script type="text/javascript" src="app/services/shipping-methods.service.js"></script>
+    <script type="text/javascript" src="app/services/locales.service.js"></script>
+    <script type="text/javascript" src="app/services/translations.service.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script type="text/javascript" src="assets/lib/js/jquery.easing.min.js"></script>
     <script type="text/javascript" src="assets/lib/js/jquery.fittext.js"></script>
-    <script type="text/javascript" src="assets/lib/js/wow.min.js"></script>
 
     </body>
 </html>

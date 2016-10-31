@@ -10,17 +10,19 @@
                         <h3>{{purchase.deal.title}}</h3>
                         <h4 class="purchase-amount">{{(purchase.amount / 100) * purchase.quantity | currency:
                             purchase.currency}}</h4>
-                        <p>Qty: {{purchase.quantity}} <span ng-show="purchase.quantity > 1">({{purchase.amount / 100 | currency: purchase.currency}} each)</span>
+                        <p>{{"views.orders-list.qty" | translate}}: {{purchase.quantity}} <span ng-show="purchase.quantity > 1">({{purchase.amount / 100 | currency: purchase.currency}} {{"views.orders-list.each" | translate}})</span>
                         </p>
-                        <p>Bought from <a ng-href="/dealers/{{purchase.dealer.id}}">{{purchase.dealer.full_name}}</a> on
-                            the
+                        <p>{{"views.orders-list.bought-from" | translate}} <a ng-href="/dealers/{{purchase.dealer.id}}">{{purchase.dealer.full_name}}</a>
+                            {{"views.orders-list.on-the-date" | translate}}
                             {{purchase.purchase_date | date: 'short'}}</p>
-                        <p>Status: {{purchase.status}}</p>
-                        <p ng-show="purchase.estimated_delivery_time > 0">ETD: {{purchase.estimated_delivery_time}}
-                            days</p>
+                        <p>{{"views.orders-list.status" | translate}}: {{parseForPresentation(purchase)}}</p>
+                        <p ng-show="purchase.estimated_delivery_time > 0">
+                            {{"views.orders-list.etd" | translate}}
+                            {{purchase.estimated_delivery_time}}
+                            {{"views.orders-list.days" | translate}}</p>
                         <md-button class="md-button md-secondary md-btn-small btn-background"
                                    ng-class="{'received': purchase.status == 'Received'}"
-                                   ng-click="changeStatus($event, purchase)" update-status-buyer>
+                                   ng-click="changeBuyerStatus($event, purchase)" update-status-buyer>
                             {{markButtonTitle(purchase)}}
                         </md-button>
                     </div>
@@ -28,6 +30,6 @@
                 <md-divider></md-divider>
             </div>
         </md-list>
-        <h4 ng-show="purchases.length == 0" class="text-center">You haven't bought anything yet.</h4>
+        <h4 ng-show="purchases.length == 0" class="text-center" translate>views.orders-list.have-not-bought</h4>
     </div>
 </md-content>

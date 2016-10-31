@@ -2,7 +2,7 @@
  * Created by gullumbroso on 18/06/2016.
  */
 angular.module('DealersApp')
-    .directive('updateStatusBuyer', ['$mdDialog', 'Purchase', 'Dialogs', 'Product', function ($mdDialog, Purchase, Dialogs, Product) {
+    .directive('updateStatusBuyer', ['$mdDialog', 'Purchase', 'Dialogs', 'Product', 'Translations', function ($mdDialog, Purchase, Dialogs, Product, Translations) {
         return {
             link: function (scope) {
 
@@ -12,15 +12,15 @@ angular.module('DealersApp')
                  * @param event - the event that triggered the function.
                  * @param purchase - the purchase object.
                  */
-                scope.changeStatus = function (event, purchase) {
+                scope.changeBuyerStatus = function (event, purchase) {
                     var dialog;
                     if (purchase.status == Purchase.SENT_STATUS || purchase.status == Purchase.PURCHASED_STATUS) {
-                        dialog = Dialogs.confirmDialog("Mark this order as 'Received'", "Did you receive this product?", "Yes", event);
+                        dialog = Dialogs.confirmDialog(Translations.purchaseDetails.markReceivedConfirmTitle, Translations.purchaseDetails.markReceivedConfirmContent, Translations.general.approve, event);
                         $mdDialog.show(dialog).then(function () {
                             updatePurchase(Purchase.RECEIVED_STATUS, purchase);
                         });
                     } else if (purchase.status == Purchase.RECEIVED_STATUS) {
-                        dialog = Dialogs.confirmDialog("Mark this order as 'Sent' again", "Didn't you receive this product?", "No, I didn't", event);
+                        dialog = Dialogs.confirmDialog(Translations.purchaseDetails.markReceivedCancelTitle, Translations.purchaseDetails.markReceivedCancelContent, Translations.purchaseDetails.markReceivedCancelApprove, event);
                         $mdDialog.show(dialog).then(function () {
                             updatePurchase(Purchase.SENT_STATUS, purchase);
                         });
@@ -66,7 +66,7 @@ angular.module('DealersApp')
         };
     }])
 
-    .directive('updateStatusDealer', ['$mdDialog', 'Purchase', 'Dialogs', 'Product', function ($mdDialog, Purchase, Dialogs, Product) {
+    .directive('updateStatusDealer', ['$mdDialog', 'Purchase', 'Dialogs', 'Product', 'Translations', function ($mdDialog, Purchase, Dialogs, Product, Translations) {
         return {
             link: function (scope) {
 
@@ -76,13 +76,13 @@ angular.module('DealersApp')
                  * @param event - the event that triggered the function.
                  * @param purchase - the purchase object.
                  */
-                scope.changeStatus = function (event, purchase) {
+                scope.changeDealerStatus = function (event, purchase) {
                     var dialog;
                     if (purchase.status == Purchase.PURCHASED_STATUS) {
-                        dialog = promptDialog("Mark this order as 'Sent'",
-                            "What is the estimated delivery time (days)?",
-                            "e.g. 30",
-                            "OK",
+                        dialog = promptDialog(Translations.purchaseDetails.markSentConfirmTitle,
+                            Translations.purchaseDetails.markSentConfirmContent,
+                            Translations.purchaseDetails.markSentConfirmPlaceholder,
+                            Translations.general.ok,
                             event);
                         $mdDialog.show(dialog).then(function (result) {
                             if (result) {
@@ -98,7 +98,7 @@ angular.module('DealersApp')
                             showAlertDialog(event);
                         });
                     } else if (purchase.status == Purchase.SENT_STATUS) {
-                        dialog = Dialogs.confirmDialog("Mark this order as 'Purchased' again", "Didn't you send this product?", "No, I didn't", event);
+                        dialog = Dialogs.confirmDialog(Translations.purchaseDetails.markSentCancelTitle, Translations.purchaseDetails.markSentCancelContent, Translations.purchaseDetails.markSentCancelApprove, event);
                         $mdDialog.show(dialog).then(function () {
                             updatePurchase(Purchase.PURCHASED_STATUS, purchase);
                         });
@@ -113,10 +113,10 @@ angular.module('DealersApp')
                         $mdDialog.alert()
                             .parent(angular.element(document.body))
                             .clickOutsideToClose(true)
-                            .title("You didn't specified a valid estimated delivery time.")
-                            .textContent("This is required so the customer will know how long to wait for his order.")
+                            .title(Translations.purchaseDetails.blankETDTitle)
+                            .textContent(Translations.purchaseDetails.blankETDContent)
                             .ariaLabel('Alert Dialog')
-                            .ok("Got it")
+                            .ok(Translations.general.gotIt)
                             .targetEvent(ev)
                     );
                 }
@@ -138,7 +138,7 @@ angular.module('DealersApp')
                         .ariaLabel('Estimated Delivery Time')
                         .targetEvent(ev)
                         .ok(confirm)
-                        .cancel('Cancel');
+                        .cancel(Translations.general.cancel);
                 }
 
                 /**
@@ -186,7 +186,7 @@ angular.module('DealersApp')
             replace: true,
             scope: {},
             templateUrl: 'app/components/views/purchases/orders-list.view.html',
-            controller: function ($scope, $rootScope, $location, $mdDialog, ActiveSession, Purchase, Product) {
+            controller: function ($scope, $rootScope, $location, $mdDialog, ActiveSession, Purchase, Product, Translations) {
 
                 var LOADING_STATUS = "loading";
                 var DOWNLOADED_STATUS = "downloaded";
@@ -217,9 +217,24 @@ angular.module('DealersApp')
                  */
                 $scope.markButtonTitle = function (purchase) {
                     if (purchase.status == Purchase.RECEIVED_STATUS) {
-                        return "Marked as received";
+                        return Translations.purchaseDetails.received;
                     } else {
-                        return "Mark as received";
+                        return Translations.purchaseDetails.markReceived;
+                    }
+                };
+
+                /**
+                 * Returns the appropriate representation of the purchase's status.
+                 * @param purchase - the purchase.
+                 * @returns {string} the representation.
+                 */
+                $scope.parseForPresentation = function (purchase) {
+                    if (purchase.status == Purchase.PURCHASED_STATUS) {
+                        return Translations.purchaseDetails.purchased;
+                    } else if (purchase.status == Purchase.SENT_STATUS) {
+                        return Translations.purchaseDetails.sent;
+                    } else if (purchase.status == Purchase.RECEIVED_STATUS) {
+                        return Translations.purchaseDetails.received;
                     }
                 };
 
@@ -243,7 +258,7 @@ angular.module('DealersApp')
             replace: true,
             scope: {},
             templateUrl: 'app/components/views/purchases/sales-list.view.html',
-            controller: function ($scope, $rootScope, $location, $mdDialog, ActiveSession, Purchase, Product) {
+            controller: function ($scope, $rootScope, $location, $mdDialog, ActiveSession, Purchase, Product, Translations) {
 
                 var LOADING_STATUS = "loading";
                 var DOWNLOADED_STATUS = "downloaded";
@@ -275,11 +290,26 @@ angular.module('DealersApp')
                  */
                 $scope.markButtonTitle = function (purchase) {
                     if (purchase.status == Purchase.SENT_STATUS) {
-                        return "Marked as sent";
+                        return Translations.purchaseDetails.sent;
                     } else if (purchase.status == Purchase.RECEIVED_STATUS) {
-                        return "Received!"
+                        return Translations.purchaseDetails.received
                     } else {
-                        return "Mark as sent";
+                        return Translations.purchaseDetails.markSent;
+                    }
+                };
+
+                /**
+                 * Returns the appropriate representation of the purchase's status.
+                 * @param purchase - the purchase.
+                 * @returns {string} the representation.
+                 */
+                $scope.parseForPresentation = function (purchase) {
+                    if (purchase.status == Purchase.PURCHASED_STATUS) {
+                        return Translations.purchaseDetails.purchased;
+                    } else if (purchase.status == Purchase.SENT_STATUS) {
+                        return Translations.purchaseDetails.sent;
+                    } else if (purchase.status == Purchase.RECEIVED_STATUS) {
+                        return Translations.purchaseDetails.received;
                     }
                 };
 
@@ -306,7 +336,7 @@ angular.module('DealersApp')
                 delivery: '='
             },
             templateUrl: 'app/components/views/purchases/total-price-calculator.view.html',
-            link: function($scope) {
+            link: function ($scope) {
                 $scope.price = $scope.purchase.amount / 100; // Convert to cents.
                 $scope.$watch('present', function () {
                     if ($scope.present) { // Most of the times the delivery object is pending, so should wait for it to populate.

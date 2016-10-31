@@ -52,14 +52,14 @@ angular.module('DealersApp')
             $scope.setDealerProfile = setDealerProfile;
             $scope.getUploadedProducts = getUploadedProducts;
             $scope.changeDisplayPresentation = changeDisplayPresentation;
-            $scope.changeDisplay = changeDisplay;
+            $scope.changeDisplayToTab = changeDisplayToTab;
 
             if (location.href.endsWith("/sales")) {
-                $scope.changeDisplay($scope.displayModes.purchases);
+                changeDisplay($scope.displayModes.purchases);
             } else if (location.href.endsWith("/orders")) {
-                $scope.changeDisplay($scope.displayModes.orders);
+                changeDisplay($scope.displayModes.orders);
             } else {
-                $scope.changeDisplay($scope.displayModes.myProducts);
+                changeDisplay($scope.displayModes.myProducts);
             }
 
             if (!$rootScope.dealer) {
@@ -69,12 +69,12 @@ angular.module('DealersApp')
                 $scope.profileMode = MY_PROFILE_MODE;
                 $scope.profile.dealer = $rootScope.dealer;
                 if ($scope.profile.dealer.role == $rootScope.roles.viewer) {
-                    $scope.changeDisplay($scope.displayModes.orders);
+                    changeDisplay($scope.displayModes.orders);
                 }
             } else {
                 // The dealer is not the user.
                 $scope.profileMode = OTHER_PROFILE_MODE;
-                $scope.changeDisplay($scope.displayModes.myProducts);
+                changeDisplay($scope.displayModes.myProducts);
             }
             dealerUrl += '/dealers/' + dealerID;
 
@@ -216,6 +216,17 @@ angular.module('DealersApp')
                 var activeClass = "active";
                 $(element).addClass(activeClass);
                 $(element).siblings().removeClass(activeClass);
+            }
+
+            function changeDisplayToTab(selectedTab) {
+                if (selectedTab == "myProducts") {
+                    changeDisplay($scope.displayModes.myProducts);
+                } else if (selectedTab == "sales") {
+                    changeDisplay($scope.displayModes.purchases);
+                } else if (selectedTab == "orders") {
+                    changeDisplay($scope.displayModes.orders);
+                }
+
             }
 
             function changeDisplay(displayMode) {

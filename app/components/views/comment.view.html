@@ -5,8 +5,9 @@
 	</div>
 	<div class="vd-comment-text-container">
 		<h5>
-			{{comment.dealer.full_name}} <span class="vd-comment-date">{{comment.upload_date | date: 'short'}}</span>
+			{{comment.dealer.full_name}}
 		</h5>
+		<span class="vd-comment-date">{{comment.upload_date | date: 'short'}}</span>
 		<p>
 			{{comment.text}}
 		</p>

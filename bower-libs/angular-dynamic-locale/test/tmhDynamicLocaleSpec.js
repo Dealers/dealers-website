@@ -48,7 +48,7 @@
   describe('dynamicLocale', function() {
     beforeEach(module('tmh.dynamicLocale'));
     beforeEach(module(function(tmhDynamicLocaleProvider) {
-      tmhDynamicLocaleProvider.localeLocationPattern('/base/node_modules/angular-i18n/angular-locale_{{locale}}.js');
+      tmhDynamicLocaleProvider.localeLocationPattern('/base/node_modules/locales/angular-locale_{{locale}}.js');
     }));
 
     afterEach(function (done) {
@@ -580,7 +580,7 @@
           scripts = node.getElementsByTagName('script');
 
         for (var i = 0; i < scripts.length; ++i) {
-          count += (scripts[i].src === 'http://localhost:9876/base/node_modules/angular-i18n/angular-locale_' + localeId + '.js' ? 1 : 0);
+          count += (scripts[i].src === 'http://localhost:9876/base/node_modules/locales/angular-locale_' + localeId + '.js' ? 1 : 0);
         }
         return count;
       }
@@ -684,7 +684,7 @@
     it('should be possible to add local properties to the locale location pattern', function(done) {
       module(function(tmhDynamicLocaleProvider) {
         tmhDynamicLocaleProvider.localeLocationPattern('/{{base}}/angular-locale_{{locale}}.js');
-        tmhDynamicLocaleProvider.addLocalePatternValue('base', 'base/node_modules/angular-i18n');
+        tmhDynamicLocaleProvider.addLocalePatternValue('base', 'base/node_modules/locales');
       });
       inject(function($locale, $timeout, tmhDynamicLocale) {
         var job = createAsync(done);

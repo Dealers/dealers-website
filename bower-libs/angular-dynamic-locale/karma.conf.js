@@ -9,7 +9,7 @@ module.exports = function(config) {
       'node_modules/angular/angular.js',
       'node_modules/angular-cookies/angular-cookies.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      {pattern: 'node_modules/angular-i18n/*.js', included: false, served: true},
+      {pattern: 'node_modules/locales/*.js', included: false, served: true},
       'src/*.js',
       'test/*Spec.js'
     ],

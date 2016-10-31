@@ -30,6 +30,7 @@ angular.module('DealersApp')
         service.checkForSavedSessions = checkForSavedSessions;
         service.clearSession = clearSession;
         service.uploadProduct = uploadProduct;
+
         return service;
 
         function getProduct() {

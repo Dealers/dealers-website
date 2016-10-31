@@ -1,7 +1,7 @@
 <md-dialog aria-label="Crop your photo"  ng-cloak>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Crop your photo</h2>
+                <h2 translate>general.crop-your-photo</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <img ng-src="../../../../../assets/images/icons/@2x/Web_Icons_quit_button_icon.png"
@@ -20,11 +20,11 @@
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <md-button ng-click="cancel()">
-                Cancel
+                {{"general.cancel" | translate}}
             </md-button>
             <span flex></span>
             <md-button ng-click="crop()" md-autofocus>
-                Crop
+                {{"general.crop" | translate}}
             </md-button>
         </md-dialog-actions>
 </md-dialog>

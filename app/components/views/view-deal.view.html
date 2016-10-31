@@ -27,7 +27,6 @@
                                          class="carousel-controller">
                                         <a
                                                 class="left carousel-control"
-                                                href="#photosCarousel"
                                                 target="_self"
                                                 role="button"
                                                 ng-non-bindable
@@ -36,7 +35,6 @@
                                         </a>
                                         <a
                                                 class="right carousel-control"
-                                                href="#photosCarousel"
                                                 target="_self"
                                                 role="button"
                                                 ng-non-bindable
@@ -51,25 +49,25 @@
                                 <ul class="clearfix">
                                     <li id="0">
                                         <div class="ap-thumbnail clickable" ng-click="selectPhoto(0)"
-                                                ng-if="photosURLs[0] && photosURLs.length > 1">
+                                             ng-if="photosURLs[0] && photosURLs.length > 1">
                                             <img ng-src="{{photosURLs[0]}}"/>
                                         </div>
                                     </li>
                                     <li id="1">
                                         <div class="ap-thumbnail clickable" ng-click="selectPhoto(1)"
-                                                ng-show="photosURLs[1]">
+                                             ng-show="photosURLs[1]">
                                             <img ng-src="{{photosURLs[1]}}" ng-show="photosURLs[1]"/>
                                         </div>
                                     </li>
                                     <li id="2">
                                         <div class="ap-thumbnail clickable" ng-click="selectPhoto(2)"
-                                                ng-show="photosURLs[2]">
+                                             ng-show="photosURLs[2]">
                                             <img ng-src="{{photosURLs[2]}}" ng-show="photosURLs[2]"/>
                                         </div>
                                     </li>
                                     <li id="3">
                                         <div class="ap-thumbnail clickable" ng-click="selectPhoto(3)"
-                                                ng-show="photosURLs[3]">
+                                             ng-show="photosURLs[3]">
                                             <img ng-src="{{photosURLs[3]}}" ng-show="photosURLs[3]"/>
                                         </div>
                                     </li>
@@ -86,9 +84,9 @@
                         <div class="vd-dealer-actions-section" layout="column" layout-gt-sm="row">
                             <div class="vd-dealer-profile clearfix" flex-gt-sm="60">
                                 <div class="vd-upload-date clearfix">
-                                    <p class="dl-note text-muted">Uploaded in the {{product.upload_date |
+                                    <p class="dl-note text-muted">{{'views.view-deal.upload-date' | translate}} {{product.upload_date |
                                         date:'short'}}
-                                        by</p>
+                                        {{'general.by' | translate}}</p>
                                 </div>
                                 <div class="profilePicContainer">
                                     <a ng-href="/dealers/{{product.dealer.id}}"><img ng-src="{{profilePic}}"
@@ -96,7 +94,8 @@
                                                                                      ng-show="hasProfilePic"/></a>
                                     <div class="dealerProfilePic defaultProfilePic" ng-hide="hasProfilePic"></div>
                                     <div class="vd-dealer-name">
-                                        <md-button href="/dealers/{{product.dealer.id}}" class="md-btn-small no-upper-case">
+                                        <md-button href="/dealers/{{product.dealer.id}}"
+                                                   class="md-btn-small no-upper-case">
                                             {{product.dealer.full_name}}
                                         </md-button>
                                     </div>
@@ -107,7 +106,7 @@
                                 <div class="vd-likes-counter" ng-show="totalLikes > 0">
                                     <p class="dl-note text-muted"><img
                                             src="../../../../assets/images/icons/Web_Icons_my_feed_like_icon.png"/>
-                                        {{totalLikes}} liked this</p>
+                                        {{totalLikes}} {{'views.view-deal.liked-this' | translate}}</p>
                                 </div>
                                 <div class="vd-buttons-container" layout="row">
                                     <md-button id="vd-like" class="md-btn-small like-btn"
@@ -119,18 +118,18 @@
                                             <img ng-show="likeStatus == 'LIKED'" class="side-icon dl-fade"
                                                  src="/assets/images/icons/@2x/Web_Icons_like_icon.png"/>
                                         </div>
-                                        <span>Like</span>
+                                        <span translate>general.like</span>
                                     </md-button>
                                     <md-button id="vd-share" class="md-btn-small" share-button>
                                         <img class="side-icon"
                                              src="/assets/images/icons/@2x/Web_Icons_facebook_share_black.png"/>
-                                        Share
+                                        {{'general.share' | translate}}
                                     </md-button>
                                     <md-button id="vd-edit" class="md-btn-small" ng-show="canEdit()"
                                                ng-click="editProduct()">
                                         <img class="side-icon"
                                              src="/assets/images/icons/@2x/Web_Icons_edit_icon_black.png"/>
-                                        Edit
+                                        {{'general.edit' | translate}}
                                     </md-button>
                                     <md-menu>
                                         <md-button id="vd-options" class="md-btn-small"
@@ -141,12 +140,12 @@
                                         <md-menu-content width="3">
                                             <md-menu-item ng-show="canEdit()">
                                                 <md-button class="dl-danger" ng-click="deleteProduct($event)">
-                                                    Delete Product
+                                                    {{'views.view-deal.delete' | translate}}
                                                 </md-button>
                                             </md-menu-item>
                                             <md-menu-item>
                                                 <md-button ng-click="report($event)">
-                                                    Report this product
+                                                    {{'views.view-deal.report' | translate}}
                                                 </md-button>
                                             </md-menu-item>
                                         </md-menu-content>
@@ -157,7 +156,7 @@
 
                         <div class="vd-comments">
                             <h4 class="text-muted" ng-show="product.comments.length > 0">
-                                {{product.comments.length}} comments
+                                {{product.comments.length}} {{'general.comments' | translate}}
                             </h4>
                             <dl-comment ng-repeat="comment in product.comments" comment="comment"></dl-comment>
                             <div class="comment" ng-show="user != null">
@@ -169,17 +168,16 @@
                                       ng-submit="addComment(addCommentForm)" novalidate>
                                     <p class="dl-error dl-note" ng-show="showCommentError">
                                         {{commentErrorMessage}}</p>
-							<textarea
-                                    type="text"
-                                    name="comment"
-                                    class="form-control"
-                                    placeholder="{{commentPlaceholder}}"
-                                    ng-model="comment.text"
-                                    ng-focus="showCommentButton = true"
-                                    required></textarea>
-                                    <md-button type="submit" class="btn-primary btn-sm" ng-show="showCommentButton">
-                                        Add
-                                        Comment
+                                    <textarea
+                                            type="text"
+                                            name="comment"
+                                            class="form-control"
+                                            placeholder="{{commentPlaceholder}}"
+                                            ng-model="comment.text"
+                                            ng-focus="showCommentButton = true"
+                                            required></textarea>
+                                    <md-button type="submit" class="btn-primary btn-sm" ng-show="showCommentButton" style="margin-top: 10px">
+                                        {{"views.view-deal.add-comment" | translate}}
                                     </md-button>
                                 </form>
                             </div>

@@ -23,7 +23,7 @@
                             type="text"
                             class="search form-control"
                             ng-model="searchTerm.text"
-                            placeholder="Search products"
+                            placeholder="{{'views.navbar.search-placeholder' | translate}}"
                             required/>
                 </div>
             </form>
@@ -31,24 +31,21 @@
         <ul ng-class="{'navbar-left': !phoneMode && !tabletMode}" class="nav">
             <li>
                 <md-menu md-offset="0 62" class="dark-links">
-                    <a class="nav-button non-mobile" ng-click="toggleMenu($mdOpenMenu, $mdMenuIsOpen, $event)">
+                    <a class="nav-button" ng-click="toggleMenu($mdOpenMenu, $mdMenuIsOpen, $event)">
                         <img src="../../../../assets/images/icons/@2x/Web_Icons_navbar_categories_icon.png">
-                        <span class="caret"></span>
+                        <span class="caret non-mobile"></span>
                     </a>
                     <md-menu-content class="dark-links" style="position: relative; padding-bottom: 40px" width="5">
                         <md-content>
-                            <md-menu-item ng-repeat="category in categories">
-                                <md-button href="/categories/{{category}}">
-                                    {{category}}
+                            <md-menu-item ng-repeat="category in categories track by $index">
+                                <md-button ng-click="selectCategory($index)">
+                                    {{category | htmlEscape}}
                                 </md-button>
                             </md-menu-item>
                         </md-content>
                         <menu-footer></menu-footer>
                     </md-menu-content>
                 </md-menu>
-                <a href="/categories" class="nav-button mobile">
-                    <img src="../../../../assets/images/icons/@2x/Web_Icons_navbar_categories_icon.png">
-                </a>
             </li>
         </ul>
         <ul id="nav-add-product" ng-class="{'navbar-right': !phoneMode && !tabletMode}" class="nav"
@@ -78,7 +75,7 @@
             <li>
                 <a>
                     <div class="emphasize">
-                        Sell <span class="non-mobile"> with Dealers</span>
+                        {{'general.sell' | translate}} <span class="non-mobile"> {{'general.with-dealers' | translate}}</span>
                     </div>
                 </a>
             </li>
@@ -87,8 +84,8 @@
             register-as-dealer>
             <li>
                 <a style="padding-top: 12px;">
-                    <div id="log-in">
-                        Log In
+                    <div id="log-in" translate>
+                        views.sign-in-dialog.log-in
                     </div>
                 </a>
             </li>

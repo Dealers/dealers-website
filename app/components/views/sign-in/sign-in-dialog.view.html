@@ -10,45 +10,45 @@
     </md-toolbar>
     <md-dialog-content style="max-height: 810px;">
         <md-tabs md-selected="selectedTab" md-dynamic-height md-border-bottom>
-            <md-tab label="Sign Up" md-on-select="onTabSelected(0)">
+            <md-tab label="{{'views.sign-in-dialog.sign-up-title' | translate}}" md-on-select="onTabSelected(0)">
                 <md-content>
                     <form name="signUpForm" class="dl-form form-sm clearfix" ng-submit="signDealer(signUpForm)"
                           novalidate>
                         <div class="dl-field">
                             <img src="/assets/images/icons/@2x/Web_Icons_name_icon.png"/>
-                            <input id="fullName" name="fullName" type="text" placeholder="Full name"
+                            <input id="fullName" name="fullName" type="text" placeholder="{{'views.sign-in-dialog.full-name' | translate}}"
                                    class="form-control dl-input"
                                    ng-model="dealer.full_name" required/>
                         </div>
                         <div class="dl-field">
                             <img src="/assets/images/icons/@2x/Web_Icons_email_icon.png"/>
-                            <input id="email" name="email" type="email" placeholder="Email"
+                            <input id="email" name="email" type="email" placeholder="{{'views.sign-in-dialog.email' | translate}}"
                                    class="form-control dl-input"
                                    ng-model="dealer.email" required/>
                         </div>
                         <div class="dl-field">
                             <img src="/assets/images/icons/@2x/Web_Icons_password_icon.png"/>
-                            <input id="password" name="password" type="password" placeholder="Password"
+                            <input id="password" name="password" type="password" placeholder="{{'views.sign-in-dialog.password' | translate}}"
                                    class="form-control dl-input"
                                    ng-model="dealer.user.password" required/>
                         </div>
                         <p class="dl-error dl-note text-center" ng-show="showError">{{errorMessage}}</p>
                         <p class="dl-note text-center text-muted pull-left">
-                            By signing up you agree to our <a ng-href="/terms-and-privacy" target="_blank">Terms of
-                            Service &amp; Privacy Policy</a>
+                            {{'views.sign-in-dialog.agreement' | translate}}
+                            <a ng-href="/terms-and-privacy" target="_blank" translate>views.sign-in-dialog.terms</a>
                         </p>
                     </form>
                 </md-content>
             </md-tab>
-            <md-tab label="Log In" md-on-select="onTabSelected(1)">
+            <md-tab label="{{'views.sign-in-dialog.log-in' | translate}}" md-on-select="onTabSelected(1)">
                 <md-content>
                     <form name="logInForm" class="dl-form form-sm clearfix" ng-submit="logIn(logInForm)" novalidate>
                         <div class="dl-field">
-                            <input name="email" type="email" placeholder="Email" class="form-control dl-input"
+                            <input name="email" type="email" placeholder="{{'views.sign-in-dialog.email' | translate}}" class="form-control dl-input"
                                    ng-model="logIn.email" required/>
                         </div>
                         <div class="dl-field">
-                            <input name="password" type="password" placeholder="Password *" class="form-control dl-input"
+                            <input name="password" type="password" placeholder="{{'views.sign-in-dialog.password' | translate}}" class="form-control dl-input"
                                    ng-model="logIn.password" required/>
                         </div>
                         <p class="dl-error dl-note text-center" ng-show="showError">{{errorMessage}}</p>

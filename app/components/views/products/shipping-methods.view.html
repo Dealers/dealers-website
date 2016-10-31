@@ -1,7 +1,7 @@
 <div class="ap-shipping-methods">
-    <h3>Shipping</h3>
-    <p class="dl-note margin-bottom">
-        Specify the available shipping methods for this product.
+    <h3 translate>views.shipping-methods.shipping-title</h3>
+    <p class="dl-note margin-bottom" translate>
+        views.shipping-methods.shipping-tip
     </p>
     <div class="ap-shipping-methods-container" layout="column">
         <ul>
@@ -10,7 +10,7 @@
                     <md-checkbox ng-model="shipping_methods.dealers.selected"
                                  aria-label="Checkbox 1"
                                  ng-class="{'selected': shipping_methods.dealers.selected}">
-                        Dealers Shipping
+                        {{"views.shipping-methods.dealers-shipping" | translate}}
                     </md-checkbox>
                     <md-button class="md-icon-button align-middle no-margin md-21"
                                ng-click="presentDealersInfo = !presentDealersInfo">
@@ -23,64 +23,61 @@
                     <p class="dl-note dl-danger animate-height"
                        ng-class="{'dl-show': shipping_methods.dealers.shipping_price != DEALERS_SHIPPING_PRICE
                                                    && shipping_methods.dealers.selected}">
-                        Remember - you will be charged {{product.currency}}{{DEALERS_SHIPPING_PRICE}} for this shipping method.
-                        The purpose of this shipping price field is only to enable you to
-                        present a different shipping price for your customers.
+                        {{"views.shipping-methods.dealers-warning-1" | translate}}
+                        {{product.currency}}{{DEALERS_SHIPPING_PRICE}}
+                        {{"views.shipping-methods.dealers-warning-2" | translate}}
                     </p>
                     <p class="dl-note text-muted animate-height"
                        ng-class="{'dl-show': presentDealersInfo}">
-                        From door to door shipping. Under our responsibility, you'll be
-                        charged ₪35. Up to 2 business days.<br><br>
-                        <b>Tip:</b> Free shipping is more appealing to customers.
-                        Consider including the price of the shipping in the price of this
-                        product and setting the shipping price to 0.
+                        {{"views.shipping-methods.dealers-tip-1" | translate}}<br><br>
+                        <b>{{"views.shipping-methods.dealers-tip-2" | translate}}</b>
+                        {{"views.shipping-methods.dealers-tip-3" | translate}}
                     </p>
                 </div>
                 <div class="shipping_options animate-height"
                      ng-class="{'dl-show': shipping_methods.dealers.selected}"
                      flex flex-gt-xs="65">
                     <div class="dl-field no-icon-field form-group">
-                        <label for="dealers-shipping-title">
-                            Title
+                        <label for="dealers-shipping-title" translate>
+                            general.title
                         </label>
                         <input id="dealers-shipping-title" name="dealers-shipping-title"
                                type="text"
                                class="form-control dl-input no-margin"
-                               placeholder="e.g. Israel Postal Company"
                                ng-model="shipping_methods.dealers.title"
                                disabled
                         />
                     </div>
                     <div class="dl-field no-icon-field form-group">
-                        <label for="dealers-shipping-price">
-                            Shipping Price
+                        <label for="dealers-shipping-price" translate>
+                            views.shipping-methods.shipping-price
                         </label>
                         <input id="dealers-shipping-price" name="dealers-shipping-price"
                                type="number"
                                min="0"
                                class="form-control dl-input no-margin"
-                               placeholder="Shipping price, 0 for free shipping"
+                               placeholder="{{'views.shipping-methods.shipping-price-placeholder' | translate}}"
                                ng-model="shipping_methods.dealers.shipping_price"
                                required
                         />
                     </div>
                     <div class="dl-field no-icon-field form-group">
-                        <label for="dealers-shipping-etd">
-                            Estimated Time of Delivery (ETD)
+                        <label for="dealers-shipping-etd" translate>
+                            views.shipping-methods.etd
                         </label>
                         <input id="dealers-shipping-etd" name="dealers-shipping-etd"
                                type="number"
                                min="1"
                                class="form-control dl-input no-margin"
-                               placeholder="3 (days)"
+                               placeholder="3 ({{'general.days' | translate}})"
                                ng-model="shipping_methods.dealers.estimated_delivery_time"
                                ng-init="shipping_methods.dealers.estimated_delivery_time=2"
                                disabled
                         />
                     </div>
                     <div class="dl-field no-icon-field form-group">
-                        <label for="dealers-shipping-description">
-                            Description
+                        <label for="dealers-shipping-description" translate>
+                            general.description
                         </label>
                         <textarea id="dealers-shipping-description"
                                   name="dealers-shipping-description"
@@ -96,7 +93,7 @@
                     <md-checkbox ng-model="shipping_methods.custom.selected"
                                  aria-label="Checkbox 1"
                                  ng-class="{'selected': shipping_methods.custom.selected}">
-                        Custom Shipping
+                        {{"views.shipping-methods.custom-shipping" | translate}}
                     </md-checkbox>
                     <md-button class="md-icon-button align-middle no-margin md-21"
                                ng-click="presentCustomInfo = !presentCustomInfo">
@@ -108,33 +105,29 @@
                     </md-button>
                     <p class="dl-note text-muted animate-height"
                        ng-class="{'dl-show': presentCustomInfo}">
-                        A shipping method that you supply. We do not take responsibility for
-                        this.
-                        Specify a shipping price and the ETD, and a short description
-                        (recommended).<br><br>
-                        <b>Tip:</b> Free shipping is more appealing to customers.
-                        Consider including the price of the shipping in the price of this
-                        product and setting the shipping price to 0.
+                        {{"views.shipping-methods.custom-tip-1" | translate}}<br><br>
+                        <b>{{"views.shipping-methods.dealers-tip-2" | translate}}</b>
+                        {{"views.shipping-methods.dealers-tip-3" | translate}}
                     </p>
                 </div>
                 <div class="shipping_options animate-height"
                      ng-class="{'dl-show': shipping_methods.custom.selected}"
                      flex flex-gt-xs="65">
                     <div class="dl-field no-icon-field form-group">
-                        <label for="custom-shipping-title">
-                            Title
+                        <label for="custom-shipping-title" translate>
+                            general.title
                         </label>
                         <input id="custom-shipping-title" name="custom-shipping-title"
                                type="text"
                                class="form-control dl-input no-margin"
-                               placeholder="e.g. Israel Postal Company"
+                               placeholder="{{'views.shipping-methods.title-placeholder' | translate}}"
                                ng-model="shipping_methods.custom.title"
                                required
                         />
                     </div>
                     <div class="dl-field no-icon-field form-group">
-                        <label for="dealers-shipping-price">
-                            Shipping Price
+                        <label for="dealers-shipping-price" translate>
+                            views.shipping-methods.shipping-price
                         </label>
                         <input id="custom-shipping-price" name="custom-shipping-price"
                                type="number"
@@ -146,8 +139,8 @@
                         />
                     </div>
                     <div class="dl-field no-icon-field form-group">
-                        <label for="custom-shipping-etd">
-                            Estimated Time of Delivery (ETD)
+                        <label for="custom-shipping-etd" translate>
+                            views.shipping-methods.etd
                         </label>
                         <input id="custom-shipping-etd" name="custom-shipping-etd"
                                type="number"
@@ -159,13 +152,13 @@
                         />
                     </div>
                     <div class="dl-field no-icon-field form-group">
-                        <label for="custom-shipping-description">
-                            Description (optional)
+                        <label for="custom-shipping-description" translate>
+                            general.description-optional
                         </label>
                         <textarea id="custom-shipping-description"
                                   name="custom-shipping-description"
                                   class="form-control dl-input no-margin"
-                                  placeholder="Such as the shipping company and a link to additional info"
+                                  placeholder="{{'views.shipping-methods.custom-description-placeholder' | translate}}"
                                   ng-model="shipping_methods.custom.description">
                                                         </textarea>
                     </div>
@@ -177,7 +170,7 @@
                     <md-checkbox ng-model="shipping_methods.pickup.selected"
                                  aria-label="Checkbox 1"
                                  ng-class="{'selected': shipping_methods.pickup.selected}">
-                        Self Pick-up
+                        {{"services.shipping-methods.pickup-title" | translate}}
                     </md-checkbox>
                     <md-button class="md-icon-button align-middle no-margin md-21"
                                ng-click="presentPickupInfo = !presentPickupInfo">
@@ -188,21 +181,20 @@
                         </i>
                     </md-button>
                     <p class="dl-note text-muted animate-height"
-                       ng-class="{'dl-show': presentPickupInfo}">
-                        Customers can come to your location and collect the product.
-                        Specify details such as address, hours of availability, etc.
+                       ng-class="{'dl-show': presentPickupInfo}" translate>
+                        services.shipping-methods.pickup-description
                     </p>
                 </div>
                 <div class="shipping_options animate-height"
                      ng-class="{'dl-show': shipping_methods.pickup.selected}"
                      flex flex-gt-xs="65">
-                    <label for="pickup-shipping-description">
-                        Description (optional)
+                    <label for="pickup-shipping-description" translate>
+                        general.description-optional
                     </label>
                     <textarea id="pickup-shipping-description"
                               name="pickup-shipping-description"
                               class="form-control dl-input no-margin"
-                              placeholder="Such as address, visiting hours, etc."
+                              placeholder="{{'views.shipping-methods.pickup-description-placeholder' | translate}}"
                               ng-model="shipping_methods.pickup.description">
                                                     </textarea>
                 </div>

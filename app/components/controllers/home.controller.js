@@ -2,8 +2,8 @@ angular.module('DealersApp')
 /**
  *
  */
-    .controller('HomeController', ['$scope', '$rootScope', '$location', '$mdDialog', '$mdMedia',
-        function ($scope, $rootScope, $location, $mdDialog, $mdMedia) {
+    .controller('HomeController', ['$scope', '$rootScope', '$location', '$mdDialog', '$mdMedia', 'Translations',
+        function ($scope, $rootScope, $location, $mdDialog, $mdMedia, Translations) {
 
             var DEALERS_PATH = "/dealers/";
             var ALL_PRODUCTS_PATH = "/all-products/";
@@ -32,7 +32,11 @@ angular.module('DealersApp')
              */
             function setGridTitles() {
                 if ($scope.role == $rootScope.roles.guest) {
-                    $scope.gridDescription = "See what people are selling with Dealers";
+                    $scope.gridDescription = Translations.home.seeProducts;
                 }
             }
+
+            $rootScope.$on('$translateChangeSuccess', function () {
+                $scope.gridDescription = Translations.home.seeProducts;
+            });
         }]);

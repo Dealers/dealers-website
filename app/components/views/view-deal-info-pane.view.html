@@ -10,21 +10,21 @@
         </label>
         <md-select id="vd-variant-{{variant.name}}"
                    ng-model="variants[$index].selection"
-                   placeholder="Select">
+                   placeholder="{{'general.select' | translate}}">
             <md-option ng-repeat="option in variant.options">
                 {{option}}
             </md-option>
         </md-select>
     </div>
     <div class="vd-quantity">
-        <label for="vd-quantity">Quantity</label>
+        <label for="vd-quantity" translate>general.quantity</label>
         <div>
             <input id="vd-quantity"
                    ng-model="purchase.quantity"
                    ng-init="purchase.quantity = 1"
                    type="number"
                    min="1"
-                   max="{{product.max_quantity}}"
+                   max="1000"
                    ng-change="presentTotalPrice = true"
                    step="1">
             <span ng-show="presentTotalPrice" class="vd-price">
@@ -32,11 +32,14 @@
             </span>
         </div>
     </div>
+    <p class="dl-danger-emphasize" style="margin-bottom: 0" ng-show="product.inventory == 0">
+        {{'views.view-deal-info-pane.out-of-stock' | translate}}
+    </p>
     <md-button id="vd-buy"
                class="btn-primary btn-sm btn-single btn-xl"
                style="margin: 40px 0 34px 0;"
                ng-click="proceedToCheckout()">
-        Buy
+        {{'general.buy' | translate}}
     </md-button>
     <div class="vd-more-description"
          ng-show="product.more_description && product.more_description!='None'" >

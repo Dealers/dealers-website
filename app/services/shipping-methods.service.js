@@ -7,8 +7,8 @@
  *  Manages information regarding the current session of adding a product.
  */
 angular.module('DealersApp')
-    .factory('ShippingMethods', ['$http', '$rootScope', 'Dialogs',
-        function ShippingMethodsFactory($http, $rootScope, Dialogs) {
+    .factory('ShippingMethods', ['$http', '$rootScope', 'Dialogs', '$translate', 'Translations',
+        function ShippingMethodsFactory($http, $rootScope, Dialogs, $translate, Translations) {
 
             var DELIVERY_PATH = "/deliverys/";
             var EDIT_DELIVERY_PATH = "/editdeliverys/";
@@ -39,6 +39,12 @@ angular.module('DealersApp')
                 title: service.PICKUP_TITLE,
                 shipping_price: 0,
             };
+
+            $rootScope.$on('$translateChangeSuccess', function () {
+                service.DEALERS_TITLE = $translate.instant("services.shipping-methods.dealers-title");
+                service.DEALERS_SHIPPING_DESCRIPTION = $translate.instant("services.shipping-methods.dealers-description");
+                service.PICKUP_TITLE = $translate.instant("services.shipping-methods.pickup-title");
+            });
 
             service.getDelivery = getDelivery;
             service.convertDeliveryToServer = convertDeliveryToServer;
@@ -307,34 +313,34 @@ angular.module('DealersApp')
 
                 if (dealersShipping.selected) {
                     if (!dealersShipping.title) {
-                        Dialogs.showAlertDialog("Blank Shipping Title", "Please insert a title for your custom shipping method. This is the title that will be presented to your customers when they choose a shipping method.");
+                        Dialogs.showAlertDialog(Translations.shippingMethods.blankTitle, Translations.shippingMethods.blankTitleContent);
                         return false;
                     }
                     if (!(dealersShipping.shipping_price >= 0)) {
-                        Dialogs.showAlertDialog("Invalid Shipping Price", "Please insert a valid shipping price.");
+                        Dialogs.showAlertDialog(Translations.shippingMethods.invalidShippingPriceTitle, Translations.shippingMethods.invalidShippingPriceContent);
                         return false;
                     }
                     if (!(dealersShipping.estimated_delivery_time > 0)) {
-                        Dialogs.showAlertDialog("Invalid ETD in Dealers Shipping", "(Something is wrong...)");
+                        Dialogs.showAlertDialog(Translations.shippingMethods.invalidETDTitle, Translations.shippingMethods.invalidETDContent);
                         return false;
                     }
                 }
                 if (customShipping.selected) {
                     if (!customShipping.title) {
-                        Dialogs.showAlertDialog("Blank Shipping Title", "Please insert a title for your custom shipping method. This is the title that will be presented to your customers when they choose a shipping method.");
+                        Dialogs.showAlertDialog(Translations.shippingMethods.blankTitle, Translations.shippingMethods.blankTitleContent);
                         return false;
                     }
                     if (!(customShipping.shipping_price >= 0)) {
-                        Dialogs.showAlertDialog("Invalid Shipping Price", "Please insert a valid shipping price in your custom shipping method.");
+                        Dialogs.showAlertDialog(Translations.shippingMethods.invalidShippingPriceTitle, Translations.shippingMethods.invalidShippingPriceContent);
                         return false;
                     }
                     if (!(customShipping.estimated_delivery_time > 0)) {
-                        Dialogs.showAlertDialog("Invalid ETD in Custom Shipping", "Please insert a valid estimated time of delivery (in days).");
+                        Dialogs.showAlertDialog(Translations.shippingMethods.invalidETDTitle, Translations.shippingMethods.invalidETDContent);
                         return false;
                     }
                 }
                 if (!dealersShipping.selected && !customShipping.selected && !pickup.selected) {
-                    Dialogs.showAlertDialog("No Shipping Methods", "You must support at least one shipping method.");
+                    Dialogs.showAlertDialog(Translations.shippingMethods.noShippingMethodsTitle, Translations.shippingMethods.noShippingMethodsContent);
                     return false;
                 }
 

@@ -2,15 +2,21 @@
 
 <div class="container nav-padding ap-container" ng-cloak>
     <div class="framed-container text-center">
-        <h2>Your product uploaded Successfully!</h2>
+        <h2 translate>views.add-product-finish.success</h2>
         <img class="ap-success-icon" ng-src="/assets/images/icons/@2x/Web_Icons_success_icon.png">
-        <h4>Time to spread the word...</h4>
+        <h4 translate>views.add-product-finish.spread</h4>
         <div class="ap-share-options-container">
-            <md-button class="btn-primary btn-single facebook" ng-click="switchDidShare($event)" share-button>Share with Facebook</md-button>
+            <md-button class="btn-primary btn-single facebook" ng-click="switchDidShare($event)" share-button>
+                {{'views.add-product-finish.facebook' | translate}}
+            </md-button>
         </div>
         <div ng-cloak>
-            <md-button ng-show="didntShare" class="dl-fade dl-note info-note md-btn-small" style="margin-top: -10px;" ng-click="done()">Skip</md-button>
-            <md-button ng-show="didShare" class="dl-fade btn-secondary" ng-click="done()">Done</md-button>
+            <md-button ng-show="didntShare" class="dl-fade dl-note info-note md-btn-small" style="margin-top: -10px;" ng-click="done()">
+                {{'general.skip' | translate}}
+            </md-button>
+            <md-button ng-show="didShare" class="dl-fade btn-secondary" ng-click="done()">
+                {{'general.done' | translate}}
+            </md-button>
         </div>
     </div>
 </div>

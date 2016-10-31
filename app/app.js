@@ -1,4 +1,4 @@
-angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial', 'ui.bootstrap', 'ngImgCrop', 'angular-google-analytics'])
+angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial', 'ui.bootstrap', 'ngImgCrop', 'angular-google-analytics', 'pascalprecht.translate', 'tmh.dynamicLocale'])
 
     .config(function ($mdThemingProvider) {
         $mdThemingProvider.theme('default')
@@ -21,10 +21,48 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
         AnalyticsProvider.readFromRoute(true);
     })
 
-    .run(['$rootScope', '$location', '$cookies', '$http', '$timeout', '$mdToast', 'DealerPhotos', 'Analytics',
-        function ($rootScope, $location, $cookies, $http, $timeout, $mdToast, DealerPhotos, Analytics) {
+    .config(function ($translateProvider, tmhDynamicLocaleProvider) {
+        $translateProvider.useMissingTranslationHandlerLog();
+        $translateProvider.useStaticFilesLoader({
+            prefix: 'resources/locale-',// path to translations files
+            suffix: '.json'// suffix, currently- extension of the translations
+        });
+        $translateProvider.registerAvailableLanguageKeys(['he', 'en'], {
+            'he*': 'he',
+            'en*': 'en'
+        });
+        $translateProvider.determinePreferredLanguage();
+        $translateProvider.fallbackLanguage('en');
+        $translateProvider.useSanitizeValueStrategy('escape');
+        $translateProvider.useLocalStorage();// saves selected language to localStorage
+        tmhDynamicLocaleProvider.localeLocationPattern('/assets/locales/angular-locale_{{locale}}.js');
+    })
+
+    .constant('LOCALES', {
+        'locales': {
+            'he': 'עברית',
+            'en': 'English'
+        },
+        'localeFlags': {
+            'עברית': '/assets/images/icons/@2x/flag-israel.png',
+            'English': '/assets/images/icons/@2x/flag-usa.png'
+        },
+        'preferredLocale': 'en'
+    })
+
+    .filter('htmlEscape', function () {
+        return function (input) {
+            if (input) {
+                return input.replace("&amp;", "&");
+            }
+        }
+    })
+
+    .run(['$rootScope', '$location', '$cookies', '$http', '$timeout', '$mdToast', 'DealerPhotos', 'Analytics', '$translate', '$translateLocalStorage',
+        function ($rootScope, $location, $cookies, $http, $timeout, $mdToast, DealerPhotos, Analytics, $translate, $translateLocalStorage) {
 
             // global constants
+            $rootScope.language = "";
             // $rootScope.baseUrl = 'http://api.dealers-web.com'; // Test
             // $rootScope.homeUrl = "http://www.dealers-web.com"; // Test
             // $rootScope.stripe_publishable_key = 'pk_test_q3cpGyBIL6rsGswSQbP3tMpK'; // Test
@@ -52,6 +90,31 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
             // Global functions
             $rootScope.setUserProfilePic = setUserProfilePic;
 
+            // Set language
+            $rootScope.language = $translate.proposedLanguage();
+            var storageKey = 'NG_TRANSLATE_LANG_KEY';
+
+            if (!$translateLocalStorage.get(storageKey)) {
+                // There is no translation in the cache. Get the country of the client via the ipinfo.io service and determine the appropriate language.
+                console.log("Determining according to country");
+                $.getJSON('https://ipinfo.io/json', function (data) {
+                    var country = data.country;
+                    country = country.toLowerCase();
+                    if (country == 'il') {
+                        $rootScope.language = 'he';
+                        document.documentElement.setAttribute('dir', 'rtl');// sets "lang" attribute to html
+                    }
+                    $translate.use($rootScope.language);
+                    document.documentElement.setAttribute('lang', $rootScope.language);
+                });
+            } else {
+                if ($rootScope.language == 'he') {
+                    document.documentElement.setAttribute('dir', 'rtl');// sets "lang" attribute to html
+                    document.documentElement.setAttribute('lang', $rootScope.language);
+                }
+            }
+
+
             /**
              * Initializing the Intercom SDK.
              * @param user - the user.
@@ -69,7 +132,8 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
                     gender: user.gender,
                     location: user.location,
                     role: user.role,
-                    rank: user.rank
+                    rank: user.rank,
+                    language: $rootScope.language
                 });
             }
 
@@ -129,9 +193,9 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
                 admin: "Admin"
             };
 
-            // Categories
-            $rootScope.categories = [
-                "Everything",
+            // Categories Local Keys (for local client navigation use)
+            $rootScope.categoriesLocal = [
+                "All Categories",
                 "Art",
                 "Automotive",
                 "Health & Beauty",
@@ -150,6 +214,50 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
                 "Travel",
                 "Other"
             ];
+
+            $rootScope.categories = [
+                $translate.instant("general.all-categories"),
+                $translate.instant("general.art"),
+                $translate.instant("general.automotive"),
+                $translate.instant("general.health-beauty"),
+                $translate.instant("general.books-magazines"),
+                $translate.instant("general.electronics"),
+                $translate.instant("general.entertainment-events"),
+                $translate.instant("general.fashion"),
+                $translate.instant("general.food-groceries"),
+                $translate.instant("general.home-furniture"),
+                $translate.instant("general.kids-events"),
+                $translate.instant("general.music"),
+                $translate.instant("general.pets"),
+                $translate.instant("general.restaurants-bars"),
+                $translate.instant("general.services"),
+                $translate.instant("general.sports-outdoors"),
+                $translate.instant("general.travel"),
+                $translate.instant("general.other")
+            ];
+
+            $rootScope.$on('$translateChangeSuccess', function () {
+                $rootScope.categories = [
+                    $translate.instant("general.all-categories"),
+                    $translate.instant("general.art"),
+                    $translate.instant("general.automotive"),
+                    $translate.instant("general.health-beauty"),
+                    $translate.instant("general.books-magazines"),
+                    $translate.instant("general.electronics"),
+                    $translate.instant("general.entertainment-events"),
+                    $translate.instant("general.fashion"),
+                    $translate.instant("general.food-groceries"),
+                    $translate.instant("general.home-furniture"),
+                    $translate.instant("general.kids-events"),
+                    $translate.instant("general.music"),
+                    $translate.instant("general.pets"),
+                    $translate.instant("general.restaurants-bars"),
+                    $translate.instant("general.services"),
+                    $translate.instant("general.sports-outdoors"),
+                    $translate.instant("general.travel"),
+                    $translate.instant("general.other")
+                ];
+            });
 
             // Discount types
             $rootScope.discountTypes = {

@@ -2,7 +2,7 @@
  * Created by gullumbroso on 30/04/2016.
  */
 angular.module('DealersApp')
-    .factory('Dialogs', ['$rootScope', '$mdDialog', '$mdMedia', function DialogsFactory($rootScope, $mdDialog, $mdMedia) {
+    .factory('Dialogs', ['$rootScope', '$mdDialog', '$mdMedia', 'Translations', function DialogsFactory($rootScope, $mdDialog, $mdMedia, Translations) {
 
         var service = {};
 
@@ -51,7 +51,7 @@ angular.module('DealersApp')
                 .textContent(content)
                 .ariaLabel('Confirm Dialog')
                 .ok(confirm)
-                .cancel("Cancel")
+                .cancel(Translations.general.cancel)
                 .targetEvent(ev);
         }
 
@@ -69,7 +69,7 @@ angular.module('DealersApp')
                     .title(title)
                     .textContent(content)
                     .ariaLabel('Alert Dialog')
-                    .ok("Got it")
+                    .ok(Translations.general.gotIt)
                     .targetEvent(ev)
             );
         }

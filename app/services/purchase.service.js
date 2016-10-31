@@ -65,6 +65,7 @@ angular.module('DealersApp')
                         purchase = response.data;
                         Analytics.addTrans(String(purchase.id), String(purchase.dealer), String((purchase.amount * purchase.quantity) / 100), '', '', '', '', '', purchase.currency);
                         Analytics.addItem(String(purchase.id), '', product.title, product.category, String(purchase.amount / 100), String(purchase.quantity));
+                        $rootScope.$broadcast("purchaseSaved", purchase.id);
                     },
                     function (httpError) {
                         // error

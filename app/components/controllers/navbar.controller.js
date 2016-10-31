@@ -100,6 +100,15 @@ angular.module('DealersApp')
             };
 
             /**
+             * Directs the user to the category page.
+             * @param index
+             */
+            $scope.selectCategory = function (index) {
+                var cat = $rootScope.categoriesLocal[index];
+                $location.path('/categories/' + cat);
+            };
+
+            /**
              * Waits for the root scope to broadcast the user's dealer pic. (Obsolete)
              */
             function waitForProfilePic() {

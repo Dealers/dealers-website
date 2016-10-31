@@ -3,7 +3,7 @@
 <div class="container nav-margin">
     <div class="dl-form framed-container ap-form-container" ng-switch on="status">
 
-        <h2>Edit Product</h2>
+        <h2 translate>views.edit-product.title</h2>
 
         <div ng-switch-when="loading">
             <loading-spinner></loading-spinner>
@@ -15,11 +15,11 @@
             <form name="editProductForm" ng-submit="submitEdit(editProductForm)" class="ap-title-container" novalidate>
                 <div class="dl-form-col single-col">
                     <div class="dl-field no-icon-field form-group">
-                        <label for="ap-title">
-                            Title
+                        <label for="ap-title" translate>
+                            general.title
                         </label>
                         <input id="ap-title" name="name" type="text"
-                               placeholder="e.g. Long Sleeve T-Shirt"
+                               placeholder="{{'views.add-product.title-placeholder' | translate}}"
                                class="form-control dl-input"
                                value="dealer.full_name"
                                ng-model="product.title"
@@ -28,8 +28,8 @@
                     </div>
                     <div class="dl-field-plus no-margin">
                         <div class="dl-field no-icon-field form-group">
-                            <label for="ap-description">
-                                Description
+                            <label for="ap-description" translate>
+                                general.description
                             </label>
                             <textarea id="ap-description" name="ap-description"
                                       placeholder=""
@@ -38,18 +38,20 @@
                                 </textarea>
                         </div>
                     </div>
-                    <h4>Images</h4>
+                    <h4 translate>general.images</h4>
                     <div class="dl-form-col single-col ap-image-section text-center"
                          file-dropzone="[image/png, image/jpeg, image/gif]"
                          photos="photos" photos-urls="photosURLs" show-alert="showAlert()" data-max-file-size="3">
                         <div class="dropzone text-center" ng-hide="photos.length > 0">
-                            <p class="non-mobile">Drop image here <br/> or </p>
+                            <p class="non-mobile">{{"views.add-product.drop-image" | translate}} <br/> {{"general.or" | translate}} </p>
                             <div class="inputfile-container" ng-hide="photos.length > 0">
                                 <input id="inputButton" name="inputButton" type="file" class="inputfile"
                                        accept="image/*"
                                        photos-input photos="photos" photos-urls="photosURLs"
                                        show-alert="showAlert()"/>
-                                <label for="inputButton" class="md-button btn-white btn-secondary btn-md">{{addPhotoText}}</label>
+                                <label for="inputButton" class="md-button btn-white btn-secondary btn-md" translate>
+                                    views.add-product.add-photo
+                                </label>
                             </div>
                         </div>
 
@@ -144,10 +146,10 @@
                                     <carousel-item ng-repeat="photoURL in photosURLs track by $index"
                                                    photo-url="photoURL"></carousel-item>
                                 </div>
-                                <div ng-show="photosURLs.length > 1" ng-click="nextPhoto($event)">
+                                <div ng-show="photosURLs.length > 1" ng-click="nextPhoto($event)"
+                                     class="carousel-controller">
                                     <a
                                             class="left carousel-control"
-                                            href="#photosCarousel"
                                             target="_self"
                                             role="button"
                                             ng-non-bindable
@@ -156,7 +158,6 @@
                                     </a>
                                     <a
                                             class="right carousel-control"
-                                            href="#photosCarousel"
                                             target="_self"
                                             role="button"
                                             ng-non-bindable
@@ -172,11 +173,11 @@
                         <div class="ap-price-and-discount" layout="column" layout-gt-xs="row">
                             <div class="dl-field no-icon-field form-group ap-current-price" flex
                                  flex-gt-xs="33">
-                                <label for="ap-current-price">
-                                    Current Price
+                                <label for="ap-current-price" translate>
+                                    views.add-product.current-price
                                 </label>
                                 <input id="ap-current-price" name="ap-current-price" type="number"
-                                       placeholder="required"
+                                       placeholder="{{'general.required' | translate}}"
                                        step="0.01"
                                        ng-value="product.price"
                                        ng-blur="formatPrice($event)"
@@ -215,8 +216,8 @@
                             </div>
                             <div layout="row" flex flex-gt-xs="66">
                                 <div class="dl-field no-icon-field form-group ap-percentage-off" flex="50">
-                                    <label for="ap-percentage-off">
-                                        Percentage Off
+                                    <label for="ap-percentage-off" translate>
+                                        views.add-product.percentage-off
                                     </label>
                                     <input id="ap-percentage-off" name="ap-percentage-off" type="number"
                                            class="form-control dl-input no-margin"
@@ -228,12 +229,12 @@
                                     />
                                     <md-checkbox ng-model="presentPercentageOff" ng-change="changePresentPercentageOff($event)" aria-label="Checkbox 1"
                                                  class="dl-note">
-                                        Show
+                                        {{"general.show" | translate}}
                                     </md-checkbox>
                                 </div>
                                 <div class="dl-field no-icon-field form-group ap-original-price" flex="50">
-                                    <label for="ap-original-price">
-                                        Original Price
+                                    <label for="ap-original-price" translate>
+                                        views.add-product.original-price
                                     </label>
                                     <input id="ap-original-price" name="ap-original-price" type="number"
                                            class="form-control dl-input no-margin"
@@ -244,55 +245,48 @@
                                     />
                                     <md-checkbox ng-model="presentOriginalPrice" ng-change="changePresentOriginalPrice($event)" aria-label="Checkbox 1"
                                                  class="dl-note">
-                                        Show
+                                        {{"general.show" | translate}}
                                     </md-checkbox>
                                 </div>
                             </div>
                         </div>
                         <div id="pricePresentation" class="vd-price-discount no-margin text-center">
                             <div class="vd-price-discount-presentation">
-                                <span class="dl-note info-note" style="margin-right: 8px;">preview: </span>
+                                <span class="dl-note info-note" style="margin-right: 8px;"> {{'general.preview' | translate}}: </span>
                                 <span ng-show="product.price > 0" class="price">{{product.price | currency:product.currency}}</span>
                                 <span ng-hide="product.price > 0" class="price">{{product.currency}}0.00</span>
                                 <span ng-show="(product.percentage_off > 0 && product.percentage_off <= 100) && presentPercentageOff"
-                                      class="percentage-off">{{product.percentage_off}}% off</span>
+                                      class="percentage-off">{{product.percentage_off}}% {{'general.off' | translate}}</span>
                                 <span ng-show="presentOriginalPrice"
                                       class="original-price">{{product.original_price | currency:product.currency}}</span>
                             </div>
                         </div>
                     </div>
                     <div class="dl-field no-icon-field form-group">
-                        <label for="ap-category">
-                            Category
+                        <label for="ap-category" translate>
+                            general.category
                         </label>
                         <md-select id="ap-category" name="ap-category" class="dl-input form-control"
                                    ng-model="product.category"
-                                   placeholder="eg. Art">
+                                   placeholder="{{'views.add-product.categories-placeholder' | translate}}">
                             <md-option ng-repeat="category in categories" value="{{category}}">
                                 {{category}}
                             </md-option>
                         </md-select>
                     </div>
-                    <div class="dl-field no-icon-field form-group explanation-label-field">
-                        <label for="ap-max-quantity">
-                            Max Quantity
-                        </label>
-                        <p class="dl-note margin-bottom">
-                            How many of this item can a customer order in one shipment?
-                        </p>
-                        <input id="ap-max-quantity" name="ap-max-quantity" type="number"
-                               class="form-control dl-input no-margin small-input"
-                               min="0"
-                               max="{{product.max_quantity}}"
-                               step="1"
-                               ng-model="product.max_quantity"
-                               required
-                        />
+
+                    <hr>
+
+                    <div class="ap-section">
+                        <inventory-edit></inventory-edit>
                     </div>
-                    <div class="ap-variants">
-                        <h3>Variants</h3>
-                        <p class="dl-note margin-bottom">
-                            Does this product comes in multiple variations like size or color?
+
+                    <hr>
+
+                    <div class="ap-variants ap-section">
+                        <h3 translate>views.add-product.variants-title</h3>
+                        <p class="dl-note margin-bottom" translate>
+                            views.add-product.variants-tip
                         </p>
                         <div class="ap-variants-container" layout="column">
                             <div class="dl-field no-margin" flex layout="row"
@@ -300,24 +294,26 @@
                                 <div class="dl-field no-icon-field form-group no-margin" flex="30"
                                      style="padding-right: 5px;">
                                     <label for="ap-variant-{{$index}}" ng-show="$index == 0">
-                                        <span class="non-mobile">Option </span>Name
+                                        <span class="non-mobile" translate>views.add-product.variants-option </span>
+                                        {{"views.add-product.variants-name" | translate}}
                                     </label>
                                     <input id="ap-variant-{{$index}}" name="ap-variant-{{$index}}" type="text"
                                            class="form-control dl-input no-margin"
-                                           placeholder="{{placeholderNames[$index]}}"
+                                           placeholder="{{translations.placeholderNames[$index]}}"
                                            ng-model="variants[$index].name"
                                     />
                                 </div>
                                 <div class="dl-field no-icon-field form-group ap-current-price" flex
                                      style="padding-left: 5px;">
                                     <label for="ap-option-{{$index}}" ng-show="$index == 0">
-                                        <span class="non-mobile">Option </span>Values
+                                        <span class="non-mobile" translate>views.add-product.variants-option </span>
+                                        {{"views.add-product.variants-values" | translate}}
                                     </label>
                                     <md-chips id="ap-option-{{$index}}" name="ap-option-{{$index}}"
                                               class="form-control dl-input chips-input no-margin"
                                               ng-model="variants[$index].options"
                                               md-separator-keys="keys"
-                                              placeholder="{{placeholderOptions[$index]}}"
+                                              placeholder="{{translations.placeholderOptions[$index]}}"
                                               secondary-placeholder="">
                                     </md-chips>
                                 </div>
@@ -332,17 +328,22 @@
                         </div>
                         <md-button ng-show="getVariantsLength()  < maxVariants" ng-click="addVariant($event)"
                                    class="btn-secondary">
-                            Add Variant
+                            {{"views.add-product.variants-add-variant" | translate}}
                         </md-button>
                         <div class="ap-variants-price">
 
                         </div>
                     </div>
-                    <shipping-methods></shipping-methods>
+
+                    <hr>
+
+                    <div class="ap-section">
+                        <shipping-methods></shipping-methods>
+                    </div>
                 </div>
-                <md-button type="submit" class="btn-primary btn-single dl-submit">Save</md-button>
+                <md-button type="submit" class="btn-primary btn-single dl-submit">{{"general.save" | translate}}</md-button>
                 <div class="text-center">
-                    <md-button ng-click="deleteProduct($event)" class="md-btn-small">Delete Product</md-button>
+                    <md-button ng-click="deleteProduct($event)" class="md-btn-small">{{"views.view-deal.delete" | translate}}</md-button>
                 </div>
             </form>
         </div> <!-- the entire form -->

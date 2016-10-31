@@ -2,7 +2,7 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{dealers-website/node_modules}" />
-    <file url="PROJECT" libraries="{angular, angular-animate, angular-aria, angular-material, angular-messages, aws-sdk-2.2.9, bootstrap, checkout, jquery}" />
+    <file url="PROJECT" libraries="{angular, angular-animate, angular-aria, angular-material, angular-messages, angular-translate, angular-translate-handler-log, angular-translate-loader-static-files, angular-translate-storage-cookie, angular-translate-storage-local, aws-sdk-2.2.9, bootstrap, checkout, jquery}" />
     <includedPredefinedLibrary name="ECMAScript 6" />
   </component>
 </project>

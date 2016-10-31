@@ -2,15 +2,20 @@
 
 <div class="container nav-margin" ng-cloak>
     <div class="framed-container text-center">
-        <h2>Congrats for your purchase!</h2>
+        <h2 translate>views.checkout-finish.title</h2>
         <img class="ap-success-icon" ng-src="/assets/images/icons/@2x/Web_Icons_success_icon.png">
-        <p>You can follow the status of the shipment in your profile under the <i>ORDERS</i> tab.<br>
-            You will also be notified by emails.</p>
-        <p>Feel free to contact us if you have further questions!</p>
-        <div class="ap-share-options-container">
-            <md-button class="btn-primary btn-single facebook" share-button>Share this on Facebook</md-button>
+        <div class="ap-share-options-container checkout-finish-options">
+            <md-button ng-click="purchaseDetails($event)" class="btn-primary" ng-class="{'conceal': !hasPurchase}">
+                {{'views.checkout-finish.purchase-details' | translate}}
+            </md-button>
+            <md-button class="btn-primary facebook" share-button>
+                {{'views.checkout-finish.facebook' | translate}}
+            </md-button>
         </div>
-        <md-button class="btn-secondary" ng-click="done()">Done</md-button>
+        <p> {{'views.checkout-finish.tip-1' | translate}} </p>
+        <md-button class="btn-secondary" ng-click="done()">
+            {{'general.done' | translate}}
+        </md-button>
     </div>
 </div>
 

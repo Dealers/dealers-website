@@ -100,6 +100,7 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
                 $.getJSON('https://ipinfo.io/json', function (data) {
                     var country = data.country;
                     country = country.toLowerCase();
+                    $rootScope.country = country;
                     if (country == 'il') {
                         $rootScope.language = 'he';
                         document.documentElement.setAttribute('dir', 'rtl');// sets "lang" attribute to html

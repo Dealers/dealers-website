@@ -28,7 +28,6 @@ angular.module('DealersApp')
             $scope.translations = {}; // Translations that should be inserted in the scope for presentations in the view.
             $scope.DEALERS_SHIPPING_PRICE = ShippingMethods.DEALERS_SHIPPING_PRICE;
             $scope.DEALERS_SHIPPING_ETD = ShippingMethods.DEALERS_SHIPPING_ETD;
-            $scope.DEALERS_SHIPPING_DESCRIPTION = ShippingMethods.DEALERS_SHIPPING_DESCRIPTION;
             $scope.shipping_methods = { // Default shipping methods values.
                 dealers: ShippingMethods.DEFAULT_DEALER_SHIIPPING,
                 custom: {selected: false},
@@ -43,7 +42,13 @@ angular.module('DealersApp')
             $scope.presentPickupInfo = false;
             $scope.maxVariants = 3;
             $scope.variations = [];
-            $scope.keys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, $mdConstant.KEY_CODE.TAB];
+
+            if ($rootScope.language == "he") {
+                $scope.keys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.TAB];
+            } else {
+                $scope.keys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, $mdConstant.KEY_CODE.TAB];
+            }
+
             $scope.shouldBeTabIndex = -1;
 
 
@@ -88,7 +93,11 @@ angular.module('DealersApp')
                     $scope.product = {};
                 }
 
-                $scope.product.currency = '₪';
+                if ($scope.dealer.country == "Israel") {
+                    $scope.product.currency = '₪';
+                } else {
+                    $scope.product.currency = '$';
+                }
                 $scope.product.inventory = DEFAULT_QUANTITY;
                 $scope.product.max_quantity = DEFAULT_MAX_QUANTITY;
             }
@@ -613,6 +622,8 @@ angular.module('DealersApp')
                 $scope.showDiscountTitle = Translations.productEdit.addDiscount;
                 $scope.placeholderNames = Translations.productEdit.placeholderNames;
                 $scope.placeholderOptions = Translations.productEdit.placeholderOptions;
+                $scope.shipping_methods.dealers.title = ShippingMethods.DEALERS_SHIPPING_TITLE;
+                $scope.shipping_methods.dealers.description = ShippingMethods.DEALERS_SHIPPING_DESCRIPTION;
             });
 
             $scope.$on('$destroy', function () {

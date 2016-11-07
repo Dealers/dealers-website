@@ -14646,6 +14646,7 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
                 $.getJSON('https://ipinfo.io/json', function (data) {
                     var country = data.country;
                     country = country.toLowerCase();
+                    $rootScope.country = country;
                     if (country == 'il') {
                         $rootScope.language = 'he';
                         document.documentElement.setAttribute('dir', 'rtl');// sets "lang" attribute to html
@@ -15063,7 +15064,6 @@ angular.module('DealersApp')
             $scope.translations = {}; // Translations that should be inserted in the scope for presentations in the view.
             $scope.DEALERS_SHIPPING_PRICE = ShippingMethods.DEALERS_SHIPPING_PRICE;
             $scope.DEALERS_SHIPPING_ETD = ShippingMethods.DEALERS_SHIPPING_ETD;
-            $scope.DEALERS_SHIPPING_DESCRIPTION = ShippingMethods.DEALERS_SHIPPING_DESCRIPTION;
             $scope.shipping_methods = { // Default shipping methods values.
                 dealers: ShippingMethods.DEFAULT_DEALER_SHIIPPING,
                 custom: {selected: false},
@@ -15078,7 +15078,13 @@ angular.module('DealersApp')
             $scope.presentPickupInfo = false;
             $scope.maxVariants = 3;
             $scope.variations = [];
-            $scope.keys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, $mdConstant.KEY_CODE.TAB];
+
+            if ($rootScope.language == "he") {
+                $scope.keys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.TAB];
+            } else {
+                $scope.keys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, $mdConstant.KEY_CODE.TAB];
+            }
+
             $scope.shouldBeTabIndex = -1;
 
 
@@ -15123,7 +15129,11 @@ angular.module('DealersApp')
                     $scope.product = {};
                 }
 
-                $scope.product.currency = '₪';
+                if ($scope.dealer.country == "Israel") {
+                    $scope.product.currency = '₪';
+                } else {
+                    $scope.product.currency = '$';
+                }
                 $scope.product.inventory = DEFAULT_QUANTITY;
                 $scope.product.max_quantity = DEFAULT_MAX_QUANTITY;
             }
@@ -15648,6 +15658,8 @@ angular.module('DealersApp')
                 $scope.showDiscountTitle = Translations.productEdit.addDiscount;
                 $scope.placeholderNames = Translations.productEdit.placeholderNames;
                 $scope.placeholderOptions = Translations.productEdit.placeholderOptions;
+                $scope.shipping_methods.dealers.title = ShippingMethods.DEALERS_SHIPPING_TITLE;
+                $scope.shipping_methods.dealers.description = ShippingMethods.DEALERS_SHIPPING_DESCRIPTION;
             });
 
             $scope.$on('$destroy', function () {
@@ -15735,6 +15747,12 @@ angular.module('DealersApp')
                 selectedShipping: "",
                 selectedShippingObj: {}
             };
+            $scope.presentShippingAddress = false;
+
+            $scope.$watch("delivery.selectedShipping", function() {
+                $scope.presentShippingAddress = $scope.delivery.selectedShipping == ShippingMethods.DEALERS_METHOD ||
+                    $scope.delivery.selectedShipping == ShippingMethods.CUSTOM_METHOD;
+            });
 
             initializeView();
 
@@ -15848,12 +15866,15 @@ angular.module('DealersApp')
             function organizeShipping() {
                 var shippingMethods = [];
                 if ($scope.product.dealers_delivery) {
+                    $scope.product.dealers_delivery.title = ShippingMethods.DEALERS_SHIPPING_TITLE;
+                    $scope.product.dealers_delivery.description = ShippingMethods.DEALERS_SHIPPING_DESCRIPTION;
                     shippingMethods.push($scope.product.dealers_delivery);
                 }
                 if ($scope.product.custom_delivery) {
                     shippingMethods.push($scope.product.custom_delivery);
                 }
                 if ($scope.product.pickup_delivery) {
+                    $scope.product.pickup_delivery.title = ShippingMethods.PICKUP_TITLE;
                     shippingMethods.push($scope.product.pickup_delivery);
                 }
 
@@ -15892,18 +15913,20 @@ angular.module('DealersApp')
                     );
                     return;
                 }
-                if (!form.$valid) {
-                    $mdDialog.show(
-                        $mdDialog.alert()
-                            .parent(angular.element(document.body))
-                            .clickOutsideToClose(true)
-                            .title(Translations.checkout.invalidShippingAddressTitle)
-                            .textContent(Translations.checkout.invalidShippingAddressContent)
-                            .ariaLabel('Alert Dialog')
-                            .ok(Translations.general.gotIt)
-                            .targetEvent(ev)
-                    );
-                    return;
+                if ($scope.presentShippingAddress) {
+                    if (!form.$valid) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                                .parent(angular.element(document.body))
+                                .clickOutsideToClose(true)
+                                .title(Translations.checkout.invalidShippingAddressTitle)
+                                .textContent(Translations.checkout.invalidShippingAddressContent)
+                                .ariaLabel('Alert Dialog')
+                                .ok(Translations.general.gotIt)
+                                .targetEvent(ev)
+                        );
+                        return;
+                    }
                 }
 
                 var shipping_price = $scope.delivery.selectedShippingObj.shipping_price * 100; // In cents
@@ -17768,6 +17791,11 @@ angular.module('DealersApp')
                     .then(function (response) {
                         $scope.delivery = response.data;
                         $scope.delivery = ShippingMethods.convertDeliveryFromServer($scope.delivery);
+                        if ($scope.delivery.delivery_method == ShippingMethods.DEALERS_METHOD) {
+                            $scope.delivery.title = ShippingMethods.DEALERS_SHIPPING_TITLE;
+                        } else if ($scope.delivery.delivery_method == ShippingMethods.PICKUP_METHOD) {
+                            $scope.delivery.title = ShippingMethods.PICKUP_TITLE;
+                        }
                         $scope.downloadedDelivery = true;
                     }, function (err) {
                         console.log("There was an error while downloading the delivery method: " + err.data);
@@ -18104,6 +18132,7 @@ angular.module('DealersApp')
                 if (!isBankInfoValid()) {
                     return;
                 }
+
                 $scope.bank_account.dealer = $scope.dealer.id;
                 showLoadingDialog();
                 var croppedPhoto = Photos.dataURItoBlob($scope.croppedPhotoURL);
@@ -18199,6 +18228,14 @@ angular.module('DealersApp')
                 if (!dealer.gender) {
                     dealer.gender = "Unspecified";
                 }
+
+                if ($rootScope.language == "he") {
+                    dealer.language = "Hebrew";
+                } else if ($rootScope.language == "en") {
+                    dealer.language = "English";
+                }
+                dealer.country = $rootScope.country;
+
                 dealer.bank_accounts = [];
                 dealer.credit_cards = [];
                 dealer.register_date = new Date();
@@ -19542,6 +19579,7 @@ angular.module('DealersApp')
                 var DOWNLOADED_STATUS = "downloaded";
 
                 $scope.loadingStatus = LOADING_STATUS;
+                $scope.productTitle = "";
                 downloadOrders();
 
                 /**
@@ -19559,6 +19597,13 @@ angular.module('DealersApp')
                             console.log("Couldn't download the orders of this user :(");
                         })
                 }
+
+                $scope.cutTitle = function (title) {
+                    if (title.length >= 30) {
+                        return title.substring(0, 29) + "...";
+                    }
+                    return title;
+                };
 
                 /**
                  * Set the title of the mark button according to the status of the purchase object.
@@ -19632,6 +19677,13 @@ angular.module('DealersApp')
                             $scope.loadingStatus = DOWNLOADED_STATUS;
                         })
                 }
+
+                $scope.cutTitle = function (title) {
+                    if (title.length >= 30) {
+                        return title.substring(0, 29) + "...";
+                    }
+                    return title;
+                };
 
                 /**
                  * Set the title of the mark button according to the status of the purchase object.
@@ -22297,20 +22349,20 @@ angular.module('DealersApp')
 
             var service = {};
 
-            service.DEALERS_TITLE = "Dealers Express Shipping";
+            service.DEALERS_SHIPPING_TITLE = Translations.shippingMethods.dealersTitle;
             service.DEALERS_SHIPPING_PRICE = 35; // Shekels
             service.DEALERS_SHIPPING_ETD = 2; // Days
-            service.DEALERS_SHIPPING_DESCRIPTION = "This is the standard express shipping.";
+            service.DEALERS_SHIPPING_DESCRIPTION = Translations.shippingMethods.dealersDescription;
             service.DEALERS_METHOD = "Dealers_delivery";
             service.CUSTOM_METHOD = "Other_delivery";
-            service.PICKUP_TITLE = "Self Pickup";
+            service.PICKUP_TITLE = Translations.shippingMethods.pickupTitle;
             service.PICKUP_METHOD = "Self_pickup";
             service.UPDATE_FINISHED = "shipping_update_update";
             service.updateCounter = 0;
 
             service.DEFAULT_DEALER_SHIIPPING = {
                 selected: false,
-                title: service.DEALERS_TITLE,
+                title: service.DEALERS_SHIPPING_TITLE,
                 shipping_price: service.DEALERS_SHIPPING_PRICE,
                 estimated_delivery_time: service.DEALERS_SHIPPING_ETD,
                 description: service.DEALERS_SHIPPING_DESCRIPTION
@@ -22323,7 +22375,7 @@ angular.module('DealersApp')
             };
 
             $rootScope.$on('$translateChangeSuccess', function () {
-                service.DEALERS_TITLE = $translate.instant("services.shipping-methods.dealers-title");
+                service.DEALERS_SHIPPING_TITLE = $translate.instant("services.shipping-methods.dealers-title");
                 service.DEALERS_SHIPPING_DESCRIPTION = $translate.instant("services.shipping-methods.dealers-description");
                 service.PICKUP_TITLE = $translate.instant("services.shipping-methods.pickup-title");
             });
@@ -22748,6 +22800,9 @@ angular.module('DealersApp')
             service.shippingMethods.invalidETDContent = $translate.instant("translations-service.shipping-methods.invalid-etd-content");
             service.shippingMethods.noShippingMethodsTitle = $translate.instant("translations-service.shipping-methods.no-shipping-methods-title");
             service.shippingMethods.noShippingMethodsContent = $translate.instant("translations-service.shipping-methods.no-shipping-methods-content");
+            service.shippingMethods.dealersTitle = $translate.instant("services.shipping-methods.dealers-title");
+            service.shippingMethods.dealersDescription = $translate.instant("services.shipping-methods.dealers-description");
+            service.shippingMethods.pickupTitle = $translate.instant("services.shipping-methods.pickup-title");
 
             // Purchase Details
             service.purchaseDetails.purchased = $translate.instant("translations-service.purchase-details.purchased");

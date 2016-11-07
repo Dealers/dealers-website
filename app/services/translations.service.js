@@ -116,6 +116,9 @@ angular.module('DealersApp')
             service.shippingMethods.invalidETDContent = $translate.instant("translations-service.shipping-methods.invalid-etd-content");
             service.shippingMethods.noShippingMethodsTitle = $translate.instant("translations-service.shipping-methods.no-shipping-methods-title");
             service.shippingMethods.noShippingMethodsContent = $translate.instant("translations-service.shipping-methods.no-shipping-methods-content");
+            service.shippingMethods.dealersTitle = $translate.instant("services.shipping-methods.dealers-title");
+            service.shippingMethods.dealersDescription = $translate.instant("services.shipping-methods.dealers-description");
+            service.shippingMethods.pickupTitle = $translate.instant("services.shipping-methods.pickup-title");
 
             // Purchase Details
             service.purchaseDetails.purchased = $translate.instant("translations-service.purchase-details.purchased");

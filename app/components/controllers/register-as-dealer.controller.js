@@ -249,6 +249,7 @@ angular.module('DealersApp')
                 if (!isBankInfoValid()) {
                     return;
                 }
+
                 $scope.bank_account.dealer = $scope.dealer.id;
                 showLoadingDialog();
                 var croppedPhoto = Photos.dataURItoBlob($scope.croppedPhotoURL);

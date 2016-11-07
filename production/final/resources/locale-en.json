@@ -176,7 +176,7 @@
   "views.inventory-edit.quantity-max": "Shipment Max Quantity",
   "views.inventory-edit.quantity-max-tip": "How many units can be ordered in one shipment?",
 
-  "views.view-deal.upload-date": "Uploaded in the",
+  "views.view-deal.upload-date": "Uploaded on the",
   "views.view-deal.liked-this": "liked this",
   "views.view-deal.delete": "Delete Product",
   "views.view-deal.deletion": "Delete Product",

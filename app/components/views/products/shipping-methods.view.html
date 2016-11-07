@@ -83,7 +83,8 @@
                                   name="dealers-shipping-description"
                                   class="form-control dl-input no-margin"
                                   style="min-height: 120px"
-                                  disabled>{{DEALERS_SHIPPING_DESCRIPTION}}</textarea>
+                                  ng-model="shipping_methods.dealers.description"
+                                  disabled></textarea>
                     </div>
                 </div>
             </li>
@@ -133,7 +134,7 @@
                                type="number"
                                min="0"
                                class="form-control dl-input no-margin"
-                               placeholder="Shipping price, 0 for free shipping"
+                               placeholder="{{'views.shipping-methods.shipping-price-placeholder' | translate}}"
                                ng-model="shipping_methods.custom.shipping_price"
                                required
                         />
@@ -146,7 +147,7 @@
                                type="number"
                                min="1"
                                class="form-control dl-input no-margin"
-                               placeholder="3 (days)"
+                               placeholder="3 ({{'general.days' | translate}})"
                                ng-model="shipping_methods.custom.estimated_delivery_time"
                                required
                         />

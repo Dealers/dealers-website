@@ -15,20 +15,20 @@ angular.module('DealersApp')
 
             var service = {};
 
-            service.DEALERS_TITLE = "Dealers Express Shipping";
+            service.DEALERS_SHIPPING_TITLE = Translations.shippingMethods.dealersTitle;
             service.DEALERS_SHIPPING_PRICE = 35; // Shekels
             service.DEALERS_SHIPPING_ETD = 2; // Days
-            service.DEALERS_SHIPPING_DESCRIPTION = "This is the standard express shipping.";
+            service.DEALERS_SHIPPING_DESCRIPTION = Translations.shippingMethods.dealersDescription;
             service.DEALERS_METHOD = "Dealers_delivery";
             service.CUSTOM_METHOD = "Other_delivery";
-            service.PICKUP_TITLE = "Self Pickup";
+            service.PICKUP_TITLE = Translations.shippingMethods.pickupTitle;
             service.PICKUP_METHOD = "Self_pickup";
             service.UPDATE_FINISHED = "shipping_update_update";
             service.updateCounter = 0;
 
             service.DEFAULT_DEALER_SHIIPPING = {
                 selected: false,
-                title: service.DEALERS_TITLE,
+                title: service.DEALERS_SHIPPING_TITLE,
                 shipping_price: service.DEALERS_SHIPPING_PRICE,
                 estimated_delivery_time: service.DEALERS_SHIPPING_ETD,
                 description: service.DEALERS_SHIPPING_DESCRIPTION
@@ -41,7 +41,7 @@ angular.module('DealersApp')
             };
 
             $rootScope.$on('$translateChangeSuccess', function () {
-                service.DEALERS_TITLE = $translate.instant("services.shipping-methods.dealers-title");
+                service.DEALERS_SHIPPING_TITLE = $translate.instant("services.shipping-methods.dealers-title");
                 service.DEALERS_SHIPPING_DESCRIPTION = $translate.instant("services.shipping-methods.dealers-description");
                 service.PICKUP_TITLE = $translate.instant("services.shipping-methods.pickup-title");
             });

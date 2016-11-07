@@ -16,59 +16,8 @@
                   novalidate
                   layout="column">
                 <div layout="column" layout-gt-sm="row">
-                    <div class="co-shipping-address"
-                         flex-gt-sm="60">
-                        <h4 translate>views.checkout.shipping-address</h4>
-                        <div class="dl-field no-icon-field form-group">
-                            <label for="co-shipping-address" translate>
-                                views.purchase-details.address
-                            </label>
-                            <input id="co-shipping-address" name="co-shipping-address" type="text"
-                                   class="form-control dl-input"
-                                   ng-model="shipping_address.st_address"
-                                   required
-                            />
-                        </div>
-                        <div class="dl-field no-icon-field form-group">
-                            <label for="co-city" translate>
-                                views.purchase-details.city
-                            </label>
-                            <input id="co-city" name="co-city" type="text"
-                                   class="form-control dl-input"
-                                   ng-model="shipping_address.city"
-                                   required
-                            />
-                        </div>
-                        <div class="dl-field no-icon-field form-group" ng-show="false">
-                            <label for="co-state" translate>
-                                views.purchase-details.state
-                            </label>
-                            <input id="co-state" name="co-state" type="text"
-                                   class="form-control dl-input"
-                                   ng-model="shipping_address.state"
-                            />
-                        </div>
-                        <div class="dl-field no-icon-field form-group">
-                            <label for="co-country" translate>
-                                views.purchase-details.country
-                            </label>
-                            <input id="co-country" name="co-country" type="text"
-                                   class="form-control dl-input"
-                                   ng-model="shipping_address.country"
-                                   required
-                            />
-                        </div>
-                        <div class="dl-field no-icon-field form-group">
-                            <label for="co-zip" translate>
-                                views.purchase-details.zip
-                            </label>
-                            <input id="co-zip" name="co-zip" type="text"
-                                   class="form-control dl-input"
-                                   ng-model="shipping_address.zip"
-                                   required
-                            />
-                        </div>
-                        <div class="dl-select full-width">
+                    <div>
+                        <div class="co-preferred-shipping-method dl-select full-width">
                             <h4 translate>
                                 views.checkout.delivery-option
                             </h4>
@@ -95,7 +44,7 @@
                                             </div>
                                             <div flex="none">
                                                 <md-button ng-click="presentDetails(shipping, $event)"
-                                                           class="md-btn-small"
+                                                           class="md-btn-small btn-background"
                                                            ng-show="shipping.description">
                                                     {{'views.checkout.details' | translate}}
                                                 </md-button>
@@ -105,8 +54,61 @@
                                 </div>
                             </md-radio-group>
                         </div>
+                        <div class="co-shipping-address animate-height"
+                             ng-class="{'dl-show': presentShippingAddress}"
+                             flex-gt-sm="60">
+                            <h4 translate>views.checkout.shipping-address</h4>
+                            <div class="dl-field no-icon-field form-group">
+                                <label for="co-shipping-address" translate>
+                                    views.purchase-details.address
+                                </label>
+                                <input id="co-shipping-address" name="co-shipping-address" type="text"
+                                       class="form-control dl-input"
+                                       ng-model="shipping_address.st_address"
+                                       required
+                                />
+                            </div>
+                            <div class="dl-field no-icon-field form-group">
+                                <label for="co-city" translate>
+                                    views.purchase-details.city
+                                </label>
+                                <input id="co-city" name="co-city" type="text"
+                                       class="form-control dl-input"
+                                       ng-model="shipping_address.city"
+                                       required
+                                />
+                            </div>
+                            <div class="dl-field no-icon-field form-group" ng-show="false">
+                                <label for="co-state" translate>
+                                    views.purchase-details.state
+                                </label>
+                                <input id="co-state" name="co-state" type="text"
+                                       class="form-control dl-input"
+                                       ng-model="shipping_address.state"
+                                />
+                            </div>
+                            <div class="dl-field no-icon-field form-group">
+                                <label for="co-country" translate>
+                                    views.purchase-details.country
+                                </label>
+                                <input id="co-country" name="co-country" type="text"
+                                       class="form-control dl-input"
+                                       ng-model="shipping_address.country"
+                                       required
+                                />
+                            </div>
+                            <div class="dl-field no-icon-field form-group">
+                                <label for="co-zip" translate>
+                                    views.purchase-details.zip
+                                </label>
+                                <input id="co-zip" name="co-zip" type="text"
+                                       class="form-control dl-input"
+                                       ng-model="shipping_address.zip"
+                                />
+                            </div>
+                        </div>
                     </div>
-                    <div class="divider" style="width: 40px" ng-show="!smallSize" flex-gt-sm="none">
+                    <div class="divider" style="width: 60px" ng-show="!smallSize" flex-gt-sm="none">
                     </div>
                     <div flex>
                         <div class="secure-payment-container-upper-right desktop">

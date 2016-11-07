@@ -1093,6 +1093,9 @@ div.noImageBackground {
 .productInfo {
   color: #828291;
 }
+.md-card-title {
+  line-height: 2.7;
+}
 .framed-container {
   min-height: 220px;
   max-width: 940px;

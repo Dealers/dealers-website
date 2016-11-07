@@ -11,7 +11,7 @@
         <div ng-switch-when="downloaded" layout="column">
             <h2 translate>views.purchase-details.title</h2>
             <div layout="row" layout-xs="column">
-                <div class="pd-purchase-details margin-bottom-30" flex flex-xs="60">
+                <div class="pd-purchase-details margin-bottom-30" flex flex-gt-xs="60">
                     <div class="margin-bottom-30">
                         <ul>
                             <li class="purchase-amount">{{purchase.amount / 100 * purchase.quantity |
@@ -28,24 +28,10 @@
                                 'short'}}</b></li>
                             <li ng-show="purchase.receive_date != null">{{"views.purchase-details.receive-date" | translate}}: <b>{{purchase.receive_date | date:
                                 'short'}}</b></li>
-                            <li ng-show="purchase.estimated_delivery_time > 0">{{"views.orders-list.etd" | translate}}: <b>{{purchase.estimated_delivery_time}}
-                                {{"views.orders-list.days" | translate}}</b>
-                            </li>
                             <li>
                                 {{"views.sales-list.bought-by" | translate}}: <a
                                     ng-href="/dealers/{{purchase.buyer.id}}"><b>{{purchase.buyer.full_name}}</b></a>
                             </li>
-                        </ul>
-                    </div>
-                    <div class="margin-bottom-30">
-                        <h4 translate>views.purchase-details.shipping-address-title</h4>
-                        <ul>
-                            <li>{{"views.purchase-details.address" | translate}}: <b>{{shipping_address.st_address}}</b></li>
-                            <li>{{"views.purchase-details.city" | translate}}: <b>{{shipping_address.city}}</b></li>
-                            <li ng-show="shipping_address.state.length > 0">{{"views.purchase-details.state" | translate}}: <b>{{shipping_address.state}}</b>
-                            </li>
-                            <li>{{"views.purchase-details.country" | translate}}: <b>{{shipping_address.country}}</b></li>
-                            <li ng-show="shipping_address.zip.length > 0">{{"views.purchase-details.zip" | translate}}: <b>{{shipping_address.zip}}</b></li>
                         </ul>
                     </div>
                     <div class="margin-bottom-30">
@@ -67,7 +53,18 @@
                             <li ng-show="delivery.estimated_delivery_time">
                                 {{"views.orders-list.etd" | translate}}:
                                 <b>{{delivery.estimated_delivery_time}}
-                                {{"views.orders-list.days" | translate}}</b></li>
+                                    {{"views.orders-list.days" | translate}}</b></li>
+                        </ul>
+                    </div>
+                    <div class="margin-bottom-30" ng-show="downloadedDelivery && delivery.delivery_method != 'Self_pickup'">
+                        <h4 translate>views.purchase-details.shipping-address-title</h4>
+                        <ul>
+                            <li>{{"views.purchase-details.address" | translate}}: <b>{{shipping_address.st_address}}</b></li>
+                            <li>{{"views.purchase-details.city" | translate}}: <b>{{shipping_address.city}}</b></li>
+                            <li ng-show="shipping_address.state.length > 0">{{"views.purchase-details.state" | translate}}: <b>{{shipping_address.state}}</b>
+                            </li>
+                            <li>{{"views.purchase-details.country" | translate}}: <b>{{shipping_address.country}}</b></li>
+                            <li ng-show="shipping_address.zip.length > 0">{{"views.purchase-details.zip" | translate}}: <b>{{shipping_address.zip}}</b></li>
                         </ul>
                     </div>
                     <div class="margin-bottom-30" ng-show="downloadedDelivery">
@@ -90,7 +87,7 @@
                         </md-button>
                     </div>
                 </div>
-                <div flex flex-xs="40">
+                <div flex-gt-xs="40">
                     <dl-product ng-if="product" product="product"></dl-product>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <div class="vd-info-pane">
     <div id="pricePresentation" class="vd-price-discount no-margin text-center">
         <span ng-show="product.price > 0" class="price">{{product.price | currency:product.currency}}</span>
-        <span ng-show="product.percentage_off > 0" class="percentage-off">{{product.percentage_off}}% off</span>
+        <span ng-show="product.percentage_off > 0" class="percentage-off">{{product.percentage_off}}% {{"general.off" | translate}}</span>
         <span ng-show="product.original_price > 0" class="original-price">{{product.original_price | currency:product.currency}}</span>
     </div>
     <div ng-repeat="variant in variants track by $index" class="dl-select">

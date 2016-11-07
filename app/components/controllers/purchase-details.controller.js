@@ -54,6 +54,11 @@ angular.module('DealersApp')
                     .then(function (response) {
                         $scope.delivery = response.data;
                         $scope.delivery = ShippingMethods.convertDeliveryFromServer($scope.delivery);
+                        if ($scope.delivery.delivery_method == ShippingMethods.DEALERS_METHOD) {
+                            $scope.delivery.title = ShippingMethods.DEALERS_SHIPPING_TITLE;
+                        } else if ($scope.delivery.delivery_method == ShippingMethods.PICKUP_METHOD) {
+                            $scope.delivery.title = ShippingMethods.PICKUP_TITLE;
+                        }
                         $scope.downloadedDelivery = true;
                     }, function (err) {
                         console.log("There was an error while downloading the delivery method: " + err.data);

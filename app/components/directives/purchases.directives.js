@@ -192,6 +192,7 @@ angular.module('DealersApp')
                 var DOWNLOADED_STATUS = "downloaded";
 
                 $scope.loadingStatus = LOADING_STATUS;
+                $scope.productTitle = "";
                 downloadOrders();
 
                 /**
@@ -209,6 +210,13 @@ angular.module('DealersApp')
                             console.log("Couldn't download the orders of this user :(");
                         })
                 }
+
+                $scope.cutTitle = function (title) {
+                    if (title.length >= 30) {
+                        return title.substring(0, 29) + "...";
+                    }
+                    return title;
+                };
 
                 /**
                  * Set the title of the mark button according to the status of the purchase object.
@@ -282,6 +290,13 @@ angular.module('DealersApp')
                             $scope.loadingStatus = DOWNLOADED_STATUS;
                         })
                 }
+
+                $scope.cutTitle = function (title) {
+                    if (title.length >= 30) {
+                        return title.substring(0, 29) + "...";
+                    }
+                    return title;
+                };
 
                 /**
                  * Set the title of the mark button according to the status of the purchase object.

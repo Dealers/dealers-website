@@ -29,6 +29,12 @@ angular.module('DealersApp')
                 selectedShipping: "",
                 selectedShippingObj: {}
             };
+            $scope.presentShippingAddress = false;
+
+            $scope.$watch("delivery.selectedShipping", function() {
+                $scope.presentShippingAddress = $scope.delivery.selectedShipping == ShippingMethods.DEALERS_METHOD ||
+                    $scope.delivery.selectedShipping == ShippingMethods.CUSTOM_METHOD;
+            });
 
             initializeView();
 
@@ -142,12 +148,15 @@ angular.module('DealersApp')
             function organizeShipping() {
                 var shippingMethods = [];
                 if ($scope.product.dealers_delivery) {
+                    $scope.product.dealers_delivery.title = ShippingMethods.DEALERS_SHIPPING_TITLE;
+                    $scope.product.dealers_delivery.description = ShippingMethods.DEALERS_SHIPPING_DESCRIPTION;
                     shippingMethods.push($scope.product.dealers_delivery);
                 }
                 if ($scope.product.custom_delivery) {
                     shippingMethods.push($scope.product.custom_delivery);
                 }
                 if ($scope.product.pickup_delivery) {
+                    $scope.product.pickup_delivery.title = ShippingMethods.PICKUP_TITLE;
                     shippingMethods.push($scope.product.pickup_delivery);
                 }
 
@@ -186,18 +195,20 @@ angular.module('DealersApp')
                     );
                     return;
                 }
-                if (!form.$valid) {
-                    $mdDialog.show(
-                        $mdDialog.alert()
-                            .parent(angular.element(document.body))
-                            .clickOutsideToClose(true)
-                            .title(Translations.checkout.invalidShippingAddressTitle)
-                            .textContent(Translations.checkout.invalidShippingAddressContent)
-                            .ariaLabel('Alert Dialog')
-                            .ok(Translations.general.gotIt)
-                            .targetEvent(ev)
-                    );
-                    return;
+                if ($scope.presentShippingAddress) {
+                    if (!form.$valid) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                                .parent(angular.element(document.body))
+                                .clickOutsideToClose(true)
+                                .title(Translations.checkout.invalidShippingAddressTitle)
+                                .textContent(Translations.checkout.invalidShippingAddressContent)
+                                .ariaLabel('Alert Dialog')
+                                .ok(Translations.general.gotIt)
+                                .targetEvent(ev)
+                        );
+                        return;
+                    }
                 }
 
                 var shipping_price = $scope.delivery.selectedShippingObj.shipping_price * 100; // In cents

@@ -60,6 +60,14 @@ angular.module('DealersApp')
                 if (!dealer.gender) {
                     dealer.gender = "Unspecified";
                 }
+
+                if ($rootScope.language == "he") {
+                    dealer.language = "Hebrew";
+                } else if ($rootScope.language == "en") {
+                    dealer.language = "English";
+                }
+                dealer.country = $rootScope.country;
+
                 dealer.bank_accounts = [];
                 dealer.credit_cards = [];
                 dealer.register_date = new Date();

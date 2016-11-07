@@ -7,10 +7,11 @@
             <div class="list-item-container" ng-repeat="purchase in purchases">
                 <md-list-item class="purchase-list-item md-3-line" ng-click="purchaseDetails(purchase, $event)">
                     <div class="md-list-item-text">
-                        <h3>{{purchase.deal.title}}</h3>
+                        <h3 flex-sm="60">{{cutTitle(purchase.deal.title)}}</h3>
                         <h4 class="purchase-amount">{{(purchase.amount / 100) * purchase.quantity | currency:
                             purchase.currency}}</h4>
-                        <p>{{"views.orders-list.qty" | translate}}: {{purchase.quantity}} <span ng-show="purchase.quantity > 1">({{purchase.amount / 100 | currency: purchase.currency}} {{"views.orders-list.each" | translate}})</span>
+                        <p>{{"views.orders-list.qty" | translate}}: {{purchase.quantity}} <span
+                                ng-show="purchase.quantity > 1">({{purchase.amount / 100 | currency: purchase.currency}} {{"views.orders-list.each" | translate}})</span>
                         </p>
                         <p>{{"views.orders-list.bought-from" | translate}} <a ng-href="/dealers/{{purchase.dealer.id}}">{{purchase.dealer.full_name}}</a>
                             {{"views.orders-list.on-the-date" | translate}}
@@ -20,11 +21,13 @@
                             {{"views.orders-list.etd" | translate}}
                             {{purchase.estimated_delivery_time}}
                             {{"views.orders-list.days" | translate}}</p>
-                        <md-button class="md-button md-secondary md-btn-small btn-background"
-                                   ng-class="{'received': purchase.status == 'Received'}"
-                                   ng-click="changeBuyerStatus($event, purchase)" update-status-buyer>
-                            {{markButtonTitle(purchase)}}
-                        </md-button>
+                        <div flex="none">
+                            <md-button class="md-button md-secondary md-btn-small btn-background"
+                                       ng-class="{'received': purchase.status == 'Received'}"
+                                       ng-click="changeBuyerStatus($event, purchase)" update-status-buyer>
+                                {{markButtonTitle(purchase)}}
+                            </md-button>
+                        </div>
                     </div>
                 </md-list-item>
                 <md-divider></md-divider>

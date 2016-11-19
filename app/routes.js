@@ -16,10 +16,15 @@ angular.module('DealersApp')
                 controller: 'ProductsGridController',
                 pageTrack: '/all-products' // angular-google-analytics extension
             })
-            .when('/register', {
-                templateUrl: 'app/components/views/sign-in/register-as-dealer.view.html',
-                controller: 'RegisterAsDealerController',
-                pageTrack: '/register-as-dealer'  // angular-google-analytics extension
+            .when('/register/basic-info', {
+                templateUrl: 'app/components/views/sign-in/register-basic-info.view.html',
+                controller: 'RegisterBasicInfoController',
+                pageTrack: '/register-basic-info'  // angular-google-analytics extension
+            })
+            .when('/register/bank-account', {
+                templateUrl: 'app/components/views/sign-in/register-bank-account.view.html',
+                controller: 'RegisterBankAccountController',
+                pageTrack: '/register-bank-account'  // angular-google-analytics extension
             })
             .when('/search/products/:query', {
                 templateUrl: 'app/components/views/products/products-page.view.html',

@@ -1,9 +1,16 @@
 angular.module('DealersApp')
-    .directive('intro', function () {
+    .directive('intro', function ($mdMedia) {
         return {
             restrict: 'E',
             templateUrl: 'app/components/views/about/intro-section.view.html',
             link: function (scope, element) {
+
+                scope.$watch(function () {
+                    return $mdMedia('gt-sm');
+                }, function (isSmallSize) {
+                    scope.smallSize = !isSmallSize;
+                });
+
                 var navbar = $("nav.navbar");
                 var navShadeClass = "navbar-shade";
                 if (scope.isHomePage && scope.role == scope.roles.guest) {

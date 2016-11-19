@@ -14,6 +14,7 @@
   "general.description-optional": "תיאור (אופציונלי)",
   "general.days": "ימים",
   "general.done": "סיים",
+  "general.done!": "סיים!",
   "general.skip": "דלג",
   "general.images": "תמונות",
   "general.saving-changes": "שומר שינויים...",
@@ -44,6 +45,7 @@
   "general.edit-profile": "ערוך פרופיל",
   "general.log-out": "התנתק",
   "general.settings": "הגדרות",
+  "general.next": "הבא",
 
   "general.all-categories": "כל הקטגוריות",
   "general.art": "אומנות",
@@ -68,6 +70,8 @@
 
   "views.intro-section.mantra": "התחילו למכור באינטרנט תוך 5 דקות.",
   "views.intro-section.one-liner": "רוצה להגיע ליותר לקוחות דרך האינטרנט? אנחנו יכולים לעזור לך.",
+  "views.intro-section.enter-email": "הזינו את הדוא״ל שלכם",
+  "views.intro-section.get-started": "התחילו",
   "views.intro-section.learn-more": "מה זה דילרס",
   "views.intro-section.start-now": "התחילו עכשיו",
   "views.about-section.5-minute-title": "5 דקות והתחלתם",
@@ -358,6 +362,8 @@
   "translations-service.purchase-details.blank-etd-title": "לא ציינת זמן הגעה משוער",
   "translations-service.purchase-details.blank-etd-content": "ציון זמן הגעה משוער הכרחי שכן כך הלקוח ידע בקירוב מתי ההזמנה צפויה להגיע אליו.",
 
+  "translations-service.profile.didnt-upload-products": "לחצ/י על הכפתור ׳+׳ בבר העליון כדי להוסיף מוצרים.",
+
   "translations-service.sign-in.sign-up-button-title": "הירשם!",
   "translations-service.sign-in.log-in-button-title": "כניסה",
   "translations-service.sign-in.loading": "טוען...",
@@ -387,6 +393,9 @@
   "translations-service.dealer-registration.account-number-duplicate-content": "מספר החשבון שהזנת כבר קיים. אנא בדק/י את המספר שהזנת.",
   "translations-service.dealer-registration.general-problem-title": "הייתה בעיה...",
   "translations-service.dealer-registration.general-problem-content": "אנחנו מתנצלים, אנא נסו שוב!",
+  "translations-service.dealer-registration.skip-confirm-title": "האם את/ה בטוח/ה שברצונך לדלג על שלב זה?",
+  "translations-service.dealer-registration.skip-confirm-content": "אנחנו צריכים את פרטי הבנק כדי שנוכל להעביר לך את ההכנסות שלך. ניתן להוסיף זאת בפרופיל בכל עת.",
+  "translations-service.dealer-registration.skip-confirm-button": "דלג",
 
   "translations-service.checkout.invalid-quantity-title": "כמות לא תקינה",
   "translations-service.checkout.invalid-quantity-content": "הכמות המקסימלית שניתן להזמין היא ",

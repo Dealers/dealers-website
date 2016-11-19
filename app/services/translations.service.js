@@ -14,6 +14,7 @@ angular.module('DealersApp')
             productEdit: {}, // add product and edit product
             shippingMethods: {},
             purchaseDetails: {},
+            profile: {},
             signIn: {},
             dealerRegistration: {},
             checkout: {}
@@ -141,6 +142,10 @@ angular.module('DealersApp')
             service.purchaseDetails.blankETDTitle = $translate.instant("translations-service.purchase-details.blank-etd-title");
             service.purchaseDetails.blankETDContent = $translate.instant("translations-service.purchase-details.blank-etd-content");
 
+            // Profile
+            service.profile.didntUploadProducts = $translate.instant("translations-service.profile.didnt-upload-products");
+
+            // Sign in
             service.signIn.signUpButtonTitle = $translate.instant("translations-service.sign-in.sign-up-button-title");
             service.signIn.logInButtonTitle = $translate.instant("translations-service.sign-in.log-in-button-title");
             service.signIn.loading = $translate.instant("translations-service.sign-in.loading");
@@ -170,6 +175,9 @@ angular.module('DealersApp')
             service.dealerRegistration.accountNumberDuplicateContent = $translate.instant("translations-service.dealer-registration.account-number-duplicate-content");
             service.dealerRegistration.generalProblemTitle = $translate.instant("translations-service.dealer-registration.general-problem-title");
             service.dealerRegistration.generalProblemContent = $translate.instant("translations-service.dealer-registration.general-problem-content");
+            service.dealerRegistration.skipConfirmTitle = $translate.instant("translations-service.dealer-registration.skip-confirm-title");
+            service.dealerRegistration.skipConfirmContent = $translate.instant("translations-service.dealer-registration.skip-confirm-content");
+            service.dealerRegistration.skipConfirmButton = $translate.instant("translations-service.dealer-registration.skip-confirm-button");
 
             service.checkout.invalidQuantityTitle = $translate.instant("translations-service.checkout.invalid-quantity-title");
             service.checkout.invalidQuantityContent = $translate.instant("translations-service.checkout.invalid-quantity-content");

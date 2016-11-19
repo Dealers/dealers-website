@@ -2,26 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf2767dd-ff52-4566-8c25-987d52c3a3fb" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/controllers/register-bank-account.controller.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/controllers/register-basic-info.controller.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/views/sign-in/get-started.view.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/views/sign-in/register-bank-account.view.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/views/sign-in/register-basic-info.view.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/views/sign-in/sign-up-viewer-dialog.view.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/views/sign-in/sign-up-viewer-form.view.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/controllers/add-product.controller.js" afterPath="$PROJECT_DIR$/app/components/controllers/add-product.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/controllers/checkout.controller.js" afterPath="$PROJECT_DIR$/app/components/controllers/checkout.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/controllers/purchase-details.controller.js" afterPath="$PROJECT_DIR$/app/components/controllers/purchase-details.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/controllers/add-product-finish.controller.js" afterPath="$PROJECT_DIR$/app/components/controllers/add-product-finish.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/controllers/edit-profile.controller.js" afterPath="$PROJECT_DIR$/app/components/controllers/edit-profile.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/controllers/products-grid.controller.js" afterPath="$PROJECT_DIR$/app/components/controllers/products-grid.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/controllers/profile.controller.js" afterPath="$PROJECT_DIR$/app/components/controllers/profile.controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/controllers/register-as-dealer.controller.js" afterPath="$PROJECT_DIR$/app/components/controllers/register-as-dealer.controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/controllers/sign-in-dialog.controller.js" afterPath="$PROJECT_DIR$/app/components/controllers/sign-in-dialog.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/directives/purchases.directives.js" afterPath="$PROJECT_DIR$/app/components/directives/purchases.directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/views/checkout.view.html" afterPath="$PROJECT_DIR$/app/components/views/checkout.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/views/products/add-product.view.html" afterPath="$PROJECT_DIR$/app/components/views/products/add-product.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/views/products/product-cell.view.html" afterPath="$PROJECT_DIR$/app/components/views/products/product-cell.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/views/products/shipping-methods.view.html" afterPath="$PROJECT_DIR$/app/components/views/products/shipping-methods.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/views/purchases/orders-list.view.html" afterPath="$PROJECT_DIR$/app/components/views/purchases/orders-list.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/views/purchases/purchase-details.view.html" afterPath="$PROJECT_DIR$/app/components/views/purchases/purchase-details.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/views/purchases/sales-list.view.html" afterPath="$PROJECT_DIR$/app/components/views/purchases/sales-list.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/views/view-deal-info-pane.view.html" afterPath="$PROJECT_DIR$/app/components/views/view-deal-info-pane.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/shipping-methods.service.js" afterPath="$PROJECT_DIR$/app/services/shipping-methods.service.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/directives/about.directives.js" afterPath="$PROJECT_DIR$/app/components/directives/about.directives.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/directives/product.directives.js" afterPath="$PROJECT_DIR$/app/components/directives/product.directives.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/directives/sign-in.directives.js" afterPath="$PROJECT_DIR$/app/components/directives/sign-in.directives.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/directives/widgets.directives.js" afterPath="$PROJECT_DIR$/app/components/directives/widgets.directives.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/views/about/about-section.view.html" afterPath="$PROJECT_DIR$/app/components/views/about/about-section.view.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/views/about/about.view.html" afterPath="$PROJECT_DIR$/app/components/views/about/about.view.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/views/about/intro-section.view.html" afterPath="$PROJECT_DIR$/app/components/views/about/intro-section.view.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/views/profile.view.html" afterPath="$PROJECT_DIR$/app/components/views/profile.view.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/views/sign-in/sign-in-dealer-dialog.view.html" afterPath="$PROJECT_DIR$/app/components/views/sign-in/sign-in-dealer-dialog.view.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/views/sign-in/sign-in-dialog.view.html" afterPath="$PROJECT_DIR$/app/components/views/sign-in/sign-in-dialog.view.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.js" afterPath="$PROJECT_DIR$/app/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/dealer.service.js" afterPath="$PROJECT_DIR$/app/services/dealer.service.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/dialogs.service.js" afterPath="$PROJECT_DIR$/app/services/dialogs.service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/translations.service.js" afterPath="$PROJECT_DIR$/app/services/translations.service.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/rtl-styles.css" afterPath="$PROJECT_DIR$/assets/css/rtl-styles.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/styles.css" afterPath="$PROJECT_DIR$/assets/css/styles.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/less/rtl-styles.less" afterPath="$PROJECT_DIR$/assets/less/rtl-styles.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/less/styles.less" afterPath="$PROJECT_DIR$/assets/less/styles.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepros.cfg" afterPath="$PROJECT_DIR$/prepros.cfg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/production/final/app.min.js" afterPath="$PROJECT_DIR$/production/final/app.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/production/final/resources/locale-en.json" afterPath="$PROJECT_DIR$/production/final/resources/locale-en.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/production/final/resources/locale-he.json" afterPath="$PROJECT_DIR$/production/final/resources/locale-he.json" />
@@ -49,12 +64,46 @@
     <favorites_list name="dealers-website" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="82" column="54" selection-start-line="82" selection-start-column="54" selection-end-line="82" selection-end-column="54" />
+              <folding>
+                <marker date="1479589593000" expanded="true" signature="2685:2976" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="styles.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/less/styles.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="942" column="22" selection-start-line="942" selection-start-column="22" selection-end-line="942" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="about-section.view.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/views/about/about-section.view.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="296">
+              <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package_json" />
+        <option value="CSS File" />
         <option value="HTML File" />
         <option value="JavaScript File" />
       </list>
@@ -66,57 +115,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/components/views/sign-in/register-as-dealer.view.html" />
-        <option value="$PROJECT_DIR$/app/components/views/crop-photo-dialog.view.html" />
-        <option value="$PROJECT_DIR$/app/services/purchase.service.js" />
-        <option value="$PROJECT_DIR$/app/components/views/checkout-finish.view.html" />
-        <option value="$PROJECT_DIR$/app/components/controllers/checkout-finish.controller.js" />
-        <option value="$PROJECT_DIR$/app/components/controllers/home.controller.js" />
-        <option value="$PROJECT_DIR$/app/components/views/minimizable.view.html" />
-        <option value="$PROJECT_DIR$/app/components/views/about/menu-footer.view.html" />
-        <option value="$PROJECT_DIR$/app/components/directives/general-elements.directives.js" />
-        <option value="$PROJECT_DIR$/app/components/controllers/profile.controller.js" />
-        <option value="$PROJECT_DIR$/app/components/views/profile.view.html" />
-        <option value="$PROJECT_DIR$/app/components/controllers/navbar.controller.js" />
-        <option value="$PROJECT_DIR$/assets/lib/js/angular-translate-handler-log.js" />
-        <option value="$PROJECT_DIR$/production/final/index.html" />
-        <option value="$PROJECT_DIR$/app/services/add-product.service.js" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/app/components/controllers/edit-product.controller.js" />
-        <option value="$PROJECT_DIR$/app/components/views/about/footer-section.view.html" />
-        <option value="$PROJECT_DIR$/app/components/directives/widgets.directives.js" />
-        <option value="$PROJECT_DIR$/app/services/locales.service.js" />
-        <option value="$PROJECT_DIR$/app/components/controllers/products-grid.controller.js" />
-        <option value="$PROJECT_DIR$/app/components/views/products/products-grid.view.html" />
-        <option value="$PROJECT_DIR$/app/components/views/navbar.view.html" />
-        <option value="$PROJECT_DIR$/app/components/views/view-deal.view.html" />
-        <option value="$PROJECT_DIR$/app/components/views/comment.view.html" />
-        <option value="$PROJECT_DIR$/app/components/controllers/view-deal.controller.js" />
-        <option value="$PROJECT_DIR$/app/components/views/about/step-by-step.view.html" />
-        <option value="$PROJECT_DIR$/Gruntfile.js" />
-        <option value="$PROJECT_DIR$/assets/less/rtl-styles.less" />
-        <option value="$PROJECT_DIR$/app/components/controllers/register-as-dealer.controller.js" />
-        <option value="$PROJECT_DIR$/app/components/controllers/sign-in-dialog.controller.js" />
-        <option value="$PROJECT_DIR$/app/components/views/view-deal-info-pane.view.html" />
-        <option value="$PROJECT_DIR$/app/components/views/products/product-cell.view.html" />
-        <option value="$PROJECT_DIR$/assets/less/styles.less" />
-        <option value="$PROJECT_DIR$/app/components/views/products/add-product.view.html" />
-        <option value="$PROJECT_DIR$/resources/locale-he.json" />
-        <option value="$PROJECT_DIR$/resources/locale-en.json" />
-        <option value="$PROJECT_DIR$/app/services/translations.service.js" />
         <option value="$PROJECT_DIR$/app/services/shipping-methods.service.js" />
         <option value="$PROJECT_DIR$/app/components/controllers/add-product.controller.js" />
         <option value="$PROJECT_DIR$/app/components/controllers/checkout.controller.js" />
         <option value="$PROJECT_DIR$/app/components/controllers/purchase-details.controller.js" />
         <option value="$PROJECT_DIR$/app/components/views/purchases/orders-list.view.html" />
         <option value="$PROJECT_DIR$/app/components/views/purchases/sales-list.view.html" />
-        <option value="$PROJECT_DIR$/app/components/directives/purchases.directives.js" />
         <option value="$PROJECT_DIR$/app/components/views/purchases/purchase-details.view.html" />
         <option value="$PROJECT_DIR$/app/components/views/checkout.view.html" />
         <option value="$PROJECT_DIR$/app/components/views/products/shipping-methods.view.html" />
-        <option value="$PROJECT_DIR$/app/app.js" />
+        <option value="$PROJECT_DIR$/app/components/views/products/add-product.view.html" />
+        <option value="$PROJECT_DIR$/assets/less/rtl-styles.less" />
+        <option value="$PROJECT_DIR$/app/components/directives/get-started.view.html" />
+        <option value="$PROJECT_DIR$/app/components/directives/elements.directives.js" />
+        <option value="$PROJECT_DIR$/app/components/views/sign-in/sign-up-viewer-dialog.html" />
+        <option value="$PROJECT_DIR$/app/components/views/about/intro-section.view.html" />
+        <option value="$PROJECT_DIR$/app/components/directives/widgets.directives.js" />
+        <option value="$PROJECT_DIR$/app/components/views/sign-in/sign-up-viewer-dialog.view.html" />
+        <option value="$PROJECT_DIR$/app/components/views/about/about.view.html" />
+        <option value="$PROJECT_DIR$/app/components/views/sign-in/get-started.view.html" />
+        <option value="$PROJECT_DIR$/app/components/views/sign-in/register-bank-account.css" />
+        <option value="$PROJECT_DIR$/app/routes.js" />
+        <option value="$PROJECT_DIR$/app/components/controllers/register-bank-account.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/app/components/views/sign-in/register-basic-info.view.html" />
+        <option value="$PROJECT_DIR$/app/components/directives/sign-in.directives.js" />
+        <option value="$PROJECT_DIR$/app/components/views/profile.view.html" />
+        <option value="$PROJECT_DIR$/app/services/translations.service.js" />
+        <option value="$PROJECT_DIR$/app/components/controllers/products-grid.controller.js" />
+        <option value="$PROJECT_DIR$/app/components/controllers/profile.controller.js" />
+        <option value="$PROJECT_DIR$/app/components/directives/product.directives.js" />
+        <option value="$PROJECT_DIR$/app/components/views/sign-in/register-bank-account.view.html" />
+        <option value="$PROJECT_DIR$/app/components/directives/purchases.directives.js" />
+        <option value="$PROJECT_DIR$/app/services/dialogs.service.js" />
+        <option value="$PROJECT_DIR$/resources/locale-en.json" />
+        <option value="$PROJECT_DIR$/resources/locale-he.json" />
+        <option value="$PROJECT_DIR$/app/components/controllers/edit-profile.controller.js" />
+        <option value="$PROJECT_DIR$/app/components/views/products/add-product-finish.view.html" />
+        <option value="$PROJECT_DIR$/app/components/views/sign-in/sign-up-viewer-form.view.html" />
+        <option value="$PROJECT_DIR$/app/components/views/sign-in/sign-in-dealer-dialog.view.html" />
+        <option value="$PROJECT_DIR$/app/components/views/sign-in/sign-in-dialog.view.html" />
+        <option value="$PROJECT_DIR$/app/components/controllers/register-basic-info.controller.js" />
+        <option value="$PROJECT_DIR$/app/services/dealer.service.js" />
+        <option value="$PROJECT_DIR$/app/components/controllers/add-product-finish.controller.js" />
+        <option value="$PROJECT_DIR$/app/components/controllers/register-bank-account.controller.js" />
+        <option value="$PROJECT_DIR$/app/components/controllers/sign-in-dialog.controller.js" />
         <option value="$PROJECT_DIR$/production/final/resources/locale-en.json" />
         <option value="$PROJECT_DIR$/production/final/resources/locale-he.json" />
+        <option value="$PROJECT_DIR$/app/components/views/about/about-section.view.html" />
+        <option value="$PROJECT_DIR$/app/components/directives/about.directives.js" />
+        <option value="$PROJECT_DIR$/assets/less/styles.less" />
+        <option value="$PROJECT_DIR$/app/app.js" />
       </list>
     </option>
   </component>
@@ -159,6 +208,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -270,6 +320,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dealers-website" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dealers-website" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dealers-website" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dealers-website" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -291,10 +381,83 @@
               <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dealers-website" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dealers-website" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sign-in" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dealers-website" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dealers-website" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="directives" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dealers-website" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dealers-website" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -304,25 +467,26 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="js.last.introduce.type" value="CONST" />
-    <property name="SearchEverywhereHistoryKey" value="app.js&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/app.js&#10;purchase.d&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/directives/purchases.directives.js&#10;shipping&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/products/shipping-methods.view.html&#10;add-prod&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/products/add-product.view.html&#10;add&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/add-product.controller.js&#10;purchase-details&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/purchases/purchase-details.view.html&#10;routes&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/routes.js&#10;product&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/products-grid.controller.js&#10;home&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/home.view.html&#10;navbar&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/navbar.view.html&#10;sales-&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/purchases/sales-list.view.html&#10;orders-&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/purchases/orders-list.view.html&#10;order&#9;null&#9;null&#10;purchase-de&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/purchases/purchase-details.view.html&#10;purchase-detail&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/purchase-details.controller.js&#10;checkout&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/checkout.view.html&#10;translations&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/translations.service.js&#10;shipping-me&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/shipping-methods.service.js&#10;shipping-m&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/products/shipping-methods.view.html&#10;shipping-&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/shipping-methods.service.js&#10;add-pro&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/products/add-product.view.html&#10;purchase&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/purchases/purchase-details.view.html&#10;local&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/resources/locale-he.json&#10;locale&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/resources/locale-he.json&#10;checkout.&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/checkout.controller.js&#10;loca&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/resources/locale-he.json&#10;locale-&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/production/final/resources/locale-he.json&#10;add-product&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/products/add-product.view.html&#10;sign-&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/sign-in-dialog.controller.js&#10;styles&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/assets/less/styles.less&#10;app.&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/app.js&#10;ap.js&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/production/final/resources/locale-en.json&#10;locale-en&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/production/final/resources/locale-en.json&#10;view-deal&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/view-deal-info-pane.view.html&#10;signin&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/sign-in-dialog.controller.js&#10;app.j&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/app.js&#10;regis&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/register-as-dealer.controller.js&#10;index&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/production/final/index.html&#10;app&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/app.js&#10;locale-e&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/resources/locale-en.json&#10;app.jd&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/app.js&#10;products&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/products-grid.controller.js&#10;product-&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/products/products-grid.view.html&#10;locale-he&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/resources/locale-he.json&#10;translation&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/translations.service.js&#10;add-product.con&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/add-product.controller.js&#10;add-product.view&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/products/add-product.view.html&#10;wid&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/directives/widgets.directives.js&#10;footer-s&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/about/footer-section.view.html&#10;edit-product&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/edit-product.controller.js" />
+    <property name="SearchEverywhereHistoryKey" value="style&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/assets/less/styles.less&#10;about.dir&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/directives/about.directives.js&#10;about-se&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/about/about-section.view.html&#10;about&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/about/about.view.html&#10;home.&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/home.view.html&#10;app&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/app.js&#10;app.js&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/app.js&#10;styles&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/assets/less/styles.less&#10;profile&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/profile.view.html&#10;sign-in&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/sign-in-dialog.controller.js&#10;bank&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/register-bank-account.controller.js&#10;edit&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/edit-profile.controller.js&#10;product&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/add-product-finish.controller.js&#10;Dealer&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/dealer.service.js&#10;dealer.service&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/dealer.service.js&#10;רקעןדאקר&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/register-bank-account.controller.js&#10;register&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/register-bank-account.controller.js&#10;add-product&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/products/add-product-finish.view.html&#10;register-basi&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/register-basic-info.controller.js&#10;sign-in-dialog.&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/sign-in-dialog.controller.js&#10;sign-in-dialog&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/sign-in/sign-in-dialog.view.html&#10;add-product-fi&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/add-product-finish.controller.js&#10;finish&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/products/add-product-finish.view.html&#10;bank-&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/register-bank-account.controller.js&#10;edit-profile&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/edit-profile.controller.js&#10;locale&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/resources/locale-he.json&#10;en&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/resources/locale-en.json&#10;register-basic&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/register-basic-info.controller.js&#10;product-grid&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/products-grid.controller.js&#10;locale-en&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/resources/locale-en.json&#10;he&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/resources/locale-he.json&#10;translations.&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/translations.service.js&#10;pro&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/profile.controller.js&#10;dialogs.s&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/dialogs.service.js&#10;register-bank&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/register-bank-account.controller.js&#10;routes&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/sign-in/register-bank-account.view.html&#10;basic-info&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/controllers/register-basic-info.controller.js&#10;sty;e&#9;null&#9;null&#10;bank-acco&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/sign-in/register-bank-account.view.html&#10;index&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/index.html&#10;sign-in.dir&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/directives/sign-in.directives.js&#10;locale-he&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/resources/locale-he.json&#10;translations&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/translations.service.js&#10;dealer.serv&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/dealer.service.js&#10;dialogs&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/dialogs.service.js&#10;Dialogs&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/dialogs.service.js&#10;dealer.ser&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/services/dealer.service.js&#10;navbar.h&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/navbar.view.html&#10;sign-in.&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/directives/sign-in.directives.js&#10;get-st&#9;FILE&#9;file:///Users/gullumbroso/Documents/Aptana Studio 3 Workspace/dealers-website/app/components/views/sign-in/get-started.view.html" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/assets/lib/other" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/app" />
-      <recent name="$PROJECT_DIR$/resources" />
-      <recent name="$PROJECT_DIR$/assets" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/production/final/resources" />
       <recent name="$PROJECT_DIR$/production/final" />
       <recent name="$PROJECT_DIR$/assets/lib/js" />
       <recent name="$PROJECT_DIR$/assets/lib" />
       <recent name="$PROJECT_DIR$/assets/lib/css" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/components/views/sign-in" />
+      <recent name="$PROJECT_DIR$/assets/lib/other" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/resources" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.index.html">
@@ -476,12 +640,15 @@
       <workItem from="1477745402465" duration="15541000" />
       <workItem from="1477987699312" duration="1611000" />
       <workItem from="1478026198555" duration="16625000" />
-      <workItem from="1478504124556" duration="1201000" />
+      <workItem from="1478504124556" duration="31949000" />
+      <workItem from="1478969870422" duration="7192000" />
+      <workItem from="1479031168028" duration="7090000" />
+      <workItem from="1479585816261" duration="2848000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1143433000" />
+    <option name="totallyTimeSpent" value="1191311000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -499,40 +666,21 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16842847" sideWeight="0.4951724" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918397" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32551724" sideWeight="0.5024665" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30152145" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918397" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32365146" sideWeight="0.49753347" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32365146" sideWeight="0.49753347" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19591261" sideWeight="0.50482756" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3994528" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3692946" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-    </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918397" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32551724" sideWeight="0.5024665" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3994528" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918397" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32365146" sideWeight="0.49753347" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16842847" sideWeight="0.4951724" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30152145" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19591261" sideWeight="0.50482756" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3692946" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
+    </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -559,270 +707,328 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/components/directives/elements.directives.js">
+    <entry file="file://$PROJECT_DIR$/app/components/views/products/shipping-methods.view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-619">
-          <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+        <state relative-caret-position="376">
+          <caret line="161" column="37" selection-start-line="161" selection-start-column="37" selection-end-line="161" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/rtl-styles.css">
+    <entry file="file://$PROJECT_DIR$/app/components/controllers/add-product.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="222">
+          <caret line="30" column="70" selection-start-line="30" selection-start-column="70" selection-end-line="30" selection-end-column="70" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/views/products/view-deal.view.html" />
-    <entry file="file://$PROJECT_DIR$/app/components/controllers/edit-product.controller.js">
+    <entry file="file://$PROJECT_DIR$/app/components/views/products/add-product.view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="208" column="47" selection-start-line="208" selection-start-column="47" selection-end-line="208" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/views/products/edit-product.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="60" column="36" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/views/sign-in/done-registration.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="54" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/views/about/footer-section.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="53" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/directives/widgets.directives.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="242" column="0" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/locales.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/old-junk/category-deals.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/controllers/categories-list.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/views/products/products-grid.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/controllers/navbar.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="105" column="12" selection-start-line="105" selection-start-column="12" selection-end-line="105" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/views/view-deal.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="177" column="48" selection-start-line="177" selection-start-column="46" selection-end-line="177" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/controllers/view-deal.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="286" column="56" selection-start-line="286" selection-start-column="56" selection-end-line="286" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="1144" column="4" selection-start-line="1144" selection-start-column="4" selection-end-line="1144" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/views/comment.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="36" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/production/final/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gruntfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/views/about/step-by-step.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="97" column="51" selection-start-line="97" selection-start-column="51" selection-end-line="97" selection-end-column="51" />
+        <state relative-caret-position="45">
+          <caret line="3" column="4" selection-start-line="25" selection-start-column="32" selection-end-line="31" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/less/rtl-styles.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+        <state relative-caret-position="176">
+          <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/controllers/register-as-dealer.controller.js">
+    <entry file="file://$PROJECT_DIR$/old-junk/signed-out/sign-up/sign-up.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="250" column="17" selection-start-line="250" selection-start-column="17" selection-end-line="250" selection-end-column="17" />
-          <folding />
+        <state relative-caret-position="231">
+          <caret line="57" column="12" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/views/view-deal-info-pane.view.html">
+    <entry file="file://$PROJECT_DIR$/app/components/directives/elements.directives.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="50" selection-start-line="23" selection-start-column="50" selection-end-line="23" selection-end-column="50" />
+        <state relative-caret-position="135">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/views/products/product-cell.view.html">
+    <entry file="file://$PROJECT_DIR$/production/final/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="38" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/less/styles.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="1136" column="25" selection-start-line="1136" selection-start-column="25" selection-end-line="1136" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/production/prepare/app.concat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="20468" column="12" selection-start-line="20468" selection-start-column="12" selection-end-line="20468" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/controllers/sign-in-dialog.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="52" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/translations.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="119" column="122" selection-start-line="119" selection-start-column="77" selection-end-line="119" selection-end-column="122" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/shipping-methods.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="39" column="34" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/controllers/checkout.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="54" selection-start-line="0" selection-start-column="52" selection-end-line="0" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/production/final/app.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
-          <caret line="8" column="20551" selection-start-line="8" selection-start-column="20551" selection-end-line="8" selection-end-column="20551" />
+          <caret line="8" column="25676" selection-start-line="8" selection-start-column="25676" selection-end-line="8" selection-end-column="25676" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/production/prepare/app.min-safe.js">
+    <entry file="file://$PROJECT_DIR$/app/components/directives/widgets.directives.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="132" column="7" selection-start-line="132" selection-start-column="7" selection-end-line="132" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/views/about/intro-section.view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="19614" column="15" selection-start-line="19614" selection-start-column="15" selection-end-line="19614" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/views/purchases/purchase-details.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="59" column="60" selection-start-line="59" selection-start-column="53" selection-end-line="59" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/controllers/purchase-details.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="57" column="52" selection-start-line="57" selection-start-column="52" selection-end-line="57" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/views/checkout.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="46" column="93" selection-start-line="46" selection-start-column="93" selection-end-line="46" selection-end-column="93" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/views/purchases/orders-list.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="72" />
-          <folding />
+          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/components/views/navbar.view.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="58" column="17" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/views/sign-in/sign-up-viewer-dialog.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="75" selection-start-line="11" selection-start-column="75" selection-end-line="11" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/lib/css/addtohomescreen.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/views/sign-in/get-started.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="71" selection-start-line="12" selection-start-column="71" selection-end-line="12" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/views/sign-in/register-bank-account.css" />
+    <entry file="file://$PROJECT_DIR$/app/components/views/sign-in/register-as-dealer.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2145">
+          <caret line="143" column="26" selection-start-line="143" selection-start-column="26" selection-end-line="143" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/controllers/register-as-dealer.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="30" column="15" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="92" column="91" selection-start-line="92" selection-start-column="91" selection-end-line="92" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="49" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/production/prepare/app.concat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="22689" column="13" selection-start-line="22689" selection-start-column="13" selection-end-line="22689" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/directives/product.directives.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="65" column="42" selection-start-line="65" selection-start-column="42" selection-end-line="65" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/controllers/products-grid.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/views/sign-in/register-basic-info.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-604">
+          <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/controllers/profile.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="548">
+          <caret line="269" column="83" selection-start-line="269" selection-start-column="83" selection-end-line="269" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/directives/purchases.directives.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="100" column="42" selection-start-line="100" selection-start-column="42" selection-end-line="100" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/translations.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="178" column="141" selection-start-line="178" selection-start-column="80" selection-end-line="178" selection-end-column="141" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/views/sign-in/register-bank-account.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="596">
+          <caret line="78" column="16" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/dialogs.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="73" column="36" selection-start-line="73" selection-start-column="36" selection-end-line="73" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/views/sign-in/sign-in-dealer-dialog.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/views/sign-in/sign-in-dialog.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="38" column="24" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/views/sign-in/sign-up-viewer-form.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/views/products/add-product-finish.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="86" selection-start-line="16" selection-start-column="82" selection-end-line="16" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/directives/sign-in.directives.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="93" column="15" selection-start-line="93" selection-start-column="15" selection-end-line="93" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/controllers/register-basic-info.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="74" column="32" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/controllers/sign-in-dialog.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="111" column="53" selection-start-line="111" selection-start-column="53" selection-end-line="111" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/controllers/register-bank-account.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="6" column="31" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/controllers/add-product-finish.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="33" column="47" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/controllers/edit-profile.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="71" column="27" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/dealer.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="113" column="55" selection-start-line="113" selection-start-column="55" selection-end-line="113" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/views/edit-profile.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="37" column="35" selection-start-line="37" selection-start-column="35" selection-end-line="37" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/production/final/resources/locale-he.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/locale-he.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="389" column="46" selection-start-line="0" selection-start-column="0" selection-end-line="406" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/production/final/resources/locale-en.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="407" column="1" selection-start-line="407" selection-start-column="1" selection-end-line="407" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/locale-en.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="390" column="56" selection-start-line="0" selection-start-column="0" selection-end-line="407" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/views/profile.view.html">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
-          <caret line="3" column="29" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="29" />
+          <caret line="6" column="42" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/views/about/about.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2025">
+          <caret line="135" column="41" selection-start-line="135" selection-start-column="41" selection-end-line="135" selection-end-column="41" />
           <folding />
         </state>
       </provider>
@@ -835,104 +1041,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/controllers/products-grid.controller.js">
+    <entry file="file://$PROJECT_DIR$/assets/less/styles.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="88" column="54" selection-start-line="88" selection-start-column="54" selection-end-line="88" selection-end-column="54" />
+        <state relative-caret-position="544">
+          <caret line="942" column="22" selection-start-line="942" selection-start-column="22" selection-end-line="942" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.js">
+    <entry file="file://$PROJECT_DIR$/app/components/directives/about.directives.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="35" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="35" />
+        <state relative-caret-position="140">
+          <caret line="46" column="46" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/views/purchases/sales-list.view.html">
+    <entry file="file://$PROJECT_DIR$/app/components/views/about/about-section.view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="72" selection-start-line="9" selection-start-column="72" selection-end-line="9" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/locale-he.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="163" column="14" selection-start-line="0" selection-start-column="0" selection-end-line="397" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/production/final/resources/locale-he.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="381" column="17" selection-start-line="381" selection-start-column="17" selection-end-line="381" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/directives/purchases.directives.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="218" column="18" selection-start-line="218" selection-start-column="18" selection-end-line="218" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/views/products/shipping-methods.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="161" column="37" selection-start-line="161" selection-start-column="37" selection-end-line="161" selection-end-column="37" />
-          <folding>
-            <marker date="1478504300000" expanded="true" signature="1022:1162" ph="{&quot;theme-color&quot;: presentDealersInfo...}" />
-            <marker date="1478504300000" expanded="true" signature="1365:1531" ph="{...}" />
-            <marker date="1478504300000" expanded="true" signature="6108:6246" ph="{&quot;theme-color&quot;: presentCustomInfo...}" />
-            <marker date="1478504300000" expanded="true" signature="10741:10879" ph="{&quot;theme-color&quot;: presentPickupInfo...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/views/products/add-product.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="379" column="41" selection-start-line="379" selection-start-column="33" selection-end-line="379" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/controllers/add-product.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="30" column="70" selection-start-line="30" selection-start-column="70" selection-end-line="30" selection-end-column="70" />
+        <state relative-caret-position="296">
+          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="71" column="55" selection-start-line="71" selection-start-column="55" selection-end-line="71" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/locale-en.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="178" column="14" selection-start-line="0" selection-start-column="0" selection-end-line="396" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/production/final/resources/locale-en.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="396" column="1" selection-start-line="396" selection-start-column="1" selection-end-line="396" selection-end-column="1" />
-          <folding />
+        <state relative-caret-position="450">
+          <caret line="82" column="54" selection-start-line="82" selection-start-column="54" selection-end-line="82" selection-end-column="54" />
+          <folding>
+            <marker date="1479589593000" expanded="true" signature="2685:2976" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

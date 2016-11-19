@@ -65,6 +65,11 @@ html:lang(he) .paged-form div#security-message p.dl-note.info-note {
 html:lang(he) .paged-form div#security-message img {
   margin-left: 8px;
 }
+@media (min-width: 599px) {
+  html:lang(he) .get-started-form ul li input.get-started {
+    text-align: right;
+  }
+}
 html:lang(he) .ap-price-and-discount .ap-original-price {
   padding: 0 10px 0 0;
 }

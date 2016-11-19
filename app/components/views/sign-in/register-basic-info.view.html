@@ -1,0 +1,84 @@
+<dl-navbar></dl-navbar>
+<div class="nav-padding">
+    <form
+            name="registerBasicInfo"
+            class="dl-form dl-form-container paged-form framed-container"
+            ng-submit="register(registerBasicInfo)"
+            novalidate
+            ng-cloak>
+        <p class="text-center" translate>
+            views.dealer-registration.few-steps-tip
+        </p>
+        <div id="rad-dealer-profile-photo" class="text-center">
+            <input id="rad-input-profile-pic" name="inputProfilePic" type="file" class="inputfile"
+                   accept="image/*"
+                   photo-input photo="photo" photo-url="photoURL"/>
+            <label
+                    for="rad-input-profile-pic"
+                    class="profile-pic-btn clickable"
+                    style="background: url({{croppedPhotoURL}}); background-size: contain;">
+            </label>
+            <label for="rad-input-profile-pic" class="md-button md-btn-small">
+                {{editProfilePic}}
+            </label>
+            <p class="dl-note text-center text-muted" style="margin: -6px 0 0" translate>
+                views.dealer-registration.photo
+            </p>
+        </div>
+        <div>
+            <div class="dl-field no-icon-field form-group">
+                <label for="rad-name" translate="">
+                    views.sign-in-dialog.business-name
+                </label>
+                <input id="rad-name" name="name" type="text"
+                       placeholder="{{'views.sign-in-dialog.business-name' | translate}}"
+                       class="form-control dl-input"
+                       value="dealer.full_name"
+                       ng-model="dealer.full_name"
+                       required
+                />
+            </div>
+            <div class="dl-field-plus">
+                <div class="dl-field no-icon-field form-group">
+                    <label for="rad-about" translate>
+                        views.dealer-registration.about
+                    </label>
+                    <textarea id="rad-about" name="about"
+                              placeholder="{{'views.dealer-registration.about' | translate}}"
+                              class="dl-input form-control"
+                              ng-model="dealer.about"
+                              required>
+                                </textarea>
+                </div>
+                <p class="dl-note dl-input-note" translate>
+                    views.dealer-registration.about-tip
+                </p>
+            </div>
+            <div class="dl-field-plus">
+                <div class="dl-field no-icon-field form-group">
+                    <label for="rad-location" translate>
+                        views.dealer-registration.location
+                    </label>
+                    <input id="rad-location" name="rad-location" type="text"
+                           placeholder="{{'views.dealer-registration.location' | translate}}"
+                           class="form-control dl-input"
+                           ng-model="dealer.location"
+                           required
+                           google-location-autocomplete
+                           autocomplete="on"
+                           location="dealer.location"
+                    />
+                </div>
+                <p class="dl-note dl-input-note" translate>
+                    views.dealer-registration.location-tip
+                </p>
+            </div>
+        </div>
+        <div>
+            <md-button type="submit" class="btn btn-primary btn-single dl-submit md-primary md-raised" md-autofocus>
+                {{'general.next' | translate}}
+            </md-button>
+        </div>
+    </form>
+</div>
+<footer-section></footer-section>

@@ -94,7 +94,7 @@
 </div>
 
 <div ng-if="profileMode == 'myProfile'" class="container" ng-switch on="displayMode">
-    <dl-products-grid ng-switch-when="MY PRODUCTS" title="gridTitle" source="source" page="page"
+    <dl-products-grid ng-switch-when="MY PRODUCTS" title="gridTitle" source="source" page="page" no-products-message="noProductsMessage"
                       class="no-margin"></dl-products-grid>
     <sales-list ng-switch-when="SALES"></sales-list>
     <orders-list ng-switch-when="ORDERS"></orders-list>

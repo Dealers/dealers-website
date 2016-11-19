@@ -620,61 +620,49 @@ md-menu-item > a {
     font-size: 1.4em;
     margin-top: 14px;
   }
-  ul {
-    margin-top: 10px;
-  }
-  li {
-    display: inline-block;
-    margin: 8px;
-    @media (min-width: @phone-width) {
-      margin: 14px;
-    }
-  }
+}
 
-  /* // Previous landing page
-  &.home-background {
-    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url("/assets/images/backgrounds/people_working_on_laptop.jpg") center;
-    background-size: cover;
-    @media (min-width: @phone-width) {
-      background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url("/assets/images/backgrounds/people_working_on_laptop.jpg") center;
-      background-size: cover;
-    }
-    @media (min-width: @tablet-width) {
-      background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url("/assets/images/backgrounds/people_working_on_laptop.jpg") center;
-      background-size: cover;
-      background-position-y: -200px;
-    }
-    @media (min-width: 1200px) {
-      background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url("/assets/images/backgrounds/people_working_on_laptop.jpg") center;
-      background-size: cover;
-      background-position-y: -300px;
-    }
-    padding: 120px 30px;
-    @media (max-width: @phone-width) {
-      padding: 30px 20px;
-    }
-  }
-  h1, h4, h3 {
-    color: @theme-white;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-    margin: 0;
-  }
-  h4 {
-    font-size: 1.4em;
-    margin-top: 10px;
-  }
+.get-started-form {
+  margin: 25px 0 0;
   ul {
-    margin-top: 10px;
-  }
-  li {
-    display: inline-block;
-    margin: 10px;
-    button.md-button, a.md-button {
-      font-size: 1em;
-      margin-right: 8px;
+    margin: 10px auto;
+    display: block;
+    max-width: 420px;
+    li {
+      display: inline-block;
+      margin: 8px;
+      width: 85%;
+      input.get-started {
+        text-align: center;
+        height: 40px;
+        direction: ltr;
+      }
+      button.get-started {
+        width: 100%;
+      }
+    }
+    @media(min-width: @phone-width) { // ul
+      display: flex;
+      li {
+        flex: 1;
+        margin: 5px;
+        input.get-started {
+          text-align: left;
+        }
+        button.get-started {
+          width: initial;
+        }
+      }
+      li#submitButtonElement {
+        flex: 0;
+      }
     }
   }
-  */
+}
+
+.sign-up-viewer-form {
+  max-width: 440px;
+  margin: 0 auto;
 }
 
 .about-section {
@@ -949,6 +937,10 @@ div.step-by-step-header {
       background-color: #F69CF1;
     }
   }
+}
+
+.youtube-player {
+  margin: 40px 0 20px;
 }
 
 // Sign Up & Log In
@@ -1790,10 +1782,13 @@ button.ap-done {
 
 .pr-settings-container {
   height: 0;
-  .pr-settings {
+  position: relative;
+  .mobile.pr-settings {
+    position: absolute;
+    right: 22%;
+  }
+  .non-mobile.pr-settings {
     float: right;
-    @media (min-width: @phone-width) {
-    }
   }
 }
 
@@ -1961,6 +1956,10 @@ button.received {
   h2 {
     margin: 24px 0;
   }
+}
+
+.dl-form-container {
+  padding: 40px 40px 30px;
 }
 
 md-dialog .dl-form {
@@ -2301,6 +2300,12 @@ md-dialog {
     background-color: @theme-white;
     padding-left: 20px;
     padding-right: 20px;
+  }
+}
+
+.sign-up-dialog {
+  @media(min-width: @phone-width) {
+    padding: 20px 30px;
   }
 }
 

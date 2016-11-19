@@ -8,12 +8,27 @@ angular.module('DealersApp')
 
         var customFullscreen = $mdMedia('xs');
 
+        service.showSignUpViewerDialog = showSignUpViewerDialog;
         service.showSignInDialog = showSignInDialog;
         service.confirmDialog = confirmDialog;
         service.showAlertDialog = showAlertDialog;
+        service.showLoadingDialog = showLoadingDialog;
+        service.hideDialog = hideDialog;
 
         return service;
 
+
+        function showSignUpViewerDialog(ev, email) {
+            return $mdDialog.show({
+                controller: 'SignInDialogController',
+                templateUrl: 'app/components/views/sign-in/sign-up-viewer-dialog.view.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: customFullscreen, // Only for -xs, -sm breakpoints.
+                locals: {tab: null, isViewer: null, email: email}
+            })
+        }
 
         /**
          * Presents the sign in dialog (sign up and log in) and returns the promise.
@@ -30,12 +45,12 @@ angular.module('DealersApp')
                 targetEvent: ev,
                 clickOutsideToClose: true,
                 fullscreen: customFullscreen,
-                locals: {tab: tabIndex, isViewer: isViewer}
+                locals: {tab: tabIndex, isViewer: isViewer, email: null}
             });
         }
 
         /**
-         * Returns the confirm dialog object of type confirm.
+         * Returns the confirm dialog object of type confirm (doesn't show it).
          *
          * @param title - the title of the alert dialog.
          * @param content - the content of the alert dialog.
@@ -56,7 +71,7 @@ angular.module('DealersApp')
         }
 
         /**
-         * Presents the alert dialog when there is an invalid field.
+         * Presents the alert dialog.
          * @param title - the title of the alert dialog.
          * @param content - the content of the alert dialog.
          * @param ev - the event that triggered the alert.
@@ -72,5 +87,29 @@ angular.module('DealersApp')
                     .ok(Translations.general.gotIt)
                     .targetEvent(ev)
             );
+        }
+
+        /**
+         * Presents the loading dialog.
+         * @param message - the message to present in the loading dialog.
+         * @param ev - the event that triggered the loading.
+         */
+        function showLoadingDialog(message, ev) {
+            $mdDialog.show({
+                templateUrl: 'app/components/views/loading-dialog.view.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                controller: 'LoadingDialogController',
+                locals: {message: message},
+                escapeToClose: false
+            });
+        }
+
+        /**
+         * Hides the dialog.
+         * @param ev - the event that triggered the hiding.
+         */
+        function hideDialog(ev) {
+            $mdDialog.hide();
         }
     }]);

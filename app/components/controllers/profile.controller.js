@@ -1,6 +1,6 @@
 angular.module('DealersApp')
-    .controller('ProfileController', ['$scope', '$rootScope', '$routeParams', '$location', 'Product', 'Dealer', 'DealerPhotos',
-        function ($scope, $rootScope, $routeParams, $location, Product, Dealer, DealerPhotos) {
+    .controller('ProfileController', ['$scope', '$rootScope', '$routeParams', '$location', 'Product', 'Dealer', 'DealerPhotos', 'Translations',
+        function ($scope, $rootScope, $routeParams, $location, Product, Dealer, DealerPhotos, Translations) {
             /*
              * The controller that manages the dealers' Profile view.
              */
@@ -41,6 +41,7 @@ angular.module('DealersApp')
             // For the products-grid directive
             $scope.source = $rootScope.baseUrl + "/uploadeddeals/" + dealerID + "/";
             $scope.page = "profile";
+            $scope.noProductsMessage = Translations.profile.didntUploadProducts;
             $scope.products = [];
             $scope.settingsToggle = settingsToggle;
             $scope.logOut = logOut;
@@ -264,4 +265,8 @@ angular.module('DealersApp')
                 $scope.rankIcon = iconUrl;
                 $scope.rankClass = iconClass;
             }
+
+            $rootScope.$on('$translateChangeSuccess', function () {
+                $scope.noProductsMessage = Translations.profile.didntUploadProducts
+            });
         }]);

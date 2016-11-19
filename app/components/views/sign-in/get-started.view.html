@@ -1,0 +1,19 @@
+<div>
+    <form ng-submit="subscribe($event)" class="get-started-form">
+        <ul ng-class="{'list-inline' : !smallSize}">
+            <li id="emailInputElement">
+                <input id="emailInput" name="emailInput" type="email"
+                       placeholder="{{'views.intro-section.enter-email' | translate}}"
+                       class="form-control dl-input get-started"
+                       ng-model="email"
+                       required
+                />
+            </li>
+            <li id="submitButtonElement">
+                <md-button type="submit" class="btn-primary get-started" style="min-width: 110px;">
+                    {{"views.intro-section.get-started" | translate}}
+                </md-button>
+            </li>
+        </ul>
+    </form>
+</div>

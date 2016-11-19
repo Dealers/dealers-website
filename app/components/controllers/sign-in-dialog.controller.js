@@ -8,14 +8,22 @@ angular.module('DealersApp')
  * @param $scope - the isolated scope of the controller.
  * @param $mdDialog - the mdDialog service of the Material Angular library.
  */
-    .controller('SignInDialogController', ['$scope', '$rootScope', '$mdDialog', 'Dealer', 'tab', 'isViewer', 'Translations',
-        function ($scope, $rootScope, $mdDialog, Dealer, tab, isViewer, Translations) {
+    .controller('SignInDialogController', ['$scope', '$rootScope', '$mdDialog', 'Dealer', 'tab', 'isViewer', 'email', 'Translations',
+        function ($scope, $rootScope, $mdDialog, Dealer, tab, isViewer, email, Translations) {
 
             var SIGN_UP_TAB_INDEX = 0;
             var LOG_IN_TAB_INDEX = 1;
 
+            var userEmail;
+            if (email) {
+                userEmail = email;
+                $scope.selectedOperation = 0;
+            } else {
+                userEmail = "";
+            }
+
             $scope.selectedTab = tab; // 0 - Sign Up; 1 - Log In;
-            $scope.selectedOperation = tab;
+            if (tab) $scope.selectedOperation = tab;
             $scope.datepicker = {
                 opened: false,
                 options: {
@@ -28,7 +36,7 @@ angular.module('DealersApp')
             $scope.logIn = {};
             $scope.dealer = {
                 full_name: "",
-                email: "",
+                email: userEmail,
                 user: {
                     username: "",
                     password: ""
@@ -42,7 +50,12 @@ angular.module('DealersApp')
             hideError();
             setBroadcastListeners();
 
-            $scope.signUp = function (form) {
+            /**
+             * Signs the user to the system.
+             * @param form - the sign up form.
+             * @param shouldSubscribe - true if should send the email to the /subscribers/ end point, else false.
+             */
+            $scope.signUp = function (form, shouldSubscribe) {
                 if (!form.$valid) {
                     showError(Translations.signIn.invalidFields);
                     return;
@@ -61,17 +74,16 @@ angular.module('DealersApp')
                     dealer.gender = "Unspecified";
                 }
 
-                if ($rootScope.language == "he") {
-                    dealer.language = "Hebrew";
-                } else if ($rootScope.language == "en") {
-                    dealer.language = "English";
-                }
+                dealer.language = Dealer.getServerLang($rootScope.language);
                 dealer.country = $rootScope.country;
 
                 dealer.bank_accounts = [];
                 dealer.credit_cards = [];
                 dealer.register_date = new Date();
                 Dealer.create(dealer);
+                if (shouldSubscribe) {
+                    Dealer.subscribe(dealer.email);
+                }
             };
 
             $scope.logIn = function (form) {
@@ -95,8 +107,11 @@ angular.module('DealersApp')
             };
 
             $scope.submit = function (event, signUpForm, logInForm) {
-                if ($scope.selectedTab == SIGN_UP_TAB_INDEX) {
-                    $scope.signUp(signUpForm);
+                if (email) {
+                    // The current session is the sign up as viewer form.
+                    $scope.signUp(signUpForm, false);
+                } else if ($scope.selectedTab == SIGN_UP_TAB_INDEX) {
+                    $scope.signUp(signUpForm, true);
                 } else {
                     $scope.logIn(logInForm);
                 }
@@ -145,8 +160,8 @@ angular.module('DealersApp')
                         $scope.selectedOperation = 0;
                     } else {
                         var message = args.message.data;
-                        if (message.detail) {
-                            showError(message.detail);
+                        if (message) {
+                            showError(message);
                         } else if (message.user[0].username[0]) {
                             showError(message.user[0].username[0]);
                         } else {

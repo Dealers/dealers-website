@@ -1,0 +1,25 @@
+<md-dialog aria-label="Sign Up" ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <img ng-src="../../../../../assets/images/icons/@2x/Web_Icons_quit_button_icon.png"
+                     style="height:18px">
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <form name="signUpForm" class="dl-form form-sm clearfix margin-bottom-0" ng-submit="submit($event, signUpForm, logInForm)"
+          novalidate>
+        <md-dialog-content class="sign-up-dialog">
+            <sign-up-viewer-form></sign-up-viewer-form>
+        </md-dialog-content>
+
+
+        <md-dialog-actions layout="row">
+            <md-button type="submit" class="btn btn-primary btn-single dl-submit md-primary md-raised" md-autofocus>
+                {{buttonTitle}}
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

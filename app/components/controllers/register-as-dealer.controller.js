@@ -93,7 +93,7 @@ angular.module('DealersApp')
                     if (args.success) {
                         // Finished uploading the dealer pic, start uploading the bank account, and then the dealer object.
                         $rootScope.userProfilePic = $scope.croppedPhotoURL;
-                        Dealer.registerDealer($scope.bank_account, RAD_SESSION);
+                        Dealer.registerBasicInfo($scope.bank_account, RAD_SESSION);
                     } else {
                         hideLoadingDialog(event);
                         console.log("Couldn't upload the dealer pic. Aborting upload process.");

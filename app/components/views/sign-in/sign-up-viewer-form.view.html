@@ -1,0 +1,27 @@
+<div class="sign-up-viewer-form">
+    <div class="dl-field">
+        <img src="/assets/images/icons/@2x/Web_Icons_email_icon.png"/>
+        <input id="email" name="email" type="email" placeholder="{{'views.sign-in-dialog.email' | translate}}"
+               class="form-control dl-input" autocomplete="new-email"
+               ng-model="dealer.email" required/>
+    </div>
+    <div class="dl-field">
+        <img src="/assets/images/icons/@2x/Web_Icons_password_icon.png"/>
+        <input id="password" name="password" type="password"
+               placeholder="{{'views.sign-in-dialog.password' | translate}}"
+               class="form-control dl-input" autocomplete="new-password"
+               ng-model="dealer.user.password" required/>
+    </div>
+    <div class="dl-field">
+        <img src="/assets/images/icons/@2x/Web_Icons_name_icon.png"/>
+        <input id="fullName" name="fullName" type="text"
+               placeholder="{{'views.sign-in-dialog.business-name' | translate}}"
+               class="form-control dl-input"
+               ng-model="dealer.full_name" required/>
+    </div>
+    <p class="dl-error dl-note text-center" ng-show="showError">{{errorMessage}}</p>
+    <p class="dl-note text-center text-muted pull-left">
+        {{'views.sign-in-dialog.agreement' | translate}}
+        <a ng-href="/terms-and-privacy" target="_blank" translate>views.sign-in-dialog.terms</a>
+    </p>
+</div>

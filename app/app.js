@@ -58,6 +58,12 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
         }
     })
 
+    .filter('trusted', ['$sce', function ($sce) {
+        return function (url) {
+            return $sce.trustAsResourceUrl(url);
+        };
+    }])
+
     .run(['$rootScope', '$location', '$cookies', '$http', '$timeout', '$mdToast', 'DealerPhotos', 'Analytics', '$translate', '$translateLocalStorage',
         function ($rootScope, $location, $cookies, $http, $timeout, $mdToast, DealerPhotos, Analytics, $translate, $translateLocalStorage) {
 
@@ -266,6 +272,12 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
                 previousPrice: "PP"
             };
 
+            if ($rootScope.language == 'he') {
+                $rootScope.videoLink = "https://youtube.com/embed/7vLFe9Jmkx0";
+            } else {
+                $rootScope.videoLink = "https://youtube.com/embed/Ka6dsAGUdTo";
+            }
+
             $rootScope.showToast = function (text, delay) {
                 var timer = 3000; // show the toast for 3 seconds
                 if (delay) {
@@ -306,7 +318,7 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
                 }
 
                 if (role == roles.dealer) {
-                    restricted = ['/register'];
+                    restricted = ['/register/basic-info'];
                     for (i = 0; i < restricted.length; i++) {
                         if (next.indexOf(restricted[i]) > -1) {
                             $location.path('/');

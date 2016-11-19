@@ -3,8 +3,8 @@
  */
 angular.module('DealersApp')
 
-    .controller('EditProfileController', ['$scope', '$rootScope', '$location', '$mdDialog', '$mdMedia', '$mdToast', '$routeParams', '$timeout', 'Dealer', 'Photos', 'DealerPhotos',
-        function ($scope, $rootScope, $location, $mdDialog, $mdMedia, $mdToast, $routeParams, $timeout, Dealer, Photos, DealerPhotos) {
+    .controller('EditProfileController', ['$scope', '$rootScope', '$location', '$mdDialog', '$mdMedia', '$mdToast', '$routeParams', '$timeout', 'Dealer', 'Photos', 'DealerPhotos', 'Dialogs',
+        function ($scope, $rootScope, $location, $mdDialog, $mdMedia, $mdToast, $routeParams, $timeout, Dealer, Photos, DealerPhotos, Dialogs) {
 
             var LOADING_STATUS = 'loading';
             var DOWNLOADED_STATUS = 'downloaded';
@@ -68,7 +68,12 @@ angular.module('DealersApp')
              */
             function setProfileDetails() {
                 $scope.status = DOWNLOADED_STATUS;
+
                 $scope.bank_account = $scope.profile.bank_accounts[$scope.profile.bank_accounts.length - 1];
+                if (!$scope.bank_account) {
+                    $scope.bank_account = {};
+                }
+
                 determineUserMode();
                 setProfilePic();
                 if ($scope.userMode == VIEWER_MODE) {
@@ -351,7 +356,7 @@ angular.module('DealersApp')
                     if (!isDealerBasicInfoValid()) {
                         return;
                     }
-                    if (!isBankInfoValid()) {
+                    if (!$.isEmptyObject($scope.bank_account) && !isBankInfoValid()) {
                         return;
                     }
                 }

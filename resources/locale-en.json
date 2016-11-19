@@ -14,6 +14,7 @@
   "general.description-optional": "Description (optional)",
   "general.days": "days",
   "general.done": "Done",
+  "general.done!": "Done!",
   "general.skip": "Skip",
   "general.images": "Images",
   "general.saving-changes": "Saving changes...",
@@ -44,6 +45,7 @@
   "general.edit-profile": "Edit Profile",
   "general.log-out": "Log Out",
   "general.settings": "Settings",
+  "general.next": "Next",
 
   "general.all-categories": "All Categories",
   "general.art": "Art",
@@ -68,8 +70,10 @@
 
   "views.intro-section.mantra": "Start selling your products online in 5 minutes.",
   "views.intro-section.one-liner": "Want to expand your sales via the web? Let us help you.",
-  "views.intro-section.learn-more": "Learn more",
+  "views.intro-section.enter-email": "Enter your email",
+  "views.intro-section.get-started": "Get started",
   "views.intro-section.start-now": "Start Now",
+  "views.intro-section.learn-more": "Learn more",
   "views.about-section.5-minute-title": "5 minute setup",
   "views.about-section.5-minute-paragraph": "Dealers is built for simplicity. Sign up and start selling products in a matter of minutes.",
   "views.about-section.facebook-title": "Sell on Facebook",
@@ -222,6 +226,8 @@
   "views.total-price-calculator.didnt-select-delivery": "Didn't select a delivery option yet.",
   "views.total-price-calculator.total": "total",
 
+  "views.sign-in-dialog.enter-email": "Enter your email",
+  "views.sign-in-dialog.get-started": "Get Started",
   "views.sign-in-dialog.sign-up-title": "Sign Up",
   "views.sign-in-dialog.full-name": "Full Name",
   "views.sign-in-dialog.email": "Email",
@@ -357,6 +363,8 @@
   "translations-service.purchase-details.blank-etd-title": "You didn't specified a valid estimated delivery time.",
   "translations-service.purchase-details.blank-etd-content": "This is required so the customer will know how long to wait for his order.",
 
+  "translations-service.profile.didnt-upload-products": "Click the '+' button in the top bar in order to add products.",
+
   "translations-service.sign-in.sign-up-button-title": "Sign up!",
   "translations-service.sign-in.log-in-button-title": "Log in",
   "translations-service.sign-in.loading": "Loading...",
@@ -386,6 +394,9 @@
   "translations-service.dealer-registration.account-number-duplicate-content": "The account number you entered already exists. Please check your input again.",
   "translations-service.dealer-registration.general-problem-title": "There was a problem...",
   "translations-service.dealer-registration.general-problem-content": "We're sorry, please try again!",
+  "translations-service.dealer-registration.skip-confirm-title": "Are you sure you want to skip?",
+  "translations-service.dealer-registration.skip-confirm-content": "We need your bank account in order to transfer your incomes. If you skip, keep in mind that you can always add this in your profile.",
+  "translations-service.dealer-registration.skip-confirm-button": "Skip",
 
   "translations-service.checkout.invalid-quantity-title": "Invalid Quantity",
   "translations-service.checkout.invalid-quantity-content": "The maximum quantity available is ",

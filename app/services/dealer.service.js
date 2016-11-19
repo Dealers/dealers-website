@@ -7,9 +7,11 @@ angular.module('DealersApp')
 
         var DEFAULT_UN = "ubuntu";
         var DEFAULT_PW = "090909deal";
-        var REGISTER_BROADCASTING_PREFIX = 'register-as-dealer-for-';
+        var REGISTER_BASIC_INFO_BROADCASTING_PREFIX = 'register-basic-info-for-';
+        var REGISTER_BANK_ACCOUNT_BROADCASTING_PREFIX = 'register-bank-account-for-';
         var UPDATE_BROADCASTING_PREFIX = 'update-as-dealer-for-';
         var DEALERS_BASE_URL = $rootScope.baseUrl + '/dealers/';
+        var SUBSCRIBERS_BASE_URL = $rootScope.baseUrl + '/subscribers/';
 
         this.saveCurrent = saveCurrent;
         this.setCredentials = setCredentials;
@@ -17,20 +19,44 @@ angular.module('DealersApp')
 
         var ctrl = this;
         var service = {};
+        service.existingDealer = false;
 
+        service.subscribe = subscribe;
         service.create = create;
+        service.registerBasicInfo = registerBasicInfo;
+        service.registerBankAccount = registerBankAccount;
+        service.isExistingDealer = isExistingDealer;
         service.logIn = logIn;
         service.logOut = logOut;
         service.getDealer = getDealer;
         service.getShortDealer = getShortDealer;
-        service.registerDealer = registerDealer;
         service.updateDealer = updateDealer;
         service.updateViewer = updateViewer;
         service.setIntercom = setIntercom;
         service.updateCurrentUser = updateCurrentUser;
+        service.getServerLang = getServerLang;
         service.updateShippingAddress = updateShippingAddress;
 
         return service;
+
+        function subscribe(email) {
+            var subscriber = {
+                email: email,
+                language: getServerLang($rootScope.language),
+                register_date: new Date()
+            };
+            var credentials = Authentication.getCredentials(DEFAULT_UN, DEFAULT_PW);
+            $http.post(SUBSCRIBERS_BASE_URL, subscriber, {headers: {'Authorization': credentials}})
+                .then(function (response) {
+                        // success
+                        subscriber = response.data;
+                        ctrl.broadcastResult('subscribed', true, subscriber);
+                    },
+                    function (httpError) {
+                        // error
+                        ctrl.broadcastResult('subscribed', false, httpError);
+                    });
+        }
 
         /**
          * Creates a new dealer object in the server when a new user signs up (as a viewer).
@@ -51,6 +77,54 @@ angular.module('DealersApp')
                         // error
                         ctrl.broadcastResult('sign-up', false, httpError);
                     });
+        }
+
+        /**
+         * Saves the basic details of the user as a part of the register-as-dealer process.
+         * @param sender - the controller that asked for the service.
+         */
+        function registerBasicInfo(sender) {
+            $rootScope.dealer.role = $rootScope.roles.dealer;
+            var dealer = cleanDealerObject($rootScope.dealer);
+            $http.patch(DEALERS_BASE_URL + dealer.id + '/', dealer, {params: {mode: "new"}})
+                .then(function (response) {
+                        // success
+                        var dealer = response.data;
+                        ctrl.saveCurrent(dealer);
+                        Intercom('trackEvent', 'registered_as_dealer', {});
+                        broadcastResult(REGISTER_BASIC_INFO_BROADCASTING_PREFIX + sender, true, dealer);
+                    },
+                    function (httpError) {
+                        // error
+                        broadcastResult(REGISTER_BASIC_INFO_BROADCASTING_PREFIX + sender, false, httpError);
+                    });
+        }
+
+        /**
+         * Saves the bank account information of the user as a part of the register-as-dealer process.
+         * @param bankAccount - the new dealer's bank account object.
+         * @param sender - the controller that asked for the service.
+         */
+        function registerBankAccount(bankAccount, sender) {
+            $http.post($rootScope.baseUrl + '/bank_accounts/', bankAccount)
+                .then(function (response) {
+                        // success
+                        var bankAccount = response.data;
+                        Intercom('trackEvent', 'inserted_bank_account', {});
+                        broadcastResult(REGISTER_BANK_ACCOUNT_BROADCASTING_PREFIX + sender, true, bankAccount);
+                    },
+                    function (httpError) {
+                        // error
+                        broadcastResult(REGISTER_BANK_ACCOUNT_BROADCASTING_PREFIX + sender, false, httpError);
+                    });
+        }
+
+        /**
+         * @returns {boolean} True if the user reached the bank account form for the first time. The purpose of this helper function
+         * is to avoid the situation of the user being passed to the "congratulations" screen after being there before already.
+         */
+        function isExistingDealer() {
+            return service.existingDealer;
         }
 
         /**
@@ -161,63 +235,50 @@ angular.module('DealersApp')
         }
 
         /**
-         * Register the received dealer.
-         * @param bankAccount - the new dealer's bank account object.
-         * @param sender - the controller that asked for the service.
-         */
-        function registerDealer(bankAccount, sender) {
-            $http.post($rootScope.baseUrl + '/bank_accounts/', bankAccount)
-                .then(function (response) {
-                        // success
-                        $rootScope.dealer.role = $rootScope.roles.dealer;
-                        var dealer = cleanDealerObject($rootScope.dealer);
-                        $http.patch(DEALERS_BASE_URL + dealer.id + '/', dealer, {params: {mode: "new"}})
-                            .then(function (response) {
-                                    // success
-                                    var dealer = response.data;
-                                    ctrl.saveCurrent(dealer);
-                                    broadcastResult(REGISTER_BROADCASTING_PREFIX + sender, true, dealer);
-                                },
-                                function (httpError) {
-                                    // error
-                                    broadcastResult(REGISTER_BROADCASTING_PREFIX + sender, false, httpError);
-                                });
-                    },
-                    function (httpError) {
-                        // error
-                        broadcastResult(REGISTER_BROADCASTING_PREFIX + sender, false, httpError);
-                    });
-        }
-
-        /**
          * Updates the received dealer's information (via Edit Profile).
          * @param bankAccount - the dealer's bank account object.
          * @param dealer - the updated dealer object.
          * @param sender - the controller that asked for the service.
          */
         function updateDealer(bankAccount, dealer, sender) {
-            $http.patch($rootScope.baseUrl + '/bank_accounts/' + bankAccount.id + '/', bankAccount)
-                .then(function (response) {
-                        // success
-                        console.log("Updated the bank account information successfully. Now update the the dealer's information.");
-                        dealer = cleanDealerObject(dealer);
-                        $http.patch(DEALERS_BASE_URL + dealer.id + '/', dealer, {params: {mode: "edit"}})
-                            .then(function (response) {
-                                    // success
-                                    dealer = response.data;
-                                    ctrl.saveCurrent(dealer);
-                                    setIntercom(dealer);
-                                    broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, true, dealer);
-                                },
-                                function (httpError) {
-                                    // error
-                                    broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, false, httpError);
-                                });
-                    },
-                    function (httpError) {
-                        // error
-                        broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, false, httpError);
-                    });
+            if (bankAccount && !$.isEmptyObject(bankAccount)) {
+                $http.patch($rootScope.baseUrl + '/bank_accounts/' + bankAccount.id + '/', bankAccount)
+                    .then(function (response) {
+                            // success
+                            console.log("Updated the bank account information successfully. Now update the the dealer's information.");
+                            dealer = cleanDealerObject(dealer);
+                            $http.patch(DEALERS_BASE_URL + dealer.id + '/', dealer, {params: {mode: "edit"}})
+                                .then(function (response) {
+                                        // success
+                                        dealer = response.data;
+                                        ctrl.saveCurrent(dealer);
+                                        setIntercom(dealer);
+                                        broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, true, dealer);
+                                    },
+                                    function (httpError) {
+                                        // error
+                                        broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, false, httpError);
+                                    });
+                        },
+                        function (httpError) {
+                            // error
+                            broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, false, httpError);
+                        });
+            } else {
+                dealer = cleanDealerObject(dealer);
+                $http.patch(DEALERS_BASE_URL + dealer.id + '/', dealer, {params: {mode: "edit"}})
+                    .then(function (response) {
+                            // success
+                            dealer = response.data;
+                            ctrl.saveCurrent(dealer);
+                            setIntercom(dealer);
+                            broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, true, dealer);
+                        },
+                        function (httpError) {
+                            // error
+                            broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, false, httpError);
+                        });
+            }
         }
 
         /**
@@ -286,6 +347,20 @@ angular.module('DealersApp')
          */
         function logOutIntercom() {
             window.Intercom("shutdown");
+        }
+
+        /**
+         * Gets the server's representation of the received language.
+         * @param lang - the received language.
+         * @returns {String} the language representation.
+         */
+        function getServerLang(lang) {
+            if (lang == "he") {
+                return "Hebrew";
+            } else if (lang == "en") {
+                return "English";
+            }
+            return lang;
         }
 
         /**

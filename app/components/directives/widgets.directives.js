@@ -131,62 +131,6 @@ angular.module('DealersApp')
             }
         };
     }])
-
-    /**
-     * Register As Dealer button.
-     */
-    .directive('registerAsDealer', ['$rootScope', '$location', '$mdMedia', '$mdDialog',
-        function ($rootScope, $location, $mdMedia, $mdDialog) {
-            return {
-                link: function (scope, element) {
-                    scope.customFullscreen = $mdMedia('xs');
-
-                    /**
-                     * Presents the sign in dialog (sign up and log in).
-                     * @param ev - The event that triggered the function.
-                     * @param tabIndex - the index of the selected option (sign up is 0, log in is 1).
-                     */
-                    scope.showSignInDialog = function (ev, tabIndex) {
-                        $mdDialog.show({
-                            controller: 'SignInDialogController',
-                            templateUrl: 'app/components/views/sign-in/sign-in-dealer-dialog.view.html',
-                            parent: angular.element(document.body),
-                            targetEvent: ev,
-
-                            fullscreen: scope.customFullscreen,
-                            locals: {tab: tabIndex, isViewer: false}
-                        })
-                            .then(function (finished) {
-                                // Finished the sign in process
-                                if (finished == 0) {
-                                    $location.path("/register");
-                                } else if (finished == 1) {
-                                    $location.path("/home");
-                                } else {
-                                    console.error("Received something wrong to the callback of showSignInDialog");
-                                }
-                            });
-                    };
-
-                    /**
-                     * Takes the user to the register-as-dealer page. If he is not signed in, takes him through the sign in process first.
-                     * @param ev - the event that triggered the function.
-                     */
-                    $(element).on("click", function (ev) {
-                        if ($rootScope.dealer) {
-                            $location.path("/register");
-                            scope.$apply();
-                        } else {
-                            if ($(element).is("#nav-login")) {
-                                scope.showSignInDialog(ev, 1, false);
-                            } else {
-                                scope.showSignInDialog(ev, 0, true);
-                            }
-                        }
-                    });
-                }
-            };
-        }])
     .directive('loadingSpinner', function () {
         return {
             restrict: 'E',

@@ -15,11 +15,14 @@ angular.module('DealersApp')
             var mode;
             var url = $rootScope.baseUrl;
             var routeParams;
-            var noProductsMessage;
 
             $scope.products = [];
             $scope.message = "";
             $scope.status = LOADING_STATUS;
+
+            if (!$scope.noProductsMessage) {
+                $scope.noProductsMessage = "There are no products.";
+            }
 
             $scope.update = {};
             $scope.update.loadingMore = false;
@@ -41,7 +44,6 @@ angular.module('DealersApp')
                         if (dealerID == routeParams) {
                             if (tempData) {
                                 mode = "activeSession";
-                                noProductsMessage = "There are no products.";
                                 $scope.status = DOWNLOADED_STATUS;
                                 updateGrid(tempData);
                                 return;
@@ -50,14 +52,13 @@ angular.module('DealersApp')
                     }
                     mode = "custom";
                     url = $scope.source;
-                    noProductsMessage = Translations.productsGrid.noProducts;
 
                 } else if ($routeParams.query) {
                     // This is a search session, should get the products according to the search term.
                     mode = "search";
                     routeParams = $routeParams.query;
                     url += '/dealsearch/?search=' + routeParams;
-                    noProductsMessage = Translations.productsGrid.didntFind + "'" + routeParams + "'.";
+                    $scope.noProductsMessage = Translations.productsGrid.didntFind + "'" + routeParams + "'.";
                 } else if ($routeParams.category) {
                     // This is a search session, should get the products according to the search term.
                     mode = "category";
@@ -68,13 +69,13 @@ angular.module('DealersApp')
                     } else {
                         url += '/category_deals/?category=' + Product.keyForCategory(routeParams);
                     }
-                    noProductsMessage = Translations.productsGrid.currentlyNoProducts + routeParams + "...";
+                    $scope.noProductsMessage = Translations.productsGrid.currentlyNoProducts + routeParams + "...";
                     $scope.title = Translations.translateCategory(routeParams);
                 } else {
                     // This is a My Feed session, should get the products from the my-feed endpoint.
                     mode = "myFeed";
                     url += '/my_feeds/';
-                    noProductsMessage = Translations.productsGrid.noProductsInterests;
+                    $scope.noProductsMessage = Translations.productsGrid.noProductsInterests;
                 }
 
                 $scope.getProducts();
@@ -126,7 +127,7 @@ angular.module('DealersApp')
                 if (products.length > 0) {
                     $scope.products = ProductsGrid.addProductsToArray($scope.products, products);
                 } else {
-                    $scope.message = noProductsMessage;
+                    $scope.message = $scope.noProductsMessage;
                 }
             }
 

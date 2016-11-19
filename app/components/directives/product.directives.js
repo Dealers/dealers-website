@@ -59,10 +59,11 @@ angular.module('DealersApp')
                 restrict: 'E',
                 replace: true,
                 scope: {
-                    source: '=',
-                    page: '=',
                     title: '=',
-                    description: '='
+                    description: '=?',
+                    source: '=?',
+                    page: '=?',
+                    noProductsMessage: '=?'
                 },
                 templateUrl: 'app/components/views/products/products-grid.view.html',
                 controller: 'ProductsGridController'

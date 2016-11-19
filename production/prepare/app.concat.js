@@ -1,3 +1,754 @@
+/* Add to Homescreen v3.2.3 ~ (c) 2015 Matteo Spinelli ~ @license: http://cubiq.org/license */
+(function (window, document) {
+/*
+       _   _ _____     _____
+ ___ _| |_| |_   _|___|  |  |___ _____ ___ ___ ___ ___ ___ ___ ___
+| .'| . | . | | | | . |     | . |     | -_|_ -|  _|  _| -_| -_|   |
+|__,|___|___| |_| |___|__|__|___|_|_|_|___|___|___|_| |___|___|_|_|
+                              by Matteo Spinelli ~ http://cubiq.org
+*/
+
+// Check for addEventListener browser support (prevent errors in IE<9)
+var _eventListener = 'addEventListener' in window;
+
+// Check if document is loaded, needed by autostart
+var _DOMReady = false;
+if ( document.readyState === 'complete' ) {
+	_DOMReady = true;
+} else if ( _eventListener ) {
+	window.addEventListener('load', loaded, false);
+}
+
+function loaded () {
+	window.removeEventListener('load', loaded, false);
+	_DOMReady = true;
+}
+
+// regex used to detect if app has been added to the homescreen
+var _reSmartURL = /\/ath(\/)?$/;
+var _reQueryString = /([\?&]ath=[^&]*$|&ath=[^&]*(&))/;
+
+// singleton
+var _instance;
+function ath (options) {
+	_instance = _instance || new ath.Class(options);
+
+	return _instance;
+}
+
+// message in all supported languages
+ath.intl = {
+	cs_cs: {
+		ios: 'Pro přidáni této webové aplikace na úvodní obrazovku: stlačte %icon a pak <strong>Přidat na úvodní obrazovku</strong>.',
+		android: 'Pro přidáni této webové aplikace na úvodní obrazovku otevřete menu nastavení prohlížeče a stlačte <strong>Přidat na úvodní obrazovku</strong>. <small>K menu se dostanete stlačením hardwaroveho tlačítka, když ho vaše zařízení má, nebo stlačením pravé horní menu ikony <span class="ath-action-icon">icon</span>.</small>'
+	},
+
+	de_de: {
+		ios: 'Um diese Web-App zum Home-Bildschirm hinzuzufügen, tippen Sie auf %icon und dann <strong>Zum Home-Bildschirm</strong>.',
+		android: 'Um diese Web-App zum Home-Bildschirm hinzuzufügen, öffnen Sie das Menü und tippen dann auf <strong>Zum Startbildschirm hinzufügen</strong>. <small>Wenn Ihr Gerät eine Menütaste hat, lässt sich das Browsermenü über diese öffnen. Ansonsten tippen Sie auf %icon.</small>'
+	},
+
+	da_dk: {
+		ios: 'For at tilføje denne web app til hjemmeskærmen: Tryk %icon og derefter <strong>Føj til hjemmeskærm</strong>.',
+		android: 'For at tilføje denne web app til hjemmeskærmen, åbn browser egenskaber menuen og tryk på <strong>Føj til hjemmeskærm</strong>. <small>Denne menu kan tilgås ved at trykke på menu knappen, hvis din enhed har en, eller ved at trykke på det øverste højre menu ikon %icon.</small>'
+	},
+
+	el_gr: {
+		ios: 'Για να προσθέσετε την εφαρμογή στην αρχική οθόνη: πατήστε το %icon και μετά <strong>Πρόσθεσε στην αρχική οθόνη</strong>.',
+		android: 'Για να προσθέσετε την εφαρμογή στην αρχική οθόνη, ανοίξτε τις επιλογές του browser σας και πατήστε το <strong>Προσθήκη στην αρχική οθόνη</strong>. <small>Μπορείτε να έχετε πρόσβαση στο μενού, πατώντας το κουμπί του μενού του κινητού σας ή το πάνω δεξιά κουμπί του μενού %icon.</small>'
+	},
+
+	en_us: {
+		ios: 'To add this web app to the home screen: tap %icon and then <strong>Add to Home Screen</strong>.',
+		android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon %icon.</small>'
+	},
+
+	es_es: {
+		ios: 'Para añadir esta aplicación web a la pantalla de inicio: pulsa %icon y selecciona <strong>Añadir a pantalla de inicio</strong>.',
+		android: 'Para añadir esta aplicación web a la pantalla de inicio, abre las opciones y pulsa <strong>Añadir a pantalla inicio</strong>. <small>El menú se puede acceder pulsando el botón táctil en caso de tenerlo, o bien el icono de la parte superior derecha de la pantalla %icon.</small>'
+	},
+
+	fi_fi: {
+		ios: 'Liitä tämä sovellus kotivalikkoon: klikkaa %icon ja tämän jälkeen <strong>Lisää kotivalikkoon</strong>.',
+		android: 'Lisätäksesi tämän sovelluksen aloitusnäytölle, avaa selaimen valikko ja klikkaa tähti -ikonia tai <strong>Lisää aloitusnäytölle tekstiä</strong>. <small>Valikkoon pääsee myös painamalla menuvalikkoa, jos laitteessasi on sellainen tai koskettamalla oikealla yläkulmassa menu ikonia %icon.</small>'
+	},
+
+	fr_fr: {
+		ios: 'Pour ajouter cette application web sur l\'écran d\'accueil : Appuyez %icon et sélectionnez <strong>Ajouter sur l\'écran d\'accueil</strong>.',
+		android: 'Pour ajouter cette application web sur l\'écran d\'accueil : Appuyez sur le bouton "menu", puis sur <strong>Ajouter sur l\'écran d\'accueil</strong>. <small>Le menu peut-être accessible en appuyant sur le bouton "menu" du téléphone s\'il en possède un <i class="fa fa-bars"></i>. Sinon, il se trouve probablement dans la coin supérieur droit du navigateur %icon.</small>'
+	},
+
+	he_il: {
+		ios: '<span dir="rtl">להוספת האפליקציה למסך הבית: ללחוץ על %icon ואז <strong>הוסף למסך הבית</strong>.</span>',
+		android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon %icon.</small>'
+	},
+
+	hu_hu: {
+		ios: 'Ha hozzá szeretné adni ezt az alkalmazást a kezdőképernyőjéhez, érintse meg a következő ikont: %icon , majd a <strong>Hozzáadás a kezdőképernyőhöz</strong> menüpontot.',
+		android: 'Ha hozzá szeretné adni ezt az alkalmazást a kezdőképernyőjéhez, a böngésző menüjében kattintson a <strong>Hozzáadás a kezdőképernyőhöz</strong> menüpontra. <small>A böngésző menüjét a következő ikon megérintésével tudja megnyitni: %icon.</small>'
+	},
+
+	it_it: {
+		ios: 'Per aggiungere questa web app alla schermata iniziale: premi %icon e poi <strong>Aggiungi a Home</strong>.',
+		android: 'Per aggiungere questa web app alla schermata iniziale, apri il menu opzioni del browser e premi su <strong>Aggiungi alla homescreen</strong>. <small>Puoi accedere al menu premendo il pulsante hardware delle opzioni se la tua device ne ha uno, oppure premendo l\'icona %icon in alto a destra.</small>'
+	},
+
+	ja_jp: {
+		ios: 'このウェプアプリをホーム画面に追加するには、%iconをタップして<strong>ホーム画面に追加</strong>してください。',
+		android: 'このウェプアプリをホーム画面に追加するには、ブラウザのオプションメニューから<strong>ホーム画面に追加</strong>をタップしてください。<small>オプションメニューは、一部の機種ではデバイスのメニューボタンから、それ以外では画面右上の%iconからアクセスできます。</small>'
+ 	},
+
+	ko_kr: {
+		ios: '홈 화면에 바로가기 생성: %icon 을 클릭한 후 <strong>홈 화면에 추가</strong>.',
+		android: '브라우저 옵션 메뉴의 <string>홈 화면에 추가</string>를 클릭하여 홈화면에 바로가기를 생성할 수 있습니다. <small>옵션 메뉴는 장치의 메뉴 버튼을 누르거나 오른쪽 상단의 메뉴 아이콘 %icon을 클릭하여 접근할 수 있습니다.</small>'
+	},
+
+	nb_no: {
+		ios: 'For å installere denne appen på hjem-skjermen: trykk på %icon og deretter <strong>Legg til på Hjem-skjerm</strong>.',
+		android: 'For å legge til denne webappen på startsiden åpner en nettlesermenyen og velger <strong>Legg til på startsiden</strong>. <small>Menyen åpnes ved å trykke på den fysiske menyknappen hvis enheten har det, eller ved å trykke på menyikonet øverst til høyre %icon.</small>'
+	},
+
+	pt_br: {
+		ios: 'Para adicionar este app à tela de início: clique %icon e então <strong>Tela de início</strong>.',
+		android: 'Para adicionar este app à tela de início, abra o menu de opções do navegador e selecione <strong>Adicionar à tela inicial</strong>. <small>O menu pode ser acessado pressionando o "menu" button se o seu dispositivo tiver um, ou selecionando o ícone %icon no canto superior direito.</small>'
+	},
+
+	pt_pt: {
+		ios: 'Para adicionar esta app ao ecrã principal: clique %icon e depois <strong>Ecrã principal</strong>.',
+		android: 'Para adicionar esta app web ecrã principal, abra o menu de opções do navegador e selecione <strong>Adicionar à tela inicial</strong>. <small>O menu pode ser acessado pressionando o "menu" button se o seu dispositivo tiver um, ou selecionando o ícone %icon no canto superior direito.</small>'
+	},
+
+	nl_nl: {
+		ios: 'Om deze webapp aan je startscherm toe te voegen, klik op %icon en dan <strong>Zet in startscherm</strong>.',
+		android: 'Om deze webapp aan je startscherm toe te voegen, open de browserinstellingen en tik op <strong>Toevoegen aan startscherm</strong>. <small>Gebruik de "menu" knop als je telefoon die heeft, anders het menu-icoon rechtsbovenin %icon.</small>'
+	},
+
+	ru_ru: {
+		ios: 'Чтобы добавить этот сайт на свой домашний экран, нажмите на иконку %icon и затем <strong>На экран "Домой"</strong>.',
+		android: 'Чтобы добавить сайт на свой домашний экран, откройте меню браузера и нажмите на <strong>Добавить на главный экран</strong>. <small>Меню можно вызвать, нажав на кнопку меню вашего телефона, если она есть. Или найдите иконку сверху справа %icon[иконка].</small>'
+	},
+
+	sk_sk: {
+		ios: 'Pre pridanie tejto webovej aplikácie na úvodnú obrazovku: stlačte %icon a potom <strong>Pridať na úvodnú obrazovku</strong>.',
+		android: 'Pre pridanie tejto webovej aplikácie na úvodnú obrazovku otvorte menu nastavenia prehliadača a stlačte <strong>Pridať na úvodnú obrazovku</strong>. <small>K menu sa dostanete stlačením hardwaroveho tlačidla, ak ho vaše zariadenie má, alebo stlačením pravej hornej menu ikony <span class="ath-action-icon">icon</span>.</small>'
+	},
+
+	sv_se: {
+		ios: 'För att lägga till denna webbapplikation på hemskärmen: tryck på %icon och därefter <strong>Lägg till på hemskärmen</strong>.',
+		android: 'För att lägga till den här webbappen på hemskärmen öppnar du webbläsarens alternativ-meny och väljer <strong>Lägg till på startskärmen</strong>. <small>Man hittar menyn genom att trycka på hårdvaruknappen om din enhet har en sådan, eller genom att trycka på menyikonen högst upp till höger %icon.</small>'
+	},
+
+	tr_tr: {
+		ios: 'Uygulamayı ana ekrana eklemek için, %icon ve ardından <strong>ana ekrana ekle</strong> butonunu tıklayın.',
+		android: 'Uygulamayı ana ekrana eklemek için, menüye girin ve <strong>ana ekrana ekle</strong> butonunu tıklayın. <small>Cihazınız menü tuşuna sahip ise menüye girmek için menü tuşunu tıklayın. Aksi takdirde %icon butonunu tıklayın.</small>'
+	},
+
+	uk_ua: {
+		ios: 'Щоб додати цей сайт на початковий екран, натисніть %icon, а потім <strong>На початковий екран</strong>.',
+		android: 'Щоб додати цей сайт на домашній екран, відкрийте меню браузера та виберіть <strong>Додати на головний екран</strong>. <small>Це можливо зробити, натиснувши кнопку меню на вашому смартфоні, якщо така є. Або ж на іконці зверху справа %icon.</small>'
+	},
+
+	zh_cn: {
+		ios: '如要把应用程序加至主屏幕,请点击%icon, 然后<strong>添加到主屏幕</strong>',
+		android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon %icon.</small>'
+	},
+
+	zh_tw: {
+		ios: '如要把應用程式加至主屏幕, 請點擊%icon, 然後<strong>加至主屏幕</strong>.',
+		android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon %icon.</small>'
+	}
+};
+
+// Add 2 characters language support (Android mostly)
+for ( var lang in ath.intl ) {
+	ath.intl[lang.substr(0, 2)] = ath.intl[lang];
+}
+
+// default options
+ath.defaults = {
+	appID: 'org.cubiq.addtohome',		// local storage name (no need to change)
+	fontSize: 15,				// base font size, used to properly resize the popup based on viewport scale factor
+	debug: false,				// override browser checks
+	logging: false,				// log reasons for showing or not showing to js console; defaults to true when debug is true
+	modal: false,				// prevent further actions until the message is closed
+	mandatory: false,			// you can't proceed if you don't add the app to the homescreen
+	autostart: true,			// show the message automatically
+	skipFirstVisit: false,		// show only to returning visitors (ie: skip the first time you visit)
+	startDelay: 1,				// display the message after that many seconds from page load
+	lifespan: 15,				// life of the message in seconds
+	displayPace: 1440,			// minutes before the message is shown again (0: display every time, default 24 hours)
+	maxDisplayCount: 0,			// absolute maximum number of times the message will be shown to the user (0: no limit)
+	icon: true,					// add touch icon to the message
+	message: '',				// the message can be customized
+	validLocation: [],			// list of pages where the message will be shown (array of regexes)
+	onInit: null,				// executed on instance creation
+	onShow: null,				// executed when the message is shown
+	onRemove: null,				// executed when the message is removed
+	onAdd: null,				// when the application is launched the first time from the homescreen (guesstimate)
+	onPrivate: null,			// executed if user is in private mode
+	privateModeOverride: false,	// show the message even in private mode (very rude)
+	detectHomescreen: false		// try to detect if the site has been added to the homescreen (false | true | 'hash' | 'queryString' | 'smartURL')
+};
+
+// browser info and capability
+var _ua = window.navigator.userAgent;
+
+var _nav = window.navigator;
+_extend(ath, {
+	hasToken: document.location.hash == '#ath' || _reSmartURL.test(document.location.href) || _reQueryString.test(document.location.search),
+	isRetina: window.devicePixelRatio && window.devicePixelRatio > 1,
+	isIDevice: (/iphone|ipod|ipad/i).test(_ua),
+	isMobileChrome: _ua.indexOf('Android') > -1 && (/Chrome\/[.0-9]*/).test(_ua) && _ua.indexOf("Version") == -1,
+	isMobileIE: _ua.indexOf('Windows Phone') > -1,
+	language: _nav.language && _nav.language.toLowerCase().replace('-', '_') || ''
+});
+
+// falls back to en_us if language is unsupported
+ath.language = ath.language && ath.language in ath.intl ? ath.language : 'en_us';
+
+ath.isMobileSafari = ath.isIDevice && _ua.indexOf('Safari') > -1 && _ua.indexOf('CriOS') < 0;
+ath.OS = ath.isIDevice ? 'ios' : ath.isMobileChrome ? 'android' : ath.isMobileIE ? 'windows' : 'unsupported';
+
+ath.OSVersion = _ua.match(/(OS|Android) (\d+[_\.]\d+)/);
+ath.OSVersion = ath.OSVersion && ath.OSVersion[2] ? +ath.OSVersion[2].replace('_', '.') : 0;
+
+ath.isStandalone = 'standalone' in window.navigator && window.navigator.standalone;
+ath.isTablet = (ath.isMobileSafari && _ua.indexOf('iPad') > -1) || (ath.isMobileChrome && _ua.indexOf('Mobile') < 0);
+
+ath.isCompatible = (ath.isMobileSafari && ath.OSVersion >= 6) || ath.isMobileChrome;	// TODO: add winphone
+
+var _defaultSession = {
+	lastDisplayTime: 0,			// last time we displayed the message
+	returningVisitor: false,	// is this the first time you visit
+	displayCount: 0,			// number of times the message has been shown
+	optedout: false,			// has the user opted out
+	added: false				// has been actually added to the homescreen
+};
+
+ath.removeSession = function (appID) {
+	try {
+		if (!localStorage) {
+			throw new Error('localStorage is not defined');
+		}
+
+		localStorage.removeItem(appID || ath.defaults.appID);
+	} catch (e) {
+		// we are most likely in private mode
+	}
+};
+
+ath.doLog = function (logStr) {
+	if ( this.options.logging ) {
+		console.log(logStr);
+	}
+};
+
+ath.Class = function (options) {
+	// class methods
+	this.doLog = ath.doLog;
+
+	// merge default options with user config
+	this.options = _extend({}, ath.defaults);
+	_extend(this.options, options);
+	// override defaults that are dependent on each other
+	if ( this.options && this.options.debug && (typeof this.options.logging === "undefined") ) {
+		this.options.logging = true;
+	}
+
+	// IE<9 so exit (I hate you, really)
+	if ( !_eventListener ) {
+		return;
+	}
+
+	// normalize some options
+	this.options.mandatory = this.options.mandatory && ( 'standalone' in window.navigator || this.options.debug );
+	this.options.modal = this.options.modal || this.options.mandatory;
+	if ( this.options.mandatory ) {
+		this.options.startDelay = -0.5;		// make the popup hasty
+	}
+	this.options.detectHomescreen = this.options.detectHomescreen === true ? 'hash' : this.options.detectHomescreen;
+
+	// setup the debug environment
+	if ( this.options.debug ) {
+		ath.isCompatible = true;
+		ath.OS = typeof this.options.debug == 'string' ? this.options.debug : ath.OS == 'unsupported' ? 'android' : ath.OS;
+		ath.OSVersion = ath.OS == 'ios' ? '8' : '4';
+	}
+
+	// the element the message will be appended to
+	this.container = document.body;
+
+	// load session
+	this.session = this.getItem(this.options.appID);
+	this.session = this.session ? JSON.parse(this.session) : undefined;
+
+	// user most likely came from a direct link containing our token, we don't need it and we remove it
+	if ( ath.hasToken && ( !ath.isCompatible || !this.session ) ) {
+		ath.hasToken = false;
+		_removeToken();
+	}
+
+	// the device is not supported
+	if ( !ath.isCompatible ) {
+ 		this.doLog("Add to homescreen: not displaying callout because device not supported");
+		return;
+	}
+
+	this.session = this.session || _defaultSession;
+
+	// check if we can use the local storage
+	try {
+		if (!localStorage) {
+			throw new Error('localStorage is not defined');
+		}
+
+		localStorage.setItem(this.options.appID, JSON.stringify(this.session));
+		ath.hasLocalStorage = true;
+	} catch (e) {
+		// we are most likely in private mode
+		ath.hasLocalStorage = false;
+
+		if ( this.options.onPrivate ) {
+			this.options.onPrivate.call(this);
+		}
+	}
+
+	// check if this is a valid location
+	var isValidLocation = !this.options.validLocation.length;
+	for ( var i = this.options.validLocation.length; i--; ) {
+		if ( this.options.validLocation[i].test(document.location.href) ) {
+			isValidLocation = true;
+			break;
+		}
+	}
+
+	// check compatibility with old versions of add to homescreen. Opt-out if an old session is found
+	if ( this.getItem('addToHome') ) {
+		this.optOut();
+	}
+
+	// critical errors:
+	if ( this.session.optedout ) {
+		this.doLog("Add to homescreen: not displaying callout because user opted out");
+		return;
+	}
+	if ( this.session.added ) {
+		this.doLog("Add to homescreen: not displaying callout because already added to the homescreen");
+		return;
+	}
+	if ( !isValidLocation ) {
+		this.doLog("Add to homescreen: not displaying callout because not a valid location");
+		return;
+	}
+
+	// check if the app is in stand alone mode
+	if ( ath.isStandalone ) {
+		// execute the onAdd event if we haven't already
+		if ( !this.session.added ) {
+			this.session.added = true;
+			this.updateSession();
+
+			if ( this.options.onAdd && ath.hasLocalStorage ) {	// double check on localstorage to avoid multiple calls to the custom event
+				this.options.onAdd.call(this);
+			}
+		}
+
+		this.doLog("Add to homescreen: not displaying callout because in standalone mode");
+		return;
+	}
+
+	// (try to) check if the page has been added to the homescreen
+	if ( this.options.detectHomescreen ) {
+		// the URL has the token, we are likely coming from the homescreen
+		if ( ath.hasToken ) {
+			_removeToken();		// we don't actually need the token anymore, we remove it to prevent redistribution
+
+			// this is called the first time the user opens the app from the homescreen
+			if ( !this.session.added ) {
+				this.session.added = true;
+				this.updateSession();
+
+				if ( this.options.onAdd && ath.hasLocalStorage ) {	// double check on localstorage to avoid multiple calls to the custom event
+					this.options.onAdd.call(this);
+				}
+			}
+
+			this.doLog("Add to homescreen: not displaying callout because URL has token, so we are likely coming from homescreen");
+			return;
+		}
+
+		// URL doesn't have the token, so add it
+		if ( this.options.detectHomescreen == 'hash' ) {
+			history.replaceState('', window.document.title, document.location.href + '#ath');
+		} else if ( this.options.detectHomescreen == 'smartURL' ) {
+			history.replaceState('', window.document.title, document.location.href.replace(/(\/)?$/, '/ath$1'));
+		} else {
+			history.replaceState('', window.document.title, document.location.href + (document.location.search ? '&' : '?' ) + 'ath=');
+		}
+	}
+
+	// check if this is a returning visitor
+	if ( !this.session.returningVisitor ) {
+		this.session.returningVisitor = true;
+		this.updateSession();
+
+		// we do not show the message if this is your first visit
+		if ( this.options.skipFirstVisit ) {
+			this.doLog("Add to homescreen: not displaying callout because skipping first visit");
+			return;
+		}
+	}
+
+	// we do no show the message in private mode
+	if ( !this.options.privateModeOverride && !ath.hasLocalStorage ) {
+		this.doLog("Add to homescreen: not displaying callout because browser is in private mode");
+		return;
+	}
+
+	// all checks passed, ready to display
+	this.ready = true;
+
+	if ( this.options.onInit ) {
+		this.options.onInit.call(this);
+	}
+
+	if ( this.options.autostart ) {
+		this.doLog("Add to homescreen: autostart displaying callout");
+		this.show();
+	}
+};
+
+ath.Class.prototype = {
+	// event type to method conversion
+	events: {
+		load: '_delayedShow',
+		error: '_delayedShow',
+		orientationchange: 'resize',
+		resize: 'resize',
+		scroll: 'resize',
+		click: 'remove',
+		touchmove: '_preventDefault',
+		transitionend: '_removeElements',
+		webkitTransitionEnd: '_removeElements',
+		MSTransitionEnd: '_removeElements'
+	},
+
+	handleEvent: function (e) {
+		var type = this.events[e.type];
+		if ( type ) {
+			this[type](e);
+		}
+	},
+
+	show: function (force) {
+		// in autostart mode wait for the document to be ready
+		if ( this.options.autostart && !_DOMReady ) {
+			setTimeout(this.show.bind(this), 50);
+			// we are not displaying callout because DOM not ready, but don't log that because
+			// it would log too frequently
+			return;
+		}
+
+		// message already on screen
+		if ( this.shown ) {
+			this.doLog("Add to homescreen: not displaying callout because already shown on screen");
+			return;
+		}
+
+		var now = Date.now();
+		var lastDisplayTime = this.session.lastDisplayTime;
+
+		if ( force !== true ) {
+			// this is needed if autostart is disabled and you programmatically call the show() method
+			if ( !this.ready ) {
+				this.doLog("Add to homescreen: not displaying callout because not ready");
+				return;
+			}
+
+			// we obey the display pace (prevent the message to popup too often)
+			if ( now - lastDisplayTime < this.options.displayPace * 60000 ) {
+				this.doLog("Add to homescreen: not displaying callout because displayed recently");
+				return;
+			}
+
+			// obey the maximum number of display count
+			if ( this.options.maxDisplayCount && this.session.displayCount >= this.options.maxDisplayCount ) {
+				this.doLog("Add to homescreen: not displaying callout because displayed too many times already");
+				return;
+			}
+		}
+
+		this.shown = true;
+
+		// increment the display count
+		this.session.lastDisplayTime = now;
+		this.session.displayCount++;
+		this.updateSession();
+
+		// try to get the highest resolution application icon
+		if ( !this.applicationIcon ) {
+			if ( ath.OS == 'ios' ) {
+				this.applicationIcon = document.querySelector('head link[rel^=apple-touch-icon][sizes="152x152"],head link[rel^=apple-touch-icon][sizes="144x144"],head link[rel^=apple-touch-icon][sizes="120x120"],head link[rel^=apple-touch-icon][sizes="114x114"],head link[rel^=apple-touch-icon]');
+			} else {
+				this.applicationIcon = document.querySelector('head link[rel^="shortcut icon"][sizes="196x196"],head link[rel^=apple-touch-icon]');
+			}
+		}
+
+		var message = '';
+
+		if ( typeof this.options.message == 'object' && ath.language in this.options.message ) {		// use custom language message
+			message = this.options.message[ath.language][ath.OS];
+		} else if ( typeof this.options.message == 'object' && ath.OS in this.options.message ) {		// use custom os message
+			message = this.options.message[ath.OS];
+		} else if ( this.options.message in ath.intl ) {				// you can force the locale
+			message = ath.intl[this.options.message][ath.OS];
+		} else if ( this.options.message !== '' ) {						// use a custom message
+			message = this.options.message;
+		} else if ( ath.OS in ath.intl[ath.language] ) {				// otherwise we use our message
+			message = ath.intl[ath.language][ath.OS];
+		}
+
+		// add the action icon
+		message = '<p>' + message.replace(/%icon(?:\[([^\]]+)\])?/gi, function(matches, group1) {
+			return '<span class="ath-action-icon">' + (!!group1 ? group1 : 'icon') + '</span>';
+		}) + '</p>';
+
+		// create the message container
+		this.viewport = document.createElement('div');
+		this.viewport.className = 'ath-viewport';
+		if ( this.options.modal ) {
+			this.viewport.className += ' ath-modal';
+		}
+		if ( this.options.mandatory ) {
+			this.viewport.className += ' ath-mandatory';
+		}
+		this.viewport.style.position = 'absolute';
+
+		// create the actual message element
+		this.element = document.createElement('div');
+		this.element.className = 'ath-container ath-' + ath.OS + ' ath-' + ath.OS + (parseInt(ath.OSVersion) || '') + ' ath-' + (ath.isTablet ? 'tablet' : 'phone');
+		this.element.style.cssText = '-webkit-transition-property:-webkit-transform,opacity;-webkit-transition-duration:0s;-webkit-transition-timing-function:ease-out;transition-property:transform,opacity;transition-duration:0s;transition-timing-function:ease-out;';
+		this.element.style.webkitTransform = 'translate3d(0,-' + window.innerHeight + 'px,0)';
+		this.element.style.transform = 'translate3d(0,-' + window.innerHeight + 'px,0)';
+
+		// add the application icon
+		if ( this.options.icon && this.applicationIcon ) {
+			this.element.className += ' ath-icon';
+			this.img = document.createElement('img');
+			this.img.className = 'ath-application-icon';
+			this.img.addEventListener('load', this, false);
+			this.img.addEventListener('error', this, false);
+
+			this.img.src = this.applicationIcon.href;
+			this.element.appendChild(this.img);
+		}
+
+		this.element.innerHTML += message;
+
+		// we are not ready to show, place the message out of sight
+		this.viewport.style.left = '-99999em';
+
+		// attach all elements to the DOM
+		this.viewport.appendChild(this.element);
+		this.container.appendChild(this.viewport);
+
+		// if we don't have to wait for an image to load, show the message right away
+		if ( this.img ) {
+			this.doLog("Add to homescreen: not displaying callout because waiting for img to load");
+		} else {
+			this._delayedShow();
+		}
+	},
+
+	_delayedShow: function (e) {
+		setTimeout(this._show.bind(this), this.options.startDelay * 1000 + 500);
+	},
+
+	_show: function () {
+		var that = this;
+
+		// update the viewport size and orientation
+		this.updateViewport();
+
+		// reposition/resize the message on orientation change
+		window.addEventListener('resize', this, false);
+		window.addEventListener('scroll', this, false);
+		window.addEventListener('orientationchange', this, false);
+
+		if ( this.options.modal ) {
+			// lock any other interaction
+			document.addEventListener('touchmove', this, true);
+		}
+
+		// Enable closing after 1 second
+		if ( !this.options.mandatory ) {
+			setTimeout(function () {
+				that.element.addEventListener('click', that, true);
+			}, 1000);
+		}
+
+		// kick the animation
+		setTimeout(function () {
+			that.element.style.webkitTransitionDuration = '1.2s';
+			that.element.style.transitionDuration = '1.2s';
+			that.element.style.webkitTransform = 'translate3d(0,0,0)';
+			that.element.style.transform = 'translate3d(0,0,0)';
+		}, 0);
+
+		// set the destroy timer
+		if ( this.options.lifespan ) {
+			this.removeTimer = setTimeout(this.remove.bind(this), this.options.lifespan * 1000);
+		}
+
+		// fire the custom onShow event
+		if ( this.options.onShow ) {
+			this.options.onShow.call(this);
+		}
+	},
+
+	remove: function () {
+		clearTimeout(this.removeTimer);
+
+		// clear up the event listeners
+		if ( this.img ) {
+			this.img.removeEventListener('load', this, false);
+			this.img.removeEventListener('error', this, false);
+		}
+
+		window.removeEventListener('resize', this, false);
+		window.removeEventListener('scroll', this, false);
+		window.removeEventListener('orientationchange', this, false);
+		document.removeEventListener('touchmove', this, true);
+		this.element.removeEventListener('click', this, true);
+
+		// remove the message element on transition end
+		this.element.addEventListener('transitionend', this, false);
+		this.element.addEventListener('webkitTransitionEnd', this, false);
+		this.element.addEventListener('MSTransitionEnd', this, false);
+
+		// start the fade out animation
+		this.element.style.webkitTransitionDuration = '0.3s';
+		this.element.style.opacity = '0';
+	},
+
+	_removeElements: function () {
+		this.element.removeEventListener('transitionend', this, false);
+		this.element.removeEventListener('webkitTransitionEnd', this, false);
+		this.element.removeEventListener('MSTransitionEnd', this, false);
+
+		// remove the message from the DOM
+		this.container.removeChild(this.viewport);
+
+		this.shown = false;
+
+		// fire the custom onRemove event
+		if ( this.options.onRemove ) {
+			this.options.onRemove.call(this);
+		}
+	},
+
+	updateViewport: function () {
+		if ( !this.shown ) {
+			return;
+		}
+
+		this.viewport.style.width = window.innerWidth + 'px';
+		this.viewport.style.height = window.innerHeight + 'px';
+		this.viewport.style.left = window.scrollX + 'px';
+		this.viewport.style.top = window.scrollY + 'px';
+
+		var clientWidth = document.documentElement.clientWidth;
+
+		this.orientation = clientWidth > document.documentElement.clientHeight ? 'landscape' : 'portrait';
+
+		var screenWidth = ath.OS == 'ios' ? this.orientation == 'portrait' ? screen.width : screen.height : screen.width;
+		this.scale = screen.width > clientWidth ? 1 : screenWidth / window.innerWidth;
+
+		this.element.style.fontSize = this.options.fontSize / this.scale + 'px';
+	},
+
+	resize: function () {
+		clearTimeout(this.resizeTimer);
+		this.resizeTimer = setTimeout(this.updateViewport.bind(this), 100);
+	},
+
+	updateSession: function () {
+		if ( ath.hasLocalStorage === false ) {
+			return;
+		}
+
+        if (localStorage) {
+            localStorage.setItem(this.options.appID, JSON.stringify(this.session));
+        }
+	},
+
+	clearSession: function () {
+		this.session = _defaultSession;
+		this.updateSession();
+	},
+
+	getItem: function(item) {
+		try {
+			if (!localStorage) {
+				throw new Error('localStorage is not defined');
+			}
+
+			return localStorage.getItem(item);
+		} catch(e) {
+			// Preventing exception for some browsers when fetching localStorage key
+			ath.hasLocalStorage = false;
+		}
+	},
+
+	optOut: function () {
+		this.session.optedout = true;
+		this.updateSession();
+	},
+
+	optIn: function () {
+		this.session.optedout = false;
+		this.updateSession();
+	},
+
+	clearDisplayCount: function () {
+		this.session.displayCount = 0;
+		this.updateSession();
+	},
+
+	_preventDefault: function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+	}
+};
+
+// utility
+function _extend (target, obj) {
+	for ( var i in obj ) {
+		target[i] = obj[i];
+	}
+
+	return target;
+}
+
+function _removeToken () {
+	if ( document.location.hash == '#ath' ) {
+		history.replaceState('', window.document.title, document.location.href.split('#')[0]);
+	}
+
+	if ( _reSmartURL.test(document.location.href) ) {
+		history.replaceState('', window.document.title, document.location.href.replace(_reSmartURL, '$1'));
+	}
+
+	if ( _reQueryString.test(document.location.search) ) {
+		history.replaceState('', window.document.title, document.location.href.replace(_reQueryString, '$2'));
+	}
+}
+
+// expose to the world
+window.addToHomescreen = ath;
+
+})(window, document);
+
 /**
  * @license AngularJS v1.5.8
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -14604,6 +15355,12 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
         }
     })
 
+    .filter('trusted', ['$sce', function ($sce) {
+        return function (url) {
+            return $sce.trustAsResourceUrl(url);
+        };
+    }])
+
     .run(['$rootScope', '$location', '$cookies', '$http', '$timeout', '$mdToast', 'DealerPhotos', 'Analytics', '$translate', '$translateLocalStorage',
         function ($rootScope, $location, $cookies, $http, $timeout, $mdToast, DealerPhotos, Analytics, $translate, $translateLocalStorage) {
 
@@ -14812,6 +15569,12 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
                 previousPrice: "PP"
             };
 
+            if ($rootScope.language == 'he') {
+                $rootScope.videoLink = "https://youtube.com/embed/7vLFe9Jmkx0";
+            } else {
+                $rootScope.videoLink = "https://youtube.com/embed/Ka6dsAGUdTo";
+            }
+
             $rootScope.showToast = function (text, delay) {
                 var timer = 3000; // show the toast for 3 seconds
                 if (delay) {
@@ -14852,7 +15615,7 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
                 }
 
                 if (role == roles.dealer) {
-                    restricted = ['/register'];
+                    restricted = ['/register/basic-info'];
                     for (i = 0; i < restricted.length; i++) {
                         if (next.indexOf(restricted[i]) > -1) {
                             $location.path('/');
@@ -14881,10 +15644,15 @@ angular.module('DealersApp')
                 controller: 'ProductsGridController',
                 pageTrack: '/all-products' // angular-google-analytics extension
             })
-            .when('/register', {
-                templateUrl: 'app/components/views/sign-in/register-as-dealer.view.html',
-                controller: 'RegisterAsDealerController',
-                pageTrack: '/register-as-dealer'  // angular-google-analytics extension
+            .when('/register/basic-info', {
+                templateUrl: 'app/components/views/sign-in/register-basic-info.view.html',
+                controller: 'RegisterBasicInfoController',
+                pageTrack: '/register-basic-info'  // angular-google-analytics extension
+            })
+            .when('/register/bank-account', {
+                templateUrl: 'app/components/views/sign-in/register-bank-account.view.html',
+                controller: 'RegisterBankAccountController',
+                pageTrack: '/register-bank-account'  // angular-google-analytics extension
             })
             .when('/search/products/:query', {
                 templateUrl: 'app/components/views/products/products-page.view.html',
@@ -14991,8 +15759,8 @@ angular.module('DealersApp')
 /**
  * The controller that manages the second step of the Add Product Procedure.
  */
-    .controller('AddProductFinishController', ['$scope', '$rootScope', '$location', '$timeout', '$mdDialog', 'AddProduct',
-        function ($scope, $rootScope, $location, $timeout, $mdDialog, AddProduct) {
+    .controller('AddProductFinishController', ['$scope', '$rootScope', '$location', '$timeout', '$mdDialog', 'AddProduct', 'Dealer',
+        function ($scope, $rootScope, $location, $timeout, $mdDialog, AddProduct, Dealer) {
 
             var PRODUCT_PAGE_BASE_URL = $rootScope.baseUrl + '/products/';
 
@@ -15017,11 +15785,24 @@ angular.module('DealersApp')
                 }, 2000);
                 $timeout(function () {
                     $scope.didShare = true;
+                    Intercom('trackEvent', 'facebook_share', {
+                        product_id: $scope.product.id,
+                        product_title: $scope.product.title
+                    });
                 }, 2500);
             };
 
             $scope.done = function () {
                 if ($scope.product) {
+                    if (!$rootScope.dealer.bank_accounts) {
+                        Dealer.existingDealer = true;
+                        $location.path('register/bank-account');
+                        return;
+                    } else if (!($rootScope.dealer.bank_accounts.length > 0)) {
+                        Dealer.existingDealer = true;
+                        $location.path('register/bank-account');
+                        return;
+                    }
                     if ($scope.product.id) {
                         $location.path("/products/" + $scope.product.id);
                         return;
@@ -16747,8 +17528,8 @@ angular.module('DealersApp')
  */
 angular.module('DealersApp')
 
-    .controller('EditProfileController', ['$scope', '$rootScope', '$location', '$mdDialog', '$mdMedia', '$mdToast', '$routeParams', '$timeout', 'Dealer', 'Photos', 'DealerPhotos',
-        function ($scope, $rootScope, $location, $mdDialog, $mdMedia, $mdToast, $routeParams, $timeout, Dealer, Photos, DealerPhotos) {
+    .controller('EditProfileController', ['$scope', '$rootScope', '$location', '$mdDialog', '$mdMedia', '$mdToast', '$routeParams', '$timeout', 'Dealer', 'Photos', 'DealerPhotos', 'Dialogs',
+        function ($scope, $rootScope, $location, $mdDialog, $mdMedia, $mdToast, $routeParams, $timeout, Dealer, Photos, DealerPhotos, Dialogs) {
 
             var LOADING_STATUS = 'loading';
             var DOWNLOADED_STATUS = 'downloaded';
@@ -16812,7 +17593,12 @@ angular.module('DealersApp')
              */
             function setProfileDetails() {
                 $scope.status = DOWNLOADED_STATUS;
+
                 $scope.bank_account = $scope.profile.bank_accounts[$scope.profile.bank_accounts.length - 1];
+                if (!$scope.bank_account) {
+                    $scope.bank_account = {};
+                }
+
                 determineUserMode();
                 setProfilePic();
                 if ($scope.userMode == VIEWER_MODE) {
@@ -17095,7 +17881,7 @@ angular.module('DealersApp')
                     if (!isDealerBasicInfoValid()) {
                         return;
                     }
-                    if (!isBankInfoValid()) {
+                    if (!$.isEmptyObject($scope.bank_account) && !isBankInfoValid()) {
                         return;
                     }
                 }
@@ -17334,11 +18120,14 @@ angular.module('DealersApp')
             var mode;
             var url = $rootScope.baseUrl;
             var routeParams;
-            var noProductsMessage;
 
             $scope.products = [];
             $scope.message = "";
             $scope.status = LOADING_STATUS;
+
+            if (!$scope.noProductsMessage) {
+                $scope.noProductsMessage = "There are no products.";
+            }
 
             $scope.update = {};
             $scope.update.loadingMore = false;
@@ -17360,7 +18149,6 @@ angular.module('DealersApp')
                         if (dealerID == routeParams) {
                             if (tempData) {
                                 mode = "activeSession";
-                                noProductsMessage = "There are no products.";
                                 $scope.status = DOWNLOADED_STATUS;
                                 updateGrid(tempData);
                                 return;
@@ -17369,14 +18157,13 @@ angular.module('DealersApp')
                     }
                     mode = "custom";
                     url = $scope.source;
-                    noProductsMessage = Translations.productsGrid.noProducts;
 
                 } else if ($routeParams.query) {
                     // This is a search session, should get the products according to the search term.
                     mode = "search";
                     routeParams = $routeParams.query;
                     url += '/dealsearch/?search=' + routeParams;
-                    noProductsMessage = Translations.productsGrid.didntFind + "'" + routeParams + "'.";
+                    $scope.noProductsMessage = Translations.productsGrid.didntFind + "'" + routeParams + "'.";
                 } else if ($routeParams.category) {
                     // This is a search session, should get the products according to the search term.
                     mode = "category";
@@ -17387,13 +18174,13 @@ angular.module('DealersApp')
                     } else {
                         url += '/category_deals/?category=' + Product.keyForCategory(routeParams);
                     }
-                    noProductsMessage = Translations.productsGrid.currentlyNoProducts + routeParams + "...";
+                    $scope.noProductsMessage = Translations.productsGrid.currentlyNoProducts + routeParams + "...";
                     $scope.title = Translations.translateCategory(routeParams);
                 } else {
                     // This is a My Feed session, should get the products from the my-feed endpoint.
                     mode = "myFeed";
                     url += '/my_feeds/';
-                    noProductsMessage = Translations.productsGrid.noProductsInterests;
+                    $scope.noProductsMessage = Translations.productsGrid.noProductsInterests;
                 }
 
                 $scope.getProducts();
@@ -17445,7 +18232,7 @@ angular.module('DealersApp')
                 if (products.length > 0) {
                     $scope.products = ProductsGrid.addProductsToArray($scope.products, products);
                 } else {
-                    $scope.message = noProductsMessage;
+                    $scope.message = $scope.noProductsMessage;
                 }
             }
 
@@ -17469,8 +18256,8 @@ angular.module('DealersApp')
             }
         }]);
 angular.module('DealersApp')
-    .controller('ProfileController', ['$scope', '$rootScope', '$routeParams', '$location', 'Product', 'Dealer', 'DealerPhotos',
-        function ($scope, $rootScope, $routeParams, $location, Product, Dealer, DealerPhotos) {
+    .controller('ProfileController', ['$scope', '$rootScope', '$routeParams', '$location', 'Product', 'Dealer', 'DealerPhotos', 'Translations',
+        function ($scope, $rootScope, $routeParams, $location, Product, Dealer, DealerPhotos, Translations) {
             /*
              * The controller that manages the dealers' Profile view.
              */
@@ -17511,6 +18298,7 @@ angular.module('DealersApp')
             // For the products-grid directive
             $scope.source = $rootScope.baseUrl + "/uploadeddeals/" + dealerID + "/";
             $scope.page = "profile";
+            $scope.noProductsMessage = Translations.profile.didntUploadProducts;
             $scope.products = [];
             $scope.settingsToggle = settingsToggle;
             $scope.logOut = logOut;
@@ -17734,6 +18522,10 @@ angular.module('DealersApp')
                 $scope.rankIcon = iconUrl;
                 $scope.rankClass = iconClass;
             }
+
+            $rootScope.$on('$translateChangeSuccess', function () {
+                $scope.noProductsMessage = Translations.profile.didntUploadProducts
+            });
         }]);
 /**
  * Created by gullumbroso on 09/07/2016.
@@ -17976,7 +18768,7 @@ angular.module('DealersApp')
                     if (args.success) {
                         // Finished uploading the dealer pic, start uploading the bank account, and then the dealer object.
                         $rootScope.userProfilePic = $scope.croppedPhotoURL;
-                        Dealer.registerDealer($scope.bank_account, RAD_SESSION);
+                        Dealer.registerBasicInfo($scope.bank_account, RAD_SESSION);
                     } else {
                         hideLoadingDialog(event);
                         console.log("Couldn't upload the dealer pic. Aborting upload process.");
@@ -18167,6 +18959,340 @@ angular.module('DealersApp')
             });
         }]);
 /**
+ * Created by gullumbroso on 12/11/2016.
+ */
+
+angular.module('DealersApp')
+/**
+ * The controller that is responsible for dialogs's behaviour.
+ * @param $scope - the isolated scope of the controller.
+ * @param $mdDialog - the mdDialog service of the Material Angular library.
+ */
+    .controller('RegisterBankAccountController', ['$scope', '$rootScope', '$location', '$mdDialog', '$mdMedia', 'Dealer', 'DealerPhotos', 'Photos', 'Dialogs', 'Translations',
+        function ($scope, $rootScope, $location, $mdDialog, $mdMedia, Dealer, DealerPhotos, Photos, Dialogs, Translations) {
+
+            var RBA_SESSION = "register-bank-account-session";
+            var REGISTER_BANK_ACCOUNT_BROADCASTING_PREFIX = 'register-bank-account-for-';
+
+            $scope.registrationBankAccountDone = false;
+            $scope.dealer = $rootScope.dealer;
+            $scope.bank_account = {};
+
+            setWatchersAndListeners();
+
+            /**
+             * Validates the Bank Info fields.
+             * @param event - the event that triggered the validation.
+             * @returns {boolean} - true if valid, else false.
+             */
+            function isBankInfoValid(event) {
+                if (!$scope.bank_account.account_number) {
+                    Dialogs.showAlertDialog(Translations.dealerRegistration.blankAccountNumberTitle, Translations.dealerRegistration.requiredField, event);
+                    return false;
+                } else if (!$scope.bank_account.branch_number) {
+                    Dialogs.showAlertDialog(Translations.dealerRegistration.blankBranchNumberTitle, Translations.dealerRegistration.requiredField, event);
+                    return false;
+                } else if (!$scope.bank_account.bank) {
+                    Dialogs.showAlertDialog(Translations.dealerRegistration.blankBankTitle, Translations.dealerRegistration.requiredField, event);
+                    return false;
+                } else if (!$scope.bank_account.account_holder) {
+                    Dialogs.showAlertDialog(Translations.dealerRegistration.blankAccountHolderTitle, Translations.dealerRegistration.requiredField, event);
+                    return false;
+                }
+                return true;
+            }
+
+            /**
+             * Sets a couple of watchers and broadcasts listeners that are relevant for this controller.
+             */
+            function setWatchersAndListeners() {
+
+                /**
+                 * Listens to the Dealer service's broadcasts when the dealer's info has finished to upload.
+                 */
+                $scope.$on(REGISTER_BANK_ACCOUNT_BROADCASTING_PREFIX + RBA_SESSION, function (event, args) {
+                    if (args.success) {
+                        // Registered
+                        console.log("Dealer is registered with bank account info successfully!");
+                        $rootScope.dealer.bank_accounts = [args.message];
+                        Dialogs.hideDialog();
+                        enter();
+                    } else {
+                        Dialogs.hideDialog(event);
+                        if (args.message.data) {
+                            if (args.message.data.account_number[0]) {
+                                Dialogs.showAlertDialog(
+                                    Translations.dealerRegistration.accountNumberDuplicateTitle,
+                                    Translations.dealerRegistration.accountNumberDuplicateContent,
+                                    event);
+                            } else {
+                                Dialogs.showAlertDialog(
+                                    Translations.dealerRegistration.generalProblemTitle,
+                                    Translations.dealerRegistration.generalProblemContent,
+                                    event);
+                            }
+                        } else {
+                            Dialogs.showAlertDialog(
+                                Translations.dealerRegistration.generalProblemTitle,
+                                Translations.dealerRegistration.generalProblemContent,
+                                event);
+                        }
+                    }
+                });
+
+                /**
+                 * Watching for changes in the media settings (width of browser window).
+                 */
+                $scope.$watch(function () {
+                    return $mdMedia('xs');
+                });
+            }
+
+            /**
+             * Starts the registration process when the user finished filling the form.
+             * @param registerBankAccountForm - the form.
+             */
+            $scope.register = function (registerBankAccountForm) {
+                if (!isBankInfoValid()) {
+                    return;
+                }
+                $scope.bank_account.dealer = $scope.dealer.id;
+                Dialogs.showLoadingDialog(Translations.dealerRegistration.uploading);
+                Dealer.registerBankAccount($scope.bank_account, RBA_SESSION);
+            };
+
+            $scope.skip = function (event) {
+                $mdDialog.show(
+                    Dialogs.confirmDialog(
+                        Translations.dealerRegistration.skipConfirmTitle,
+                        Translations.dealerRegistration.skipConfirmContent,
+                        Translations.dealerRegistration.skipConfirmButton,
+                        event)
+                )
+                    .then(function () {
+                        enter();
+                    });
+            };
+
+            /**
+             * Final operations before enetring the system.
+             */
+            function enter() {
+                window.onbeforeunload = null;
+                $scope.registrationBankAccountDone = true;
+                if (Dealer.isExistingDealer()) {
+                    $location.path("/home");
+                } else {
+                    $location.path("/done-registration");
+                }
+            }
+
+            window.onbeforeunload = function () {
+                return Translations.dealerRegistration.contentWillBeLost;
+            };
+
+            /**
+             * Asks the user to confirm he wants to leave the Register As a Dealer process, explaining that it will cause the lost
+             * of the data he entered.
+             * @type {*|(function())}
+             */
+            $scope.$on('$locationChangeStart', function (event, next) {
+                if (!$scope.registrationBankAccountDone) {
+                    var answer = confirm(Translations.dealerRegistration.contentWillBeLostFullMessage);
+                    if (!answer) {
+                        event.preventDefault();
+                    }
+                }
+            });
+
+            $scope.$on('$destroy', function () {
+                window.onbeforeunload = null;
+            });
+        }]);
+/**
+ * Created by gullumbroso on 12/11/2016.
+ */
+
+angular.module('DealersApp')
+/**
+ * The controller that is responsible for dialogs's behaviour.
+ * @param $scope - the isolated scope of the controller.
+ * @param $mdDialog - the mdDialog service of the Material Angular library.
+ */
+    .controller('RegisterBasicInfoController', ['$scope', '$rootScope', '$location', '$mdDialog', '$mdMedia', 'Dealer', 'DealerPhotos', 'Photos', 'Dialogs', 'Translations',
+        function ($scope, $rootScope, $location, $mdDialog, $mdMedia, Dealer, DealerPhotos, Photos, Dialogs, Translations) {
+
+            var RBI_SESSION = "register-basic-info-session";
+            var ADD_PROFILE_PIC_BUTTON = "/assets/images/icons/@2x/Web_Icons_add_profile_pic_button.png";
+            var PROFILE_PIC_BROADCASTING_PREFIX = 'dealer-pic-uploaded-for-';
+            var REGISTER_BROADCASTING_PREFIX = 'register-basic-info-for-';
+
+            $scope.photo = "";
+            $scope.photoURL = "";
+            $scope.croppedPhotoURL = ADD_PROFILE_PIC_BUTTON;
+            $scope.registrationBasicInfoDone = false;
+            $scope.dealer = $rootScope.dealer;
+
+            setWatchersAndListeners();
+
+            /**
+             * Validates the General Info fields.
+             * @param event - the event that triggered the validation.
+             * @returns {boolean} - true if valid, else false.
+             */
+            function isGeneralInfoValid(event) {
+                if ($scope.croppedPhotoURL == ADD_PROFILE_PIC_BUTTON) {
+                    Dialogs.showAlertDialog(Translations.dealerRegistration.missingPhotoTitle, Translations.dealerRegistration.missingPhotoContent, event);
+                    return false;
+                } else if (!$scope.dealer.about) {
+                    Dialogs.showAlertDialog(Translations.dealerRegistration.blankAboutTitle, Translations.dealerRegistration.requiredField, event);
+                    return false;
+                } else if (!$scope.dealer.location) {
+                    Dialogs.showAlertDialog(Translations.dealerRegistration.blankLocationTitle, Translations.dealerRegistration.requiredField, event);
+                    return false;
+                }
+                return true;
+            }
+
+            /**
+             * Sets a couple of watchers and broadcasts listeners that are relevant for this controller.
+             */
+            function setWatchersAndListeners() {
+
+                /**
+                 * Listens to the DealerPhotos service's broadcasts when the dealer pic of the user has finished to upload.
+                 */
+                $scope.$on(PROFILE_PIC_BROADCASTING_PREFIX + RBI_SESSION, function (event, args) {
+                    if (args.success) {
+                        // Finished uploading the dealer pic, start uploading the bank account, and then the dealer object.
+                        $rootScope.userProfilePic = $scope.croppedPhotoURL;
+                        Dealer.registerBasicInfo(RBI_SESSION);
+                    } else {
+                        Dialogs.hideDialog(event);
+                        console.log("Couldn't upload the dealer pic. Aborting upload process.");
+                    }
+                });
+
+                /**
+                 * Listens to the Dealer service's broadcasts when the dealer's info has finished to upload.
+                 */
+                $scope.$on(REGISTER_BROADCASTING_PREFIX + RBI_SESSION, function (event, args) {
+                    if (args.success) {
+                        // Registered
+                        console.log("Dealer is registered with basic info successfully!");
+                        window.onbeforeunload = null;
+                        $scope.registrationBasicInfoDone = true;
+                        Dialogs.hideDialog(event);
+                        Dealer.existingDealer = false;
+                        $location.path("/register/bank-account");
+                    } else {
+                        Dialogs.hideDialog(event);
+                        Dialogs.showAlertDialog(
+                            Translations.dealerRegistration.generalProblemTitle,
+                            Translations.dealerRegistration.generalProblemContent,
+                            event);
+                    }
+                });
+
+                /**
+                 * Watching for changes in the $scope.photoURL object so to know when to present the crop dialog for the dealer pic.
+                 */
+                $scope.$watch('photoURL', function () {
+                    if ($scope.photoURL) {
+                        if ($scope.photoURL.length > 0) {
+                            $scope.showCropDialog();
+                        }
+                    }
+                });
+
+                /**
+                 * Watching for changes in the $scope.croppedPhotoURL object so the title of the button will change accordingly.
+                 */
+                $scope.$watch('croppedPhotoURL', function () {
+                    if ($scope.croppedPhotoURL == ADD_PROFILE_PIC_BUTTON) {
+                        $scope.editProfilePic = Translations.dealerRegistration.addPhoto;
+                    } else {
+                        $scope.editProfilePic = Translations.dealerRegistration.changePhoto;
+                    }
+                });
+
+                /**
+                 * Watching for changes in the media settings (width of browser window).
+                 */
+                $scope.$watch(function () {
+                    return $mdMedia('xs');
+                });
+            }
+
+            /**
+             * Presents the crop dialog when the user wishes to upload a new dealer pic.
+             */
+            $scope.showCropDialog = function () {
+                var useFullScreen = ($mdMedia('xs'));
+                $mdDialog.show({
+                    controller: "CropPhotoDialog",
+                    templateUrl: 'app/components/views/crop-photo-dialog.view.html',
+                    parent: angular.element(document.body),
+                    fullscreen: useFullScreen,
+                    locals: {rawPhoto: $scope.photoURL}
+                })
+                    .then(function (cropped) {
+                        $scope.croppedPhotoURL = cropped;
+                        clearPhotos();
+                    }, function () {
+                        clearPhotos();
+                    });
+            };
+
+            /**
+             * Clears the photo data from the scope's variables.
+             */
+            function clearPhotos() {
+                $scope.photo = "";
+                $scope.photoURL = "";
+            }
+
+            /**
+             * Starts the registration process when the user finished filling the form.
+             * @param registerBasicInfoForm - the form.
+             */
+            $scope.register = function (registerBasicInfoForm) {
+                if (!isGeneralInfoValid()) {
+                    return;
+                }
+
+                Dialogs.showLoadingDialog(Translations.dealerRegistration.uploading);
+                var croppedPhoto = Photos.dataURItoBlob($scope.croppedPhotoURL);
+                DealerPhotos.uploadPhoto(croppedPhoto, RBI_SESSION);
+            };
+
+            window.onbeforeunload = function () {
+                return Translations.dealerRegistration.contentWillBeLost;
+            };
+
+            /**
+             * Asks the user to confirm he wants to leave the Register As a Dealer process, explaining that it will cause the lost
+             * of the data he entered.
+             * @type {*|(function())}
+             */
+            $scope.$on('$locationChangeStart', function (event, next) {
+                if (!$scope.registrationBasicInfoDone) {
+                    var answer = confirm(Translations.dealerRegistration.contentWillBeLostFullMessage);
+                    if (!answer) {
+                        event.preventDefault();
+                    }
+                }
+            });
+
+            $rootScope.$on('$translateChangeSuccess', function () {
+                $scope.editProfilePic = Translations.dealerRegistration.addPhoto;
+            });
+
+            $scope.$on('$destroy', function () {
+                window.onbeforeunload = null;
+            });
+        }]);
+/**
  * Created by gullumbroso on 22/04/2016.
  */
 
@@ -18176,14 +19302,22 @@ angular.module('DealersApp')
  * @param $scope - the isolated scope of the controller.
  * @param $mdDialog - the mdDialog service of the Material Angular library.
  */
-    .controller('SignInDialogController', ['$scope', '$rootScope', '$mdDialog', 'Dealer', 'tab', 'isViewer', 'Translations',
-        function ($scope, $rootScope, $mdDialog, Dealer, tab, isViewer, Translations) {
+    .controller('SignInDialogController', ['$scope', '$rootScope', '$mdDialog', 'Dealer', 'tab', 'isViewer', 'email', 'Translations',
+        function ($scope, $rootScope, $mdDialog, Dealer, tab, isViewer, email, Translations) {
 
             var SIGN_UP_TAB_INDEX = 0;
             var LOG_IN_TAB_INDEX = 1;
 
+            var userEmail;
+            if (email) {
+                userEmail = email;
+                $scope.selectedOperation = 0;
+            } else {
+                userEmail = "";
+            }
+
             $scope.selectedTab = tab; // 0 - Sign Up; 1 - Log In;
-            $scope.selectedOperation = tab;
+            if (tab) $scope.selectedOperation = tab;
             $scope.datepicker = {
                 opened: false,
                 options: {
@@ -18196,7 +19330,7 @@ angular.module('DealersApp')
             $scope.logIn = {};
             $scope.dealer = {
                 full_name: "",
-                email: "",
+                email: userEmail,
                 user: {
                     username: "",
                     password: ""
@@ -18210,7 +19344,12 @@ angular.module('DealersApp')
             hideError();
             setBroadcastListeners();
 
-            $scope.signUp = function (form) {
+            /**
+             * Signs the user to the system.
+             * @param form - the sign up form.
+             * @param shouldSubscribe - true if should send the email to the /subscribers/ end point, else false.
+             */
+            $scope.signUp = function (form, shouldSubscribe) {
                 if (!form.$valid) {
                     showError(Translations.signIn.invalidFields);
                     return;
@@ -18229,17 +19368,16 @@ angular.module('DealersApp')
                     dealer.gender = "Unspecified";
                 }
 
-                if ($rootScope.language == "he") {
-                    dealer.language = "Hebrew";
-                } else if ($rootScope.language == "en") {
-                    dealer.language = "English";
-                }
+                dealer.language = Dealer.getServerLang($rootScope.language);
                 dealer.country = $rootScope.country;
 
                 dealer.bank_accounts = [];
                 dealer.credit_cards = [];
                 dealer.register_date = new Date();
                 Dealer.create(dealer);
+                if (shouldSubscribe) {
+                    Dealer.subscribe(dealer.email);
+                }
             };
 
             $scope.logIn = function (form) {
@@ -18263,8 +19401,11 @@ angular.module('DealersApp')
             };
 
             $scope.submit = function (event, signUpForm, logInForm) {
-                if ($scope.selectedTab == SIGN_UP_TAB_INDEX) {
-                    $scope.signUp(signUpForm);
+                if (email) {
+                    // The current session is the sign up as viewer form.
+                    $scope.signUp(signUpForm, false);
+                } else if ($scope.selectedTab == SIGN_UP_TAB_INDEX) {
+                    $scope.signUp(signUpForm, true);
                 } else {
                     $scope.logIn(logInForm);
                 }
@@ -18313,8 +19454,8 @@ angular.module('DealersApp')
                         $scope.selectedOperation = 0;
                     } else {
                         var message = args.message.data;
-                        if (message.detail) {
-                            showError(message.detail);
+                        if (message) {
+                            showError(message);
                         } else if (message.user[0].username[0]) {
                             showError(message.user[0].username[0]);
                         } else {
@@ -18824,11 +19965,18 @@ angular.module('DealersApp')
                 })
             }]);
 angular.module('DealersApp')
-    .directive('intro', function () {
+    .directive('intro', function ($mdMedia) {
         return {
             restrict: 'E',
             templateUrl: 'app/components/views/about/intro-section.view.html',
             link: function (scope, element) {
+
+                scope.$watch(function () {
+                    return $mdMedia('gt-sm');
+                }, function (isSmallSize) {
+                    scope.smallSize = !isSmallSize;
+                });
+
                 var navbar = $("nav.navbar");
                 var navShadeClass = "navbar-shade";
                 if (scope.isHomePage && scope.role == scope.roles.guest) {
@@ -19275,10 +20423,11 @@ angular.module('DealersApp')
                 restrict: 'E',
                 replace: true,
                 scope: {
-                    source: '=',
-                    page: '=',
                     title: '=',
-                    description: '='
+                    description: '=?',
+                    source: '=?',
+                    page: '=?',
+                    noProductsMessage: '=?'
                 },
                 templateUrl: 'app/components/views/products/products-grid.view.html',
                 controller: 'ProductsGridController'
@@ -19748,13 +20897,105 @@ angular.module('DealersApp')
             }
         }
     });
+var REGISTER_PATH = "/register/basic-info";
+
 angular.module('DealersApp')
-    .directive('dl-sign-in-dialog', function () {
+    .directive('getStarted', function () {
         return {
             restrict: 'E',
-            templateUrl: 'app/components/views/sign-in/sign-in-dialog.view.html',
-            controller: 'SignInController'
+            scope: {
+                style: '='
+            },
+            templateUrl: 'app/components/views/sign-in/get-started.view.html',
+            controller: function ($scope, $location, Dealer, Dialogs) {
+                $scope.subscribe = function (event) {
+                    Dealer.subscribe($scope.email);
+                    Dialogs.showSignUpViewerDialog(event, $scope.email)
+                        .then(function (finished) {
+                            // Finished the sign up process
+                            if (finished == 0) {
+                                $location.path(REGISTER_PATH);
+                            }
+                        });
+                };
+                $scope.$on('subscribed', function (event, args) {
+                    var success = args.success;
+                    var subscriber = args.message;
+                    if (success) {
+                        console.log("Listed in subscribers successfully.");
+                    } else {
+                        console.log("Email already listed in subscribers.");
+                    }
+                });
+            },
+            link: function (scope, element) {
+                if (scope.style == 'white') {
+                    var button = $(element).find('button.md-button.get-started');
+                    button.addClass('btn-white');
+                }
+            }
         };
+    })
+    /**
+     * Register As Dealer button.
+     */
+    .directive('registerAsDealer', ['$rootScope', '$location', '$mdMedia', '$mdDialog',
+        function ($rootScope, $location, $mdMedia, $mdDialog) {
+            return {
+                link: function (scope, element) {
+                    scope.customFullscreen = $mdMedia('xs');
+
+                    /**
+                     * Presents the sign in dialog (sign up and log in).
+                     * @param ev - The event that triggered the function.
+                     * @param tabIndex - the index of the selected option (sign up is 0, log in is 1).
+                     */
+                    scope.showSignInDialog = function (ev, tabIndex) {
+                        $mdDialog.show({
+                            controller: 'SignInDialogController',
+                            templateUrl: 'app/components/views/sign-in/sign-in-dealer-dialog.view.html',
+                            parent: angular.element(document.body),
+                            targetEvent: ev,
+                            fullscreen: scope.customFullscreen,
+                            locals: {tab: tabIndex, isViewer: false, email: null}
+                        })
+                            .then(function (finished) {
+                                // Finished the sign in process
+                                if (finished == 0) {
+                                    $location.path(REGISTER_PATH);
+                                } else if (finished == 1) {
+                                    $location.path("/home");
+                                } else {
+                                    console.error("Received something wrong to the callback of showSignInDialog");
+                                }
+                            });
+                    };
+
+                    /**
+                     * Takes the user to the register-as-dealer page. If he is not signed in, takes him through the sign in process first.
+                     * @param ev - the event that triggered the function.
+                     */
+                    $(element).on("click", function (ev) {
+                        if ($rootScope.dealer) {
+                            $location.path(REGISTER_PATH);
+                            scope.$apply();
+                        } else {
+                            if ($(element).is("#nav-login")) {
+                                scope.showSignInDialog(ev, 1, false);
+                            } else {
+                                scope.showSignInDialog(ev, 0, true);
+                            }
+                        }
+                    });
+                }
+            };
+        }])
+    .directive('signUpViewerForm', function () {
+        return {
+            restrict: 'E',
+            replace: false,
+            templateUrl: 'app/components/views/sign-in/sign-up-viewer-form.view.html'
+        }
     });
 angular.module('DealersApp')
 
@@ -19889,62 +21130,6 @@ angular.module('DealersApp')
             }
         };
     }])
-
-    /**
-     * Register As Dealer button.
-     */
-    .directive('registerAsDealer', ['$rootScope', '$location', '$mdMedia', '$mdDialog',
-        function ($rootScope, $location, $mdMedia, $mdDialog) {
-            return {
-                link: function (scope, element) {
-                    scope.customFullscreen = $mdMedia('xs');
-
-                    /**
-                     * Presents the sign in dialog (sign up and log in).
-                     * @param ev - The event that triggered the function.
-                     * @param tabIndex - the index of the selected option (sign up is 0, log in is 1).
-                     */
-                    scope.showSignInDialog = function (ev, tabIndex) {
-                        $mdDialog.show({
-                            controller: 'SignInDialogController',
-                            templateUrl: 'app/components/views/sign-in/sign-in-dealer-dialog.view.html',
-                            parent: angular.element(document.body),
-                            targetEvent: ev,
-
-                            fullscreen: scope.customFullscreen,
-                            locals: {tab: tabIndex, isViewer: false}
-                        })
-                            .then(function (finished) {
-                                // Finished the sign in process
-                                if (finished == 0) {
-                                    $location.path("/register");
-                                } else if (finished == 1) {
-                                    $location.path("/home");
-                                } else {
-                                    console.error("Received something wrong to the callback of showSignInDialog");
-                                }
-                            });
-                    };
-
-                    /**
-                     * Takes the user to the register-as-dealer page. If he is not signed in, takes him through the sign in process first.
-                     * @param ev - the event that triggered the function.
-                     */
-                    $(element).on("click", function (ev) {
-                        if ($rootScope.dealer) {
-                            $location.path("/register");
-                            scope.$apply();
-                        } else {
-                            if ($(element).is("#nav-login")) {
-                                scope.showSignInDialog(ev, 1, false);
-                            } else {
-                                scope.showSignInDialog(ev, 0, true);
-                            }
-                        }
-                    });
-                }
-            };
-        }])
     .directive('loadingSpinner', function () {
         return {
             restrict: 'E',
@@ -20506,9 +21691,11 @@ angular.module('DealersApp')
 
         var DEFAULT_UN = "ubuntu";
         var DEFAULT_PW = "090909deal";
-        var REGISTER_BROADCASTING_PREFIX = 'register-as-dealer-for-';
+        var REGISTER_BASIC_INFO_BROADCASTING_PREFIX = 'register-basic-info-for-';
+        var REGISTER_BANK_ACCOUNT_BROADCASTING_PREFIX = 'register-bank-account-for-';
         var UPDATE_BROADCASTING_PREFIX = 'update-as-dealer-for-';
         var DEALERS_BASE_URL = $rootScope.baseUrl + '/dealers/';
+        var SUBSCRIBERS_BASE_URL = $rootScope.baseUrl + '/subscribers/';
 
         this.saveCurrent = saveCurrent;
         this.setCredentials = setCredentials;
@@ -20516,20 +21703,44 @@ angular.module('DealersApp')
 
         var ctrl = this;
         var service = {};
+        service.existingDealer = false;
 
+        service.subscribe = subscribe;
         service.create = create;
+        service.registerBasicInfo = registerBasicInfo;
+        service.registerBankAccount = registerBankAccount;
+        service.isExistingDealer = isExistingDealer;
         service.logIn = logIn;
         service.logOut = logOut;
         service.getDealer = getDealer;
         service.getShortDealer = getShortDealer;
-        service.registerDealer = registerDealer;
         service.updateDealer = updateDealer;
         service.updateViewer = updateViewer;
         service.setIntercom = setIntercom;
         service.updateCurrentUser = updateCurrentUser;
+        service.getServerLang = getServerLang;
         service.updateShippingAddress = updateShippingAddress;
 
         return service;
+
+        function subscribe(email) {
+            var subscriber = {
+                email: email,
+                language: getServerLang($rootScope.language),
+                register_date: new Date()
+            };
+            var credentials = Authentication.getCredentials(DEFAULT_UN, DEFAULT_PW);
+            $http.post(SUBSCRIBERS_BASE_URL, subscriber, {headers: {'Authorization': credentials}})
+                .then(function (response) {
+                        // success
+                        subscriber = response.data;
+                        ctrl.broadcastResult('subscribed', true, subscriber);
+                    },
+                    function (httpError) {
+                        // error
+                        ctrl.broadcastResult('subscribed', false, httpError);
+                    });
+        }
 
         /**
          * Creates a new dealer object in the server when a new user signs up (as a viewer).
@@ -20550,6 +21761,54 @@ angular.module('DealersApp')
                         // error
                         ctrl.broadcastResult('sign-up', false, httpError);
                     });
+        }
+
+        /**
+         * Saves the basic details of the user as a part of the register-as-dealer process.
+         * @param sender - the controller that asked for the service.
+         */
+        function registerBasicInfo(sender) {
+            $rootScope.dealer.role = $rootScope.roles.dealer;
+            var dealer = cleanDealerObject($rootScope.dealer);
+            $http.patch(DEALERS_BASE_URL + dealer.id + '/', dealer, {params: {mode: "new"}})
+                .then(function (response) {
+                        // success
+                        var dealer = response.data;
+                        ctrl.saveCurrent(dealer);
+                        Intercom('trackEvent', 'registered_as_dealer', {});
+                        broadcastResult(REGISTER_BASIC_INFO_BROADCASTING_PREFIX + sender, true, dealer);
+                    },
+                    function (httpError) {
+                        // error
+                        broadcastResult(REGISTER_BASIC_INFO_BROADCASTING_PREFIX + sender, false, httpError);
+                    });
+        }
+
+        /**
+         * Saves the bank account information of the user as a part of the register-as-dealer process.
+         * @param bankAccount - the new dealer's bank account object.
+         * @param sender - the controller that asked for the service.
+         */
+        function registerBankAccount(bankAccount, sender) {
+            $http.post($rootScope.baseUrl + '/bank_accounts/', bankAccount)
+                .then(function (response) {
+                        // success
+                        var bankAccount = response.data;
+                        Intercom('trackEvent', 'inserted_bank_account', {});
+                        broadcastResult(REGISTER_BANK_ACCOUNT_BROADCASTING_PREFIX + sender, true, bankAccount);
+                    },
+                    function (httpError) {
+                        // error
+                        broadcastResult(REGISTER_BANK_ACCOUNT_BROADCASTING_PREFIX + sender, false, httpError);
+                    });
+        }
+
+        /**
+         * @returns {boolean} True if the user reached the bank account form for the first time. The purpose of this helper function
+         * is to avoid the situation of the user being passed to the "congratulations" screen after being there before already.
+         */
+        function isExistingDealer() {
+            return service.existingDealer;
         }
 
         /**
@@ -20660,63 +21919,50 @@ angular.module('DealersApp')
         }
 
         /**
-         * Register the received dealer.
-         * @param bankAccount - the new dealer's bank account object.
-         * @param sender - the controller that asked for the service.
-         */
-        function registerDealer(bankAccount, sender) {
-            $http.post($rootScope.baseUrl + '/bank_accounts/', bankAccount)
-                .then(function (response) {
-                        // success
-                        $rootScope.dealer.role = $rootScope.roles.dealer;
-                        var dealer = cleanDealerObject($rootScope.dealer);
-                        $http.patch(DEALERS_BASE_URL + dealer.id + '/', dealer, {params: {mode: "new"}})
-                            .then(function (response) {
-                                    // success
-                                    var dealer = response.data;
-                                    ctrl.saveCurrent(dealer);
-                                    broadcastResult(REGISTER_BROADCASTING_PREFIX + sender, true, dealer);
-                                },
-                                function (httpError) {
-                                    // error
-                                    broadcastResult(REGISTER_BROADCASTING_PREFIX + sender, false, httpError);
-                                });
-                    },
-                    function (httpError) {
-                        // error
-                        broadcastResult(REGISTER_BROADCASTING_PREFIX + sender, false, httpError);
-                    });
-        }
-
-        /**
          * Updates the received dealer's information (via Edit Profile).
          * @param bankAccount - the dealer's bank account object.
          * @param dealer - the updated dealer object.
          * @param sender - the controller that asked for the service.
          */
         function updateDealer(bankAccount, dealer, sender) {
-            $http.patch($rootScope.baseUrl + '/bank_accounts/' + bankAccount.id + '/', bankAccount)
-                .then(function (response) {
-                        // success
-                        console.log("Updated the bank account information successfully. Now update the the dealer's information.");
-                        dealer = cleanDealerObject(dealer);
-                        $http.patch(DEALERS_BASE_URL + dealer.id + '/', dealer, {params: {mode: "edit"}})
-                            .then(function (response) {
-                                    // success
-                                    dealer = response.data;
-                                    ctrl.saveCurrent(dealer);
-                                    setIntercom(dealer);
-                                    broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, true, dealer);
-                                },
-                                function (httpError) {
-                                    // error
-                                    broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, false, httpError);
-                                });
-                    },
-                    function (httpError) {
-                        // error
-                        broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, false, httpError);
-                    });
+            if (bankAccount && !$.isEmptyObject(bankAccount)) {
+                $http.patch($rootScope.baseUrl + '/bank_accounts/' + bankAccount.id + '/', bankAccount)
+                    .then(function (response) {
+                            // success
+                            console.log("Updated the bank account information successfully. Now update the the dealer's information.");
+                            dealer = cleanDealerObject(dealer);
+                            $http.patch(DEALERS_BASE_URL + dealer.id + '/', dealer, {params: {mode: "edit"}})
+                                .then(function (response) {
+                                        // success
+                                        dealer = response.data;
+                                        ctrl.saveCurrent(dealer);
+                                        setIntercom(dealer);
+                                        broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, true, dealer);
+                                    },
+                                    function (httpError) {
+                                        // error
+                                        broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, false, httpError);
+                                    });
+                        },
+                        function (httpError) {
+                            // error
+                            broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, false, httpError);
+                        });
+            } else {
+                dealer = cleanDealerObject(dealer);
+                $http.patch(DEALERS_BASE_URL + dealer.id + '/', dealer, {params: {mode: "edit"}})
+                    .then(function (response) {
+                            // success
+                            dealer = response.data;
+                            ctrl.saveCurrent(dealer);
+                            setIntercom(dealer);
+                            broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, true, dealer);
+                        },
+                        function (httpError) {
+                            // error
+                            broadcastResult(UPDATE_BROADCASTING_PREFIX + sender, false, httpError);
+                        });
+            }
         }
 
         /**
@@ -20785,6 +22031,20 @@ angular.module('DealersApp')
          */
         function logOutIntercom() {
             window.Intercom("shutdown");
+        }
+
+        /**
+         * Gets the server's representation of the received language.
+         * @param lang - the received language.
+         * @returns {String} the language representation.
+         */
+        function getServerLang(lang) {
+            if (lang == "he") {
+                return "Hebrew";
+            } else if (lang == "en") {
+                return "English";
+            }
+            return lang;
         }
 
         /**
@@ -20857,12 +22117,27 @@ angular.module('DealersApp')
 
         var customFullscreen = $mdMedia('xs');
 
+        service.showSignUpViewerDialog = showSignUpViewerDialog;
         service.showSignInDialog = showSignInDialog;
         service.confirmDialog = confirmDialog;
         service.showAlertDialog = showAlertDialog;
+        service.showLoadingDialog = showLoadingDialog;
+        service.hideDialog = hideDialog;
 
         return service;
 
+
+        function showSignUpViewerDialog(ev, email) {
+            return $mdDialog.show({
+                controller: 'SignInDialogController',
+                templateUrl: 'app/components/views/sign-in/sign-up-viewer-dialog.view.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: customFullscreen, // Only for -xs, -sm breakpoints.
+                locals: {tab: null, isViewer: null, email: email}
+            })
+        }
 
         /**
          * Presents the sign in dialog (sign up and log in) and returns the promise.
@@ -20879,12 +22154,12 @@ angular.module('DealersApp')
                 targetEvent: ev,
                 clickOutsideToClose: true,
                 fullscreen: customFullscreen,
-                locals: {tab: tabIndex, isViewer: isViewer}
+                locals: {tab: tabIndex, isViewer: isViewer, email: null}
             });
         }
 
         /**
-         * Returns the confirm dialog object of type confirm.
+         * Returns the confirm dialog object of type confirm (doesn't show it).
          *
          * @param title - the title of the alert dialog.
          * @param content - the content of the alert dialog.
@@ -20905,7 +22180,7 @@ angular.module('DealersApp')
         }
 
         /**
-         * Presents the alert dialog when there is an invalid field.
+         * Presents the alert dialog.
          * @param title - the title of the alert dialog.
          * @param content - the content of the alert dialog.
          * @param ev - the event that triggered the alert.
@@ -20921,6 +22196,30 @@ angular.module('DealersApp')
                     .ok(Translations.general.gotIt)
                     .targetEvent(ev)
             );
+        }
+
+        /**
+         * Presents the loading dialog.
+         * @param message - the message to present in the loading dialog.
+         * @param ev - the event that triggered the loading.
+         */
+        function showLoadingDialog(message, ev) {
+            $mdDialog.show({
+                templateUrl: 'app/components/views/loading-dialog.view.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                controller: 'LoadingDialogController',
+                locals: {message: message},
+                escapeToClose: false
+            });
+        }
+
+        /**
+         * Hides the dialog.
+         * @param ev - the event that triggered the hiding.
+         */
+        function hideDialog(ev) {
+            $mdDialog.hide();
         }
     }]);
 /*
@@ -22698,6 +23997,7 @@ angular.module('DealersApp')
             productEdit: {}, // add product and edit product
             shippingMethods: {},
             purchaseDetails: {},
+            profile: {},
             signIn: {},
             dealerRegistration: {},
             checkout: {}
@@ -22825,6 +24125,10 @@ angular.module('DealersApp')
             service.purchaseDetails.blankETDTitle = $translate.instant("translations-service.purchase-details.blank-etd-title");
             service.purchaseDetails.blankETDContent = $translate.instant("translations-service.purchase-details.blank-etd-content");
 
+            // Profile
+            service.profile.didntUploadProducts = $translate.instant("translations-service.profile.didnt-upload-products");
+
+            // Sign in
             service.signIn.signUpButtonTitle = $translate.instant("translations-service.sign-in.sign-up-button-title");
             service.signIn.logInButtonTitle = $translate.instant("translations-service.sign-in.log-in-button-title");
             service.signIn.loading = $translate.instant("translations-service.sign-in.loading");
@@ -22854,6 +24158,9 @@ angular.module('DealersApp')
             service.dealerRegistration.accountNumberDuplicateContent = $translate.instant("translations-service.dealer-registration.account-number-duplicate-content");
             service.dealerRegistration.generalProblemTitle = $translate.instant("translations-service.dealer-registration.general-problem-title");
             service.dealerRegistration.generalProblemContent = $translate.instant("translations-service.dealer-registration.general-problem-content");
+            service.dealerRegistration.skipConfirmTitle = $translate.instant("translations-service.dealer-registration.skip-confirm-title");
+            service.dealerRegistration.skipConfirmContent = $translate.instant("translations-service.dealer-registration.skip-confirm-content");
+            service.dealerRegistration.skipConfirmButton = $translate.instant("translations-service.dealer-registration.skip-confirm-button");
 
             service.checkout.invalidQuantityTitle = $translate.instant("translations-service.checkout.invalid-quantity-title");
             service.checkout.invalidQuantityContent = $translate.instant("translations-service.checkout.invalid-quantity-content");

@@ -77,16 +77,14 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
             $rootScope.homeUrl = 'https://www.dealers-app.com'; // Live
             $rootScope.stripe_publishable_key = 'pk_live_mgdZB9xHsOnYaQDXMXJJm4xU'; // Live
             $rootScope.INTERCOM_APP_ID = "z1b3ijln"; // Live
-            $rootScope.AWSKey = 'AKIAIWJFJX72FWKD2LYQ';
-            $rootScope.AWSSecretKey = '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';
             $rootScope.AWSS3Bucket = 'dealers-app';
             $rootScope.directImageURlPrefix = 'https://' + $rootScope.AWSS3Bucket + '.s3.amazonaws.com/';
             $rootScope.DEFAULT_PRODUCT_PHOTO_URL = "assets/images/icons/@2x/Web_Icons_product_photo_placeholder.png";
 
             // AWS configuration
             AWS.config.update({
-                accessKeyId: $rootScope.AWSKey,
-                secretAccessKey: $rootScope.AWSSecretKey
+                accessKeyId: 'AKIAIWJFJX72FWKD2LYQ',
+                secretAccessKey: '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'
             });
             AWS.config.region = 'eu-west-1';
 

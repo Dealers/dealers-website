@@ -22,7 +22,8 @@
                                 views.checkout.delivery-option
                             </h4>
                             <md-radio-group ng-model="delivery.selectedShipping"
-                                            ng-change="updateSelectedShipping($event)">
+                                            ng-change="updateSelectedShipping($event)"
+                                            ng-show="delivery.selectedShipping != PICKUP_METHOD">
                                 <div ng-repeat='shipping in shippingMethods' class="co-shipping-methods">
                                     <div flex layout='column' layout-gt-xs="row">
                                         <md-radio-button ng-value="shipping.delivery_method"

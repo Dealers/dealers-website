@@ -69,14 +69,14 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
 
             // global constants
             $rootScope.language = "";
-            // $rootScope.baseUrl = 'http://api.dealers-web.com'; // Test
-            // $rootScope.homeUrl = "http://www.dealers-web.com"; // Test
-            // $rootScope.stripe_publishable_key = 'pk_test_q3cpGyBIL6rsGswSQbP3tMpK'; // Test
-            // $rootScope.INTERCOM_APP_ID = "bez9ewf7"; // Test
-            $rootScope.baseUrl = 'https://api.dealers-app.com'; // Live
-            $rootScope.homeUrl = 'https://www.dealers-app.com'; // Live
-            $rootScope.stripe_publishable_key = 'pk_live_mgdZB9xHsOnYaQDXMXJJm4xU'; // Live
-            $rootScope.INTERCOM_APP_ID = "z1b3ijln"; // Live
+            $rootScope.baseUrl = 'http://api.dealers-web.com'; // Test
+            $rootScope.homeUrl = "http://www.dealers-web.com"; // Test
+            $rootScope.stripe_publishable_key = 'pk_test_q3cpGyBIL6rsGswSQbP3tMpK'; // Test
+            $rootScope.INTERCOM_APP_ID = "bez9ewf7"; // Test
+            // $rootScope.baseUrl = 'https://api.dealers-app.com'; // Live
+            // $rootScope.homeUrl = 'https://www.dealers-app.com'; // Live
+            // $rootScope.stripe_publishable_key = 'pk_live_mgdZB9xHsOnYaQDXMXJJm4xU'; // Live
+            // $rootScope.INTERCOM_APP_ID = "z1b3ijln"; // Live
             $rootScope.AWSS3Bucket = 'dealers-app';
             $rootScope.directImageURlPrefix = 'https://' + $rootScope.AWSS3Bucket + '.s3.amazonaws.com/';
             $rootScope.DEFAULT_PRODUCT_PHOTO_URL = "assets/images/icons/@2x/Web_Icons_product_photo_placeholder.png";

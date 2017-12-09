@@ -1,0 +1,215 @@
+<dl-navbar></dl-navbar>
+<div class="nav-padding">
+
+    <div class="register-price-plans container padding-bottom-30 margin-bottom-30">
+        <div class="rpp-tips text-center">
+            <h3 translate>
+                views.register-price-plans.title
+            </h3>
+            <p translate>
+                views.register-price-plans.tip
+            </p>
+        </div>
+        <div layout="column" layout-gt-xs="row" class="rpp-plans">
+            <section id="no-marketing-plan" flex-gt-xs="33" style="position:relative; border: 2px solid #8D8D92">
+                <div>
+                    <h5 translate>views.price-plans.no-marketing-plan-title</h5>
+                </div>
+                <div class="plan-price text-center" style="background-color: #8D8D92">
+                    <h3>{{"general.free" | translate}}</h3>
+                </div>
+                <div>
+                    <p translate>views.price-plans.no-marketing-plan-description</p>
+                </div>
+                <div class="button-container">
+                    <md-button ng-hide="startLoading == 0" class="btn-primary" style="background-color: #8D8D92" ng-click="selectPlan($event, 0)">
+                        {{"general.choose" | translate}}
+                    </md-button>
+                    <div layout="row" layout-align="space-around">
+                        <md-progress-circular md-mode="indeterminate" md-diameter="25" ng-show="loading == 0"></md-progress-circular>
+                    </div>
+                </div>
+            </section>
+            <section id="standard-plan" flex-gt-xs="33" style="position:relative; border: 2px solid #2095F2">
+                <div>
+                    <h5 translate>views.price-plans.standard-plan-title</h5>
+                </div>
+                <div class="plan-price text-center" style="background-color: #2095F2">
+                    <h3>{{"views.price-plans.standard-plan-price" | translate}}<span class="price-note">{{"views.price-plans.per-month" | translate}}</span>
+                    </h3>
+                </div>
+                <div>
+                    <p translate>views.price-plans.standard-plan-description</p>
+                </div>
+                <div class="button-container">
+                    <md-button ng-hide="startLoading == 1" class="btn-primary" style="background-color: #2095F2" ng-click="selectPlan($event, 1)">
+                        {{"general.choose" | translate}}
+                    </md-button>
+                    <div layout="row" layout-align="space-around">
+                        <md-progress-circular md-mode="indeterminate" md-diameter="25" ng-show="loading == 1"></md-progress-circular>
+                    </div>
+                </div>
+            </section>
+            <!--<section id="professional-plan" flex-gt-xs="33" style="position:relative; border: 2px solid #2095F2">-->
+                <!--<div>-->
+                    <!--<h5 translate>views.price-plans.professional-plan-title</h5>-->
+                <!--</div>-->
+                <!--<div class="plan-price text-center" style="background-color: #2095F2">-->
+                    <!--<h3>{{"views.price-plans.professional-plan-price" | translate}}<span class="price-note">{{"views.price-plans.per-month" | translate}}</span>-->
+                    <!--</h3>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<p translate>views.price-plans.professional-plan-description</p>-->
+                <!--</div>-->
+                <!--<div class="button-container">-->
+                    <!--<md-button ng-hide="startLoading == 2" class="btn-primary" style="background-color: #2095F2" ng-click="selectPlan($event, 2)">-->
+                        <!--{{"views.intro-section.get-started" | translate}}-->
+                    <!--</md-button>-->
+                    <!--<div layout="row" layout-align="space-around">-->
+                        <!--<md-progress-circular md-mode="indeterminate" md-diameter="25" ng-show="loading == 2"></md-progress-circular>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</section>-->
+            <section id="premium-plan" flex-gt-xs="33" style="position:relative; border: 2px solid #EE5959">
+                <div>
+                    <h5 translate>views.price-plans.premium-plan-title</h5>
+                </div>
+                <div class="plan-price text-center" style="background-color: #EE5959">
+                    <h3>{{"views.price-plans.premium-plan-price" | translate}}<span class="price-note">{{"views.price-plans.per-month" | translate}}</span>
+                    </h3>
+                </div>
+                <div>
+                    <p translate>views.price-plans.premium-plan-description</p>
+                </div>
+                <div class="button-container">
+                    <md-button ng-hide="startLoading == 3" class="btn-primary" style="background-color: #EE5959" ng-click="selectPlan($event, 3)">
+                        {{"general.choose" | translate}}
+                    </md-button>
+                    <div layout="row" layout-align="space-around">
+                        <md-progress-circular md-mode="indeterminate" md-diameter="25" ng-show="loading == 3"></md-progress-circular>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="text-center">
+            <md-button class="md-raised btn-white info-note md-btn-small" ng-click="skip($event)">
+                {{'views.price-plans.choose-later' | translate}}
+            </md-button>
+        </div>
+    </div>
+
+    <!--<md-list flex>-->
+        <!--<div class="list-item-container" ng-repeat="plan in pricePlans">-->
+            <!--<md-list-item class="plan-list-item md-3-line" ng-click="selectPlan(purchase, $event)">-->
+                <!--<div class="md-list-item-text">-->
+                    <!--<h3 flex-sm="60">{{plan.name}}</h3>-->
+                    <!--<h4 class="purchase-amount">{{plan.price | currency: currency}}</h4>-->
+                    <!--<p>{{plan.description}}</p>-->
+                    <!--<div flex="none">-->
+                        <!--<md-button class="md-button md-secondary md-btn-small btn-background"-->
+                                   <!--ng-class="{'received': purchase.status == 'Received'}"-->
+                                   <!--ng-click="changeBuyerStatus($event, purchase)" update-status-buyer>-->
+                            <!--{{markButtonTitle(purchase)}}-->
+                        <!--</md-button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</md-list-item>-->
+            <!--<md-divider></md-divider>-->
+        <!--</div>-->
+    <!--</md-list>-->
+
+    <!--<div class="register-price-plans">-->
+        <!--<ul class="rpp-container">-->
+            <!--<li class="list-item-container" ng-repeat="plan in pricePlans">-->
+                <!--<div class="md-list-item-text">-->
+                    <!--<h3 flex-sm="60">{{plan.name}}</h3>-->
+                    <!--<h4 class="purchase-amount">{{plan.price | currency: currency}}</h4>-->
+                    <!--<p>{{plan.description}}</p>-->
+                    <!--<div flex="none">-->
+                        <!--<md-button class="md-button md-secondary md-btn-small btn-background"-->
+                                   <!--ng-class="{'received': purchase.status == 'Received'}"-->
+                                   <!--ng-click="changeBuyerStatus($event, purchase)" update-status-buyer>-->
+                            <!--{{markButtonTitle(purchase)}}-->
+                        <!--</md-button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <!---->
+
+
+    <!--<div-->
+            <!--class="dl-form dl-form-container paged-form framed-container"-->
+            <!--ng-cloak>-->
+        <!--<p class="text-center" translate>-->
+            <!--views.dealer-registration.price-plans-tip-->
+        <!--</p>-->
+        <!--<div id="security-message">-->
+            <!--<img width="30" height="30" src="/assets/images/icons/@2x/Web_Icons_password_icon_gray.png">-->
+            <!--<p class="dl-note info-note">-->
+                <!--{{"views.dealer-registration.security-message-1" | translate}}-->
+                <!--<a ng-href="/security" target="_blank"> {{'views.dealer-registration.security-message-2' |-->
+                    <!--translate}}</a>.-->
+            <!--</p>-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<div class="dl-field no-icon-field form-group">-->
+                <!--<label for="rad-account-number" translate>-->
+                    <!--views.dealer-registration.account-number-->
+                <!--</label>-->
+                <!--<input id="rad-account-number" name="rad-account-number" type="text"-->
+                       <!--placeholder="{{'views.dealer-registration.account-number-placeholder' | translate}}"-->
+                       <!--class="form-control dl-input"-->
+                       <!--ng-model="bank_account.account_number"-->
+                       <!--required-->
+                <!--/>-->
+            <!--</div>-->
+            <!--<div class="dl-field no-icon-field form-group">-->
+                <!--<label for="rad-branch-number" translate>-->
+                    <!--views.dealer-registration.branch-number-->
+                <!--</label>-->
+                <!--<input id="rad-branch-number" name="rad-branch-number" type="text"-->
+                       <!--placeholder="{{'views.dealer-registration.branch-number-placeholder' | translate}}"-->
+                       <!--class="form-control dl-input"-->
+                       <!--ng-model="bank_account.branch_number"-->
+                       <!--required-->
+                <!--/>-->
+            <!--</div>-->
+            <!--<div class="dl-field no-icon-field form-group">-->
+                <!--<label for="rad-bank" translate>-->
+                    <!--views.dealer-registration.bank-name-->
+                <!--</label>-->
+                <!--<input id="rad-bank" name="rad-bank" type="text"-->
+                       <!--placeholder="{{'views.dealer-registration.bank-name-placeholder' | translate}}"-->
+                       <!--class="form-control dl-input"-->
+                       <!--ng-model="bank_account.bank"-->
+                       <!--required-->
+                <!--/>-->
+            <!--</div>-->
+            <!--<div class="dl-field no-icon-field form-group">-->
+                <!--<label for="rad-bank" translate>-->
+                    <!--views.dealer-registration.account-holder-->
+                <!--</label>-->
+                <!--<input id="rad-account-holder" name="rad-account-holder" type="text"-->
+                       <!--placeholder="{{'views.dealer-registration.account-holder-placeholder' | translate}}"-->
+                       <!--class="form-control dl-input"-->
+                       <!--ng-model="bank_account.account_holder"-->
+                       <!--required-->
+                <!--/>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<p class="dl-error dl-note text-center" ng-show="showError">{{errorMessage}}</p>-->
+        <!--<div>-->
+            <!--<md-button type="submit" class="btn btn-primary btn-single dl-submit md-primary md-raised" md-autofocus>-->
+                <!--{{'general.done' | translate}}-->
+            <!--</md-button>-->
+        <!--</div>-->
+        <!--<div class="text-center">-->
+            <!--<md-button class="dl-fade dl-note info-note md-btn-small" style="margin-top: -10px;" ng-click="skip($event)">-->
+                <!--{{'general.skip' | translate}}-->
+            <!--</md-button>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+<footer-section></footer-section>

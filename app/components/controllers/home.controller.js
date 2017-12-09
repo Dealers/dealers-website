@@ -9,6 +9,8 @@ angular.module('DealersApp')
             var ALL_PRODUCTS_PATH = "/all-products/";
             var ROLE_DEALER = "Dealer";
             var ROLE_VIEWER = "Viewer";
+            var HOME_PRODUCTS_PER_PAGE = 10;
+
 
             if ($rootScope.dealer) {
                 $scope.role = $rootScope.dealer.role;
@@ -24,6 +26,8 @@ angular.module('DealersApp')
             $scope.gridTitle = "";
             $scope.gridDescription = "";
             $scope.customFullscreen = $mdMedia('xs');
+            $scope.perPage = HOME_PRODUCTS_PER_PAGE;
+            $scope.scrollDetector = false;
 
             setGridTitles();
 

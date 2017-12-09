@@ -269,7 +269,7 @@
                         <md-select id="ap-category" name="ap-category" class="dl-input form-control"
                                    ng-model="product.category"
                                    placeholder="{{'views.add-product.categories-placeholder' | translate}}">
-                            <md-option ng-repeat="category in categories" value="{{category}}">
+                            <md-option ng-repeat="category in categories.slice(1) track by $index" value="{{$index + 1}}" ng-class="evaluateCategoryClass($index, false)">
                                 {{category}}
                             </md-option>
                         </md-select>

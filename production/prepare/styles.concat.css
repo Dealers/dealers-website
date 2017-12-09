@@ -306,12 +306,15 @@ h4 {
 .padding-top-30 {
   padding-top: 30px !important;
 }
+.padding-bottom-30 {
+  padding-bottom: 30px !important;
+}
 .align-middle {
   vertical-align: middle !important;
 }
 .container-background {
   background-color: white;
-  box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.1);
 }
 .clickable {
   opacity: 1;
@@ -423,6 +426,13 @@ md-content.dl-grid {
 .container-padding {
   padding: 10px 30px 40px !important;
 }
+.category {
+  font-weight: bold !important;
+}
+.sub-category {
+  font-weight: normal !important;
+  padding: 0 40px !important;
+}
 .breadcrumb {
   background-color: transparent;
 }
@@ -454,6 +464,7 @@ md-content.dl-grid {
   height: 54px;
   border: none;
   background-color: white;
+  z-index: 50 !important;
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
   transition: all ease-out 0.2s;
@@ -490,6 +501,16 @@ md-content.dl-grid {
   .navbar-default .container {
     padding: 0 15px;
   }
+}
+#nav-language md-select ._md-select-icon {
+  width: 12px;
+  font-size: 0.7em;
+}
+#nav-language-mobile md-select ._md-select-icon {
+  display: none;
+}
+#nav-language-mobile li md-select {
+  width: 44px;
 }
 .navbar-default.navbar-shade {
   box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.075);
@@ -691,6 +712,10 @@ md-menu-item > a:focus {
   font-size: 1.4em;
   margin-top: 14px;
 }
+.intro-section .intro-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
 .get-started-form {
   margin: 25px 0 0;
 }
@@ -773,6 +798,21 @@ md-menu-item > a:focus {
   .about-section section {
     padding: 10px;
   }
+}
+.home-register-container {
+  margin-top: -35px;
+  padding: 0 10px 30px;
+}
+.home-download-apps {
+  text-align: center;
+  margin: 40px 0;
+  padding: 40px 0;
+}
+.home-download-apps ul li {
+  padding: 10px;
+}
+.home-download-apps ul li.dl-badge img {
+  height: 40px;
 }
 .about-page .lead {
   font-size: 18px;
@@ -923,7 +963,7 @@ md-menu-item > a:focus {
   max-width: 768px;
   margin: 0 auto 30px;
   border-radius: 10px;
-  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.1);
 }
 .info-content p,
 .info-content ul,
@@ -996,8 +1036,108 @@ div.step-by-step-header .colorful-ordered-list.brown {
 div.step-by-step-header .colorful-ordered-list.pink {
   background-color: #F69CF1;
 }
-.youtube-player {
+.videoWrapper {
   margin: 40px 0 20px;
+  text-align: center;
+}
+.videoWrapper iframe {
+  width: 480px;
+  height: 270px;
+}
+@media (max-width: 599px) {
+  .videoWrapper {
+    position: relative;
+    padding-bottom: 48%;
+    padding-top: 25px;
+    height: 0;
+  }
+  .videoWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+.price-plans {
+  margin: 0 0 20px;
+  padding: 10px 0;
+}
+.price-plans section {
+  background: #f5f5fb;
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px 0;
+  margin: 10px;
+  height: 290px;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all ease-out 0.2s;
+}
+.price-plans section div {
+  padding: 0 20px;
+}
+.price-plans section h3 {
+  margin: 0;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.price-plans section .plan-price {
+  color: white;
+  padding: 14px;
+}
+.price-plans section .plan-price h2 {
+  margin: 0;
+  font-weight: bold;
+  color: white;
+}
+.price-plans section span.price-note {
+  opacity: 0.75;
+  font-size: 18px;
+}
+.price-plans section p {
+  font-size: 1.1em;
+  color: #323241;
+  margin: 0;
+  padding: 20px 5px;
+  text-align: start;
+}
+.price-plans section .button-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+}
+@media (min-width: 599px) and (max-width: 959px) {
+  .price-plans section {
+    height: 320px;
+  }
+  .price-plans section div {
+    padding: 0 10px;
+  }
+  .price-plans section .plan-price {
+    padding: 14px;
+  }
+  .price-plans section p {
+    padding: 8px 5px;
+    font-size: 1em;
+  }
+}
+@media (min-width: 959px) {
+  .price-plans section {
+    height: 320px;
+    margin: 20px;
+  }
+  .price-plans section div {
+    padding: 0 20px;
+  }
+  .price-plans section .plan-price {
+    padding: 20px;
+  }
+  .price-plans section p {
+    padding: 20px 5px;
+  }
 }
 #rad-dealer-profile-photo {
   margin: 30px;
@@ -1039,6 +1179,97 @@ img-crop canvas {
     width: 500px;
   }
 }
+.register-price-plans .rpp-tips {
+  padding: 0 20px;
+  margin: auto;
+  max-width: 720px;
+}
+.register-price-plans .rpp-plans {
+  margin: 30px 0;
+}
+.register-price-plans .rpp-plans section {
+  background: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 20px 0;
+  margin: 6px;
+  height: 290px;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all ease-out 0.2s;
+}
+.register-price-plans .rpp-plans section div {
+  padding: 0 20px;
+}
+.register-price-plans .rpp-plans section h5 {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+.register-price-plans .rpp-plans section .plan-price {
+  color: white;
+  padding: 10px;
+}
+.register-price-plans .rpp-plans section .plan-price h3 {
+  margin: 0;
+  font-weight: bold;
+  color: white;
+}
+.register-price-plans .rpp-plans section span.price-note {
+  opacity: 0.75;
+  font-size: 16px;
+}
+.register-price-plans .rpp-plans section p {
+  font-size: 1em;
+  color: #323241;
+  margin: 0;
+  padding: 14px 0;
+  text-align: start;
+}
+.register-price-plans .rpp-plans section .button-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+}
+.register-price-plans .rpp-plans section .loadingSpinner {
+  width: 100%;
+  height: 30px;
+}
+@media (min-width: 599px) and (max-width: 959px) {
+  .register-price-plans .rpp-plans section {
+    height: 380px;
+  }
+  .register-price-plans .rpp-plans section div {
+    padding: 0 10px;
+  }
+  .register-price-plans .rpp-plans section .plan-price {
+    padding: 10px;
+  }
+  .register-price-plans .rpp-plans section p {
+    font-size: 0.9em;
+    padding: 8px 5px;
+  }
+}
+@media (min-width: 959px) {
+  .register-price-plans .rpp-plans div {
+    padding: 0 4px;
+  }
+  .register-price-plans .rpp-plans section {
+    height: 380px;
+    margin: 10px;
+  }
+  .register-price-plans .rpp-plans section div {
+    padding: 0 10px;
+  }
+  .register-price-plans .rpp-plans section .plan-price {
+    padding: 14px;
+  }
+  .register-price-plans .rpp-plans section p {
+    padding: 20px 5px;
+  }
+}
 .dg-title {
   text-align: center;
   font-weight: 700;
@@ -1077,6 +1308,10 @@ img-crop canvas {
 .row > [class*=" col-"] {
   padding-right: 10px;
   padding-left: 10px;
+}
+.load-more-container {
+  margin: 40px 0;
+  text-align: center;
 }
 .product {
   background-color: white;
@@ -1176,7 +1411,7 @@ div.noImageBackground {
   max-width: 940px;
   background-color: white;
   border-radius: 15px;
-  box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.1);
   padding: 5px 0 30px;
   margin: 50px auto;
   overflow: hidden;
@@ -1448,45 +1683,75 @@ div.noImageBackground {
 }
 .checkout {
   padding: 10px 20px 30px;
+  margin: 0;
 }
 @media (min-width: 599px) {
   .checkout {
     padding: 10px 40px 30px;
   }
 }
-.checkout .co-product-preview {
+.co-product-preview {
   width: inherit;
 }
-@media (min-width: 599px) {
-  .checkout .co-product-preview {
-    padding: 0 14px;
-    border-radius: 5px;
-    border: solid 1px #eeeef8;
-  }
-}
-.checkout .co-product-preview .co-product-pic {
+.co-product-preview .co-product-pic {
   width: 100%;
   max-width: 340px;
   margin-bottom: 14px;
 }
-.checkout .co-product-preview .co-product-pic img {
+.co-product-preview .co-product-pic img {
   width: inherit;
   max-width: 340px;
 }
-.checkout .co-product-preview .co-product-pic img.photoHeight {
+.co-product-preview .co-product-pic img.photoHeight {
   width: initial;
   height: 320px;
 }
-.checkout .co-product-preview .co-price {
+.co-product-preview .co-price {
   font-size: 1.2em;
   font-weight: bold;
   margin: 20px;
 }
-.checkout .co-product-preview .co-selections {
+.co-product-preview .vd-quantity {
+  margin: 20px 0;
+}
+.co-product-preview .vd-quantity input {
+  width: 68px;
+}
+.co-product-preview .vd-quantity .vd-price {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-left: 8px;
+}
+.co-product-preview input {
+  height: 36px;
+  background-color: #eeeef8;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: none;
+}
+.co-product-preview .co-selections {
   margin: 30px 0;
 }
-.checkout .co-product-preview .co-selections li {
+.co-product-preview .co-selections li {
   margin: 10px 0;
+}
+.checkout-product {
+  margin: 0;
+  border-radius: 0;
+}
+@media (min-width: 959px) {
+  .checkout-product {
+    margin: 0 20px;
+    border-radius: 10px;
+  }
+}
+@media (min-width: 599px) and (max-width: 959px) {
+  .checkout-product {
+    margin: 30px auto;
+    max-width: 360px;
+    border-radius: 15px;
+  }
 }
 .checkout-finish-options {
   margin-bottom: 24px;
@@ -1510,6 +1775,11 @@ div.noImageBackground {
   font-size: 1.35em;
   font-weight: 700;
 }
+@media (min-width: 599px) {
+  .total-price {
+    width: 100%;
+  }
+}
 .secure-payment-container-upper-right {
   opacity: 0.85;
   margin: -40px 0 30px;
@@ -1524,9 +1794,8 @@ div.noImageBackground {
   display: inline-block;
 }
 .corner-security-message img.ssl-badge {
-  display: block;
-  height: 42px;
-  margin-bottom: 5px;
+  height: 37px;
+  margin: 0 3px;
 }
 .corner-security-message img.credit-cards {
   height: 30px;
@@ -1572,6 +1841,9 @@ div.noImageBackground {
   .co-shipping-methods md-radio-button ._md-label {
     padding: 2% 0;
   }
+}
+.co-shipping-details {
+  margin-top: -9px;
 }
 md-radio-group .co-shipping-methods .md-checked .md-ink-ripple {
   color: inherit;
@@ -1787,7 +2059,7 @@ button.ap-done {
   background-color: white;
   padding: 0 10px;
   margin: 50px 0 30px;
-  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.1);
 }
 @media (min-width: 599px) {
   .pr-header-section {
@@ -2166,6 +2438,9 @@ button.dl-submit {
   margin: 30px auto;
   font-weight: 700;
   padding: 2px 24px;
+}
+.md-button.btn-primary.btn-single.btn-pull-left {
+  margin: 30px 0 !important;
 }
 @media (max-width: 599px) {
   .md-button.btn-primary.btn-single {
@@ -2824,7 +3099,7 @@ html:lang(he) .vd-comments .comment span.vd-comment-date {
   margin: -20px 0 0 8px;
 }
 
-wdatepicker a, [datepicker] a, .datepicker a{
+datepicker a, [datepicker] a, .datepicker a{
   color:inherit;
   text-decoration:none;
 }

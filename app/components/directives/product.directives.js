@@ -63,6 +63,8 @@ angular.module('DealersApp')
                     description: '=?',
                     source: '=?',
                     page: '=?',
+                    perPage: '=?',
+                    scrollDetector: '=?',
                     noProductsMessage: '=?'
                 },
                 templateUrl: 'app/components/views/products/products-grid.view.html',

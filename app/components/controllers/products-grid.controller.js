@@ -11,6 +11,7 @@ angular.module('DealersApp')
             var LOADING_STATUS = "loading";
             var DOWNLOADED_STATUS = "downloaded";
             var FAILED_STATUS = "failed";
+            var DEFAULT_PRODUCTS_PER_PAGE = 10;
 
             var mode;
             var url = $rootScope.baseUrl;
@@ -27,6 +28,9 @@ angular.module('DealersApp')
             $scope.update = {};
             $scope.update.loadingMore = false;
             $scope.update.nextPage = "";
+            $scope.perPage = angular.isDefined($scope.perPage) ? $scope.perPage : DEFAULT_PRODUCTS_PER_PAGE;
+            $scope.scrollDetector = angular.isDefined($scope.scrollDetector) ? $scope.scrollDetector : true;
+
             $scope.getProducts = getProducts;
 
             selectAction();
@@ -35,6 +39,7 @@ angular.module('DealersApp')
              * Determines what to do according to the details defined in the scope.
              */
             function selectAction() {
+                var shouldAddQuestionMark = true;
                 if ($scope.source) {
                     // There is a specific source to download products from.
                     if ($scope.page == PROFILE_PAGE) {
@@ -58,6 +63,7 @@ angular.module('DealersApp')
                     mode = "search";
                     routeParams = $routeParams.query;
                     url += '/dealsearch/?search=' + routeParams;
+                    shouldAddQuestionMark = false;
                     $scope.noProductsMessage = Translations.productsGrid.didntFind + "'" + routeParams + "'.";
                 } else if ($routeParams.category) {
                     // This is a search session, should get the products according to the search term.
@@ -68,6 +74,7 @@ angular.module('DealersApp')
                         url += '/my_feeds/';
                     } else {
                         url += '/category_deals/?category=' + Product.keyForCategory(routeParams);
+                        shouldAddQuestionMark = false;
                     }
                     $scope.noProductsMessage = Translations.productsGrid.currentlyNoProducts + routeParams + "...";
                     $scope.title = Translations.translateCategory(routeParams);
@@ -77,7 +84,7 @@ angular.module('DealersApp')
                     url += '/my_feeds/';
                     $scope.noProductsMessage = Translations.productsGrid.noProductsInterests;
                 }
-
+                url += shouldAddQuestionMark ? "?per_page=" + $scope.perPage : "&per_page=" + $scope.perPage;
                 $scope.getProducts();
             }
 
@@ -90,7 +97,9 @@ angular.module('DealersApp')
                 // Checking if asking for another page
                 if (nextPage) {
                     url = nextPage;
+                    $scope.update.loadingMore = true;
                 }
+
 
                 Product.getProducts(url)
                     .then(function (result) {

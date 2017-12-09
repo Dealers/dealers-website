@@ -3,7 +3,7 @@
  */
 
 angular.module('DealersApp')
-    .factory('Dealer', ['$http', '$rootScope', 'Authentication', function DealerFactory($http, $rootScope, Authentication) {
+    .factory('Dealer', ['$http', '$rootScope', 'Authentication', 'FacebookPixel', function DealerFactory($http, $rootScope, Authentication, FacebookPixel) {
 
         var DEFAULT_UN = "ubuntu";
         var DEFAULT_PW = "090909deal";
@@ -92,6 +92,7 @@ angular.module('DealersApp')
                         var dealer = response.data;
                         ctrl.saveCurrent(dealer);
                         Intercom('trackEvent', 'registered_as_dealer', {});
+                        FacebookPixel.completeRegistration();
                         broadcastResult(REGISTER_BASIC_INFO_BROADCASTING_PREFIX + sender, true, dealer);
                     },
                     function (httpError) {
@@ -111,6 +112,7 @@ angular.module('DealersApp')
                         // success
                         var bankAccount = response.data;
                         Intercom('trackEvent', 'inserted_bank_account', {});
+                        FacebookPixel.addBankAccount();
                         broadcastResult(REGISTER_BANK_ACCOUNT_BROADCASTING_PREFIX + sender, true, bankAccount);
                     },
                     function (httpError) {

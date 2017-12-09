@@ -57,6 +57,12 @@ angular.module('DealersApp')
             templateUrl: 'app/components/views/about/about-section.view.html'
         };
     })
+    .directive('pricePlans', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'app/components/views/about/price-plans.view.html'
+        };
+    })
     .directive('iosSection', function () {
         return {
             restrict: 'E',

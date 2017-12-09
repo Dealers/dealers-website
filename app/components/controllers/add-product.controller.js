@@ -6,9 +6,9 @@ angular.module('DealersApp')
 /**
  * The controller that manages the Add Product Procedure.
  */
-    .controller('AddProductController', ['$rootScope', '$scope', '$location', '$timeout', '$mdDialog', '$mdConstant', 'AddProduct', 'Product', 'Photos', 'ProductPhotos', 'Analytics', 'Defaults', 'Dealer', 'ShippingMethods', 'Translations',
+    .controller('AddProductController', ['$rootScope', '$scope', '$location', '$timeout', '$mdDialog', '$mdConstant', 'AddProduct', 'Product', 'Photos', 'ProductPhotos', 'Analytics', 'Defaults', 'Dealer', 'Variants', 'ShippingMethods', 'Translations',
 
-        function ($rootScope, $scope, $location, $timeout, $mdDialog, $mdConstant, AddProduct, Product, Photos, ProductPhotos, Analytics, Defaults, Dealer, ShippingMethods, Translations) {
+        function ($rootScope, $scope, $location, $timeout, $mdDialog, $mdConstant, AddProduct, Product, Photos, ProductPhotos, Analytics, Defaults, Dealer, Variants, ShippingMethods, Translations) {
 
             var CONFIRM_EXIT_MESSAGE = "The content will be lost.";
             var BASIC_DETAILS_INDEX = 0;
@@ -542,6 +542,9 @@ angular.module('DealersApp')
                     return;
                 }
                 if (!validateMoreDetails(addProductForm, event)) {
+                    return;
+                }
+                if (!Variants.validateVariants($scope.variants)) {
                     return;
                 }
                 if (!ShippingMethods.validateShippingMethods($scope.shipping_methods)) { // Definition the product-edit directive.

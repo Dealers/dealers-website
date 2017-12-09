@@ -14,7 +14,7 @@
                 <h1 class="dg-download-message">{{message}} <br> {{errorPrompt}} </h1>
             </div>
         </div>
-        <div scroll-detector ng-switch-when="downloaded" class="dl-fade">
+        <div scroll-detector ng-switch-when="downloaded" class="dl-fade margin-bottom-40">
             <div style="padding: 0 20px">
                 <h1 class="dg-download-message" ng-show="message">
                     {{message}}
@@ -27,6 +27,11 @@
             </md-content>
             <div ng-show="update.loadingMore" class="dl-fade dg-loading-more">
                 <loading-spinner size="small"></loading-spinner>
+            </div>
+            <div ng-show="!scrollDetector && update.nextPage && !update.loadingMore" class="load-more-container">
+                <md-button class="md-raised" ng-click="getProducts(update.nextPage)" style="background: white">
+                    Load More
+                </md-button>
             </div>
         </div>
     </div>

@@ -29,10 +29,12 @@ angular.module('DealersApp')
                 if (!$scope.bank_account.account_number) {
                     Dialogs.showAlertDialog(Translations.dealerRegistration.blankAccountNumberTitle, Translations.dealerRegistration.requiredField, event);
                     return false;
-                } else if (!$scope.bank_account.branch_number) {
-                    Dialogs.showAlertDialog(Translations.dealerRegistration.blankBranchNumberTitle, Translations.dealerRegistration.requiredField, event);
-                    return false;
-                } else if (!$scope.bank_account.bank) {
+                }
+                // else if (!$scope.bank_account.branch_number) {
+                //     Dialogs.showAlertDialog(Translations.dealerRegistration.blankBranchNumberTitle, Translations.dealerRegistration.requiredField, event);
+                //     return false;
+                // }
+                else if (!$scope.bank_account.bank) {
                     Dialogs.showAlertDialog(Translations.dealerRegistration.blankBankTitle, Translations.dealerRegistration.requiredField, event);
                     return false;
                 } else if (!$scope.bank_account.account_holder) {
@@ -123,7 +125,8 @@ angular.module('DealersApp')
                 if (Dealer.isExistingDealer()) {
                     $location.path("/home");
                 } else {
-                    $location.path("/done-registration");
+                    // $location.path("/done-registration");
+                    $location.path("/register/price-plans");
                 }
             }
 

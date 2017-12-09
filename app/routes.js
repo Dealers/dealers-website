@@ -26,6 +26,11 @@ angular.module('DealersApp')
                 controller: 'RegisterBankAccountController',
                 pageTrack: '/register-bank-account'  // angular-google-analytics extension
             })
+            .when('/register/price-plans', {
+                templateUrl: 'app/components/views/sign-in/register-price-plans.view.html',
+                controller: 'RegisterPricePlansController',
+                pageTrack: '/register-price-plans'  // angular-google-analytics extension
+            })
             .when('/search/products/:query', {
                 templateUrl: 'app/components/views/products/products-page.view.html',
                 controller: 'ProductsGridController',

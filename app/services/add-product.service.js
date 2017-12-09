@@ -74,8 +74,8 @@ angular.module('DealersApp')
             if (productString) {
                 service.product = JSON.parse(productString);
                 if (service.product.category) {
-                    if (service.product.category.length == 2) {
-                        // The category consists 2 letters, which means it's a server key. Needs to be converted.
+                    if (service.product.category.length == 2 || service.product.category.length == 3) {
+                        // The category consists of 2 or 3 letters, which means it's a server key. Needs to be converted.
                         service.product.category = Product.categoryForKey(service.product.category);
                     }
                 }
@@ -127,7 +127,8 @@ angular.module('DealersApp')
                 service.product.discount_value = null;
                 service.product.discount_type = null;
             }
-            service.product.category = Product.keyForCategory(service.product.category);
+            var idx = parseInt(service.product.category) + 1;
+            service.product.category = Product.keyForCategory($rootScope.categoriesLocal[idx]);
             service.product.upload_date = new Date();
             service.product.store = {};
             service.product.dealattribs = {};

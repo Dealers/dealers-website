@@ -1,7 +1,6 @@
 angular.module('DealersApp')
     .factory('Product', ['$http', '$rootScope', 'ShippingMethods', function ProductFactory($http, $rootScope, ShippingMethods) {
 
-        var ctrl = this;
         var service = {};
 
         var currencies = {
@@ -12,25 +11,12 @@ angular.module('DealersApp')
             'EUR': '€'
         };
 
-        var categories = {
-            "Fa": "Fashion",
-            "Au": "Automotive",
-            "Ar": "Art",
-            "Be": "Health & Beauty",
-            "Bo": "Books & Magazines",
-            "El": "Electronics",
-            "En": "Entertainment & Events",
-            "Fo": "Food & Groceries",
-            "Ho": "Home & Furniture",
-            "Ki": "Kids & Babies",
-            "Mu": "Music",
-            "Pe": "Pets",
-            "Re": "Restaurants & Bars",
-            "Se": "Services",
-            "Sp": "Sports & Outdoor",
-            "Tr": "Travel",
-            "Ot": "Other"
-        };
+        var categories;
+        var categoriesLocal = $rootScope.categoriesKeysLocal;
+
+        $rootScope.$watch('categoriesKeys', function () {
+            categories = $rootScope.categoriesKeys;
+        });
 
         service.getProduct = getProduct;
         service.getProducts = getProducts;
@@ -190,9 +176,9 @@ angular.module('DealersApp')
          * @returns {string} the matching server key.
          */
         function keyForCategory(category) {
-            for (var property in categories) {
-                if (categories.hasOwnProperty(property)) {
-                    if (categories[property] === category)
+            for (var property in categoriesLocal) {
+                if (categoriesLocal.hasOwnProperty(property)) {
+                    if (categoriesLocal[property] == category)
                         return property;
                 }
             }

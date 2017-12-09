@@ -156,9 +156,10 @@ angular.module('DealersApp')
                 };
                 reader.onload = function (e) {
                     img.src = e.target.result;
-                    var photoBlob;
-                    photoBlob = dataURItoBlob(reduceSize(img));
-                    uploadFunc(counter, photoName, photoBlob);
+                    img.onload = function () {
+                        var photoBlob = dataURItoBlob(reduceSize(img));
+                        uploadFunc(counter, photoName, photoBlob);
+                    }
                 };
 
                 reader.readAsDataURL(photo);
@@ -216,8 +217,8 @@ angular.module('DealersApp')
             if (canvas.width > service.product.maxWidth) {
                 canvas = scaleCanvasWithAlgorithm(canvas);
             }
-
-            return canvas.toDataURL('image/jpeg', service.product.quality);
+            var data = canvas.toDataURL('image/jpeg', service.product.quality);
+            return data;
         }
 
         /**
@@ -229,7 +230,7 @@ angular.module('DealersApp')
             var canvas = document.createElement("canvas");
             canvas.width = image.width;
             canvas.height = image.height;
-            canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
+            canvas.getContext('2d').drawImage(image, 0, 0);
             return canvas;
         }
 

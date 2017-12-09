@@ -48,7 +48,8 @@ angular.module('DealersApp')
                 service.product.discount_type = null;
             }
             service.product.dealer = service.product.dealer.id;
-            service.product.category = Product.keyForCategory(service.product.category);
+            var idx = parseInt(service.product.category);
+            service.product.category = Product.keyForCategory($rootScope.categoriesLocal[idx]);
             delete service.product.dealers_delivery;
             delete service.product.custom_delivery;
             delete service.product.pickup_delivery;

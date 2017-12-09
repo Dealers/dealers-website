@@ -1,9 +1,9 @@
 // Mixins
 
 .transition-all() {
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  transition: all ease-out 0.2s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all ease-out 0.3s;
 }
 
 .background-hover-transition() {
@@ -13,10 +13,10 @@
 }
 
 .background-cover() {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }
 
 .clickable {
@@ -34,43 +34,26 @@
       color: @text-light-gray;
     }
   }
-  .md-button:not([disabled]):hover {
-    color: @theme-dark;
-  }
-}
-
-.gray-links {
-  a {
-    color: @text-light-gray;
-    &:hover, &:active {
-      color: lighten(@text-light-gray, 5%);
-    }
-  }
-  .md-button:not([disabled]):hover {
-    color: @text-light-gray;
-  }
 }
 
 .button-variant(@color; @background; @border) {
-  color: @color;
-  font-size: 0.9em;
-  font-weight: 600;
-  background-color: @background;
-  border: 1px solid @border !important;
-  .transition-all;
+	color: @color;
+	background-color: @background;
+	border: 1px solid @border !important;
+	.transition-all;
 
-  .badge {
-    color: @background;
-    background-color: @color;
-  }
+	.badge {
+		color: @background;
+		background-color: @color;
+	}
 }
 
 .sans-serif-font() {
-  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+	font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .serif-font() {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+	font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 .placeholder(@color) {

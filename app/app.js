@@ -69,22 +69,24 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
 
             // global constants
             $rootScope.language = "";
-            $rootScope.baseUrl = 'http://api.dealers-web.com'; // Test
-            $rootScope.homeUrl = "http://www.dealers-web.com"; // Test
-            $rootScope.stripe_publishable_key = 'pk_test_q3cpGyBIL6rsGswSQbP3tMpK'; // Test
-            $rootScope.INTERCOM_APP_ID = "bez9ewf7"; // Test
-            // $rootScope.baseUrl = 'https://api.dealers-app.com'; // Live
-            // $rootScope.homeUrl = 'https://www.dealers-app.com'; // Live
-            // $rootScope.stripe_publishable_key = 'pk_live_mgdZB9xHsOnYaQDXMXJJm4xU'; // Live
-            // $rootScope.INTERCOM_APP_ID = "z1b3ijln"; // Live
+            // $rootScope.baseUrl = 'http://api.dealers-web.com'; // Test
+            // $rootScope.homeUrl = "http://www.dealers-web.com"; // Test
+            // $rootScope.stripe_publishable_key = 'pk_test_q3cpGyBIL6rsGswSQbP3tMpK'; // Test
+            // $rootScope.INTERCOM_APP_ID = "bez9ewf7"; // Test
+            $rootScope.baseUrl = 'https://api.dealers-app.com'; // Live
+            $rootScope.homeUrl = 'https://www.dealers-app.com'; // Live
+            $rootScope.stripe_publishable_key = 'pk_live_mgdZB9xHsOnYaQDXMXJJm4xU'; // Live
+            $rootScope.INTERCOM_APP_ID = "z1b3ijln"; // Live
+            $rootScope.AWSKey = 'AKIAIWJFJX72FWKD2LYQ';
+            $rootScope.AWSSecretKey = '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';
             $rootScope.AWSS3Bucket = 'dealers-app';
             $rootScope.directImageURlPrefix = 'https://' + $rootScope.AWSS3Bucket + '.s3.amazonaws.com/';
             $rootScope.DEFAULT_PRODUCT_PHOTO_URL = "assets/images/icons/@2x/Web_Icons_product_photo_placeholder.png";
 
             // AWS configuration
             AWS.config.update({
-                accessKeyId: 'AKIAIWJFJX72FWKD2LYQ',
-                secretAccessKey: 'yWeDltbIFIh+mrKJK1YMljieNKyHO8ZuKz2GpRBO'
+                accessKeyId: $rootScope.AWSKey,
+                secretAccessKey: $rootScope.AWSSecretKey
             });
             AWS.config.region = 'eu-west-1';
 
@@ -138,7 +140,8 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
                     location: user.location,
                     role: user.role,
                     rank: user.rank,
-                    language: $rootScope.language
+                    language: $rootScope.language,
+                    plan: "None"
                 });
             }
 
@@ -199,70 +202,235 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
             };
 
             // Categories Local Keys (for local client navigation use)
+            // The order is important!
             $rootScope.categoriesLocal = [
                 "All Categories",
-                "Art",
-                "Automotive",
-                "Health & Beauty",
-                "Books & Magazines",
-                "Electronics",
-                "Entertainment & Events",
+                // "Fashion and Art",
                 "Fashion",
-                "Food & Groceries",
-                "Home & Furniture",
-                "Kids & Babies",
-                "Music",
-                "Pets",
-                "Restaurants & Bars",
-                "Services",
-                "Sports & Outdoor",
-                "Travel",
-                "Other"
+                "Accessories",
+                "Bags and Purses",
+                "Clothing",
+                "Shoes",
+                "Jewelry",
+                "Weddings",
+                "Home and Living",
+                "Kids and Babies",
+                "Vintage",
+                "Art",
+                "Digital Marketing",
+
+                /* Old Categories */
+                // "Automotive",
+                // "Health and Beauty",
+                // "Books and Magazines",
+                // "Electronics",
+                // "Entertainment and Events",
+                // "Food and Groceries",
+                // "Home and Furniture",
+                // "Music",
+                // "Pets",
+                // "Restaurants and Bars",
+                // "Services",
+                // "Sports and Outdoor",
+                // "Travel",
+                // "Other"
             ];
 
             $rootScope.categories = [
                 $translate.instant("general.all-categories"),
-                $translate.instant("general.art"),
-                $translate.instant("general.automotive"),
-                $translate.instant("general.health-beauty"),
-                $translate.instant("general.books-magazines"),
-                $translate.instant("general.electronics"),
-                $translate.instant("general.entertainment-events"),
+                // $translate.instant("general.fashion-and-art"),
                 $translate.instant("general.fashion"),
-                $translate.instant("general.food-groceries"),
-                $translate.instant("general.home-furniture"),
-                $translate.instant("general.kids-events"),
-                $translate.instant("general.music"),
-                $translate.instant("general.pets"),
-                $translate.instant("general.restaurants-bars"),
-                $translate.instant("general.services"),
-                $translate.instant("general.sports-outdoors"),
-                $translate.instant("general.travel"),
-                $translate.instant("general.other")
+                $translate.instant("general.accessories"),
+                $translate.instant("general.bags-and-purses"),
+                $translate.instant("general.clothing"),
+                $translate.instant("general.shoes"),
+                $translate.instant("general.jewelry"),
+                $translate.instant("general.weddings"),
+                $translate.instant("general.home-and-living"),
+                $translate.instant("general.kids-and-babies"),
+                $translate.instant("general.vintage"),
+                $translate.instant("general.art"),
+                $translate.instant("general.digital-marketing"),
+
+                /* Old Categories */
+                // $translate.instant("general.art"),
+                // $translate.instant("general.automotive"),
+                // $translate.instant("general.health-beauty"),
+                // $translate.instant("general.books-magazines"),
+                // $translate.instant("general.electronics"),
+                // $translate.instant("general.entertainment-events"),
+                // $translate.instant("general.fashion"),
+                // $translate.instant("general.food-groceries"),
+                // $translate.instant("general.home-furniture"),
+                // $translate.instant("general.kids"),
+                // $translate.instant("general.music"),
+                // $translate.instant("general.pets"),
+                // $translate.instant("general.restaurants-bars"),
+                // $translate.instant("general.services"),
+                // $translate.instant("general.sports-outdoors"),
+                // $translate.instant("general.travel"),
+                // $translate.instant("general.other")
             ];
+
+            $rootScope.categoriesKeys = {
+                // "Faf": $translate.instant("general.fashion-and-art"),
+                "Fa": $translate.instant("general.fashion"),
+                "Faa": $translate.instant("general.accessories"),
+                "Fab": $translate.instant("general.bags-and-purses"),
+                "Fac": $translate.instant("general.clothing"),
+                "Fas": $translate.instant("general.shoes"),
+                "Faj": $translate.instant("general.jewelry"),
+                "Faw": $translate.instant("general.weddings"),
+                "Fah": $translate.instant("general.home-and-living"),
+                "Fak": $translate.instant("general.kids-and-baby"),
+                "Fav": $translate.instant("general.vintage"),
+                "Ar": $translate.instant("general.art"),
+                "Au": $translate.instant("general.automotive"),
+                "Be": $translate.instant("general.health-beauty"),
+                "Bo": $translate.instant("general.books-magazines"),
+                "El": $translate.instant("general.electronics"),
+                "En": $translate.instant("general.entertainment-events"),
+                "Fo": $translate.instant("general.food-groceries"),
+                "Ho": $translate.instant("general.home-furniture"),
+                "Ki": $translate.instant("general.kids"),
+                "Mu": $translate.instant("general.music"),
+                "Pe": $translate.instant("general.pets"),
+                "Re": $translate.instant("general.restaurants-bars"),
+                "Se": $translate.instant("general.services"),
+                "Sp": $translate.instant("general.sports-outdoors"),
+                "Tr": $translate.instant("general.travel"),
+                "Ot": $translate.instant("general.other")
+            };
+
+            $rootScope.categoriesKeysLocal = {
+                // "Faf": "Fashion and Art",
+                "Fa": "Fashion",
+                "Faa": "Accessories",
+                "Fab": "Bags and Purses",
+                "Fac": "Clothing",
+                "Fas": "Shoes",
+                "Faj": "Jewelry",
+                "Faw": "Weddings",
+                "Fah": "Home and Living",
+                "Fak": "Kids and Babies",
+                "Fav": "Vintage",
+                "Ar": "Art",
+                "Mdm": "Digital Marketing",
+                "Au": "Automotive",
+                "Be": "Health and Beauty",
+                "Bo": "Books and Magazines",
+                "El": "Electronics",
+                "En": "Entertainment and Events",
+                "Fo": "Food and Groceries",
+                "Ho": "Home and Furniture",
+                "Ki": "Kids and Babies",
+                "Mu": "Music",
+                "Pe": "Pets",
+                "Re": "Restaurants and Bars",
+                "Se": "Services",
+                "Sp": "Sports and Outdoor",
+                "Tr": "Travel",
+                "Ot": "Other"
+            };
 
             $rootScope.$on('$translateChangeSuccess', function () {
                 $rootScope.categories = [
                     $translate.instant("general.all-categories"),
-                    $translate.instant("general.art"),
-                    $translate.instant("general.automotive"),
-                    $translate.instant("general.health-beauty"),
-                    $translate.instant("general.books-magazines"),
-                    $translate.instant("general.electronics"),
-                    $translate.instant("general.entertainment-events"),
+                    // $translate.instant("general.fashion-and-art"),
                     $translate.instant("general.fashion"),
-                    $translate.instant("general.food-groceries"),
-                    $translate.instant("general.home-furniture"),
-                    $translate.instant("general.kids-events"),
-                    $translate.instant("general.music"),
-                    $translate.instant("general.pets"),
-                    $translate.instant("general.restaurants-bars"),
-                    $translate.instant("general.services"),
-                    $translate.instant("general.sports-outdoors"),
-                    $translate.instant("general.travel"),
-                    $translate.instant("general.other")
+                    $translate.instant("general.accessories"),
+                    $translate.instant("general.bags-and-purses"),
+                    $translate.instant("general.clothing"),
+                    $translate.instant("general.shoes"),
+                    $translate.instant("general.jewelry"),
+                    $translate.instant("general.weddings"),
+                    $translate.instant("general.home-and-living"),
+                    $translate.instant("general.kids-and-baby"),
+                    $translate.instant("general.vintage"),
+                    $translate.instant("general.art"),
+                    $translate.instant("general.digital-marketing")
+
+                    /* Old Categories */
+                    // $translate.instant("general.automotive"),
+                    // $translate.instant("general.health-beauty"),
+                    // $translate.instant("general.books-magazines"),
+                    // $translate.instant("general.electronics"),
+                    // $translate.instant("general.entertainment-events"),
+                    // $translate.instant("general.food-groceries"),
+                    // $translate.instant("general.home-furniture"),
+                    // $translate.instant("general.kids"),
+                    // $translate.instant("general.music"),
+                    // $translate.instant("general.pets"),
+                    // $translate.instant("general.restaurants-bars"),
+                    // $translate.instant("general.services"),
+                    // $translate.instant("general.sports-outdoors"),
+                    // $translate.instant("general.travel"),
+                    // $translate.instant("general.other")
                 ];
+                $rootScope.categoriesKeys = {
+                    // "Faf": $translate.instant("general.fashion-and-art"),
+                    "Fa": $translate.instant("general.fashion"),
+                    "Faa": $translate.instant("general.accessories"),
+                    "Fab": $translate.instant("general.bags-and-purses"),
+                    "Fac": $translate.instant("general.clothing"),
+                    "Fas": $translate.instant("general.shoes"),
+                    "Faj": $translate.instant("general.jewelry"),
+                    "Faw": $translate.instant("general.weddings"),
+                    "Fah": $translate.instant("general.home-and-living"),
+                    "Fak": $translate.instant("general.kids-and-baby"),
+                    "Fav": $translate.instant("general.vintage"),
+                    "Ar": $translate.instant("general.art"),
+                    "Mdm": $translate.instant("general.digital-marketing")
+
+                    /* Old Categories */
+                    // "Au": $translate.instant("general.automotive"),
+                    // "Be": $translate.instant("general.health-beauty"),
+                    // "Bo": $translate.instant("general.books-magazines"),
+                    // "El": $translate.instant("general.electronics"),
+                    // "En": $translate.instant("general.entertainment-events"),
+                    // "Fo": $translate.instant("general.food-groceries"),
+                    // "Ho": $translate.instant("general.home-furniture"),
+                    // "Ki": $translate.instant("general.kids"),
+                    // "Mu": $translate.instant("general.music"),
+                    // "Pe": $translate.instant("general.pets"),
+                    // "Re": $translate.instant("general.restaurants-bars"),
+                    // "Se": $translate.instant("general.services"),
+                    // "Sp": $translate.instant("general.sports-outdoors"),
+                    // "Tr": $translate.instant("general.travel"),
+                    // "Ot": $translate.instant("general.other")
+                };
             });
+
+            $rootScope.evaluateCategoryClass = function (idx, including_all) {
+                var subCategories = [
+                    $translate.instant("general.accessories"),
+                    $translate.instant("general.bags-and-purses"),
+                    $translate.instant("general.clothing"),
+                    $translate.instant("general.shoes"),
+                    $translate.instant("general.jewelry"),
+                    $translate.instant("general.weddings"),
+                    $translate.instant("general.home-and-living"),
+                    $translate.instant("general.kids-and-baby"),
+                    $translate.instant("general.vintage")
+                ];
+
+                var ap_prerequisite = 0 < idx && idx < 10;
+                var reg_prerequisite = 1 < idx && idx < 11;
+
+                if (including_all) {
+                    if (reg_prerequisite) {
+                        return "sub-category";
+                    } else {
+                        return "category"
+                    }
+                } else {
+                    if (ap_prerequisite) {
+                        return "sub-category";
+                    } else {
+                        return "category"
+                    }
+                }
+            };
 
             // Discount types
             $rootScope.discountTypes = {
@@ -270,10 +438,13 @@ angular.module('DealersApp', ['ngAnimate', 'ngRoute', 'ngCookies', 'ngMaterial',
                 previousPrice: "PP"
             };
 
+            // Marketing materials according to language.
             if ($rootScope.language == 'he') {
                 $rootScope.videoLink = "https://youtube.com/embed/7vLFe9Jmkx0";
+                $rootScope.facebookPage = "https://www.facebook.com/dealersisrael/"
             } else {
-                $rootScope.videoLink = "https://youtube.com/embed/Ka6dsAGUdTo";
+                $rootScope.videoLink = "https://youtube.com/embed/vefVgIRSSN4";
+                $rootScope.facebookPage = "https://www.facebook.com/dealersus/";
             }
 
             $rootScope.showToast = function (text, delay) {

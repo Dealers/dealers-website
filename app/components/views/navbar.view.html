@@ -38,7 +38,7 @@
                     <md-menu-content class="dark-links" style="position: relative; padding-bottom: 40px" width="5">
                         <md-content>
                             <md-menu-item ng-repeat="category in categories track by $index">
-                                <md-button ng-click="selectCategory($index)">
+                                <md-button ng-click="selectCategory($index)" ng-class="evaluateCategoryClass($index, true)">
                                     {{category | htmlEscape}}
                                 </md-button>
                             </md-menu-item>
@@ -70,6 +70,33 @@
                 </a>
             </li>
         </ul>
+        <ul id="nav-language" ng-class="{'navbar-right': !phoneMode && !tabletMode}" class="nav non-mobile" ng-if="mode == 'Guest'">
+            <li>
+                <md-select ng-model="currentLocaleDisplayName"
+                           class="md-no-underline"
+                           style="margin: 8px;"
+                           ng-change="changeLanguage(currentLocaleDisplayName)"
+                           ng-translate-language-select>
+                    <md-option ng-repeat="localesDisplayName in localesDisplayNames" value="{{localesDisplayName}}">
+                        <img ng-src="{{getFlag(localesDisplayName)}}" width="21px" height="14px" class="flag-icon">
+                        {{localesDisplayName}}
+                    </md-option>
+                </md-select>
+            </li>
+        </ul>
+        <!--<ul id="nav-language-mobile" ng-class="{'navbar-right': !phoneMode && !tabletMode}" class="nav mobile" ng-if="mode == 'Guest'">-->
+            <!--<li>-->
+                <!--<md-select ng-model="currentLocaleDisplayName"-->
+                           <!--class="md-no-underline"-->
+                           <!--style="margin: 8px;"-->
+                           <!--ng-change="changeLanguage(currentLocaleDisplayName)"-->
+                           <!--ng-translate-language-select>-->
+                    <!--<md-option ng-repeat="localesDisplayName in localesDisplayNames" value="{{localesDisplayName}}">-->
+                        <!--<img ng-src="{{getFlag(localesDisplayName)}}" width="21px" height="14px" class="flag-icon">-->
+                    <!--</md-option>-->
+                <!--</md-select>-->
+            <!--</li>-->
+        <!--</ul>-->
         <ul id="nav-sell" ng-class="{'navbar-right': !phoneMode && !tabletMode}" class="nav" ng-if="mode != 'Dealer'"
             register-as-dealer>
             <li>

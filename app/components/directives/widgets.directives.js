@@ -187,23 +187,31 @@ angular.module('DealersApp')
             }
         }
     })
+    .directive('virtualSpiritBot', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'app/components/views/chatbot.view.html',
+        }
+    })
     .directive('scrollDetector', ['Product', function (Product) {
         return {
             link: function (scope, element) {
-                $(window).scroll(function () {
-                    if ($(window).scrollTop() + $(window).height() > $(document).height() - 700) {
-                        if (!scope.update.loadingMore) {
-                            if (scope.update.nextPage) {
-                                scope.update.loadingMore = true;
-                                scope.$apply();
-                                scope.getProducts(scope.update.nextPage);
+                if (scope.scrollDetector) {
+                    $(window).scroll(function () {
+                        if ($(window).scrollTop() + $(window).height() > $(document).height() - 700) {
+                            if (!scope.update.loadingMore) {
+                                if (scope.update.nextPage) {
+                                    scope.update.loadingMore = true;
+                                    scope.$apply();
+                                    scope.getProducts(scope.update.nextPage);
+                                }
                             }
                         }
-                    }
-                });
-                scope.$on('$destroy', function () {
-                    $(window).off("scroll");
-                });
+                    });
+                    scope.$on('$destroy', function () {
+                        $(window).off("scroll");
+                    });
+                }
             }
         };
     }]);

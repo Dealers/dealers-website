@@ -3,8 +3,8 @@ angular.module('DealersApp')
 /**
  * The controller that manages the second step of the Add Product Procedure.
  */
-    .controller('EditProductController', ['$scope', '$rootScope', '$location', '$mdDialog', '$mdConstant', '$mdToast', '$routeParams', '$timeout', 'Product', 'ProductPhotos', 'EditProduct', 'ShippingMethods', 'Dialogs', 'Translations',
-        function ($scope, $rootScope, $location, $mdDialog, $mdConstant, $mdToast, $routeParams, $timeout, Product, ProductPhotos, EditProduct, ShippingMethods, Dialogs, Translations) {
+    .controller('EditProductController', ['$scope', '$rootScope', '$location', '$mdDialog', '$mdConstant', '$mdToast', '$routeParams', '$timeout', 'Product', 'ProductPhotos', 'EditProduct', 'Variants', 'ShippingMethods', 'Dialogs', 'Translations',
+        function ($scope, $rootScope, $location, $mdDialog, $mdConstant, $mdToast, $routeParams, $timeout, Product, ProductPhotos, EditProduct, Variants, ShippingMethods, Dialogs, Translations) {
 
             var SHEKEL = '₪';
             var DOLLAR = '$';
@@ -625,6 +625,9 @@ angular.module('DealersApp')
                     }
                 } else {
                     showAlertDialog(Translations.productEdit.blankCategoryTitle, Translations.productEdit.blankCategoryContent, event);
+                    return false;
+                }
+                if (!Variants.validateVariants($scope.variants)) {
                     return false;
                 }
                 if (!ShippingMethods.validateShippingMethods($scope.shipping_methods)) {

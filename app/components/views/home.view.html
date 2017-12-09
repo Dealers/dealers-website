@@ -3,8 +3,37 @@
 <div ng-show="role == roles.guest" class="nav-padding-exact intro-container">
     <intro></intro>
     <about-section></about-section>
+
+    <h2 class="text-center" translate>views.about.marketing-plans-title</h2>
+    <price-plans></price-plans>
+    <div class="text-center padding-bottom-30 home-register-container">
+        <md-button class="btn-single btn-primary" register-as-dealer>
+            {{"views.sign-in-dialog.sign-up-title" | translate}}
+        </md-button>
+    </div>
+
+    <!--<div class="home-download-apps">-->
+        <!--<ul class="list-inline">-->
+            <!--<li class="appstore-badge dl-badge">-->
+                <!--<a href="https://itunes.apple.com/il/app/dealers.-start-selling-online/id1170519700?mt=8" target="_blank">-->
+                    <!--<img height="50" src="/assets/images/icons/@2x/app_store_badge.png">-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li class="qr-scanner non-mobile">-->
+                <!--<img width="75" height="75" src="/assets/images/images/QR_scanner.png">-->
+            <!--</li>-->
+            <!--<li class="google-play-badge dl-badge">-->
+                <!--<a href="https://play.google.com/store/apps/details?id=com.dealerssellonlinenow.dealerssellonlinenow" target="_blank">-->
+                    <!--<img height="50" src="/assets/images/icons/@2x/google-play-badge-01.png">-->
+                <!--</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+
 </div>
 
-<dl-products-grid title="gridTitle" description="gridDescription"
+<dl-products-grid title="gridTitle" description="gridDescription" per-page="perPage" scroll-detector="scrollDetector"
                   ng-class="{'nav-padding': role != roles.guest, 'padding-top-30': role == roles.guest}">
 </dl-products-grid>
+
+<footer-section></footer-section>

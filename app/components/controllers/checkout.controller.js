@@ -8,8 +8,8 @@ angular.module('DealersApp')
  * @param $scope - the isolated scope of the controller.
  * @param $mdDialog - the mdDialog service of the Material Angular library.
  */
-    .controller('CheckoutController', ['$scope', '$rootScope', '$routeParams', '$location', '$mdMedia', '$mdDialog', 'Checkout', 'ActiveSession', 'Product', 'ProductPhotos', 'Purchase', 'Dialogs', 'ShippingMethods', 'Translations',
-        function ($scope, $rootScope, $routeParams, $location, $mdMedia, $mdDialog, Checkout, ActiveSession, Product, ProductPhotos, Purchase, Dialogs, ShippingMethods, Translations) {
+    .controller('CheckoutController', ['$scope', '$rootScope', '$routeParams', '$location', '$mdMedia', '$mdDialog', 'Checkout', 'ActiveSession', 'Product', 'ProductPhotos', 'Purchase', 'Dialogs', 'ShippingMethods', 'Translations', 'FacebookPixel',
+        function ($scope, $rootScope, $routeParams, $location, $mdMedia, $mdDialog, Checkout, ActiveSession, Product, ProductPhotos, Purchase, Dialogs, ShippingMethods, Translations, FacebookPixel) {
 
             // First check if there's a product object in the ActiveSession service. If not, download it.
             // Then create the purchase object.
@@ -52,6 +52,7 @@ angular.module('DealersApp')
                     $scope.status = DOWNLOADED_STATUS;
                     prepareView();
                 }
+                FacebookPixel.initiateCheckout();
             }
 
             function downloadProduct() {
@@ -259,6 +260,7 @@ angular.module('DealersApp')
                                         total_price: totalPrice,
                                         currency: product_currency
                                     });
+                                    FacebookPixel.purchase($scope.product, purchaseObj);
                                     $location.path("/products/" + $scope.product.id + "/checkout-finish");
                                 },
                                 function (httpError) {

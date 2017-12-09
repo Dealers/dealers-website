@@ -1,7 +1,7 @@
 angular.module('DealersApp')
     .controller('ViewDealController',
-        ['$scope', '$rootScope', '$http', '$routeParams', '$route', '$location', '$timeout', '$mdDialog', '$mdMedia', 'Product', 'ProductPhotos', 'DealerPhotos', 'ActiveSession', 'EditProduct', 'Dialogs', 'Checkout', 'Translations',
-            function ($scope, $rootScope, $http, $routeParams, $route, $location, $timeout, $mdDialog, $mdMedia, Product, ProductPhotos, DealerPhotos, ActiveSession, EditProduct, Dialogs, Checkout, Translations) {
+        ['$scope', '$rootScope', '$http', '$routeParams', '$route', '$location', '$timeout', '$mdDialog', '$mdMedia', 'Product', 'ProductPhotos', 'DealerPhotos', 'ActiveSession', 'EditProduct', 'Dialogs', 'Checkout', 'Translations', 'FacebookPixel',
+            function ($scope, $rootScope, $http, $routeParams, $route, $location, $timeout, $mdDialog, $mdMedia, Product, ProductPhotos, DealerPhotos, ActiveSession, EditProduct, Dialogs, Checkout, Translations, FacebookPixel) {
 
                 var ctrl = this;
 
@@ -91,6 +91,7 @@ angular.module('DealersApp')
                 function fillData() {
                     setProductPhotos();
                     setDealerProfile();
+                    FacebookPixel.viewContent($scope.product);
 
                     $scope.firstPhotoHeight = $scope.product.main_photo_height;
                     $scope.variants = Product.parseVariantsFromServer($scope.product.variants);
@@ -314,7 +315,7 @@ angular.module('DealersApp')
                     } else {
                         var comment = $scope.comment;
                         comment.upload_date = new Date();
-                        comment.product = $scope.product.id;
+                        comment.deal = $scope.product.id;
                         comment.dealer = $rootScope.dealer.id;
                         comment.type = "Deal";
                         $scope.showCommentError = false;

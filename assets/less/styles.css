@@ -13,21 +13,6 @@
 .xl-font {
   font-size: 18px;
 }
-.xs-font {
-  font-size: 12px;
-}
-.small-font {
-  font-size: 12px;
-}
-.regular-font {
-  font-size: 14px;
-}
-.large-font {
-  font-size: 16px;
-}
-.xl-font {
-  font-size: 18px;
-}
 .clickable {
   opacity: 1;
   transition: all ease-out 0.2s;
@@ -1324,6 +1309,7 @@ div.noImageBackground {
 }
 .checkout {
   padding: 10px 20px 30px;
+  margin: 0;
 }
 .co-product-preview {
   width: inherit;
@@ -1397,10 +1383,6 @@ div.noImageBackground {
   font-size: 1.35em;
   font-weight: 700;
 }
-.secure-payment-container {
-  opacity: 0.85;
-  margin: 30px 0;
-}
 .secure-payment-container-upper-right {
   opacity: 0.85;
   margin: -40px 0 30px;
@@ -1410,16 +1392,6 @@ div.noImageBackground {
   opacity: 0.85;
   margin: 0 0 10px;
   text-align: left;
-}
-.divider {
-  width: 10px;
-  border-right: 1px solid #eeeeee;
-  margin: 0 30px;
-}
-.co-security-message {
-  font-size: 12px;
-  color: #828291;
-  margin-top: 10px;
 }
 .corner-security-message {
   display: inline-block;
@@ -1651,7 +1623,7 @@ button.ap-done {
   box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.1);
 }
 .pr-header-section .spinnerContainer {
-  margin-top: 120px !important;
+  margin-top: 120px auto !important;
 }
 .pr-header-section .pr-profile-pic {
   height: 40px;

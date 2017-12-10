@@ -1,8 +1,8 @@
 {
 
   "views.intro-section.mantra": "מערכת המומחים שלנו היא השיווק הדיגיטלי שלכם!", 
-  "views.intro-section.one-liner-question": "עסק קטן בתחום האופנה?",
-  "views.intro-section.one-liner-description": "הרשמו, העלו מוצריכם עם תאור ותמונות ואנחנו ננהל את השיווק הדיגיטלי עבורכם",
+  "views.intro-section.one-liner-question": "עסק קטן?",
+  "views.intro-section.one-liner-description": "הרשמו, העלו מוצר או שירות עם תאור ותמונות ואנחנו ננהל את השיווק הדיגיטלי עבורכם",
   "views.intro-section.enter-email": "הזינו את הדוא״ל שלכם",
   "views.intro-section.get-started": "התחילו",
   "views.intro-section.learn-more": "מה זה דילרס",
@@ -216,7 +216,7 @@
 
   "services.shipping-methods.dealers-title": "משלוח האקספרס של דילרס",
   "services.shipping-methods.dealers-description": "משלוח האקספרס הסטנדרטי, מדלת לדלת.",
-  "services.shipping-methods.pickup-title": "לא רלוונטי",
+  "services.shipping-methods.pickup-title": "משלוח לא רלוונטי",
   "services.shipping-methods.pickup-description": "לקוחות יוכלו לבוא למיקומכם ולאסוף את המוצר. פרטו אודות כתובת מיקום האיסוף, שעות הפתיחה וכדומה.",
 
   "views.add-product-finish.success": "המוצר שלך הועלה בהצלחה!",
@@ -316,12 +316,13 @@
 
   "views.checkout.title": "פרטי הזמנה",
   "views.checkout.shipping-address": "כתובת משלוח",
-  "views.checkout.delivery-option": "שיטת משלוח:",
+  "views.checkout.delivery-option": "בחר את שיטת המשלוח אם רלוונטי, בדוק את פרטיי העיסקה, ולחץ המשך לתשלום. התשלום מבוצע בצורה מאובטחת ואמצעי התשלום אינם נישמרים במערכת",
   "views.checkout.free-shipping": "משלוח חינם",
   "views.checkout.business-days": "ימי עסקים",
   "views.checkout.details": "פרטים",
   "views.checkout.quantity": "כמות",
   "views.checkout.continue": "המשך לתשלום",
+  "views.checkout.security-message": "התשלום מאובטח על פי תקן PCI.",
 
   "views.checkout-finish.title": "הקנייה התבצעה",
   "views.checkout-finish.tip-1": " ניתן להגיע לפרטי הקנייה גם תחת הלשונית ׳הזמנות׳ בפרופיל.",

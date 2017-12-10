@@ -35,12 +35,16 @@
                                             <div flex>
                                                 <ul ng-show="shipping.delivery_method != PICKUP_METHOD"
                                                     class="list-inline no-margin">
-                                                    <li ng-show="shipping.shipping_price == 0" translate>views.checkout.free-shipping</li>
+                                                    <li ng-show="shipping.shipping_price == 0" translate>
+                                                        views.checkout.free-shipping
+                                                    </li>
                                                     <li ng-show="shipping.shipping_price > 0">{{shipping.shipping_price
                                                         | currency:product.currency}}
                                                     </li>
                                                     <li class="footer-menu-divider">⋅</li>
-                                                    <li>{{shipping.estimated_delivery_time}} {{'views.checkout.business-days' | translate}}</li>
+                                                    <li>{{shipping.estimated_delivery_time}}
+                                                        {{'views.checkout.business-days' | translate}}
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div flex="none">
@@ -108,13 +112,25 @@
                                 />
                             </div>
                         </div>
+                        <div class="co-submit-button non-mobile">
+                            <md-button id="co-pay"
+                                       class="btn-primary"
+                                       type="submit">
+                                {{'views.checkout.continue' | translate}}
+                            </md-button>
+                        </div>
+                        <div class="secure-payment-container desktop">
+                            <secure-payment></secure-payment>
+                            <a ng-href="/security" target="_blank">
+                                <p class="co-security-message">
+                                    {{'views.checkout.security-message' | translate}}
+                                </p>
+                            </a>
+                        </div>
                     </div>
-                    <div class="divider" style="width: 60px" ng-show="!smallSize" flex-gt-sm="none">
+                    <div class="divider" ng-show="!smallSize" flex-gt-sm="none">
                     </div>
                     <div flex>
-                        <div class="secure-payment-container-upper-right desktop">
-                            <secure-payment></secure-payment>
-                        </div>
                         <div class="co-product-info">
                             <div class="co-product-preview">
                                 <h4>{{product.title}}</h4>
@@ -127,19 +143,33 @@
                                             <li ng-repeat="selection in purchase.selections"><b>{{selection.name}}:</b>
                                                 {{selection.selection}}
                                             </li>
-                                            <li><b>{{'views.checkout.quantity' | translate}}</b> {{purchase.quantity}}</li>
+                                            <li>
+                                                <div class="vd-quantity">
+                                                    <label for="vd-quantity" translate>general.quantity</label>
+                                                    <div>
+                                                        <input id="vd-quantity"
+                                                               ng-model="purchase.quantity"
+                                                               type="number"
+                                                               min="1"
+                                                               max="1000"
+                                                               ng-change="presentTotalPrice = true"
+                                                               step="1">
+                                                    </div>
+                                                </div>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="margin-top-40">
-                            <total-price-calculator present="delivery.selectedShippingObj" purchase="purchase" delivery="delivery.selectedShippingObj"></total-price-calculator>
+                            <total-price-calculator present="delivery.selectedShippingObj" purchase="purchase"
+                                                    delivery="delivery.selectedShippingObj"></total-price-calculator>
                         </div>
                     </div>
                 </div>
-                <div class="co-submit-button">
-                    <md-button id="co-pay"
+                <div class="co-submit-button mobile">
+                    <md-button id="co-pay-mob"
                                class="btn-primary btn-single btn-xl"
                                type="submit">
                         {{'views.checkout.continue' | translate}}

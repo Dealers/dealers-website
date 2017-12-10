@@ -216,7 +216,7 @@
   "services.shipping-methods.dealers-title": "Dealers Express Shipping",
   "services.shipping-methods.dealers-description": "This is the standard express shipping.",
   "services.shipping-methods.pickup-title": "Not Applicable",
-  "services.shipping-methods.pickup-description": "Customers can come to your location and collect the product. Specify details such as address, hours of availability, etc.",
+  "services.shipping-methods.pickup-description": "Shipping is not applicable or customers can come to your location and collect the product. Specify details such as address, hours of availability, etc.",
 
   "views.add-product-finish.success": "Your product uploaded Successfully!",
   "views.add-product-finish.spread": "Time to spread the word...",
@@ -325,6 +325,8 @@
   "views.checkout.details": "Details",
   "views.checkout.quantity": "Quantity",
   "views.checkout.continue": "Continue to Payment",
+  "views.checkout.security-message": "Payments are secured according to the PCI standard.",
+
   "views.checkout-finish.title": "The purchase is placed",
   "views.checkout-finish.tip-1": "You can follow the status of the shipment in your profile under the 'Orders' tab.",
   "views.checkout-finish.purchase-details": "Purchase Details",
